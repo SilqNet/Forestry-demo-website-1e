@@ -14,6 +14,10 @@ const partners = [
     logo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_Finieris_AS_id_fVQzm0I_0-uXuwLNZnUIr5ni6TPwwOSY67qGBxj0.png',
   },
   {
+    name: 'Latvijas Mežs',
+    logo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijasmezs-lv_idQkwXJx0w_0-jPrm4GWIp9eth3EzyWnpsSt0MhMMt9.png',
+  },
+  {
     name: 'Nidrāji MR',
     logo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/idjbpsM6kj_logos-qGeiEqG3rxesqFF9E8RQCFDoHPmiSq.png',
   },

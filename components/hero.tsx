@@ -16,7 +16,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative w-full h-screen pt-16 overflow-hidden">
+    <section className="relative w-full h-screen pt-16 overflow-x-hidden overflow-y-auto">
       {/* Desktop Video Background */}
       {!isMobile && (
         <video
@@ -47,8 +47,8 @@ export default function Hero() {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* Content */}
-      <div className="relative h-full flex flex-col items-start justify-center text-left px-4 md:px-12 lg:px-20">
+      {/* Content - Positioned lower to approach next section */}
+      <div className="relative h-full flex flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-24 md:pb-32">
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl text-balance leading-tight">
           GR GRUPA - Your Trusted Forestry Partner
         </h1>

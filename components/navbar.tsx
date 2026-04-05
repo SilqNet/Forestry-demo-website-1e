@@ -132,15 +132,17 @@ export default function Navbar() {
       {/* Fullscreen Mobile Menu */}
       {isOpen && (
         <div className="fixed inset-0 z-30 md:hidden">
-          {/* Menu background */}
+          {/* Menu background - full viewport */}
           <div
-            className="absolute inset-0 bg-white animate-in slide-in-from-top"
+            className="absolute inset-0 bg-white"
             style={{
               animation: 'slideDown 300ms ease-out',
+              top: '64px',
+              height: 'calc(100vh - 64px)',
             }}
           >
             {/* Menu content */}
-            <div className="pt-20 px-4 pb-8 max-h-screen overflow-y-auto">
+            <div className="px-4 py-8 max-h-screen overflow-y-auto">
               {navItems.map((item) => (
                 <div key={item.label}>
                   <button
@@ -160,11 +162,15 @@ export default function Navbar() {
 
                   {/* Mobile Dropdown */}
                   {item.submenu && openDropdown === item.label && (
-                    <div className="pl-6 py-2 bg-muted/50">
+                    <div className="pl-6 py-2 bg-muted/50 rounded">
                       {item.submenu.map((subitem) => (
                         <Link
                           key={subitem.label}
                           href={subitem.href}
+                          onClick={() => {
+                            setIsOpen(false)
+                            setOpenDropdown(null)
+                          }}
                           className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
                           {subitem.label}
@@ -174,6 +180,16 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
+
+              {/* Mobile Language Selector */}
+              <div className="mt-6 pt-6 border-t border-border">
+                <select
+                  className="w-full text-sm bg-muted text-foreground border border-border rounded px-3 py-2 transition-colors"
+                >
+                  <option value="lv">Latviešu (LV)</option>
+                  <option value="en">English (EN)</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
