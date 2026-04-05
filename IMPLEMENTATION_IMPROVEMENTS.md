@@ -26,11 +26,21 @@ Use `[ ]` / `[x]` as you complete items.
 
 ### Phase A — Discovery & routing
 
-- [ ] **A.1** Locate all navbar / header markup and styles (e.g. `components/navbar.tsx`, layout wrappers, any mobile-only menu).
-- [ ] **A.2** Locate hero section (e.g. `components/hero.tsx`) and list every child: heading, subheading, CTAs, overlays.
-- [ ] **A.3** Audit existing floating / fixed controls (e.g. `components/floating-button.tsx`) for overlap with the new green tab spec.
-- [ ] **A.4** Map each current nav label to its route (`href`) so renames and removals do not break links.
-- [ ] **A.5** **Label vs structure:** Section 1 renames the existing **“Par mums”** entry to **“Kontakti”**. Section 2 also requires a top-right link labeled **“Par mums”**. Confirm product intent: typically **“Kontakti”** → contact, **“Par mums”** → about (or equivalent). If the codebase has a single “Par mums” link, split into two entries with correct URLs before shipping.
+- [x] **A.1** Locate all navbar / header markup and styles (e.g. `components/navbar.tsx`, layout wrappers, any mobile-only menu).
+- [x] **A.2** Locate hero section (e.g. `components/hero.tsx`) and list every child: heading, subheading, CTAs, overlays.
+- [x] **A.3** Audit existing floating / fixed controls (e.g. `components/floating-button.tsx`) for overlap with the new green tab spec.
+- [x] **A.4** Map each current nav label to its route (`href`) so renames and removals do not break links.
+- [x] **A.5** **Label vs structure:** Section 1 renames the existing **“Par mums”** entry to **“Kontakti”**. Section 2 also requires a top-right link labeled **“Par mums”**. Confirm product intent: typically **“Kontakti”** → contact, **“Par mums”** → about (or equivalent). If the codebase has a single “Par mums” link, split into two entries with correct URLs before shipping.
+
+#### Phase A findings (recorded 2026-04-06)
+
+| ID | Summary |
+|----|---------|
+| **A.1** | **Header source of truth:** `components/navbar.tsx` — fixed `nav`, desktop link row (`hidden md:flex`), language `<select>` (desktop), hamburger **mobile-only** (`md:hidden`), fullscreen slide-down menu for `md:hidden` (same `navItems`). Scroll state toggles `bg-transparent` vs `bg-white/95`. **Layout:** `app/layout.tsx` has no navbar. **Home composition:** `app/page.tsx` renders `<Navbar />` then `<Hero />`. **`components/ui/navigation-menu.tsx`** is a Radix/shadcn primitive and is **not** imported by the live navbar (available if you refactor). |
+| **A.2** | **`components/hero.tsx`:** (1) Desktop `<video>` full-bleed background. (2) Mobile `<Image>` background. (3) Overlay `div` with `bg-black/40`. (4) Content wrapper: single **`h1`** (“GR GRUPA - Your Trusted Forestry Partner”) — **no subheading, no hero CTAs.** Section uses `pt-16` for fixed nav clearance; content is `items-start` / `text-left`. |
+| **A.3** | **`components/floating-button.tsx`:** `fixed` with `right-6 md:right-8`, `top-32`, `z-30` (below navbar `z-40`). Uses `bg-primary` + white; collapsed width `40px`; **hover + click** toggle expand; expanded shows **“Uzzini savu mežu vērtību”** (matches intended copy). **Gaps vs Phase D spec:** not flush to **viewport right edge**; **vertical** position is upper third, not centered; collapsed state uses a **rounded pill** and **“i” inside a white inner box**, not a narrow green tab with only a white “i” on green. **No other** fixed promo control on the home page. |
+| **A.4** | **Routes:** Only **`/`** exists (`app/page.tsx`). **Logo** → `href="/"`. Every item in `navItems` and all submenu entries use **`href: '#'`** — renames/removals in Phase B **will not break real routes** until you introduce pages (e.g. `/kontakti`, `/par-mums`) and wire `href`s. |
+| **A.5** | **Confirmed:** There is a **single** top-level **“Par mums”** in `navItems` (`navbar.tsx`). **Intent for later phases:** that slot becomes **“Kontakti”** (contact); add a **separate** top-right **“Par mums”** (about) in the utility cluster (Phase C). Assign distinct `href`s when routes exist. **`footer.tsx`** also contains **“Lemontdarbnīca”** — note for Phase B cleanup outside the nav list. **B.6 verification:** Repo has **“Lemontdarbnīca”** in navbar and footer; **no** string **“Remontdarbnīca”** found. |
 
 ### Phase B — Desktop navbar: copy (exact strings)
 
