@@ -1,28 +1,33 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
+import Image from 'next/image'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
   {
-    company: 'Company One',
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PRIEDES_AG_idx2EYih-G_0-IDEmBj870UOzG6tTJr8eGVhv9vpFeo.png',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
-    rating: 5,
+    authorName: 'John Smith',
+    authorTitle: 'CEO, Forest Solutions',
   },
   {
-    company: 'Company Two',
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/idrwgez9Ah_logos-baoHiIfVmEYHwLsR4jR7s4pkEFBAgQ.png',
     text: 'Exceptional service and professional team. They delivered exactly what we needed on time and within budget.',
-    rating: 5,
+    authorName: 'Jane Doe',
+    authorTitle: 'Director, Timber Co',
   },
   {
-    company: 'Company Three',
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BONO_Group_idEVZYswIK_0-qy86XHPfxe4ihFkK4Tbwum7FKQ7te8.png',
     text: 'Outstanding forestry solutions. Highly recommend their services to any business in the timber industry.',
-    rating: 5,
+    authorName: 'Robert Johnson',
+    authorTitle: 'Manager, Wood Products',
   },
   {
-    company: 'Company Four',
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Me%C5%BEa_Ener%C4%A3ija_id8_-DePEl_0-tCTzCysLsU9f81Q4iIZz7ptVZzPafX.png',
     text: 'Great partnership experience. Their expertise and reliability make them stand out in the market.',
-    rating: 5,
+    authorName: 'Maria Garcia',
+    authorTitle: 'Partner, Energy Solutions',
   },
 ]
 
@@ -44,25 +49,25 @@ export default function Testimonials() {
   const totalSlides = Math.ceil(testimonials.length / itemsPerView)
 
   const next = useCallback(() => {
-    setCurrent((current + 1) % totalSlides)
+    setCurrent((prev) => (prev + 1) % testimonials.length)
     setIsAutoPlay(false)
-  }, [totalSlides, current])
+  }, [])
 
   const prev = useCallback(() => {
-    setCurrent((current - 1 + totalSlides) % totalSlides)
+    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
     setIsAutoPlay(false)
-  }, [totalSlides, current])
+  }, [])
 
   // Auto-play effect
   useEffect(() => {
     if (!isAutoPlay) return
 
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % totalSlides)
+      setCurrent((prev) => (prev + 1) % testimonials.length)
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlay, totalSlides])
+  }, [isAutoPlay])
 
   // Resume autoplay after user interaction
   useEffect(() => {
@@ -72,11 +77,10 @@ export default function Testimonials() {
     }
   }, [isAutoPlay])
 
-  const startIndex = current * itemsPerView
-  const visibleTestimonials = testimonials.slice(
-    startIndex,
-    startIndex + itemsPerView
-  )
+  const startIndex = isMobile ? current : current * 2
+  const visibleTestimonials = isMobile
+    ? [testimonials[current]]
+    : [testimonials[current * 2 % testimonials.length], testimonials[(current * 2 + 1) % testimonials.length]]
 
   return (
     <section className="py-20 bg-background">
@@ -105,35 +109,36 @@ export default function Testimonials() {
 
         {/* Testimonials Carousel */}
         <div
-          className={`grid gap-8 ${
+          className={`grid gap-12 ${
             isMobile ? 'grid-cols-1' : 'grid-cols-2'
           } min-h-[300px]`}
         >
           {visibleTestimonials.map((testimonial, index) => (
-            <div
-              key={startIndex + index}
-              className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
-            >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={20}
-                    className="fill-primary text-primary"
+            <div key={startIndex + index} className="text-center">
+              {/* Company Logo */}
+              <div className="flex justify-center mb-6">
+                <div className="relative w-32 h-16">
+                  <Image
+                    src={testimonial.companyLogo}
+                    alt="Company logo"
+                    fill
+                    className="object-contain"
                   />
-                ))}
+                </div>
               </div>
 
               {/* Quote */}
-              <p className="text-muted-foreground mb-6 italic text-lg">
+              <p className="text-foreground mb-6 italic text-lg leading-relaxed">
                 "{testimonial.text}"
               </p>
 
-              {/* Company */}
+              {/* Author */}
               <div>
                 <p className="font-semibold text-foreground">
-                  {testimonial.company}
+                  {testimonial.authorName}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {testimonial.authorTitle}
                 </p>
               </div>
             </div>
@@ -154,22 +159,6 @@ export default function Testimonials() {
           >
             <ChevronRight size={24} />
           </button>
-        </div>
-
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: totalSlides }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setCurrent(index)
-                setIsAutoPlay(false)
-              }}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === current ? 'bg-primary' : 'bg-border'
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>

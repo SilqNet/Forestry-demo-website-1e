@@ -51,25 +51,25 @@ export default function PartnerCarousel() {
   const totalSlides = Math.ceil(partners.length / itemsPerView)
 
   const next = useCallback(() => {
-    setCurrent((current + 1) % totalSlides)
+    setCurrent((prev) => (prev + 1) % partners.length)
     setIsAutoPlay(false)
-  }, [totalSlides])
+  }, [])
 
   const prev = useCallback(() => {
-    setCurrent((current - 1 + totalSlides) % totalSlides)
+    setCurrent((prev) => (prev - 1 + partners.length) % partners.length)
     setIsAutoPlay(false)
-  }, [totalSlides, current])
+  }, [])
 
   // Auto-play effect
   useEffect(() => {
     if (!isAutoPlay) return
 
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % totalSlides)
+      setCurrent((prev) => (prev + 1) % partners.length)
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlay, totalSlides])
+  }, [isAutoPlay])
 
   // Resume autoplay after user interaction
   useEffect(() => {
@@ -79,8 +79,12 @@ export default function PartnerCarousel() {
     }
   }, [isAutoPlay])
 
-  const startIndex = current * itemsPerView
-  const visiblePartners = partners.slice(startIndex, startIndex + itemsPerView)
+  const startIndex = current
+  const visiblePartners = [
+    partners[current],
+    partners[(current + 1) % partners.length],
+    partners[(current + 2) % partners.length],
+  ]
 
   return (
     <section className="py-20 bg-white">
@@ -109,8 +113,8 @@ export default function PartnerCarousel() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-[150px]">
           {visiblePartners.map((partner, index) => (
             <div
-              key={startIndex + index}
-              className="flex items-center justify-center bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
+              key={index}
+              className="flex items-center justify-center p-8"
             >
               <div className="relative w-full h-20">
                 <Image
@@ -124,21 +128,7 @@ export default function PartnerCarousel() {
           ))}
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: totalSlides }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setCurrent(index)
-                setIsAutoPlay(false)
-              }}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === current ? 'bg-primary' : 'bg-border'
-              }`}
-            />
-          ))}
-        </div>
+        {/* Pagination Dots - REMOVED */}
       </div>
     </section>
   )

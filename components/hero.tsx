@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Phone } from 'lucide-react'
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false)
@@ -49,23 +48,10 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-balance mb-6">
-          BEGIN YOUR FORESTRY PROJECT TODAY WITH OUR EXPERT, RELIABLE TEAM
+      <div className="relative h-full flex flex-col items-start justify-center text-left px-4 md:px-12 lg:px-20">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl text-balance leading-tight">
+          GR GRUPA - Your Trusted Forestry Partner
         </h1>
-        <p className="text-lg md:text-xl text-white/90 max-w-3xl mb-8 text-balance">
-          At Treant, we harvest forests responsibly, provide premium timber, and replant for tomorrow — ensuring strength, sustainability, and trust in every Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <button className="bg-primary hover:bg-primary-foreground/10 text-white px-8 py-3 rounded-full font-semibold transition-colors">
-            Get Started
-          </button>
-          <button className="bg-primary hover:bg-primary-foreground/10 text-white p-3 rounded-full transition-colors">
-            <Phone size={24} />
-          </button>
-        </div>
       </div>
     </section>
   )

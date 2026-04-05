@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, Phone } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -57,8 +57,8 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/R_GRUPA_idsfYm-39J_0-gWFApMxGizbCUonoz7EOKJPoAonBxg.png"
-                alt="R GRUPA"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
+                alt="GR GRUPA"
                 width={120}
                 height={40}
                 className="h-10 w-auto"
@@ -179,11 +179,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Right-side Floating Button */}
-      <button className="fixed right-6 top-24 z-30 md:right-8 md:top-1/2 md:-translate-y-1/2 group flex items-center gap-2 bg-primary text-white px-4 py-3 rounded-full hover:pr-6 transition-all duration-300 hover:shadow-lg">
-        <Phone size={20} />
-        <span className="hidden group-hover:inline-block text-sm font-medium whitespace-nowrap">Zvanīt mums</span>
-      </button>
+      {/* Right-side Floating Button - REMOVED, moved to separate component */}
 
       <style>{`
         @keyframes slideDown {
@@ -199,3 +195,4 @@ export default function Navbar() {
       `}</style>
     </>
   )
+}
