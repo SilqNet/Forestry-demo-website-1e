@@ -44,48 +44,56 @@ Use `[ ]` / `[x]` as you complete items.
 
 ### Phase B — Desktop navbar: copy (exact strings)
 
-- [ ] **B.1** **“Iepirkam”** → **“Iepērkam”** (macron on ē).
-- [ ] **B.2** **“Sthidora pakalpojumi”** → **“Transports / Loģistika”**.
-- [ ] **B.3** **“Transports / Logistika”** → **“Kokmateriālu tirdzniecība”** (match spelling / diacritics as specified).
-- [ ] **B.4** **“Par mums”** (the nav entry covered by the text-change list) → **“Kontakti”**.
-- [ ] **B.5** Remove **“Vakances”** entirely (link + any mobile mirror).
-- [ ] **B.6** Remove **“Lemontdarbnīca”** entirely — *verify in repo for **“Remontdarbnīca”** (likely typo in requirements) and remove that item if present instead.*
+- [x] **B.1** **“Iepirkam”** → **“Iepērkam”** (macron on ē).
+- [x] **B.2** **“Sthidora pakalpojumi”** → **“Transports / Loģistika”**.
+- [x] **B.3** **“Transports / Logistika”** → **“Kokmateriālu tirdzniecība”** (match spelling / diacritics as specified).
+- [x] **B.4** **“Par mums”** (the nav entry covered by the text-change list) → **“Kontakti”**.
+- [x] **B.5** Remove **“Vakances”** entirely (link + any mobile mirror).
+- [x] **B.6** Remove **“Lemontdarbnīca”** entirely — *verify in repo for **“Remontdarbnīca”** (likely typo in requirements) and remove that item if present instead.*
 
 ### Phase C — Desktop navbar: structure & behavior
 
-- [ ] **C.1** **Single main row** of primary links over the hero (horizontal, readable on large breakpoints).
-- [ ] **C.2** **Top-right utility cluster** (same header, desktop): **“Par mums”** · language **“Lv”** · **hamburger** control.
-- [ ] **C.3** **Desktop hamburger** is visible on web (not only `<md` / mobile); wire it to the same or equivalent panel/drawer as mobile, per existing patterns.
-- [ ] **C.4** Hamburger **visual**: simple white icon, **transparent** background (no filled pill unless reference changes).
-- [ ] **C.5** **Navbar remains transparent** at the top over hero image/video (no accidental solid bar on desktop hero).
-- [ ] **C.6** **Layout feel:** main items centered or evenly spread across the hero width; utilities anchored top-right (match reference spacing and hierarchy).
-- [ ] **C.7** Regression: keyboard focus, `aria` labels for menu button, and z-index so utilities sit above hero media but below any modal layer if applicable.
+- [x] **C.1** **Single main row** of primary links over the hero (horizontal, readable on large breakpoints).
+- [x] **C.2** **Top-right utility cluster** (same header, desktop): **“Par mums”** · language **“Lv”** · **hamburger** control.
+- [x] **C.3** **Desktop hamburger** is visible on web (not only `<md` / mobile); wire it to the same or equivalent panel/drawer as mobile, per existing patterns.
+- [x] **C.4** Hamburger **visual**: simple white icon, **transparent** background (no filled pill unless reference changes).
+- [x] **C.5** **Navbar remains transparent** at the top over hero image/video (no accidental solid bar on desktop hero).
+- [x] **C.6** **Layout feel:** main items centered or evenly spread across the hero width; utilities anchored top-right (match reference spacing and hierarchy).
+- [x] **C.7** Regression: keyboard focus, `aria` labels for menu button, and z-index so utilities sit above hero media but below any modal layer if applicable.
 
 ### Phase D — Floating green side button (right)
 
-- [ ] **D.1** **Position:** `fixed` to **viewport right edge**; **vertical:** centered or slightly above center (tune to reference).
-- [ ] **D.2** **Collapsed:** narrow green tab; **only** white **“i”** (info) — no label text.
-- [ ] **D.3** **Expanded:** tab grows **to the left**; shows **icon +** exact copy **“Uzzini savu mežu vērtību”** (white).
-- [ ] **D.4** **Styling:** bright green background, white text/icon, rectangular, clean corners, modern padding (match screenshots).
-- [ ] **D.5** **Motion:** smooth, quick horizontal slide; **desktop: expand on hover**, **collapse on mouse leave**.
-- [ ] **D.6** **Scroll:** remains fixed while page scrolls.
-- [ ] **D.7** **Touch / reduced-hover:** decide behavior (e.g. tap toggles, or first tap expands) so the control is not dead on tablets; document chosen rule in PR if non-hover fallback is added.
-- [ ] **D.8** **Link/action:** wire `href` or click handler (e.g. valuation landing, modal, or `#` placeholder) per product — placeholder acceptable until URL is confirmed.
+- [x] **D.1** **Position:** `fixed` to **viewport right edge**; **vertical:** centered or slightly above center (tune to reference).
+- [x] **D.2** **Collapsed:** narrow green tab; **only** white **“i”** (info) — no label text.
+- [x] **D.3** **Expanded:** tab grows **to the left**; shows **icon +** exact copy **“Uzzini savu mežu vērtību”** (white).
+- [x] **D.4** **Styling:** bright green background, white text/icon, rectangular, clean corners, modern padding (match screenshots).
+- [x] **D.5** **Motion:** smooth, quick horizontal slide; **desktop: expand on hover**, **collapse on mouse leave**.
+- [x] **D.6** **Scroll:** remains fixed while page scrolls.
+- [x] **D.7** **Touch / reduced-hover:** decide behavior (e.g. tap toggles, or first tap expands) so the control is not dead on tablets; document chosen rule in PR if non-hover fallback is added.
+- [x] **D.8** **Link/action:** wire `href` or click handler (e.g. valuation landing, modal, or `#` placeholder) per product — placeholder acceptable until URL is confirmed.
+
+**D.7 (implemented):** On `(pointer: coarse)` or `(hover: none)`, **click toggles** expand/collapse and `preventDefault` avoids jumping to `#` until a real URL is set. Fine-pointer + hover devices use **hover only** (no click-to-toggle required). Leaving the hit area clears tap state.
 
 ### Phase E — Hero header cleanup
 
-- [ ] **E.1** Keep **transparent navbar** over hero (no new opaque header band on first screen).
-- [ ] **E.2** Hero contains **only the main heading** (no secondary headline).
-- [ ] **E.3** Remove **hero subheading** if present.
-- [ ] **E.4** Remove **hero CTA buttons** (any primary/secondary actions in the hero block).
-- [ ] **E.5** **Heading aligned left** (LTR); check responsive: stays left-aligned where appropriate on smaller breakpoints unless design says otherwise.
+- [x] **E.1** Keep **transparent navbar** over hero (no new opaque header band on first screen).
+- [x] **E.2** Hero contains **only the main heading** (no secondary headline).
+- [x] **E.3** Remove **hero subheading** if present.
+- [x] **E.4** Remove **hero CTA buttons** (any primary/secondary actions in the hero block).
+- [x] **E.5** **Heading aligned left** (LTR); check responsive: stays left-aligned where appropriate on smaller breakpoints unless design says otherwise.
+
+**Recorded:** Navbar transparency at top of hero unchanged (`navbar.tsx`). Hero remains a single `h1` with no subtitle or CTAs; content wrapper uses `w-full`, `items-start`, `text-left`, and `z-10` above the overlay.
 
 ### Phase F — QA & polish
+
+**Runbook:** [`PHASE_F_QA.md`](./PHASE_F_QA.md) — step-by-step F.1–F.4, viewport table, automation log, sign-off block.
 
 - [ ] **F.1** Cross-browser quick pass (Chrome, Safari/Edge, Firefox): hover tab, hamburger, transparent nav on hero.
 - [ ] **F.2** Breakpoints: desktop layout matches spec; mobile/tablet still usable (hamburger, no clipped utility text).
 - [ ] **F.3** Compare side-by-side with **reference images** (green tab collapsed/expanded, header hierarchy).
 - [ ] **F.4** No accidental duplicate nav labels; Latvian diacritics render correctly in fonts in use.
+
+Tick the boxes in **`PHASE_F_QA.md`** (and here) once manual passes are done. **Automation:** `npm run build` recorded as pass in the runbook (2026-04-06).
 
 ---
 
@@ -93,15 +101,15 @@ Use `[ ]` / `[x]` as you complete items.
 
 Quick audit list against the original brief:
 
-- [ ] Desktop labels: Iepērkam; Transports / Loģistika; Kokmateriālu tirdzniecība; Kontakti (from rename rules).
-- [ ] Removed: Vakances; Lemontdarbnīca / Remontdarbnīca (verified).
-- [ ] Main nav: one horizontal row over hero.
-- [ ] Top-right: Par mums, Lv, hamburger (desktop).
-- [ ] Desktop hamburger present; white icon on transparent background.
-- [ ] Navbar transparent over hero.
-- [ ] Floating green right tab: collapsed = icon only; hover expand left with full phrase; fixed on scroll; smooth animation.
-- [ ] Hero: title only, left-aligned; no subheading; no hero CTAs.
-- [ ] Overall: white text on dark hero, premium spacing, no full hero redesign.
+- [x] Desktop labels: Iepērkam; Transports / Loģistika; Kokmateriālu tirdzniecība; Kontakti (from rename rules).
+- [x] Removed: Vakances; Lemontdarbnīca / Remontdarbnīca (verified).
+- [x] Main nav: one horizontal row over hero.
+- [x] Top-right: Par mums, Lv, hamburger (desktop).
+- [x] Desktop hamburger present; white icon on transparent background.
+- [x] Navbar transparent over hero.
+- [x] Floating green right tab: collapsed = icon only; hover expand left with full phrase; fixed on scroll; smooth animation.
+- [x] Hero: title only, left-aligned; no subheading; no hero CTAs.
+- [x] Overall: white text on dark hero, premium spacing, no full hero redesign.
 
 ---
 
@@ -123,4 +131,4 @@ Quick audit list against the original brief:
 
 ---
 
-*Last updated: implementation plan only — no code changes in this file.*
+*Phases A–E: as above. **Phase F:** QA runbook is [`PHASE_F_QA.md`](./PHASE_F_QA.md); complete checklists there (and F.1–F.4 above) before release.*

@@ -1,38 +1,65 @@
 'use client'
 
-import { useState } from 'react'
+import Link from 'next/link'
+import { useCallback, useState } from 'react'
+
+const LABEL = 'Uzzini savu mežu vērtību'
+
+function prefersTapToggle() {
+  if (typeof window === 'undefined') return false
+  return (
+    window.matchMedia('(pointer: coarse)').matches ||
+    window.matchMedia('(hover: none)').matches
+  )
+}
 
 export default function FloatingButton() {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [hoverOpen, setHoverOpen] = useState(false)
+  const [tapOpen, setTapOpen] = useState(false)
+
+  const expanded = hoverOpen || tapOpen
+
+  const onClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (prefersTapToggle()) {
+      e.preventDefault()
+      setTapOpen((o) => !o)
+    }
+  }, [])
 
   return (
-    <button
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
-      onClick={() => setIsExpanded(!isExpanded)}
-      className="fixed right-6 md:right-8 top-32 z-30 focus:outline-none"
-      aria-label="Uzzini savu mežu vērtību"
+    <Link
+      href="#"
+      onClick={onClick}
+      onMouseEnter={() => setHoverOpen(true)}
+      onMouseLeave={() => {
+        setHoverOpen(false)
+        setTapOpen(false)
+      }}
+      className="fixed right-0 top-[42%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#22c55e]"
+      aria-label={LABEL}
+      aria-expanded={expanded}
     >
-      <div
-        className={`flex items-center gap-2 bg-primary text-white rounded transition-all duration-300 overflow-hidden shadow-lg hover:shadow-xl ${
-          isExpanded ? 'pr-3 pl-3 py-2' : 'p-2'
+      <span
+        className={`flex items-stretch overflow-hidden rounded-l-md bg-[#22c55e] text-white shadow-md transition-[max-width] duration-300 ease-out ${
+          expanded
+            ? 'max-w-[min(100vw-1.5rem,20rem)]'
+            : 'max-w-[2.75rem]'
         }`}
-        style={{
-          width: isExpanded ? 'auto' : '40px',
-          minWidth: '40px',
-        }}
       >
-        <div className="flex items-center justify-center w-6 h-6 bg-white text-primary rounded-sm font-bold text-sm flex-shrink-0">
-          i
-        </div>
         <span
-          className={`text-sm font-medium whitespace-nowrap transition-opacity duration-300 ${
-            isExpanded ? 'opacity-100' : 'opacity-0 w-0'
+          className={`flex min-h-12 items-center whitespace-nowrap text-sm font-medium leading-tight transition-[opacity,padding,max-width] duration-300 ease-out ${
+            expanded
+              ? 'max-w-[min(100vw-4rem,17rem)] opacity-100 pl-3 pr-1'
+              : 'max-w-0 overflow-hidden opacity-0 pl-0 pr-0'
           }`}
+          aria-hidden={!expanded}
         >
-          Uzzini savu mežu vērtību
+          {LABEL}
         </span>
-      </div>
-    </button>
+        <span className="flex w-11 min-h-12 shrink-0 items-center justify-center text-base font-bold">
+          i
+        </span>
+      </span>
+    </Link>
   )
 }

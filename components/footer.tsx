@@ -32,17 +32,17 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
-                  Iepirkam
+                  Iepērkam
                 </Link>
               </li>
               <li>
                 <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
-                  Sthidora pakalpojumi
+                  Transports / Loģistika
                 </Link>
               </li>
               <li>
                 <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
-                  Transports / Logistika
+                  Kokmateriālu tirdzniecība
                 </Link>
               </li>
             </ul>
@@ -55,16 +55,6 @@ export default function Footer() {
               <li>
                 <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
                   Par mums
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
-                  Vakances
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
-                  Lemontdarbnīca
                 </Link>
               </li>
               <li>

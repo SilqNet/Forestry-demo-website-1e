@@ -47,9 +47,8 @@ export default function Hero() {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* Content - Positioned lower to approach next section */}
-      <div className="relative h-full flex flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-24 md:pb-32">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl text-balance leading-tight">
+      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-24 md:pb-32">
+        <h1 className="max-w-4xl text-left text-3xl font-bold leading-tight text-white text-balance md:text-5xl lg:text-6xl">
           GR GRUPA - Your Trusted Forestry Partner
         </h1>
       </div>
