@@ -1,0 +1,25 @@
+import Navbar from '@/components/navbar'
+import Hero from '@/components/hero'
+import WhyUs from '@/components/why-us'
+import PartnerCarousel from '@/components/partner-carousel'
+import Services from '@/components/services'
+import CTA from '@/components/cta'
+import Testimonials from '@/components/testimonials'
+import FAQ from '@/components/faq'
+import Footer from '@/components/footer'
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-background text-foreground">
+      <Navbar />
+      <Hero />
+      <WhyUs />
+      <PartnerCarousel />
+      <Services />
+      <CTA />
+      <Testimonials />
+      <FAQ />
+      <Footer />
+    </main>
+  )
+}
