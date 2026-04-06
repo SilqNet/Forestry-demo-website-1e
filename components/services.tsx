@@ -3,27 +3,27 @@ import Image from 'next/image'
 const services = [
   {
     title: 'Iepērkam mežus',
-    image: 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/services/ieperkam-mezus.jpg',
   },
   {
     title: 'Iepērkam cirsmas',
-    image: 'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/services/ieperkam-cirsmas.jpg',
   },
   {
     title: 'Iepērkam zarus šķeldai',
-    image: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/services/ieperkam-zarus-skeldai.jpg',
   },
   {
     title: 'Iepērkam kokmateriālus pie ceļa',
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/services/ieperkam-kokmaterialus.jpg',
   },
   {
     title: 'Mežu apsaimniekošana',
-    image: 'https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/services/mezu-apsaimniekosana.jpg',
   },
   {
     title: 'Kokmateriālu tirdzniecība',
-    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    image: '/services/kokmaterialu-tirdznieciba.jpg',
   },
 ]
 
