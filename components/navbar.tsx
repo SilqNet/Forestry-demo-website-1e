@@ -95,9 +95,9 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden md:flex flex-1 min-w-0 justify-end items-center px-2">
-              <div className="flex flex-col items-end gap-3 translate-y-2">
+              <div className="flex flex-col items-end gap-1.5 pt-4">
                 {/* Upper Row: Utility & Secondary */}
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-8 h-8">
                   <Link 
                     href="#" 
                     className={`text-[13px] uppercase tracking-[0.2em] font-medium transition-all hover:opacity-70 ${linkTone}`}
@@ -105,11 +105,11 @@ export default function Navbar() {
                     Par mums
                   </Link>
                   
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-5">
                     <button
                       type="button"
                       onClick={toggleMenu}
-                      className={`${menuButtonClass} hover:opacity-70 transition-opacity`}
+                      className={`${menuButtonClass} hover:opacity-70 transition-opacity p-1`}
                       aria-expanded={isOpen}
                       aria-controls={MENU_PANEL_ID}
                     >
@@ -128,8 +128,8 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                {/* Middle Row: Primary Services */}
-                <div className="flex items-center gap-10 pr-4">
+                {/* Second Row: Main Services Staggered */}
+                <div className="flex items-center gap-10 pr-6 h-8">
                   {mainNavItems.map((item) => (
                     <Link
                       key={item.label}
@@ -141,8 +141,8 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                {/* Bottom Row: Additional Info */}
-                <div className="flex items-center gap-10 pr-12">
+                {/* Third Row: Additional Links Further Staggered */}
+                <div className="flex items-center gap-10 pr-20 h-8">
                   <Link 
                     href="#" 
                     className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
