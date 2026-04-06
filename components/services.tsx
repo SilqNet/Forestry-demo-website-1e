@@ -40,10 +40,10 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
           {services.map((service, index) => (
             <article key={index} className="group cursor-pointer flex flex-col items-center text-center">
-              <div className="relative w-full max-w-[180px] aspect-[3/4] overflow-hidden bg-muted rounded-sm transition-transform duration-500 hover:scale-[1.02] mb-6">
+              <div className="relative w-full max-w-[180px] aspect-[3/4] overflow-hidden bg-muted rounded-sm transition-transform duration-500 hover:scale-[1.02] mb-3">
                 <Image
                   src={service.image}
                   alt={service.title}

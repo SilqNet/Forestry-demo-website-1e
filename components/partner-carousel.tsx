@@ -6,10 +6,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const partners = [
   {
-    name: 'Latvijas valsts meži',
-    logo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_valsts_me%C5%BEi_idTn3M4yWl_0-fjAMJ9l5pCaFj1Afge3RYX5rZEfXgm.png',
-  },
-  {
     name: 'Latvijas Finieris',
     logo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_Finieris_AS_id_fVQzm0I_0-uXuwLNZnUIr5ni6TPwwOSY67qGBxj0.png',
   },
@@ -71,7 +67,7 @@ export default function PartnerCarousel() {
                     src={partner.logo}
                     alt={partner.name}
                     fill
-                    className="object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                    className="object-contain"
                   />
                 </div>
               </div>

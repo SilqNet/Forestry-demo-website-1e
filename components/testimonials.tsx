@@ -1,8 +1,4 @@
-'use client'
-
-import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
   {
@@ -62,78 +58,7 @@ const testimonials = [
 ]
 
 export default function Testimonials() {
-  const [current, setCurrent] = useState(1)
-  const [isAutoPlay, setIsAutoPlay] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(true)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  const itemsPerView = isMobile ? 1 : 2
-  const extendedTestimonials = [
-    testimonials[testimonials.length - 1],
-    ...testimonials,
-    testimonials[0],
-  ]
-
-  const next = useCallback(() => {
-    setCurrent((prev) => prev + 1)
-    setIsAutoPlay(false)
-  }, [])
-
-  const prev = useCallback(() => {
-    setCurrent((prev) => prev - 1)
-    setIsAutoPlay(false)
-  }, [])
-
-  useEffect(() => {
-    if (!isAutoPlay) return
-
-    const interval = setInterval(() => {
-      setCurrent((prev) => prev + 1)
-    }, 4500)
-
-    return () => clearInterval(interval)
-  }, [isAutoPlay])
-
-  useEffect(() => {
-    if (!isAutoPlay) {
-      const timeout = setTimeout(() => setIsAutoPlay(true), 6000)
-      return () => clearTimeout(timeout)
-    }
-  }, [isAutoPlay])
-
-  useEffect(() => {
-    if (current === 0) {
-      const timeout = setTimeout(() => {
-        setIsTransitioning(false)
-        setCurrent(testimonials.length)
-      }, 2000)
-      return () => clearTimeout(timeout)
-    }
-
-    if (current === testimonials.length + 1) {
-      const timeout = setTimeout(() => {
-        setIsTransitioning(false)
-        setCurrent(1)
-      }, 2000)
-      return () => clearTimeout(timeout)
-    }
-  }, [current])
-
-  useEffect(() => {
-    if (!isTransitioning) {
-      const raf = requestAnimationFrame(() => setIsTransitioning(true))
-      return () => cancelAnimationFrame(raf)
-    }
-  }, [isTransitioning])
+  const tripledTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
   return (
     <section className="py-20 bg-white">
@@ -144,65 +69,56 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="relative">
-          <button
-            onClick={prev}
-            aria-label="Previous testimonials"
-            className="absolute left-0 top-1/2 z-10 -translate-y-1/2 p-2 border border-border rounded-full bg-white hover:bg-muted transition-colors"
-          >
-            <ChevronLeft size={22} />
-          </button>
-          <button
-            onClick={next}
-            aria-label="Next testimonials"
-            className="absolute right-0 top-1/2 z-10 -translate-y-1/2 p-2 border border-border rounded-full bg-white hover:bg-muted transition-colors"
-          >
-            <ChevronRight size={22} />
-          </button>
-
-          <div className="mx-12 overflow-hidden">
-            <div
-              className="flex"
-              style={{
-                transform: `translateX(-${(current * 100) / itemsPerView}%)`,
-                transition: isTransitioning ? 'transform 2s ease-in-out' : 'none',
-              }}
-            >
-              {extendedTestimonials.map((testimonial, index) => (
-                <div
-                  key={`${testimonial.authorName}-${index}`}
-                  className="flex-shrink-0 px-4"
-                  style={{ width: `${100 / itemsPerView}%` }}
-                >
-                  <div className="text-center py-3 md:py-6 min-h-[280px]">
-                    <div className="flex justify-center mb-6">
-                      <div className="relative w-32 h-16">
-                        <Image
-                          src={testimonial.companyLogo}
-                          alt="Company logo"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                    <p className="text-foreground mb-6 italic text-lg leading-relaxed">
-                      "{testimonial.text}"
-                    </p>
-                    <div>
-                      <p className="font-semibold text-foreground">
-                        {testimonial.authorName}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.authorTitle}
-                      </p>
+        <div className="relative w-full overflow-hidden">
+          <div className="flex w-max animate-scroll-testimonials">
+            {tripledTestimonials.map((testimonial, index) => (
+              <div
+                key={`${testimonial.authorName}-${index}`}
+                className="flex-shrink-0 w-[300px] md:w-[450px] px-8"
+              >
+                <div className="text-center py-6 min-h-[320px]">
+                  <div className="flex justify-center mb-6">
+                    <div className="relative w-32 h-16">
+                      <Image
+                        src={testimonial.companyLogo}
+                        alt="Company logo"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                   </div>
+                  <p className="text-foreground mb-6 italic text-lg leading-relaxed">
+                    "{testimonial.text}"
+                  </p>
+                  <div>
+                    <p className="font-semibold text-foreground">
+                      {testimonial.authorName}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.authorTitle}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .animate-scroll-testimonials {
+          animation: scroll-testimonials 80s linear infinite;
+        }
+
+        @keyframes scroll-testimonials {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-33.33%);
+          }
+        }
+      `}</style>
     </section>
   )
 }
