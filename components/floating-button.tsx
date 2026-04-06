@@ -35,8 +35,8 @@ export default function FloatingButton() {
         setHoverOpen(false)
         setTapOpen(false)
       }}
-      className={`fixed right-0 top-[70%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651] transition-transform ${
-        expanded ? 'translate-x-0 duration-300' : 'translate-x-[calc(100%-2.8rem)] duration-0'
+      className={`fixed right-0 top-[70%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651] transition-transform ease-in-out ${
+        expanded ? 'translate-x-0 duration-300' : 'translate-x-[calc(100%-2.8rem)] duration-700 delay-300'
       }`}
       aria-label={LABEL}
       aria-expanded={expanded}
@@ -44,8 +44,9 @@ export default function FloatingButton() {
       <div
         className="flex items-stretch bg-[#00a651] text-white shadow-lg"
       >
-        <div className="flex w-11 min-h-[52px] shrink-0 items-center justify-center text-xl font-bold">
-          i
+        <div className="flex w-11 min-h-[52px] shrink-0 items-center justify-center relative">
+          <div className="absolute top-[14px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] bg-white rounded-full" />
+          <span className="text-xl font-bold mt-1">I</span>
         </div>
         <div
           className="flex min-h-[52px] items-center whitespace-nowrap text-[15px] font-semibold leading-tight pr-6"

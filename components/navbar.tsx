@@ -88,9 +88,9 @@ export default function Navbar() {
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
                 alt="GR GRUPA"
-                width={120}
-                height={40}
-                className="h-10 w-auto"
+                width={180}
+                height={60}
+                className="h-[60px] w-auto"
               />
             </Link>
 
