@@ -1,134 +1,329 @@
-# Frontend improvements — implementation plan
+# Website Upgrade Implementation Plan
 
-This document tracks **hero / header / navbar** work only. No code lives here; use the checklists below while implementing.
+This document defines the frontend-only implementation plan for aligning the website with the provided visual references and interaction direction.
 
-**Reference assets (workspace):**
+## Scope and constraints
 
-- Floating button (expanded / collapsed): see saved screenshots under `assets/` (paths from Cursor workspace storage).
-- Navbar / hero: same folder, latest header reference.
+- Frontend only (no backend/API integration required).
+- Visual/UI implementation prioritized over data completeness.
+- Placeholder content is allowed where final copy is not yet provided.
+- All provided screenshots are design references and should guide spacing, layout, motion, and hierarchy.
+- Refine current implementation, do not redesign from scratch.
 
----
+## Delivery goals
 
-## Goals (summary)
+- Cleaner forestry-company presentation with premium spacing and fewer placeholder-style visuals.
+- Header/hero behavior and composition closer to `laskana.lv`.
+- Smooth, slower, high-quality motion for widget and carousels.
+- Correct Latvian text/diacritics in specified sections.
+- Service and testimonial structures updated to required item counts and layouts.
+- Newsletter block inserted in required position between FAQ and footer.
 
-| Area | Intent |
-|------|--------|
-| Desktop navbar | Exact label updates, removals, single main row + top-right utilities, transparent over hero |
-| Floating control | Fixed right-edge green tab; hover expands left with label |
-| Hero | Transparent nav, left-aligned title only, no subheading or hero CTAs |
-| Visual | Match references: white type on dark hero, clean spacing |
+## Implementation order (required priority)
 
----
-
-## Progress tracker
-
-Use `[ ]` / `[x]` as you complete items.
-
-### Phase A — Discovery & routing
-
-- [x] **A.1** Locate all navbar / header markup and styles (e.g. `components/navbar.tsx`, layout wrappers, any mobile-only menu).
-- [x] **A.2** Locate hero section (e.g. `components/hero.tsx`) and list every child: heading, subheading, CTAs, overlays.
-- [x] **A.3** Audit existing floating / fixed controls (e.g. `components/floating-button.tsx`) for overlap with the new green tab spec.
-- [x] **A.4** Map each current nav label to its route (`href`) so renames and removals do not break links.
-- [x] **A.5** **Label vs structure:** Section 1 renames the existing **“Par mums”** entry to **“Kontakti”**. Section 2 also requires a top-right link labeled **“Par mums”**. Confirm product intent: typically **“Kontakti”** → contact, **“Par mums”** → about (or equivalent). If the codebase has a single “Par mums” link, split into two entries with correct URLs before shipping.
-
-#### Phase A findings (recorded 2026-04-06)
-
-| ID | Summary |
-|----|---------|
-| **A.1** | **Header source of truth:** `components/navbar.tsx` — fixed `nav`, desktop link row (`hidden md:flex`), language `<select>` (desktop), hamburger **mobile-only** (`md:hidden`), fullscreen slide-down menu for `md:hidden` (same `navItems`). Scroll state toggles `bg-transparent` vs `bg-white/95`. **Layout:** `app/layout.tsx` has no navbar. **Home composition:** `app/page.tsx` renders `<Navbar />` then `<Hero />`. **`components/ui/navigation-menu.tsx`** is a Radix/shadcn primitive and is **not** imported by the live navbar (available if you refactor). |
-| **A.2** | **`components/hero.tsx`:** (1) Desktop `<video>` full-bleed background. (2) Mobile `<Image>` background. (3) Overlay `div` with `bg-black/40`. (4) Content wrapper: single **`h1`** (“GR GRUPA - Your Trusted Forestry Partner”) — **no subheading, no hero CTAs.** Section uses `pt-16` for fixed nav clearance; content is `items-start` / `text-left`. |
-| **A.3** | **`components/floating-button.tsx`:** `fixed` with `right-6 md:right-8`, `top-32`, `z-30` (below navbar `z-40`). Uses `bg-primary` + white; collapsed width `40px`; **hover + click** toggle expand; expanded shows **“Uzzini savu mežu vērtību”** (matches intended copy). **Gaps vs Phase D spec:** not flush to **viewport right edge**; **vertical** position is upper third, not centered; collapsed state uses a **rounded pill** and **“i” inside a white inner box**, not a narrow green tab with only a white “i” on green. **No other** fixed promo control on the home page. |
-| **A.4** | **Routes:** Only **`/`** exists (`app/page.tsx`). **Logo** → `href="/"`. Every item in `navItems` and all submenu entries use **`href: '#'`** — renames/removals in Phase B **will not break real routes** until you introduce pages (e.g. `/kontakti`, `/par-mums`) and wire `href`s. |
-| **A.5** | **Confirmed:** There is a **single** top-level **“Par mums”** in `navItems` (`navbar.tsx`). **Intent for later phases:** that slot becomes **“Kontakti”** (contact); add a **separate** top-right **“Par mums”** (about) in the utility cluster (Phase C). Assign distinct `href`s when routes exist. **`footer.tsx`** also contains **“Lemontdarbnīca”** — note for Phase B cleanup outside the nav list. **B.6 verification:** Repo has **“Lemontdarbnīca”** in navbar and footer; **no** string **“Remontdarbnīca”** found. |
-
-### Phase B — Desktop navbar: copy (exact strings)
-
-- [x] **B.1** **“Iepirkam”** → **“Iepērkam”** (macron on ē).
-- [x] **B.2** **“Sthidora pakalpojumi”** → **“Transports / Loģistika”**.
-- [x] **B.3** **“Transports / Logistika”** → **“Kokmateriālu tirdzniecība”** (match spelling / diacritics as specified).
-- [x] **B.4** **“Par mums”** (the nav entry covered by the text-change list) → **“Kontakti”**.
-- [x] **B.5** Remove **“Vakances”** entirely (link + any mobile mirror).
-- [x] **B.6** Remove **“Lemontdarbnīca”** entirely — *verify in repo for **“Remontdarbnīca”** (likely typo in requirements) and remove that item if present instead.*
-
-### Phase C — Desktop navbar: structure & behavior
-
-- [x] **C.1** **Single main row** of primary links over the hero (horizontal, readable on large breakpoints).
-- [x] **C.2** **Top-right utility cluster** (same header, desktop): **“Par mums”** · language **“Lv”** · **hamburger** control.
-- [x] **C.3** **Desktop hamburger** is visible on web (not only `<md` / mobile); wire it to the same or equivalent panel/drawer as mobile, per existing patterns.
-- [x] **C.4** Hamburger **visual**: simple white icon, **transparent** background (no filled pill unless reference changes).
-- [x] **C.5** **Navbar remains transparent** at the top over hero image/video (no accidental solid bar on desktop hero).
-- [x] **C.6** **Layout feel:** main items centered or evenly spread across the hero width; utilities anchored top-right (match reference spacing and hierarchy).
-- [x] **C.7** Regression: keyboard focus, `aria` labels for menu button, and z-index so utilities sit above hero media but below any modal layer if applicable.
-
-### Phase D — Floating green side button (right)
-
-- [x] **D.1** **Position:** `fixed` to **viewport right edge**; **vertical:** centered or slightly above center (tune to reference).
-- [x] **D.2** **Collapsed:** narrow green tab; **only** white **“i”** (info) — no label text.
-- [x] **D.3** **Expanded:** tab grows **to the left**; shows **icon +** exact copy **“Uzzini savu mežu vērtību”** (white).
-- [x] **D.4** **Styling:** bright green background, white text/icon, rectangular, clean corners, modern padding (match screenshots).
-- [x] **D.5** **Motion:** smooth, quick horizontal slide; **desktop: expand on hover**, **collapse on mouse leave**.
-- [x] **D.6** **Scroll:** remains fixed while page scrolls.
-- [x] **D.7** **Touch / reduced-hover:** decide behavior (e.g. tap toggles, or first tap expands) so the control is not dead on tablets; document chosen rule in PR if non-hover fallback is added.
-- [x] **D.8** **Link/action:** wire `href` or click handler (e.g. valuation landing, modal, or `#` placeholder) per product — placeholder acceptable until URL is confirmed.
-
-**D.7 (implemented):** On `(pointer: coarse)` or `(hover: none)`, **click toggles** expand/collapse and `preventDefault` avoids jumping to `#` until a real URL is set. Fine-pointer + hover devices use **hover only** (no click-to-toggle required). Leaving the hit area clears tap state.
-
-### Phase E — Hero header cleanup
-
-- [x] **E.1** Keep **transparent navbar** over hero (no new opaque header band on first screen).
-- [x] **E.2** Hero contains **only the main heading** (no secondary headline).
-- [x] **E.3** Remove **hero subheading** if present.
-- [x] **E.4** Remove **hero CTA buttons** (any primary/secondary actions in the hero block).
-- [x] **E.5** **Heading aligned left** (LTR); check responsive: stays left-aligned where appropriate on smaller breakpoints unless design says otherwise.
-
-**Recorded:** Navbar transparency at top of hero unchanged (`navbar.tsx`). Hero remains a single `h1` with no subtitle or CTAs; content wrapper uses `w-full`, `items-start`, `text-left`, and `z-10` above the overlay.
-
-### Phase F — QA & polish
-
-**Runbook:** [`PHASE_F_QA.md`](./PHASE_F_QA.md) — step-by-step F.1–F.4, viewport table, automation log, sign-off block.
-
-- [ ] **F.1** Cross-browser quick pass (Chrome, Safari/Edge, Firefox): hover tab, hamburger, transparent nav on hero.
-- [ ] **F.2** Breakpoints: desktop layout matches spec; mobile/tablet still usable (hamburger, no clipped utility text).
-- [ ] **F.3** Compare side-by-side with **reference images** (green tab collapsed/expanded, header hierarchy).
-- [ ] **F.4** No accidental duplicate nav labels; Latvian diacritics render correctly in fonts in use.
-
-Tick the boxes in **`PHASE_F_QA.md`** (and here) once manual passes are done. **Automation:** `npm run build` recorded as pass in the runbook (2026-04-06).
+1. Hero/Header/Navbar restructure + right-side green widget.
+2. Partner logo carousel upgrades.
+3. Services section restructure and copy fixes.
+4. Testimonials section expansion and carousel behavior matching logos.
+5. Newsletter section insertion between FAQ and footer.
 
 ---
 
-## Requirements checklist (verbatim coverage)
+## Phase 0 - Baseline and safeguards
 
-Quick audit list against the original brief:
+- [ ] Create a quick UI baseline capture (desktop + mobile screenshots for header, partners, services, testimonials, FAQ/footer area).
+- [ ] Identify current components and style files used by:
+  - header/navbar/hero
+  - floating right widget
+  - partner logos carousel
+  - services grid/cards
+  - testimonials carousel
+  - FAQ, footer, and page section order
+- [ ] Confirm any reused slider utility (if both partner and testimonial carousels can share one motion config).
+- [ ] Ensure existing responsive behavior remains intact while restructuring desktop layouts.
 
-- [x] Desktop labels: Iepērkam; Transports / Loģistika; Kokmateriālu tirdzniecība; Kontakti (from rename rules).
-- [x] Removed: Vakances; Lemontdarbnīca / Remontdarbnīca (verified).
-- [x] Main nav: one horizontal row over hero.
-- [x] Top-right: Par mums, Lv, hamburger (desktop).
-- [x] Desktop hamburger present; white icon on transparent background.
-- [x] Navbar transparent over hero.
-- [x] Floating green right tab: collapsed = icon only; hover expand left with full phrase; fixed on scroll; smooth animation.
-- [x] Hero: title only, left-aligned; no subheading; no hero CTAs.
-- [x] Overall: white text on dark hero, premium spacing, no full hero redesign.
-
----
-
-## Suggested implementation order
-
-1. **Hero cleanup (E)** — reduces noise while tuning header layout.  
-2. **Navbar copy + removals (B)** — low risk if routes are unchanged.  
-3. **Navbar structure (C)** — layout/CSS grid or flex refactor.  
-4. **Floating tab (D)** — new or replace existing floating component.  
-5. **QA (F)** — references and regressions.
+Definition of done:
+- A clear component map exists before edits start.
 
 ---
 
-## Notes for implementers
+## Phase 1 - Hero, header, navbar, and right-side green widget (Priority 1)
 
-- **Do not** redesign the hero visual (imagery, video, overall composition); **structure and labels only**.
-- Prefer **CSS transitions** or **motion** already used in the project for the tab slide.
-- If an existing **floating button** conflicts with this spec, **replace or consolidate** so only one fixed right-edge promotional control matches the reference.
+### 1.1 Navbar content and structure
+
+- [ ] Rebuild desktop header composition so nav block sits visually on the right side of hero.
+- [ ] Replace flat single-line distribution with staggered two-layer structure.
+- [ ] Implement required top-right utility row composition:
+  - [ ] `Par mums` on upper layer
+  - [ ] desktop hamburger icon between upper utilities
+  - [ ] language selector/value (`Lv`) on upper layer
+- [ ] Ensure required relationship on lower/main layer:
+  - [ ] `Kontakti` appears under language selector side
+  - [ ] `Kokmateriālu tirdzniecība` appears under `Par mums` side
+- [ ] Keep remaining main nav items in coherent row/layer below the utility row.
+
+### 1.2 Navbar alignment and visual behavior
+
+- [ ] Align full nav composition toward the right, not globally centered.
+- [ ] Keep left hero area visually open for heading.
+- [ ] Navbar top state: transparent over hero media.
+- [ ] On scroll: transition to white background smoothly.
+- [ ] Ensure text/icon contrast in both states (transparent and scrolled white).
+
+### 1.3 Desktop hamburger behavior
+
+- [ ] Keep hamburger visible on desktop (not mobile-only).
+- [ ] Click toggles full-page menu from top.
+- [ ] Second click closes menu.
+- [ ] Opening/closing uses smooth top-down vertical slide animation.
+- [ ] Preserve accessibility (keyboard focus, aria labels, escape to close).
+
+### 1.4 Right-side green widget
+
+- [ ] Position fixed widget lower and closer to viewport right edge.
+- [ ] Collapsed state:
+  - [ ] show narrow tab only
+  - [ ] show white `i` icon only
+  - [ ] appear partially hidden/attached to right edge
+- [ ] Hover state:
+  - [ ] expand slowly and smoothly toward the left
+  - [ ] icon moves with expanded panel content (not fixed in place)
+- [ ] Expanded text must be exactly:
+  - [ ] `Uzzini savu meža vērtību`
+- [ ] Styling:
+  - [ ] bright green background
+  - [ ] white icon/text
+  - [ ] clean rectangular look
+  - [ ] no heavy borders
+
+Definition of done:
+- Header layout matches staggered right-side logic from reference.
+- Desktop hamburger behaves as specified.
+- Green widget interaction and motion visually match screenshot intent.
 
 ---
 
-*Phases A–E: as above. **Phase F:** QA runbook is [`PHASE_F_QA.md`](./PHASE_F_QA.md); complete checklists there (and F.1–F.4 above) before release.*
+## Phase 2 - Partner logo carousel improvements (Priority 2)
+
+### 2.1 Data/content cleanup
+
+- [ ] Replace empty slot with provided logo so no visible blank positions remain.
+- [ ] Validate logo list count and ordering for seamless loop behavior.
+
+### 2.2 Controls and layout
+
+- [ ] Move left arrow to far left edge of carousel container.
+- [ ] Move right arrow to far right edge of carousel container.
+- [ ] Remove clustered arrow placement in upper-right corner.
+
+### 2.3 Motion system
+
+- [ ] Implement one-logo-per-step sliding.
+- [ ] Set transition duration to at least 2 seconds per movement.
+- [ ] Add short pause between slides.
+- [ ] Ensure motion is true translate-slide (not instant swap).
+- [ ] Implement infinite seamless loop (duplicate array technique if required).
+- [ ] Eliminate snapping/jumps/harsh velocity changes.
+
+### 2.4 Visual polish
+
+- [ ] Keep section background white.
+- [ ] Keep logos clean without unnecessary framing.
+- [ ] Ensure no visible gaps during loop boundaries.
+
+Definition of done:
+- Logos continuously slide one step at a time with slow, premium motion and no empty slot.
+
+---
+
+## Phase 3 - Services section restructure (Priority 3)
+
+### 3.1 Heading and subheading text corrections
+
+- [ ] Update heading to:
+  - [ ] `Iepērkam mežus, cirsmas un kokmateriālus`
+- [ ] Update subheading to:
+  - [ ] `Piedāvājam izdevīgus nosacījumus, konkurētspējīgas cenas un godīgu attieksmi!`
+
+### 3.2 Service title corrections and reordering
+
+- [ ] Apply exact title updates:
+  - [ ] `lepērkam mežus` -> `Iepērkam mežus`
+  - [ ] `lepērkam zarus šķeldai` -> `Iepērkam cirsmas`
+  - [ ] `lepērkam cirsmas` -> `Iepērkam zarus šķeldai`
+  - [ ] `lepērkam kokmaterials pie ceja` -> `Iepērkam kokmateriālus pie ceļa`
+  - [ ] `lepirkumi ostās` -> `Mežu apsaimniekošana`
+- [ ] Add sixth service:
+  - [ ] `Kokmateriālu tirdzniecība`
+
+### 3.3 Layout and style
+
+- [ ] Convert to 2-row grid:
+  - [ ] row 1: 3 services
+  - [ ] row 2: 3 services
+- [ ] Ensure each service item uses structure:
+  - [ ] image area on top
+  - [ ] title below image
+  - [ ] `Uzzināt vairāk` button below title
+- [ ] Remove boxed/bordered placeholder card framing.
+- [ ] Preserve open editorial/gallery-style presentation.
+
+### 3.4 Buttons and interaction
+
+- [ ] Update `Uzzināt vairāk` hover:
+  - [ ] button turns green
+  - [ ] smooth transition
+  - [ ] no excessive effects
+
+### 3.5 Background and spacing
+
+- [ ] Keep services section on white background under green header strip.
+- [ ] Improve vertical rhythm and container spacing.
+
+Definition of done:
+- Services display six corrected items in 3x2 layout with clean unboxed style and corrected Latvian text.
+
+---
+
+## Phase 4 - Testimonials section upgrade (Priority 4)
+
+### 4.1 Content structure
+
+- [ ] Build exactly 9 testimonial items.
+- [ ] Use simple content structure per item:
+  - [ ] company logo
+  - [ ] testimonial text
+  - [ ] person name
+  - [ ] job title/position
+- [ ] Do not include profile photos.
+
+### 4.2 Responsive visibility
+
+- [ ] Desktop: show 2 testimonials at a time.
+- [ ] Mobile: show 1 testimonial at a time.
+
+### 4.3 Carousel behavior (mirror partner logic)
+
+- [ ] Use same arrow placement logic as partner carousel.
+- [ ] Use same one-step progression.
+- [ ] Use same slow/smooth sliding feel.
+- [ ] Use same infinite loop concept.
+- [ ] Remove jumps/speed spikes/snapping.
+
+### 4.4 Visual style
+
+- [ ] Keep white section background.
+- [ ] Remove prominent card borders/highlight blocks.
+- [ ] Keep layout minimal and clean.
+
+Definition of done:
+- Testimonials behave like a polished companion carousel to partner logos, with 9 items and proper responsive visibility.
+
+---
+
+## Phase 5 - Newsletter section insertion (Priority 5)
+
+### 5.1 Placement in page flow
+
+- [ ] Insert newsletter window between FAQ and footer.
+- [ ] Ensure final order:
+  - [ ] FAQ
+  - [ ] Newsletter
+  - [ ] Footer
+
+### 5.2 Layout and styling
+
+- [ ] Implement reference-aligned structure:
+  - [ ] large background image area
+  - [ ] centered heading
+  - [ ] email input
+  - [ ] subscribe button
+- [ ] Keep dark/green footer separate below newsletter block.
+- [ ] Maintain spacious premium proportions.
+
+### 5.3 Functionality scope
+
+- [ ] Frontend-only visual form.
+- [ ] No real submit handling required at this stage.
+
+Definition of done:
+- Newsletter visually bridges FAQ and footer and matches screenshot structure.
+
+---
+
+## Phase 6 - Global cleanup and consistency pass
+
+### 6.1 Background and visual noise
+
+- [ ] Ensure normal content sections use white backgrounds.
+- [ ] Restrict image/video backgrounds to intentional hero/feature areas only.
+- [ ] Remove unnecessary borders/placeholder framing site-wide.
+
+### 6.2 Motion polish
+
+- [ ] Normalize animation easing/timing for widget and both carousels.
+- [ ] Remove abrupt transitions and snap-like movement.
+- [ ] Prefer slower controlled transitions consistent with references.
+
+### 6.3 Typography and language correctness
+
+- [ ] Verify all specified Latvian diacritics and corrected phrases are exact.
+- [ ] Keep heading hierarchy and weight consistent across sections.
+
+### 6.4 Spacing and layout rhythm
+
+- [ ] Standardize section top/bottom padding.
+- [ ] Ensure consistent container widths and gap scales.
+- [ ] Remove cramped areas, especially near section boundaries.
+
+Definition of done:
+- Site appears visually cohesive and premium, with consistent motion and typography.
+
+---
+
+## QA checklist (final verification)
+
+### Desktop checks
+
+- [ ] Header is right-aligned/staggered and matches required utility composition.
+- [ ] Navbar transitions transparent -> white smoothly on scroll.
+- [ ] Desktop hamburger opens/closes full-page menu with top slide.
+- [ ] Green widget stays fixed, edge-attached, and expands left smoothly with icon moving together.
+- [ ] Partner carousel shows no empty slot; arrows at container extremes; slides slowly one-by-one.
+- [ ] Services show 6 items in two rows with corrected text and hover behavior.
+- [ ] Testimonials show 2 at once and slide like partner carousel.
+- [ ] Newsletter appears between FAQ and footer and matches reference structure.
+
+### Mobile checks
+
+- [ ] Header remains readable and usable.
+- [ ] Testimonials show 1 at a time.
+- [ ] Carousels remain smooth without overflow glitches.
+- [ ] Newsletter input/button alignment remains clean.
+
+### Regression checks
+
+- [ ] No console errors introduced by carousel/menu/widget logic.
+- [ ] No section order regressions outside targeted updates.
+- [ ] No backend endpoints required for this upgrade.
+
+---
+
+## Suggested technical approach notes
+
+- Prefer reusing a shared carousel motion configuration/hook for partner and testimonial sections to keep timing and behavior identical.
+- Use transform-based animations (`translateX`) with easing for smooth sliding.
+- For infinite loops, use cloned boundary items or duplicated arrays with index reset after transition-end to avoid visible jump.
+- Keep all improvements additive and incremental within existing component structure.
+
+---
+
+## Change log tracker
+
+- [ ] Phase 1 completed
+- [ ] Phase 2 completed
+- [ ] Phase 3 completed
+- [ ] Phase 4 completed
+- [ ] Phase 5 completed
+- [ ] Phase 6 completed
+- [ ] Final QA completed
