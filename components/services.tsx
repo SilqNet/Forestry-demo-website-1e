@@ -2,49 +2,48 @@ import Image from 'next/image'
 
 const services = [
   {
-    title: 'lepērkam mežus',
+    title: 'Iepērkam mežus',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-05%20185513-5SN7nZCRf8LoKItWfOROnNPR40sjPA.png',
   },
   {
-    title: 'lepērkam zarus šķeldai',
+    title: 'Iepērkam cirsmas',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-05%20185513-5SN7nZCRf8LoKItWfOROnNPR40sjPA.png',
   },
   {
-    title: 'lepērkam cirsmas',
+    title: 'Iepērkam zarus šķeldai',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-05%20185513-5SN7nZCRf8LoKItWfOROnNPR40sjPA.png',
   },
   {
-    title: 'lepērkam kokmaterials pie ceja',
+    title: 'Iepērkam kokmateriālus pie ceļa',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-05%20185513-5SN7nZCRf8LoKItWfOROnNPR40sjPA.png',
   },
   {
-    title: 'lepirkumi ostās',
+    title: 'Mežu apsaimniekošana',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-05%20185513-5SN7nZCRf8LoKItWfOROnNPR40sjPA.png',
+  },
+  {
+    title: 'Kokmateriālu tirdzniecība',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-04-05%20185513-5SN7nZCRf8LoKItWfOROnNPR40sjPA.png',
   },
 ]
 
 export default function Services() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
+        <div className="mb-14">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
-            lepērkam mežus, cirsmas un kokmaterialus
+            Iepērkam mežus, cirsmas un kokmateriālus
           </h2>
           <p className="text-muted-foreground text-lg">
-            Piedāvājam izdevīgus nosacijumus un loti konkuretspējigas cenas!
+            Piedāvājam izdevīgus nosacījumus, konkurētspējīgas cenas un godīgu attieksmi!
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
           {services.map((service, index) => (
-            <div
-              key={index}
-              className="group cursor-pointer rounded-lg overflow-hidden border border-border hover:border-primary transition-all duration-300"
-            >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden bg-muted">
+            <article key={index} className="group">
+              <div className="relative h-56 overflow-hidden bg-muted">
                 <Image
                   src={service.image}
                   alt={service.title}
@@ -52,13 +51,11 @@ export default function Services() {
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-
-              {/* Content */}
-              <div className="p-4 bg-card">
-                <h3 className="font-semibold text-foreground mb-3 text-sm uppercase">
+              <div className="pt-5">
+                <h3 className="font-semibold text-foreground mb-3 text-base">
                   {service.title}
                 </h3>
-                <button className="text-primary text-sm font-semibold hover:text-primary-foreground transition-colors flex items-center gap-2">
+                <button className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-[#22c55e] hover:text-white hover:border-[#22c55e]">
                   Uzzināt vairāk
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -75,7 +72,7 @@ export default function Services() {
                   </svg>
                 </button>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

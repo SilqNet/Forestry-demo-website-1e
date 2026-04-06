@@ -16,7 +16,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative w-full h-screen pt-16 overflow-x-hidden overflow-y-auto">
+    <section className="relative w-full h-screen pt-20 overflow-hidden">
       {/* Desktop Video Background */}
       {!isMobile && (
         <video
@@ -49,7 +49,7 @@ export default function Hero() {
 
       <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-24 md:pb-32">
         <h1 className="max-w-4xl text-left text-3xl font-bold leading-tight text-white text-balance md:text-5xl lg:text-6xl">
-          GR GRUPA - Your Trusted Forestry Partner
+          GR GRUPA - Uzticams partneris mežsaimniecībā
         </h1>
       </div>
     </section>

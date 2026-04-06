@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useCallback, useState } from 'react'
 
-const LABEL = 'Uzzini savu mežu vērtību'
+const LABEL = 'Uzzini savu meža vērtību'
 
 function prefersTapToggle() {
   if (typeof window === 'undefined') return false
@@ -35,19 +35,19 @@ export default function FloatingButton() {
         setHoverOpen(false)
         setTapOpen(false)
       }}
-      className="fixed right-0 top-[42%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#22c55e]"
+      className="fixed right-0 top-[62%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#22c55e]"
       aria-label={LABEL}
       aria-expanded={expanded}
     >
       <span
-        className={`flex items-stretch overflow-hidden rounded-l-md bg-[#22c55e] text-white shadow-md transition-[max-width] duration-300 ease-out ${
+        className={`flex items-stretch overflow-hidden rounded-l-none bg-[#22c55e] text-white shadow-md transition-[max-width] duration-500 ease-out ${
           expanded
             ? 'max-w-[min(100vw-1.5rem,20rem)]'
-            : 'max-w-[2.75rem]'
+            : 'max-w-[2.25rem]'
         }`}
       >
         <span
-          className={`flex min-h-12 items-center whitespace-nowrap text-sm font-medium leading-tight transition-[opacity,padding,max-width] duration-300 ease-out ${
+          className={`flex min-h-12 items-center whitespace-nowrap text-sm font-medium leading-tight transition-[opacity,padding,max-width] duration-500 ease-out ${
             expanded
               ? 'max-w-[min(100vw-4rem,17rem)] opacity-100 pl-3 pr-1'
               : 'max-w-0 overflow-hidden opacity-0 pl-0 pr-0'
@@ -56,7 +56,7 @@ export default function FloatingButton() {
         >
           {LABEL}
         </span>
-        <span className="flex w-11 min-h-12 shrink-0 items-center justify-center text-base font-bold">
+        <span className="flex w-9 min-h-12 shrink-0 items-center justify-center text-base font-bold">
           i
         </span>
       </span>

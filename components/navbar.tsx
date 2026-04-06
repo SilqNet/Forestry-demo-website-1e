@@ -37,22 +37,29 @@ export default function Navbar() {
     setIsOpen((open) => !open)
   }, [])
 
-  const navItems = [
+  const mainNavItems = [
+    { label: 'Mežu apsaimniekošana', href: '#' },
+    { label: 'Iepērkam', href: '#' },
+    { label: 'Transports / Loģistika', href: '#' },
+  ]
+
+  const menuItems = [
     {
-      label: 'Mežu apsaimniekošana',
+      label: 'Kokmateriālu tirdzniecība',
       href: '#',
       submenu: [
         { label: 'Pārdot mežu?', href: '#' },
-        { label: 'Zaru lepirkšana šķeldai', href: '#' },
-        { label: 'Augoša koku cirsmā lepirkšana', href: '#' },
-        { label: 'Lepirkam kokmaterials pie ceja', href: '#' },
-        { label: 'lepirkumi ostās', href: '#' },
+        { label: 'Iepērkam mežus', href: '#' },
+        { label: 'Iepērkam cirsmas', href: '#' },
+        { label: 'Iepērkam zarus šķeldai', href: '#' },
+        { label: 'Iepērkam kokmateriālus pie ceļa', href: '#' },
       ],
     },
+    { label: 'Mežu apsaimniekošana', href: '#' },
     { label: 'Iepērkam', href: '#' },
     { label: 'Transports / Loģistika', href: '#' },
-    { label: 'Kokmateriālu tirdzniecība', href: '#' },
     { label: 'Kontakti', href: '#' },
+    { label: 'Par mums', href: '#' },
   ]
 
   const linkTone = isScrolled
@@ -76,7 +83,7 @@ export default function Navbar() {
         aria-label="Primary"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 w-full items-center gap-3">
+          <div className="flex h-20 w-full items-center gap-3">
             <Link href="/" className="shrink-0">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
@@ -87,68 +94,61 @@ export default function Navbar() {
               />
             </Link>
 
-            <div className="hidden md:flex flex-1 min-w-0 justify-center items-center px-2">
-              <div className="flex flex-wrap items-center justify-center gap-1">
-                {navItems.map((item) => (
-                  <div key={item.label} className="relative group">
-                    {item.submenu ? (
-                      <>
-                        <button
-                          type="button"
-                          className={`px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1 ${linkTone}`}
-                        >
-                          {item.label}
-                          <ChevronDown size={16} aria-hidden />
-                        </button>
-                        <div className="absolute left-0 mt-0 w-48 bg-primary rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                          <div className="py-2">
-                            {item.submenu.map((subitem) => (
-                              <Link
-                                key={subitem.label}
-                                href={subitem.href}
-                                className="block px-4 py-2 text-sm text-white hover:bg-primary-foreground/10 transition-colors"
-                              >
-                                {subitem.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className={`px-3 py-2 text-sm font-medium transition-colors inline-flex items-center gap-1 ${linkTone}`}
-                      >
-                        {item.label}
-                      </Link>
-                    )}
-                  </div>
-                ))}
+            <div className="hidden md:flex flex-1 min-w-0 justify-end items-center px-2">
+              <div className="flex w-full max-w-4xl flex-col items-end gap-1">
+                <div className="flex items-center gap-4">
+                  <Link href="#" className={`text-sm font-medium transition-colors ${linkTone}`}>
+                    Par mums
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={toggleMenu}
+                    className={menuButtonClass}
+                    aria-expanded={isOpen}
+                    aria-controls={MENU_PANEL_ID}
+                    aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                  >
+                    {isOpen ? <X size={24} strokeWidth={2} aria-hidden /> : <Menu size={24} strokeWidth={2} aria-hidden />}
+                  </button>
+                  <select
+                    aria-label="Valoda"
+                    className={`text-sm bg-transparent border rounded px-2 py-1 transition-colors cursor-pointer ${
+                      isScrolled ? 'text-foreground border-border' : 'text-white border-white/30'
+                    }`}
+                  >
+                    <option value="lv" style={{ color: '#000' }}>
+                      Lv
+                    </option>
+                    <option value="en" style={{ color: '#000' }}>
+                      EN
+                    </option>
+                  </select>
+                </div>
+
+                <div className="flex w-full items-center justify-between gap-3">
+                  <Link href="#" className={`text-sm font-medium transition-colors ${linkTone}`}>
+                    Kokmateriālu tirdzniecība
+                  </Link>
+                  <Link href="#" className={`text-sm font-medium transition-colors ${linkTone}`}>
+                    Kontakti
+                  </Link>
+                </div>
+
+                <div className="flex items-center gap-1">
+                  {mainNavItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className={`px-3 py-2 text-sm font-medium transition-colors inline-flex items-center gap-1 ${linkTone}`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="ml-auto flex items-center gap-2 md:gap-3 shrink-0">
-              <Link
-                href="#"
-                className={`hidden md:inline text-sm font-medium transition-colors ${linkTone}`}
-              >
-                Par mums
-              </Link>
-              <select
-                aria-label="Valoda"
-                className={`hidden md:block text-sm bg-transparent border rounded px-2 py-1 transition-colors cursor-pointer ${
-                  isScrolled
-                    ? 'text-foreground border-border'
-                    : 'text-white border-white/30'
-                }`}
-              >
-                <option value="lv" style={{ color: '#000' }}>
-                  Lv
-                </option>
-                <option value="en" style={{ color: '#000' }}>
-                  EN
-                </option>
-              </select>
+            <div className="ml-auto flex items-center gap-2 md:gap-3 shrink-0 md:hidden">
               <button
                 type="button"
                 onClick={toggleMenu}
@@ -178,7 +178,7 @@ export default function Navbar() {
             }}
           >
             <div className="px-4 py-8 max-h-[calc(100vh-4rem)] overflow-y-auto">
-              {navItems.map((item) => (
+              {menuItems.map((item) => (
                 <div key={item.label}>
                   {item.submenu ? (
                     <>

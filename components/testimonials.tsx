@@ -29,12 +29,43 @@ const testimonials = [
     authorName: 'Maria Garcia',
     authorTitle: 'Partner, Energy Solutions',
   },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_Finieris_AS_id_fVQzm0I_0-uXuwLNZnUIr5ni6TPwwOSY67qGBxj0.png',
+    text: 'Sadarbība ir ļoti profesionāla, lēmumi tiek pieņemti ātri un korekti.',
+    authorName: 'Andris Ozols',
+    authorTitle: 'Ražošanas vadītājs',
+  },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_valsts_me%C5%BEi_idTn3M4yWl_0-fjAMJ9l5pCaFj1Afge3RYX5rZEfXgm.png',
+    text: 'Komanda vienmēr nodrošina skaidru komunikāciju un precīzu darbu izpildi.',
+    authorName: 'Ilze Kalniņa',
+    authorTitle: 'Projektu koordinatore',
+  },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PRIEDES_AG_idx2EYih-G_0-IDEmBj870UOzG6tTJr8eGVhv9vpFeo.png',
+    text: 'Pakalpojumi ir stabili kvalitatīvi, arī sarežģītos objektos.',
+    authorName: 'Mārtiņš Bērziņš',
+    authorTitle: 'Iepirkumu speciālists',
+  },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/id7judnuyL_logos-eVMQHZxZLuSqlYZp03vId3CLlas7lg.png',
+    text: 'Piedāvātie nosacījumi ir konkurētspējīgi un caurspīdīgi.',
+    authorName: 'Santa Liepa',
+    authorTitle: 'Valdes locekle',
+  },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BONO_Group_idEVZYswIK_0-qy86XHPfxe4ihFkK4Tbwum7FKQ7te8.png',
+    text: 'Ilgtermiņā uzticams partneris ar augstu atbildības sajūtu.',
+    authorName: 'Jānis Krasts',
+    authorTitle: 'Attīstības vadītājs',
+  },
 ]
 
 export default function Testimonials() {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(1)
   const [isAutoPlay, setIsAutoPlay] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(true)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -46,30 +77,32 @@ export default function Testimonials() {
   }, [])
 
   const itemsPerView = isMobile ? 1 : 2
-  const totalSlides = Math.ceil(testimonials.length / itemsPerView)
+  const extendedTestimonials = [
+    testimonials[testimonials.length - 1],
+    ...testimonials,
+    testimonials[0],
+  ]
 
   const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % testimonials.length)
+    setCurrent((prev) => prev + 1)
     setIsAutoPlay(false)
   }, [])
 
   const prev = useCallback(() => {
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setCurrent((prev) => prev - 1)
     setIsAutoPlay(false)
   }, [])
 
-  // Auto-play effect
   useEffect(() => {
     if (!isAutoPlay) return
 
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length)
-    }, 4000)
+      setCurrent((prev) => prev + 1)
+    }, 4500)
 
     return () => clearInterval(interval)
   }, [isAutoPlay])
 
-  // Resume autoplay after user interaction
   useEffect(() => {
     if (!isAutoPlay) {
       const timeout = setTimeout(() => setIsAutoPlay(true), 6000)
@@ -77,88 +110,97 @@ export default function Testimonials() {
     }
   }, [isAutoPlay])
 
-  const startIndex = isMobile ? current : current * 2
-  const visibleTestimonials = isMobile
-    ? [testimonials[current]]
-    : [testimonials[current * 2 % testimonials.length], testimonials[(current * 2 + 1) % testimonials.length]]
+  useEffect(() => {
+    if (current === 0) {
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false)
+        setCurrent(testimonials.length)
+      }, 2000)
+      return () => clearTimeout(timeout)
+    }
+
+    if (current === testimonials.length + 1) {
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false)
+        setCurrent(1)
+      }, 2000)
+      return () => clearTimeout(timeout)
+    }
+  }, [current])
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      const raf = requestAnimationFrame(() => setIsTransitioning(true))
+      return () => cancelAnimationFrame(raf)
+    }
+  }, [isTransitioning])
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              What Our Partners Say
-            </h2>
-          </div>
-          <div className="hidden md:flex gap-4">
-            <button
-              onClick={prev}
-              className="p-2 border border-border rounded-lg hover:bg-muted transition-colors"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={next}
-              className="p-2 border border-border rounded-lg hover:bg-muted transition-colors"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
+        <div className="flex items-center justify-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            Klientu atsauksmes
+          </h2>
         </div>
 
-        {/* Testimonials Carousel */}
-        <div
-          className={`grid gap-12 ${
-            isMobile ? 'grid-cols-1' : 'grid-cols-2'
-          } min-h-[300px]`}
-        >
-          {visibleTestimonials.map((testimonial, index) => (
-            <div key={startIndex + index} className="text-center">
-              {/* Company Logo */}
-              <div className="flex justify-center mb-6">
-                <div className="relative w-32 h-16">
-                  <Image
-                    src={testimonial.companyLogo}
-                    alt="Company logo"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-
-              {/* Quote */}
-              <p className="text-foreground mb-6 italic text-lg leading-relaxed">
-                "{testimonial.text}"
-              </p>
-
-              {/* Author */}
-              <div>
-                <p className="font-semibold text-foreground">
-                  {testimonial.authorName}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {testimonial.authorTitle}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Navigation - Mobile */}
-        <div className="md:hidden flex gap-4 mt-8 justify-center">
+        <div className="relative">
           <button
             onClick={prev}
-            className="p-2 border border-border rounded-lg hover:bg-muted transition-colors"
+            aria-label="Previous testimonials"
+            className="absolute left-0 top-1/2 z-10 -translate-y-1/2 p-2 border border-border rounded-full bg-white hover:bg-muted transition-colors"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={22} />
           </button>
           <button
             onClick={next}
-            className="p-2 border border-border rounded-lg hover:bg-muted transition-colors"
+            aria-label="Next testimonials"
+            className="absolute right-0 top-1/2 z-10 -translate-y-1/2 p-2 border border-border rounded-full bg-white hover:bg-muted transition-colors"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={22} />
           </button>
+
+          <div className="mx-12 overflow-hidden">
+            <div
+              className="flex"
+              style={{
+                transform: `translateX(-${(current * 100) / itemsPerView}%)`,
+                transition: isTransitioning ? 'transform 2s ease-in-out' : 'none',
+              }}
+            >
+              {extendedTestimonials.map((testimonial, index) => (
+                <div
+                  key={`${testimonial.authorName}-${index}`}
+                  className="flex-shrink-0 px-4"
+                  style={{ width: `${100 / itemsPerView}%` }}
+                >
+                  <div className="text-center py-3 md:py-6 min-h-[280px]">
+                    <div className="flex justify-center mb-6">
+                      <div className="relative w-32 h-16">
+                        <Image
+                          src={testimonial.companyLogo}
+                          alt="Company logo"
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                    <p className="text-foreground mb-6 italic text-lg leading-relaxed">
+                      "{testimonial.text}"
+                    </p>
+                    <div>
+                      <p className="font-semibold text-foreground">
+                        {testimonial.authorName}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.authorTitle}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

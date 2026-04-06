@@ -7,6 +7,7 @@ import Services from '@/components/services'
 import CTA from '@/components/cta'
 import Testimonials from '@/components/testimonials'
 import FAQ from '@/components/faq'
+import Newsletter from '@/components/newsletter'
 import Footer from '@/components/footer'
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <CTA />
       <Testimonials />
       <FAQ />
+      <Newsletter />
       <Footer />
     </main>
   )
