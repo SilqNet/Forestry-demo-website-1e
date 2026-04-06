@@ -36,7 +36,7 @@ export default function FloatingButton() {
         setTapOpen(false)
       }}
       className={`fixed right-0 top-[70%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651] transition-transform ${
-        expanded ? 'translate-x-0 transition-duration-300' : 'translate-x-[calc(100%-2.8rem)] transition-duration-0'
+        expanded ? 'translate-x-0 duration-300' : 'translate-x-[calc(100%-2.8rem)] duration-0'
       }`}
       aria-label={LABEL}
       aria-expanded={expanded}
