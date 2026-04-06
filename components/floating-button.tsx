@@ -35,31 +35,25 @@ export default function FloatingButton() {
         setHoverOpen(false)
         setTapOpen(false)
       }}
-      className="fixed right-0 top-[70%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#22c55e]"
+      className={`fixed right-0 top-[70%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651] transition-transform ${
+        expanded ? 'translate-x-0 transition-duration-300' : 'translate-x-[calc(100%-2.8rem)] transition-duration-0'
+      }`}
       aria-label={LABEL}
       aria-expanded={expanded}
     >
-      <span
-        className={`flex items-stretch overflow-hidden rounded-l-2xl bg-[#00a651] text-white shadow-lg transition-[max-width] duration-700 ease-in-out ${
-          expanded
-            ? 'max-w-[min(100vw-1.5rem,24rem)]'
-            : 'max-w-[2.8rem]'
-        }`}
+      <div
+        className="flex items-stretch bg-[#00a651] text-white shadow-lg"
       >
-        <span className="flex w-11 min-h-[52px] shrink-0 items-center justify-center text-xl font-bold italic">
+        <div className="flex w-11 min-h-[52px] shrink-0 items-center justify-center text-xl font-bold">
           i
-        </span>
-        <span
-          className={`flex min-h-[52px] items-center whitespace-nowrap text-[15px] font-semibold leading-tight transition-[opacity,max-width] duration-700 ease-in-out ${
-            expanded
-              ? 'max-w-[20rem] opacity-100 pr-6'
-              : 'max-w-0 overflow-hidden opacity-0 pr-0'
-          }`}
+        </div>
+        <div
+          className="flex min-h-[52px] items-center whitespace-nowrap text-[15px] font-semibold leading-tight pr-6"
           aria-hidden={!expanded}
         >
           {LABEL}
-        </span>
-      </span>
+        </div>
+      </div>
     </Link>
   )
 }

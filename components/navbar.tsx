@@ -100,25 +100,17 @@ export default function Navbar() {
                 <div className="flex items-center gap-8 h-8">
                   <Link 
                     href="#" 
-                    className={`text-[13px] uppercase tracking-widest font-bold transition-all hover:opacity-70 ${linkTone}`}
+                    className={`text-[13px] tracking-widest font-normal transition-all hover:opacity-70 ${linkTone}`}
                   >
                     Par mums
                   </Link>
                   
                   <div className="flex items-center gap-5">
-                    <button
-                      type="button"
-                      onClick={toggleMenu}
-                      className={`${menuButtonClass} hover:opacity-70 transition-opacity p-1`}
-                      aria-expanded={isOpen}
-                      aria-controls={MENU_PANEL_ID}
-                    >
-                      {isOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
-                    </button>
+
                     
                     <button
                       type="button"
-                      className={`text-[13px] uppercase tracking-widest font-bold transition-colors cursor-pointer ${
+                      className={`text-[13px] uppercase tracking-widest font-normal transition-colors cursor-pointer ${
                         isScrolled ? 'text-foreground' : 'text-white'
                       }`}
                     >
@@ -133,12 +125,24 @@ export default function Navbar() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className={`text-[15px] md:text-[16px] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                      className={`text-[15px] md:text-[16px] font-normal transition-all hover:opacity-70 ${linkTone}`}
                     >
                       {item.label}
                     </Link>
                   ))}
                 </div>
+              </div>
+
+              <div className="flex items-center ml-8">
+                <button
+                  type="button"
+                  onClick={toggleMenu}
+                  className={`${menuButtonClass} hover:opacity-70 transition-opacity p-1`}
+                  aria-expanded={isOpen}
+                  aria-controls={MENU_PANEL_ID}
+                >
+                  {isOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
+                </button>
               </div>
             </div>
 

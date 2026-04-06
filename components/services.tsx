@@ -42,8 +42,8 @@ export default function Services() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
           {services.map((service, index) => (
-            <article key={index} className="group cursor-pointer">
-              <div className="relative aspect-[3/4] overflow-hidden bg-muted rounded-sm transition-transform duration-500 hover:scale-[1.02]">
+            <article key={index} className="group cursor-pointer flex flex-col items-center text-center">
+              <div className="relative w-full max-w-[180px] aspect-[3/4] overflow-hidden bg-muted rounded-sm transition-transform duration-500 hover:scale-[1.02] mb-6">
                 <Image
                   src={service.image}
                   alt={service.title}
@@ -51,11 +51,11 @@ export default function Services() {
                   className="object-cover"
                 />
               </div>
-              <div className="pt-5">
-                <h3 className="text-[20px] md:text-[23px] leading-[1.3] font-semibold text-foreground mb-3">
+              <div className="pt-0">
+                <h3 className="text-[18px] md:text-[20px] leading-[1.3] font-normal text-foreground mb-4">
                   {service.title}
                 </h3>
-                <button className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-[16px] font-semibold text-foreground transition-all hover:bg-[#22c55e] hover:text-white hover:border-[#22c55e]">
+                <button className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-[15px] font-normal text-foreground transition-all hover:bg-[#00a651] hover:text-white hover:border-[#00a651]">
                   Uzzināt vairāk
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
