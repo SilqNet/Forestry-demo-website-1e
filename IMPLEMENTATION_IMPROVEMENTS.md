@@ -1,34 +1,40 @@
-# Implementation Plan - Website Upgrades (March 2026 Round)
+# Implementation Plan - Website Upgrades (March/April 2026 Round)
 
-This plan focuses on improving the visual presentation of the Service page and restructuring the Hero/Navbar layout to match a premium, editorial design.
+This plan focuses on improving the visual presentation of the Service section and restructuring the Hero/Navbar layout to match a premium, editorial design.
 
 ## Scope for this round
 
-- **Service Page**: Vertical images, removed "standout" hover, cleaner 3x2 grid.
-- **Hero/Navbar**: Staggered right-aligned layout, transparency over hero, white on scroll.
+-   **Service Section Upgrade**: Aligning closely with `https://laskana.lv/` style. 
+    -   Portrait vertical images, reduced in size.
+    -   Removal of ALL photo hover effects (static images).
+    -   Interaction remains only on buttons.
+    -   Clean 3x2 grid layout.
+-   **Hero/Navbar**: Staggered right-aligned layout, transparency over hero, white on scroll.
 
 ## Implementation Details
 
-### Priority 1: Service Section Refinement
+### Priority 1: Service Section Refinement (Laskana.lv Reference)
 
-**Goal**: Calm, premium, image-led services section with portrait orientation.
+**Goal**: Match the visual scale and minimal design of `laskana.lv`.
 
-1.  **Image Proportions**:
-    -   Modify `components/services.tsx` to use a vertical container for images.
-    -   Change the height class from `h-56` (landscape) to a portrait ratio like `aspect-[3/4]` or `h-[450px]`.
-    -   Use `object-cover` to ensure images fill the vertical space naturally.
-2.  **Remove current "stand out" behavior**:
-    -   Remove `group-hover:scale-110`.
-    -   Remove any heavy shadows or highlights that emphasize one card over others.
-3.  **Subtle Hover Interaction**:
-    -   Implement a small, elegant transition (e.g., slight opacity change or a very subtle `scale-[1.02]`).
-4.  **Visual order for each service**:
-    -   Vertical Photo
-    -   Service Title (minimal spacing)
-    -   "Uzzināt vairāk" button (subtle hover state)
-5.  **Data Mapping**:
-    -   Map the 5 provided forestry photos to the services.
-    -   Keep the 6th service as a placeholder for now as requested.
+1.  **Image Styles & Proportions**:
+    -   Modify `components/services.tsx` to use vertically oriented images.
+    -   **Size Reduction**: Ensure images are not oversized; match the balanced scale seen on the reference site.
+    -   **Ratio**: Use `aspect-[3/4]` or similar vertical proportions.
+    -   **Clean Spacing**: Improve whitespace around each service item for a more breathable layout.
+2.  **Remove Interaction from Photos**:
+    -   Remove ALL hover animations on images: no `scale`, no `zoom`, no `lift`, no `shadow` changes.
+    -   Photos MUST remain completely static on hover.
+3.  **Button Hover State**:
+    -   "Uzzināt vairāk" buttons will keep their hover behavior (turning green).
+4.  **Layout Order**:
+    -   Image (top)
+    -   Service Title (middle)
+    -   "Uzzināt vairāk" Button (bottom)
+    -   Remove borders, card boxes, or standout effects.
+5.  **Grid consistency**:
+    -   Ensure a clean 2-row layout (3 items per row).
+    -   Total 6 items, aligned evenly.
 
 ### Priority 2: Hero / Navbar Layout
 
@@ -47,17 +53,19 @@ This plan focuses on improving the visual presentation of the Service page and r
 
 ## Progress Tracking
 
-- [ ] (Priority 1) Service Page Image Proportion (Vertical)
-- [ ] (Priority 1) Service Section Hover/Standout Removal
-- [ ] (Priority 1) Service Section Visual Order (Photo -> Title -> Button)
-- [ ] (Priority 2) Navbar Restructuring (Staggered/Layered)
-- [ ] (Priority 2) Navbar Right-Alignment & Spacing
-- [ ] (Priority 2) Verify Transparency & Scroll Behavior
+-   [ ] (Priority 1) Service Section Image Proportions (Vertical & Smaller)
+-   [ ] (Priority 1) Remove ALL image hover effects
+-   [ ] (Priority 1) Service Section Visual Order (Photo -> Title -> Button)
+-   [ ] (Priority 1) Update Service photos with new provided files
+-   [ ] (Priority 2) Navbar Restructuring (Staggered/Layered)
+-   [ ] (Priority 2) Navbar Right-Alignment & Spacing
+-   [ ] (Priority 2) Verify Transparency & Scroll Behavior
 
 ---
 
 ## Technical approach notes
 
 -   Updating `components/services.tsx` grid and article structure.
--   Refactoring `components/navbar.tsx` desktop nav div (`md:flex flex-1 min-w-0 justify-end items-center px-2`) into a more structured set of layers.
+-   Refactoring `components/navbar.tsx` desktop nav div into a more structured set of layers.
 -   Using `object-cover` for images to handle the transition from landscape sources to portrait displays.
+-   Ensuring consistent spacing and typography across all service items.
