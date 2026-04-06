@@ -16,32 +16,32 @@ export default function Footer() {
               height={40}
               className="mb-4"
             />
-            <p className="text-sm text-white/70 leading-relaxed">
+            <p className="text-[15px] md:text-[16px] text-white/70 leading-relaxed font-normal">
               Professional forestry services with sustainable practices and expert team.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold mb-4 text-lg">Services</h3>
+            <h3 className="text-[18px] font-semibold mb-4 text-white">Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
+                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                   Meža apsaimniekošana
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
+                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                   Iepērkam
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
+                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                   Transports / Loģistika
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
+                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                   Kokmateriālu tirdzniecība
                 </Link>
               </li>
@@ -50,15 +50,15 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4 text-lg">Company</h3>
+            <h3 className="text-[18px] font-semibold mb-4 text-white">Company</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
+                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                   Par mums
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors">
+                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                   Kontakti
                 </Link>
               </li>
@@ -67,13 +67,13 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-4 text-lg">Contact</h3>
+            <h3 className="text-[18px] font-semibold mb-4 text-white">Contact</h3>
             <div className="space-y-3">
-              <a href="mailto:hello@treant.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <a href="mailto:hello@treant.com" className="flex items-center gap-2 text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                 <Mail size={16} />
                 hello@treant.com
               </a>
-              <a href="tel:+1234567890" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <a href="tel:+1234567890" className="flex items-center gap-2 text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
                 <Phone size={16} />
                 +1 (234) 567-8901
               </a>
