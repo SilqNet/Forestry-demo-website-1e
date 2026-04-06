@@ -95,12 +95,12 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden md:flex flex-1 min-w-0 justify-end items-center px-2">
-              <div className="flex flex-col items-end gap-1.5 pt-4">
+              <div className="flex flex-col items-end gap-1 pt-4">
                 {/* Upper Row: Utility & Secondary */}
                 <div className="flex items-center gap-8 h-8">
                   <Link 
                     href="#" 
-                    className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                    className={`text-[13px] uppercase tracking-widest font-bold transition-all hover:opacity-70 ${linkTone}`}
                   >
                     Par mums
                   </Link>
@@ -116,21 +116,20 @@ export default function Navbar() {
                       {isOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
                     </button>
                     
-                    <select
-                      aria-label="Valoda"
-                      className={`text-[12px] uppercase tracking-widest bg-transparent border-none focus:ring-0 p-0 transition-colors cursor-pointer font-bold ${
+                    <button
+                      type="button"
+                      className={`text-[13px] uppercase tracking-widest font-bold transition-colors cursor-pointer ${
                         isScrolled ? 'text-foreground' : 'text-white'
                       }`}
                     >
-                      <option value="lv" style={{ color: '#000' }}>LV</option>
-                      <option value="en" style={{ color: '#000' }}>EN</option>
-                    </select>
+                      LV
+                    </button>
                   </div>
                 </div>
 
-                {/* Second Row: Main Services Staggered */}
-                <div className="flex items-center gap-10 pr-6 h-8">
-                  {mainNavItems.map((item) => (
+                {/* Second Row: Main Navigation Items */}
+                <div className="flex items-center gap-10 h-10">
+                  {[...mainNavItems, { label: 'Kokmateriālu tirdzniecība', href: '#' }, { label: 'Kontakti', href: '#' }].map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
@@ -139,22 +138,6 @@ export default function Navbar() {
                       {item.label}
                     </Link>
                   ))}
-                </div>
-
-                {/* Third Row: Additional Links Further Staggered */}
-                <div className="flex items-center gap-10 pr-20 h-8">
-                  <Link 
-                    href="#" 
-                    className={`text-[15px] md:text-[16px] font-medium transition-all hover:opacity-70 ${linkTone}`}
-                  >
-                    Kokmateriālu tirdzniecība
-                  </Link>
-                  <Link 
-                    href="#" 
-                    className={`text-[15px] md:text-[16px] font-medium transition-all hover:opacity-70 ${linkTone}`}
-                  >
-                    Kontakti
-                  </Link>
                 </div>
               </div>
             </div>
