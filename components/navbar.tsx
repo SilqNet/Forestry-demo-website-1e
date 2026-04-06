@@ -95,55 +95,66 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden md:flex flex-1 min-w-0 justify-end items-center px-2">
-              <div className="flex w-full max-w-4xl flex-col items-end gap-1">
-                <div className="flex items-center gap-4">
-                  <Link href="#" className={`text-sm font-medium transition-colors ${linkTone}`}>
+              <div className="flex flex-col items-end gap-3 translate-y-2">
+                {/* Upper Row: Utility & Secondary */}
+                <div className="flex items-center gap-8">
+                  <Link 
+                    href="#" 
+                    className={`text-[13px] uppercase tracking-[0.2em] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                  >
                     Par mums
                   </Link>
-                  <button
-                    type="button"
-                    onClick={toggleMenu}
-                    className={menuButtonClass}
-                    aria-expanded={isOpen}
-                    aria-controls={MENU_PANEL_ID}
-                    aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-                  >
-                    {isOpen ? <X size={24} strokeWidth={2} aria-hidden /> : <Menu size={24} strokeWidth={2} aria-hidden />}
-                  </button>
-                  <select
-                    aria-label="Valoda"
-                    className={`text-sm bg-transparent border rounded px-2 py-1 transition-colors cursor-pointer ${
-                      isScrolled ? 'text-foreground border-border' : 'text-white border-white/30'
-                    }`}
-                  >
-                    <option value="lv" style={{ color: '#000' }}>
-                      Lv
-                    </option>
-                    <option value="en" style={{ color: '#000' }}>
-                      EN
-                    </option>
-                  </select>
+                  
+                  <div className="flex items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={toggleMenu}
+                      className={`${menuButtonClass} hover:opacity-70 transition-opacity`}
+                      aria-expanded={isOpen}
+                      aria-controls={MENU_PANEL_ID}
+                    >
+                      {isOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
+                    </button>
+                    
+                    <select
+                      aria-label="Valoda"
+                      className={`text-[12px] uppercase tracking-widest bg-transparent border-none focus:ring-0 p-0 transition-colors cursor-pointer font-bold ${
+                        isScrolled ? 'text-foreground' : 'text-white'
+                      }`}
+                    >
+                      <option value="lv" style={{ color: '#000' }}>LV</option>
+                      <option value="en" style={{ color: '#000' }}>EN</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div className="flex w-full items-center justify-between gap-3">
-                  <Link href="#" className={`text-sm font-medium transition-colors ${linkTone}`}>
-                    Kokmateriālu tirdzniecība
-                  </Link>
-                  <Link href="#" className={`text-sm font-medium transition-colors ${linkTone}`}>
-                    Kontakti
-                  </Link>
-                </div>
-
-                <div className="flex items-center gap-1">
+                {/* Middle Row: Primary Services */}
+                <div className="flex items-center gap-10 pr-4">
                   {mainNavItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className={`px-3 py-2 text-sm font-medium transition-colors inline-flex items-center gap-1 ${linkTone}`}
+                      className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
                     >
                       {item.label}
                     </Link>
                   ))}
+                </div>
+
+                {/* Bottom Row: Additional Info */}
+                <div className="flex items-center gap-10 pr-12">
+                  <Link 
+                    href="#" 
+                    className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                  >
+                    Kokmateriālu tirdzniecība
+                  </Link>
+                  <Link 
+                    href="#" 
+                    className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                  >
+                    Kontakti
+                  </Link>
                 </div>
               </div>
             </div>

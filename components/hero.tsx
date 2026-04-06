@@ -48,7 +48,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-24 md:pb-32">
-        <h1 className="max-w-4xl text-left text-3xl font-bold leading-tight text-white text-balance md:text-5xl lg:text-6xl">
+        <h1 className="max-w-4xl text-left text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.1] mb-4">
           GR GRUPA - Uzticams partneris mežsaimniecībā
         </h1>
       </div>
