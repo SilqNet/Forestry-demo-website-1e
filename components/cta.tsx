@@ -46,16 +46,16 @@ export default function CTA() {
         <p className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-4">
           GET STARTED NOW
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-balance mb-6">
+        <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-white text-balance mb-6 uppercase">
           BEGIN YOUR FORESTRY PROJECT TODAY WITH OUR EXPERT, RELIABLE TEAM
         </h2>
-        <p className="text-lg text-white/90 max-w-3xl mb-8">
+        <p className="text-[19px] leading-[1.6] font-normal text-white/90 max-w-3xl mb-8">
           At Treant, we harvest forests responsibly, provide premium timber, and replant for tomorrow — ensuring strength, sustainability, and trust in every Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <button className="bg-primary hover:bg-primary-foreground/10 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+          <button className="bg-primary hover:bg-primary-foreground/10 text-white px-8 py-3 rounded-full text-[16px] font-semibold transition-colors">
             Get Started
           </button>
           <button className="bg-primary hover:bg-primary-foreground/10 text-white p-3 rounded-full transition-colors">

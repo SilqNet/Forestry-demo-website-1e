@@ -1,11 +1,19 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
+import { Montserrat, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
-const _geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
-const _playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
+const _montserrat = Montserrat({ 
+  subsets: ["latin"], 
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat" 
+});
+
+const _inter = Inter({ 
+  subsets: ["latin"], 
+  weight: ["400"],
+  variable: "--font-inter" 
+});
 
 export const metadata: Metadata = {
   title: 'Baltu Koks - Professional Forestry Services',
@@ -37,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="lv">
-      <body className={`${_geist.variable} ${_geistMono.variable} ${_playfair.variable} font-sans antialiased`}>
+      <body className={`${_montserrat.variable} ${_inter.variable} font-sans antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

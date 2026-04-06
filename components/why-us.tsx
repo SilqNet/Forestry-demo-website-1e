@@ -44,15 +44,15 @@ export default function WhyUs() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">
               WHY CHOOSE US
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
+            <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-foreground mb-6 text-balance">
               REASONS TO CHOOSE US WITH CONFIDENCE
             </h2>
-            <p className="text-muted-foreground mb-8 text-lg">
+            <p className="text-muted-foreground mb-8 text-[19px] leading-[1.6] font-normal">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
             </p>
 
             <div className="flex gap-4">
-              <button className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-foreground/10 transition-colors">
+              <button className="bg-primary text-white px-6 py-3 rounded-full text-[16px] font-semibold hover:bg-primary-foreground/10 transition-colors">
                 Get Started
               </button>
               <button className="border-2 border-primary text-primary p-3 rounded-full hover:bg-primary hover:text-white transition-colors">
@@ -72,8 +72,8 @@ export default function WhyUs() {
                   <div className="flex items-center justify-center w-12 h-12 bg-primary rounded-full">
                     <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-bold text-foreground">{reason.title}</h3>
-                  <p className="text-sm text-muted-foreground">{reason.description}</p>
+                  <h3 className="text-[18px] font-bold text-foreground">{reason.title}</h3>
+                  <p className="text-[16px] md:text-[17px] leading-[1.6] font-normal text-muted-foreground">{reason.description}</p>
                 </div>
               )
             })}

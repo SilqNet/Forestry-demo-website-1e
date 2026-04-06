@@ -100,7 +100,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-8 h-8">
                   <Link 
                     href="#" 
-                    className={`text-[13px] uppercase tracking-[0.2em] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                    className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
                   >
                     Par mums
                   </Link>
@@ -134,7 +134,7 @@ export default function Navbar() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                      className={`text-[15px] md:text-[16px] font-medium transition-all hover:opacity-70 ${linkTone}`}
                     >
                       {item.label}
                     </Link>
@@ -145,13 +145,13 @@ export default function Navbar() {
                 <div className="flex items-center gap-10 pr-20 h-8">
                   <Link 
                     href="#" 
-                    className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                    className={`text-[15px] md:text-[16px] font-medium transition-all hover:opacity-70 ${linkTone}`}
                   >
                     Kokmateriālu tirdzniecība
                   </Link>
                   <Link 
                     href="#" 
-                    className={`text-[15px] font-medium transition-all hover:opacity-70 ${linkTone}`}
+                    className={`text-[15px] md:text-[16px] font-medium transition-all hover:opacity-70 ${linkTone}`}
                   >
                     Kontakti
                   </Link>

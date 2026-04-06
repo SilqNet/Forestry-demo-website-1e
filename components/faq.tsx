@@ -57,7 +57,7 @@ export default function FAQ() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">
               FREQUENTLY ASKED QUESTIONS
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 text-balance">
+            <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-foreground mb-8 text-balance uppercase">
               COMMON QUESTIONS ABOUT OUR SERVICES
             </h2>
 
@@ -71,7 +71,7 @@ export default function FAQ() {
                     onClick={() => toggleFAQ(index)}
                     className="w-full px-6 py-4 flex items-center justify-between bg-muted hover:bg-muted/80 transition-colors"
                   >
-                    <span className="font-semibold text-foreground text-left">
+                    <span className="text-[17px] md:text-[18px] font-semibold text-foreground text-left">
                       {faq.question}
                     </span>
                     <ChevronDown
@@ -85,7 +85,7 @@ export default function FAQ() {
                   {/* Expanded Content */}
                   {openIndex === index && (
                     <div className="px-6 py-4 bg-background border-t border-border">
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-[16px] md:text-[17px] leading-[1.6] font-normal text-muted-foreground">
                         {faq.answer}
                       </p>
                     </div>
