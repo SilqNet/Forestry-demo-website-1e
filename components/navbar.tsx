@@ -50,39 +50,45 @@ export default function Navbar() {
     setHoverTimeout(timeout)
   }
 
+  const ieperkamSubmenu = [
+    { label: 'Iepērkam mežus', href: '#' },
+    { label: 'Iepērkam cirsmas', href: '#' },
+    { label: 'Iepērkam zarus šķeldai', href: '#' },
+    { label: 'Iepērkam kokmateriālus pie ceļa', href: '#' },
+    { label: 'Pārdot mežu?', href: '#' },
+  ]
+
+  const transportsSubmenu = [
+    { label: 'Kokvedēja pakalpojumi', href: '#' },
+    { label: 'Šķeldas transportēšana', href: '#' },
+    { label: 'Meža tehnikas pārvadājumi', href: '#' },
+  ]
+
   const mainNavItems = [
     { label: 'Mežu apsaimniekošana', href: '#' },
-    { label: 'Iepērkam', href: '#' },
-    { label: 'Transports / Loģistika', href: '#' },
+    { label: 'Iepērkam', href: '#', submenu: ieperkamSubmenu },
+    { label: 'Transports / Loģistika', href: '#', submenu: transportsSubmenu },
+    { label: 'Kokmateriālu tirdzniecība', href: '#' },
+    { label: 'Kontakti', href: '#' },
   ]
 
   const menuItems = [
-    {
-      label: 'Kokmateriālu tirdzniecība',
-      href: '#',
-      submenu: [
-        { label: 'Pārdot mežu?', href: '#' },
-        { label: 'Iepērkam mežus', href: '#' },
-        { label: 'Iepērkam cirsmas', href: '#' },
-        { label: 'Iepērkam zarus šķeldai', href: '#' },
-        { label: 'Iepērkam kokmateriālus pie ceļa', href: '#' },
-      ],
-    },
     { label: 'Mežu apsaimniekošana', href: '#' },
-    { label: 'Iepērkam', href: '#' },
-    { label: 'Transports / Loģistika', href: '#' },
+    { label: 'Iepērkam', href: '#', submenu: ieperkamSubmenu },
+    { label: 'Transports / Loģistika', href: '#', submenu: transportsSubmenu },
+    { label: 'Kokmateriālu tirdzniecība', href: '#' },
     { label: 'Kontakti', href: '#' },
     { label: 'Par mums', href: '#' },
   ]
 
   const linkTone = isScrolled
-    ? 'text-foreground hover:text-primary'
-    : 'text-white hover:text-white/80'
+    ? 'text-[#004225] hover:text-gold'
+    : 'text-white hover:text-gold'
 
-  const menuButtonClass = `p-2 bg-transparent shrink-0 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+  const menuButtonClass = `p-2 bg-transparent shrink-0 transition-all hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
     isScrolled
-      ? 'text-foreground focus-visible:ring-primary focus-visible:ring-offset-background'
-      : 'text-white focus-visible:ring-white focus-visible:ring-offset-transparent'
+      ? 'text-[#004225] focus-visible:ring-gold focus-visible:ring-offset-background'
+      : 'text-white focus-visible:ring-gold focus-visible:ring-offset-transparent'
   }`
 
   return (
@@ -113,26 +119,17 @@ export default function Navbar() {
                 <div className="flex items-center gap-8 h-8">
                   <Link 
                     href="#" 
-                    className={`text-[13px] tracking-widest font-normal transition-all hover:opacity-70 ${linkTone}`}
+                    className={`text-[15px] font-medium transition-all ${linkTone}`}
                   >
                     Par mums
                   </Link>
                   
-                  <div className="flex items-center gap-5">
-
-                    
-                    <div className={`flex items-center gap-2 text-[13px] tracking-widest font-normal ${linkTone}`}>
-                      <button
-                        type="button"
-                        className="uppercase transition-opacity hover:opacity-70"
-                      >
-                        LV
-                      </button>
-                      <span className="opacity-30">|</span>
-                      <button
-                        type="button"
-                        className="uppercase opacity-50 transition-opacity hover:opacity-100"
-                      >
+                  <div className="relative group">
+                    <button className={`flex items-center gap-1 text-[15px] font-medium transition-all ${linkTone} uppercase`}>
+                      LV <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                    </button>
+                    <div className="absolute top-full right-0 mt-2 py-2 w-24 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                      <button className="w-full px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors uppercase">
                         EN
                       </button>
                     </div>
@@ -141,27 +138,43 @@ export default function Navbar() {
 
                 {/* Second Row: Main Navigation Items */}
                 <div className="flex items-center gap-10 h-10">
-                  {[...mainNavItems, { label: 'Kokmateriālu tirdzniecība', href: '#' }, { label: 'Kontakti', href: '#' }].map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className={`text-[15px] md:text-[16px] font-normal transition-all hover:opacity-70 ${linkTone}`}
-                    >
-                      {item.label}
-                    </Link>
+                  {mainNavItems.map((item) => (
+                    <div key={item.label} className="relative group">
+                      {item.submenu ? (
+                        <>
+                          <button className={`flex items-center gap-1 text-[15px] md:text-[16px] font-medium transition-all ${linkTone}`}>
+                            {item.label} <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
+                          </button>
+                          <div className="absolute top-full left-0 mt-2 py-3 w-64 bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50">
+                            {item.submenu.map((subitem) => (
+                              <Link
+                                key={subitem.label}
+                                href={subitem.href}
+                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-medium border-l-2 border-transparent hover:border-gold"
+                              >
+                                {subitem.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className={`text-[15px] md:text-[16px] font-medium transition-all ${linkTone}`}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
 
-              <div 
-                className="flex items-center ml-8"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
+              <div className="flex items-center ml-8">
                 <button
                   type="button"
                   onClick={toggleMenu}
-                  className={`${menuButtonClass} hover:opacity-70 transition-opacity p-1`}
+                  className={`${menuButtonClass} p-1`}
                   aria-expanded={isOpen}
                   aria-controls={MENU_PANEL_ID}
                 >
@@ -192,8 +205,6 @@ export default function Navbar() {
           className="fixed inset-0 z-[35] pt-16"
           role="navigation"
           aria-label="Navigation menu"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           <div
             className="absolute inset-0 top-16 bg-white overflow-y-auto"
