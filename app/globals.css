@@ -35,9 +35,8 @@
   --sidebar-primary: #1F3D2B;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #22c55e;
-  --sidebar-accent-foreground: #1F3D2B;
-  --sidebar-border: #e0e0e0;
   --sidebar-ring: #22c55e;
+  --gold: #C5A059;
 }
 
 .dark {
@@ -69,10 +68,8 @@
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #22c55e;
   --sidebar-primary-foreground: #1F3D2B;
-  --sidebar-accent: #1F3D2B;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #333333;
   --sidebar-ring: #22c55e;
+  --gold: #C5A059;
 }
 
 @theme inline {
@@ -114,6 +111,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-gold: var(--gold);
 }
 
 @layer base {
@@ -129,5 +127,11 @@
     line-height: 1.6;
     font-weight: 400;
     overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-black;
+  }
+  a:hover {
+    color: var(--gold);
   }
 }
