@@ -1,5 +1,3 @@
-import { Check } from 'lucide-react'
-
 export default function WhyUs() {
   const values = [
     {
@@ -20,63 +18,53 @@ export default function WhyUs() {
     }
   ]
 
-  const stats = [
-    { label: 'Gadu pieredze', value: '15+' },
-    { label: 'Tehnikas vienības', value: '50+' },
-    { label: 'Šķeldotāji', value: '10+' },
-    { label: 'Baļķvedēji', value: '20+' }
+  const infrastructure = [
+    { value: '3', label: 'Ostas' },
+    { value: '1 000 000 m³', label: 'Koksnes apjoms gadā' },
+    { value: '270 t/h', label: 'Iekraušanas jauda' },
+    { value: '6000 m²', label: 'Slēgtās noliktavas' },
+    { value: '45 000 m²', label: 'Klaji laukumi' },
+    { value: '366 m', label: 'Piestātnes' },
+    { value: '50+', label: 'Tehnikas vienības' }
   ]
 
   return (
     <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <h2 className="text-[28px] md:text-[42px] leading-[1.1] font-bold mb-16 text-black">
+          Mūsu vērtības
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-12">
+          {values.map((v, i) => (
+            <div key={i} className="flex flex-col">
+              <div className="w-14 h-14 bg-neutral-100 flex items-center justify-center shrink-0 mb-6 rounded-sm">
+                 <div className="w-5 h-5 border-[1.5px] border-neutral-300 rounded-[2px]" />
+              </div>
+              <h3 className="text-[20px] font-bold mb-3 text-black">{v.title}</h3>
+              <p className="text-[15px] leading-relaxed text-black/70 font-normal">
+                {v.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-8">
-          
-          {/* Values Section */}
-          <div className="flex-[2]">
-            <div className="bg-[#00a651] p-10 md:p-16 text-white h-full">
-              <h2 className="text-[28px] md:text-[42px] leading-[1.1] font-bold mb-12">
-                Mūsu vērtības
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-x-12 gap-y-16">
-                {values.map((v, i) => (
-                  <div key={i} className="flex flex-col gap-4">
-                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                      <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                    </div>
-                    <div>
-                      <h3 className="text-[20px] font-bold mb-3 italic tracking-tight">{v.title}</h3>
-                      <p className="text-[15px] leading-relaxed opacity-90 font-normal">
-                        {v.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="h-[1px] w-full bg-neutral-200 mb-20"></div>
+        <h2 className="text-[28px] md:text-[42px] leading-[1.1] font-bold mb-16 text-black">
+          Mūsu infrastruktūra un tās iespējas
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
+          {infrastructure.map((item, i) => (
+            <div key={i} className="flex flex-col group cursor-default">
+              <span className="text-[42px] md:text-[52px] font-bold leading-none mb-4 text-black tracking-tighter group-hover:text-gold transition-colors duration-300">
+                {item.value}
+              </span>
+              <span className="text-[13px] uppercase tracking-[0.1em] text-neutral-500 font-bold leading-tight group-hover:text-black transition-colors duration-300">
+                {item.label}
+              </span>
             </div>
-          </div>
-
-          {/* Infrastructure Stats Section */}
-          <div className="flex-1">
-            <div className="bg-[#0b2d1c] p-10 md:p-16 text-white h-full flex flex-col justify-center">
-              <h2 className="text-[28px] md:text-[36px] font-bold mb-14 text-center lg:text-left leading-[1.1]">
-                Mūsu infrastruktūra
-              </h2>
-              <div className="grid grid-cols-2 gap-y-16 gap-x-8">
-                {stats.map((s, i) => (
-                  <div key={i} className="flex flex-col items-center lg:items-start text-center lg:text-left">
-                    <span className="text-[48px] md:text-[56px] font-bold leading-none mb-3 text-[#00a651] tracking-tighter">
-                      {s.value}
-                    </span>
-                    <span className="text-[12px] uppercase tracking-[0.2em] opacity-60 font-bold leading-tight">
-                      {s.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
+          ))}
         </div>
       </div>
     </section>
