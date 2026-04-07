@@ -1,83 +1,82 @@
-import Image from 'next/image'
-import { Leaf, Users, TreePine, Award, Cog, Handshake } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 export default function WhyUs() {
-  const reasons = [
+  const values = [
     {
-      icon: Leaf,
-      title: 'ECO FRIENDLY',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      title: 'Godīgums un atbildība',
+      description: 'Mēs ticam caurspīdīgai sadarbībai un vienmēr pildām savus solījumus pret klientiem un partneriem.'
     },
     {
-      icon: Users,
-      title: 'EXPERT TEAM',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      title: 'Kvalitāte katrā posmā',
+      description: 'No mežu taksācijas līdz loģistikai – mēs nodrošinām augstākos standartus visā procesā.'
     },
     {
-      icon: TreePine,
-      title: 'QUALITY WOOD',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      title: 'Mūsdienīgi risinājumi',
+      description: 'Izmantojam modernāko tehniku un tehnoloģijas, lai maksimāli palielinātu efektivitāti.'
     },
     {
-      icon: Award,
-      title: 'PROVEN RESULTS',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      icon: Cog,
-      title: 'FULL SERVICE',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      icon: Handshake,
-      title: 'TRUSTED PARTNERS',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
+      title: 'Ilgtspējīga mežsaimniecība',
+      description: 'Rūpējamies par Latvijas dabas vērtību saglabāšanu un gudru mežu apsaimniekošanu.'
+    }
+  ]
+
+  const stats = [
+    { label: 'Gadu pieredze', value: '15+' },
+    { label: 'Tehnikas vienības', value: '50+' },
+    { label: 'Šķeldotāji', value: '10+' },
+    { label: 'Baļķvedēji', value: '20+' }
   ]
 
   return (
-    <section className="pt-10 pb-20 bg-background">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Left Content */}
-          <div>
-            <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">
-              PAR MUMS
-            </p>
-            <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-foreground mb-6 text-balance">
-              REASONS TO CHOOSE US WITH CONFIDENCE
-            </h2>
-            <p className="text-muted-foreground mb-8 text-[19px] leading-[1.6] font-normal">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-            </p>
-
-            <div className="flex gap-4">
-              <button className="bg-primary text-white px-6 py-3 rounded-full text-[16px] font-semibold hover:bg-primary-foreground/10 transition-colors">
-                Get Started
-              </button>
-              <button className="border-2 border-primary text-primary p-3 rounded-full hover:bg-primary hover:text-white transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
-                </svg>
-              </button>
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-8">
+          
+          {/* Values Section */}
+          <div className="flex-[2]">
+            <div className="bg-[#00a651] p-10 md:p-16 text-white h-full">
+              <h2 className="text-[28px] md:text-[42px] leading-[1.1] font-bold mb-12">
+                Mūsu vērtības
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-x-12 gap-y-16">
+                {values.map((v, i) => (
+                  <div key={i} className="flex flex-col gap-4">
+                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                      <Check className="w-5 h-5 text-white" strokeWidth={3} />
+                    </div>
+                    <div>
+                      <h3 className="text-[20px] font-bold mb-3 italic tracking-tight">{v.title}</h3>
+                      <p className="text-[15px] leading-relaxed opacity-90 font-normal">
+                        {v.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Right Grid */}
-          <div className="grid grid-cols-2 gap-6">
-            {reasons.map((reason, index) => {
-              const Icon = reason.icon
-              return (
-                <div key={index} className="flex flex-col gap-3">
-                  <div className="flex items-center justify-center w-12 h-12 bg-primary rounded-full">
-                    <Icon className="w-6 h-6 text-white" />
+          {/* Infrastructure Stats Section */}
+          <div className="flex-1">
+            <div className="bg-[#0b2d1c] p-10 md:p-16 text-white h-full flex flex-col justify-center">
+              <h2 className="text-[28px] md:text-[36px] font-bold mb-14 text-center lg:text-left leading-[1.1]">
+                Mūsu infrastruktūra
+              </h2>
+              <div className="grid grid-cols-2 gap-y-16 gap-x-8">
+                {stats.map((s, i) => (
+                  <div key={i} className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <span className="text-[48px] md:text-[56px] font-bold leading-none mb-3 text-[#00a651] tracking-tighter">
+                      {s.value}
+                    </span>
+                    <span className="text-[12px] uppercase tracking-[0.2em] opacity-60 font-bold leading-tight">
+                      {s.label}
+                    </span>
                   </div>
-                  <h3 className="text-[18px] font-bold text-foreground">{reason.title}</h3>
-                  <p className="text-[16px] md:text-[17px] leading-[1.6] font-normal text-muted-foreground">{reason.description}</p>
-                </div>
-              )
-            })}
+                ))}
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
