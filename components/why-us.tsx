@@ -1,19 +1,23 @@
 export default function WhyUs() {
   const values = [
     {
-      title: 'Godīgums un atbildība',
+      title: 'Ilgtspējība',
+      icon: '/icons/conservation.png',
       description: 'Mēs ticam caurspīdīgai sadarbībai un vienmēr pildām savus solījumus pret klientiem un partneriem.'
     },
     {
-      title: 'Kvalitāte katrā posmā',
+      title: 'Ilgtermiņa sadarbība',
+      icon: '/icons/hourglass.png',
       description: 'No mežu taksācijas līdz loģistikai – mēs nodrošinām augstākos standartus visā procesā.'
     },
     {
-      title: 'Mūsdienīgi risinājumi',
+      title: 'Godīga attieksme',
+      icon: '/icons/trust.png',
       description: 'Izmantojam modernāko tehniku un tehnoloģijas, lai maksimāli palielinātu efektivitāti.'
     },
     {
-      title: 'Ilgtspējīga mežsaimniecība',
+      title: 'Attīstība',
+      icon: '/icons/career-opportunity.png',
       description: 'Rūpējamies par Latvijas dabas vērtību saglabāšanu un gudru mežu apsaimniekošanu.'
     }
   ]
@@ -36,10 +40,12 @@ export default function WhyUs() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-12">
           {values.map((v, i) => (
-            <div key={i} className="flex flex-col">
-              <div className="w-14 h-14 bg-neutral-100 flex items-center justify-center shrink-0 mb-6 rounded-sm">
-                 <div className="w-5 h-5 border-[1.5px] border-neutral-300 rounded-[2px]" />
-              </div>
+            <div key={i} className="flex flex-col items-center text-center">
+              <img 
+                src={v.icon} 
+                alt={v.title} 
+                className="w-[48px] h-[48px] object-contain mx-auto block mb-4" 
+              />
               <h3 className="text-[20px] font-bold mb-3 text-black">{v.title}</h3>
               <p className="text-[15px] leading-relaxed text-black/70 font-normal">
                 {v.description}
