@@ -32,7 +32,7 @@ export default function Services() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-14">
-          <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-foreground mb-4 text-balance">
+          <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-black mb-4 text-balance">
             Iepērkam mežus, cirsmas un kokmateriālus
           </h2>
           <p className="text-muted-foreground text-[19px] leading-[1.6] font-normal">
@@ -52,10 +52,10 @@ export default function Services() {
                 />
               </div>
               <div className="pt-0">
-                <h3 className="text-[18px] md:text-[20px] leading-[1.3] font-normal text-foreground mb-4">
+                <h3 className="text-[18px] md:text-[20px] leading-[1.3] font-normal text-black mb-4">
                   {service.title}
                 </h3>
-                <button className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-[15px] font-normal text-foreground transition-all hover:bg-[#00a651] hover:text-white hover:border-[#00a651]">
+                <button className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-[15px] font-normal text-foreground transition-all hover:bg-gold hover:text-white hover:border-gold">
                   Uzzināt vairāk
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
