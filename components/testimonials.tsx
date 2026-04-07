@@ -4,10 +4,34 @@ import Image from 'next/image'
 
 const testimonials = [
   {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_Finieris_AS_id_fVQzm0I_0-uXuwLNZnUIr5ni6TPwwOSY67qGBxj0.png',
+    text: 'Sadarbība ir ļoti profesionāla, lēmumi tiek pieņemti ātri un korekti.',
+    authorName: 'Andris Ozols',
+    authorTitle: 'Ražošanas vadītājs',
+  },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijasmezs-lv_idQkwXJx0w_0-jPrm4GWIp9eth3EzyWnpsSt0MhMMt9.png',
+    text: 'Augstu vērtējam GR GRUPA spēju nodrošināt stabilas piegādes un caurspīdīgu sadarbības modeli.',
+    authorName: 'Jānis Mežsaimnieks',
+    authorTitle: 'Iepirkumu direktors',
+  },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/idjbpsM6kj_logos-qGeiEqG3rxesqFF9E8RQCFDoHPmiSq.png',
+    text: 'Uzticams partneris, kas vienmēr pilda solīto un nodrošina kvalitatīvu servisu.',
+    authorName: 'Pēteris Koks',
+    authorTitle: 'Valdes priekšsēdētājs',
+  },
+  {
+    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/R_GRUPA_idsfYm-39J_0-gWFApMxGizbCUonoz7EOKJPoAonBxg.png',
+    text: 'Profesionāla pieeja visos darba posmos. Sadarbība, kas orientēta uz ilgtermiņa rezultātu.',
+    authorName: 'Kārlis Riekstiņš',
+    authorTitle: 'Operatīvais vadītājs',
+  },
+  {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PRIEDES_AG_idx2EYih-G_0-IDEmBj870UOzG6tTJr8eGVhv9vpFeo.png',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
-    authorName: 'John Smith',
-    authorTitle: 'CEO, Forest Solutions',
+    text: 'Pakalpojumi ir stabili kvalitatīvi, arī sarežģītos objektos.',
+    authorName: 'Mārtiņš Bērziņš',
+    authorTitle: 'Iepirkumu speciālists',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/idrwgez9Ah_logos-baoHiIfVmEYHwLsR4jR7s4pkEFBAgQ.png',
@@ -28,34 +52,10 @@ const testimonials = [
     authorTitle: 'Partner, Energy Solutions',
   },
   {
-    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_Finieris_AS_id_fVQzm0I_0-uXuwLNZnUIr5ni6TPwwOSY67qGBxj0.png',
-    text: 'Sadarbība ir ļoti profesionāla, lēmumi tiek pieņemti ātri un korekti.',
-    authorName: 'Andris Ozols',
-    authorTitle: 'Ražošanas vadītājs',
-  },
-  {
-    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_valsts_me%C5%BEi_idTn3M4yWl_0-fjAMJ9l5pCaFj1Afge3RYX5rZEfXgm.png',
-    text: 'Komanda vienmēr nodrošina skaidru komunikāciju un precīzu darbu izpildi.',
-    authorName: 'Ilze Kalniņa',
-    authorTitle: 'Projektu koordinatore',
-  },
-  {
-    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PRIEDES_AG_idx2EYih-G_0-IDEmBj870UOzG6tTJr8eGVhv9vpFeo.png',
-    text: 'Pakalpojumi ir stabili kvalitatīvi, arī sarežģītos objektos.',
-    authorName: 'Mārtiņš Bērziņš',
-    authorTitle: 'Iepirkumu speciālists',
-  },
-  {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/id7judnuyL_logos-eVMQHZxZLuSqlYZp03vId3CLlas7lg.png',
     text: 'Piedāvātie nosacījumi ir konkurētspējīgi un caurspīdīgi.',
     authorName: 'Santa Liepa',
     authorTitle: 'Valdes locekle',
-  },
-  {
-    companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BONO_Group_idEVZYswIK_0-qy86XHPfxe4ihFkK4Tbwum7FKQ7te8.png',
-    text: 'Ilgtermiņā uzticams partneris ar augstu atbildības sajūtu.',
-    authorName: 'Jānis Krasts',
-    authorTitle: 'Attīstības vadītājs',
   },
 ]
 

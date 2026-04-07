@@ -19,7 +19,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[15px] text-muted-foreground leading-relaxed font-normal max-w-xs">
-              GR GRUPA ir mežsaimniecības uzņēmums ar vairāk nekā 15 gadu pieredzi, kas nodrošina pilnu meža apsaimniekošanas ciklu un kokmateriālu loģistiku visā Latvijā.
+              Mūsu uzņēmums nodrošina pilnu mežizstrādes ciklu, sākot no meža taksācijas līdz gatavās produkcijas realizācijai.
             </p>
           </div>
 
@@ -107,9 +107,9 @@ export default function Footer() {
                 <Mail size={18} className="text-primary" />
                 info@grgrupa.lv
               </a>
-              <a href="tel:+37120000000" className="flex items-center gap-3 text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+              <a href="tel:+37129611110" className="flex items-center gap-3 text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
                 <Phone size={18} className="text-primary" />
-                +371 20 000 000
+                +371 29611110
               </a>
             </div>
           </div>
@@ -122,15 +122,6 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} GR GRUPA. Visas tiesības aizsargātas.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Privātuma politika
-              </Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Lietošanas noteikumi
-              </Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Sīkdatnes
-              </Link>
             </div>
           </div>
         </div>

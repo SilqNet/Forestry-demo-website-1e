@@ -9,6 +9,7 @@ const MENU_PANEL_ID = 'site-navigation-panel'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -36,6 +37,18 @@ export default function Navbar() {
   const toggleMenu = useCallback(() => {
     setIsOpen((open) => !open)
   }, [])
+
+  const handleMouseEnter = () => {
+    if (hoverTimeout) clearTimeout(hoverTimeout)
+    setIsOpen(true)
+  }
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsOpen(false)
+    }, 300)
+    setHoverTimeout(timeout)
+  }
 
   const mainNavItems = [
     { label: 'Mežu apsaimniekošana', href: '#' },
@@ -108,14 +121,21 @@ export default function Navbar() {
                   <div className="flex items-center gap-5">
 
                     
-                    <button
-                      type="button"
-                      className={`text-[15px] md:text-[16px] uppercase tracking-widest font-normal transition-colors cursor-pointer ${
-                        isScrolled ? 'text-foreground' : 'text-white'
-                      }`}
-                    >
-                      LV
-                    </button>
+                    <div className={`flex items-center gap-2 text-[13px] tracking-widest font-normal ${linkTone}`}>
+                      <button
+                        type="button"
+                        className="uppercase transition-opacity hover:opacity-70"
+                      >
+                        LV
+                      </button>
+                      <span className="opacity-30">|</span>
+                      <button
+                        type="button"
+                        className="uppercase opacity-50 transition-opacity hover:opacity-100"
+                      >
+                        EN
+                      </button>
+                    </div>
                   </div>
                 </div>
 
@@ -133,7 +153,11 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className="flex items-center ml-8">
+              <div 
+                className="flex items-center ml-8"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <button
                   type="button"
                   onClick={toggleMenu}
@@ -168,6 +192,8 @@ export default function Navbar() {
           className="fixed inset-0 z-[35] pt-16"
           role="navigation"
           aria-label="Navigation menu"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <div
             className="absolute inset-0 top-16 bg-white overflow-y-auto"
