@@ -36,13 +36,13 @@ export default function WhyUs() {
   ]
 
   return (
-    <section className="py-20 bg-background">
+    <section className="pt-10 pb-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
           <div>
             <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">
-              WHY CHOOSE US
+              PAR MUMS
             </p>
             <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-foreground mb-6 text-balance">
               REASONS TO CHOOSE US WITH CONFIDENCE

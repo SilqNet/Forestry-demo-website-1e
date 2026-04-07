@@ -4,99 +4,132 @@ import { Mail, Phone } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground text-white py-16">
+    <footer className="bg-white text-foreground py-16 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Logo & About */}
-          <div>
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Laskana_idu8tcMQMk_0-RIvPGKSn4kvQftBCCaxsEFMEiuHRbP.png"
-              alt="LASKANA"
-              width={120}
-              height={40}
-              className="mb-4"
-            />
-            <p className="text-[15px] md:text-[16px] text-white/70 leading-relaxed font-normal">
-              Professional forestry services with sustainable practices and expert team.
+          <div className="lg:col-span-1">
+            <Link href="/" className="inline-block mb-6">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
+                alt="GR GRUPA"
+                width={160}
+                height={50}
+                className="h-auto"
+              />
+            </Link>
+            <p className="text-[15px] text-muted-foreground leading-relaxed font-normal max-w-xs">
+              GR GRUPA ir mežsaimniecības uzņēmums ar vairāk nekā 15 gadu pieredzi, kas nodrošina pilnu meža apsaimniekošanas ciklu un kokmateriālu loģistiku visā Latvijā.
             </p>
           </div>
 
-          {/* Services */}
+          {/* Uzņēmums */}
           <div>
-            <h3 className="text-[18px] font-semibold mb-4 text-white">Services</h3>
-            <ul className="space-y-2">
+            <h3 className="text-[17px] font-bold mb-6 text-foreground uppercase tracking-wider">Uzņēmums</h3>
+            <ul className="space-y-4">
               <li>
-                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
-                  Meža apsaimniekošana
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
-                  Iepērkam
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
-                  Transports / Loģistika
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
-                  Kokmateriālu tirdzniecība
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="text-[18px] font-semibold mb-4 text-white">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
                   Par mums
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
-                  Kontakti
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Kontaktinformācija
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Privātuma Politika
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Iepērkam */}
           <div>
-            <h3 className="text-[18px] font-semibold mb-4 text-white">Contact</h3>
-            <div className="space-y-3">
-              <a href="mailto:hello@treant.com" className="flex items-center gap-2 text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
-                <Mail size={16} />
-                hello@treant.com
+            <h3 className="text-[17px] font-bold mb-6 text-foreground uppercase tracking-wider">Iepērkam</h3>
+            <ul className="space-y-4">
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Pārdot mežu
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Pārdot augošu koku cirsmu
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Zaru iepirkšana šķeldai
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Iepērkam kokmateriālus pie ceļa
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Pakalpojumi & Loģistika */}
+          <div>
+            <h3 className="text-[17px] font-bold mb-6 text-foreground uppercase tracking-wider">Pakalpojumi</h3>
+            <ul className="space-y-4">
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Mežizstrāde
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Meža atjaunošana
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Jaunaudzes kopšana
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                  Meža inventarizācija
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Kontakti */}
+          <div>
+            <h3 className="text-[17px] font-bold mb-6 text-foreground uppercase tracking-wider">Kontakti</h3>
+            <div className="space-y-4">
+              <a href="mailto:info@grgrupa.lv" className="flex items-center gap-3 text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                <Mail size={18} className="text-primary" />
+                info@grgrupa.lv
               </a>
-              <a href="tel:+1234567890" className="flex items-center gap-2 text-[15px] md:text-[16px] text-white/70 hover:text-white transition-colors font-normal">
-                <Phone size={16} />
-                +1 (234) 567-8901
+              <a href="tel:+37120000000" className="flex items-center gap-3 text-[15px] text-muted-foreground hover:text-primary transition-colors font-normal">
+                <Phone size={18} className="text-primary" />
+                +371 20 000 000
               </a>
             </div>
-
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 pt-8">
+        <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-white/50">
-              &copy; 2026 LASKANA. All rights reserved.
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} GR GRUPA. Visas tiesības aizsargātas.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-sm text-white/50 hover:text-white transition-colors">
-                Privacy Policy
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Privātuma politika
               </Link>
-              <Link href="#" className="text-sm text-white/50 hover:text-white transition-colors">
-                Terms of Service
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Lietošanas noteikumi
               </Link>
-              <Link href="#" className="text-sm text-white/50 hover:text-white transition-colors">
-                Cookies
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Sīkdatnes
               </Link>
             </div>
           </div>
@@ -105,3 +138,4 @@ export default function Footer() {
     </footer>
   )
 }
+

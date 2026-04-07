@@ -47,9 +47,9 @@ export default function Hero() {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-24 md:pb-32">
-        <h1 className="max-w-4xl text-left text-[36px] md:text-[60px] font-normal text-white leading-[1.12] tracking-[-0.02em] mb-4">
-          GR GRUPA - Uzticams partneris mežsaimniecībā
+      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-12 md:pb-16">
+        <h1 className="max-w-5xl text-left text-[36px] md:text-[60px] font-normal text-white leading-[1.12] tracking-[-0.02em] mb-4">
+          GR GRUPA - uzticams partneris mežsaimniecībā ar vairāk nekā 15 gadu pieredzi visā Latvijā
         </h1>
       </div>
     </section>

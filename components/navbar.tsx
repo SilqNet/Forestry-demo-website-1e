@@ -110,7 +110,7 @@ export default function Navbar() {
                     
                     <button
                       type="button"
-                      className={`text-[13px] uppercase tracking-widest font-normal transition-colors cursor-pointer ${
+                      className={`text-[15px] md:text-[16px] uppercase tracking-widest font-normal transition-colors cursor-pointer ${
                         isScrolled ? 'text-foreground' : 'text-white'
                       }`}
                     >
