@@ -16,25 +16,12 @@ const _inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Baltu Koks - Professional Forestry Services',
-  description: 'Sustainable timber harvesting, logging, and forest management services in Latvia. Expert forestry solutions for your business needs.',
+  title: 'GR GRUPA - Profesionāli mežizstrādes pakalpojumi',
+  description: 'Ilgtspējīga mežizstrāde, transports un meža apsaimniekošanas pakalpojumi Latvijā. GR GRUPA - Jūsu uzticamais partneris mežā.',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 }
 
