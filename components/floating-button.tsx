@@ -42,7 +42,7 @@ export default function FloatingButton() {
       aria-expanded={expanded}
     >
       <div
-        className="flex items-stretch bg-[#00a651] text-white shadow-lg rotate-[7deg] origin-right"
+        className="flex items-stretch bg-[#00a651] text-white shadow-lg rotate-[3deg] origin-right"
       >
         <div className="flex w-11 min-h-[52px] shrink-0 items-center justify-center relative">
           <div className="absolute top-[14px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] bg-white rounded-full" />

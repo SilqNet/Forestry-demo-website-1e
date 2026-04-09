@@ -25,7 +25,7 @@ export default function Newsletter() {
           />
           <button
             type="button"
-            className="h-12 rounded-none bg-[#22c55e] px-8 text-[16px] font-semibold text-white transition-colors hover:bg-[#16a34a]"
+            className="h-12 rounded-none bg-gold px-8 text-[16px] font-semibold text-white transition-colors hover:brightness-90 active:brightness-75"
           >
             Pierakstīties
           </button>

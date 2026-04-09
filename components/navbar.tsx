@@ -51,17 +51,16 @@ export default function Navbar() {
   }
 
   const ieperkamSubmenu = [
-    { label: 'Iepērkam mežus', href: '#' },
-    { label: 'Iepērkam cirsmas', href: '#' },
-    { label: 'Iepērkam zarus šķeldai', href: '#' },
-    { label: 'Iepērkam kokmateriālus pie ceļa', href: '#' },
     { label: 'Pārdot mežu?', href: '#' },
+    { label: 'Augošu koku cirsmu iepirkšana', href: '#' },
+    { label: 'Zaru iepirkšana šķeldai', href: '#' },
+    { label: 'Iepērkam kokmateriālus pie ceļa', href: '#' },
   ]
 
   const transportsSubmenu = [
-    { label: 'Kokvedēja pakalpojumi', href: '#' },
-    { label: 'Šķeldas transportēšana', href: '#' },
-    { label: 'Meža tehnikas pārvadājumi', href: '#' },
+    { label: 'Kokmateriālu pārvadājumi', href: '#' },
+    { label: 'Šķeldas pārvadājumi', href: '#' },
+    { label: 'Tehnikas pārvadājumi', href: '#' },
   ]
 
   const mainNavItems = [
