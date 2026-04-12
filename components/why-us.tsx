@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 const easeOutQuart = (t: number) => 1 - (--t) * t * t * t
 
@@ -49,23 +50,30 @@ function AnimatedCounter({ endValue, suffix = '' }: { endValue: number, suffix?:
 
 export default function WhyUs() {
   const infrastructure = [
-    { value: 14, suffix: ' +', label: 'GADU PIEREDZE' },
+    { value: 16, suffix: ' +', label: 'GADU PIEREDZE' },
     { value: 900, suffix: '+', label: 'SADARBĪBAS PARTNERI' },
     { value: 105, suffix: ' +', label: 'DARBINIEKI' },
     { value: 15, suffix: ' +', label: 'VALSTIS' }
   ]
 
   return (
-    <section className="py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-          <div>
-            <span className="text-gold uppercase font-semibold tracking-widest text-[13px] mb-6 block">
-              GR GRUPA
-            </span>
-            <h2 className="text-[32px] md:text-[42px] leading-[1.15] font-bold text-black max-w-[500px]">
-              Strādājam ar meža resursiem no meža līdz produktam
-            </h2>
+    <section className="bg-white">
+      <div className="pt-32 pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+            <div>
+              <div className="mb-8 h-[45px] flex items-center">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
+                  alt="GR GRUPA"
+                  width={160}
+                  height={45}
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+              <h2 className="text-[32px] md:text-[42px] leading-[1.15] font-bold text-black max-w-[500px]">
+                Strādājam ar meža resursiem no meža līdz produktam
+              </h2>
           </div>
           <div className="lg:pt-2">
             <p className="text-black/80 text-[16px] leading-[1.7] mb-10 max-w-[600px] font-normal">
@@ -76,20 +84,23 @@ export default function WhyUs() {
             </a>
           </div>
         </div>
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
-          {infrastructure.map((item, i) => (
-            <div key={i} className="flex flex-col group cursor-default">
-              <span className="text-[52px] md:text-[62px] font-bold leading-none mb-6 text-gold transition-colors duration-300">
-                <AnimatedCounter endValue={item.value} suffix={item.suffix} />
-              </span>
-              <span className="text-[13px] uppercase tracking-wider text-black font-semibold leading-tight">
-                {item.label}
-              </span>
-            </div>
-          ))}
+      <div className="bg-[#0f1211] py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
+            {infrastructure.map((item, i) => (
+              <div key={i} className="flex flex-col group cursor-default">
+                <span className="text-[52px] md:text-[62px] font-bold leading-none mb-6 text-gold transition-colors duration-300">
+                  <AnimatedCounter endValue={item.value} suffix={item.suffix} />
+                </span>
+                <span className="text-[13px] uppercase tracking-wider text-white font-semibold leading-tight">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
