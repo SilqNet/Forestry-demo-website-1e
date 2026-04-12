@@ -27,91 +27,94 @@ export default function FloatingButton() {
   }, [])
 
   return (
+    /*
+      Outer wrapper: fixed to right:0, top ~42%, z-50
+      Mouse events on outer so hover area includes the full widget
+
+      Inner link: flexbox row → [ICON | TEXT]
+        - ICON (56×56) is the leftmost element — always the "tab" that peeks out
+        - TEXT label extends to the right
+
+      Slide logic:
+        - Idle:   translateX(calc(100% - 56px))
+                  → pushes the widget RIGHTWARD so only the 56px icon tab is visible
+        - Hovered: translateX(0)
+                  → full widget slides into view from the right edge
+    */
     <div
       className="fixed right-0 z-50"
-      style={{
-        top: '42%',
-        // Slide: when not expanded, push the text portion off-screen to the right
-        // The icon (56px/w-14) always stays visible; rest slides in on hover
-        transform: expanded ? 'translateX(0)' : 'translateX(0)',
-        transition: 'none',
-      }}
+      style={{ top: '42%' }}
       onMouseEnter={() => setHoverOpen(true)}
       onMouseLeave={() => {
         setHoverOpen(false)
         setTapOpen(false)
       }}
     >
-      {/*
-        Slide-out approach (matching laskana.lv):
-        - Outer wrapper is always fixed to right:0
-        - Inner flex container slides left by translating left when idle,
-          so only the icon tab peeks out from the right edge
-        - On hover the full widget (icon + text) slides fully into view
-      */}
-      <div
+      <Link
+        href="#"
+        onClick={onClick}
+        className="flex items-center bg-[#00a651] text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651]"
         style={{
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          alignItems: 'stretch',
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 12px 100%)',
           transform: expanded ? 'translateX(0)' : 'translateX(calc(100% - 56px))',
           transition: 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           willChange: 'transform',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
         }}
+        aria-label={LABEL}
+        aria-expanded={expanded}
       >
-        <Link
-          href="#"
-          onClick={onClick}
-          style={{ clipPath: 'polygon(12px 0, 100% 0, 100% 100%, 0 100%)' }}
-          className="flex flex-row-reverse items-center bg-[#00a651] text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651]"
-          aria-label={LABEL}
-          aria-expanded={expanded}
+        {/* Icon tab — the leftmost 56px that always stays visible */}
+        <div
+          style={{
+            width: 56,
+            height: 56,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+            backgroundColor: '#00a651',
+          }}
         >
-          {/* Icon tab — always visible (the "peek" strip) */}
-          <div
-            className="flex shrink-0 items-center justify-center bg-[#00a651]"
-            style={{ width: 56, height: 56, position: 'relative' }}
-          >
-            {/* Clean "i" — rendered as a styled element, no extra dot */}
-            <span
-              aria-hidden="true"
-              style={{
-                fontFamily: 'Georgia, "Times New Roman", serif',
-                fontStyle: 'italic',
-                fontSize: 26,
-                fontWeight: 700,
-                color: '#ffffff',
-                lineHeight: 1,
-                userSelect: 'none',
-                display: 'block',
-              }}
-            >
-              i
-            </span>
-          </div>
-
-          {/* Expandable text label */}
-          <div
+          {/* Clean italic serif "i" — single glyph, no extra dots */}
+          <span
+            aria-hidden="true"
             style={{
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontStyle: 'italic',
+              fontSize: 26,
+              fontWeight: 700,
+              color: '#ffffff',
+              lineHeight: 1,
+              userSelect: 'none',
+              display: 'block',
+              letterSpacing: 0,
             }}
           >
-            <div
-              className="flex items-center justify-center text-white font-semibold tracking-wide"
-              style={{
-                paddingLeft: 24,
-                paddingRight: 16,
-                height: 56,
-                fontSize: 15,
-              }}
-              aria-hidden={!expanded}
-            >
-              {LABEL}
-            </div>
-          </div>
-        </Link>
-      </div>
+            i
+          </span>
+        </div>
+
+        {/* Text label — extends to the right of the icon */}
+        <div
+          aria-hidden={!expanded}
+          style={{
+            paddingLeft: 20,
+            paddingRight: 24,
+            height: 56,
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: 15,
+            fontWeight: 600,
+            whiteSpace: 'nowrap',
+            letterSpacing: '0.03em',
+          }}
+        >
+          {LABEL}
+        </div>
+      </Link>
     </div>
   )
 }
