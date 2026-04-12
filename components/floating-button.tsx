@@ -38,7 +38,7 @@ export default function FloatingButton() {
       <Link
         href="#"
         onClick={onClick}
-        className="flex flex-col items-center bg-[#00a651] text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651]"
+        className="flex flex-row-reverse items-center bg-[#00a651] text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651]"
         aria-label={LABEL}
         aria-expanded={expanded}
       >
@@ -47,14 +47,13 @@ export default function FloatingButton() {
           <span className="text-xl font-bold mt-[2px]">I</span>
         </div>
         <div
-          className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
-            expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+          className={`grid transition-[grid-template-columns] duration-500 ease-in-out ${
+            expanded ? 'grid-cols-[1fr]' : 'grid-cols-[0fr]'
           }`}
         >
           <div className="overflow-hidden">
             <div
-              className="pb-6 pt-2 flex items-center justify-center whitespace-nowrap text-[15px] font-semibold tracking-wide"
-              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+              className="px-6 py-0 flex items-center justify-center whitespace-nowrap text-[15px] font-semibold tracking-wide"
               aria-hidden={!expanded}
             >
               {LABEL}
