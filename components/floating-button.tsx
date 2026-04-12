@@ -27,34 +27,41 @@ export default function FloatingButton() {
   }, [])
 
   return (
-    <Link
-      href="#"
-      onClick={onClick}
+    <div
+      className="fixed right-0 top-1/3 z-30"
       onMouseEnter={() => setHoverOpen(true)}
       onMouseLeave={() => {
         setHoverOpen(false)
         setTapOpen(false)
       }}
-      className={`fixed right-0 top-[70%] z-30 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651] transition-transform ease-in-out ${
-        expanded ? 'translate-x-0 duration-300' : 'translate-x-[calc(100%-2.8rem)] duration-700 delay-300'
-      }`}
-      aria-label={LABEL}
-      aria-expanded={expanded}
     >
-      <div
-        className="flex items-stretch bg-[#00a651] text-white shadow-lg rotate-[3deg] origin-right"
+      <Link
+        href="#"
+        onClick={onClick}
+        className="flex flex-col items-center bg-[#00a651] text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651]"
+        aria-label={LABEL}
+        aria-expanded={expanded}
       >
-        <div className="flex w-11 min-h-[52px] shrink-0 items-center justify-center relative">
-          <div className="absolute top-[14px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] bg-white rounded-full" />
-          <span className="text-xl font-bold mt-1">I</span>
+        <div className="flex w-12 h-12 shrink-0 items-center justify-center relative z-10 bg-[#00a651]">
+          <div className="absolute top-[14px] left-1/2 -translate-x-1/2 w-[4px] h-[4px] bg-white rounded-full" />
+          <span className="text-xl font-bold mt-[2px]">I</span>
         </div>
         <div
-          className="flex min-h-[52px] items-center whitespace-nowrap text-[15px] font-semibold leading-tight pr-6"
-          aria-hidden={!expanded}
+          className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
+            expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+          }`}
         >
-          {LABEL}
+          <div className="overflow-hidden">
+            <div
+              className="pb-6 pt-2 flex items-center justify-center whitespace-nowrap text-[15px] font-semibold tracking-wide"
+              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+              aria-hidden={!expanded}
+            >
+              {LABEL}
+            </div>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
