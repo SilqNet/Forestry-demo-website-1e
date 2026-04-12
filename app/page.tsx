@@ -1,6 +1,5 @@
 import Navbar from '@/components/navbar'
 import Hero from '@/components/hero'
-import FloatingButton from '@/components/floating-button'
 import WhyUs from '@/components/why-us'
 import PartnerCarousel from '@/components/partner-carousel'
 import Services from '@/components/services'
@@ -15,7 +14,6 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
-      <FloatingButton />
       <WhyUs />
       <PartnerCarousel />
       <Services />
