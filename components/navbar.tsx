@@ -54,20 +54,25 @@ export default function Navbar() {
     { label: 'Pārdot mežu?', href: '#' },
     { label: 'Augošu koku cirsmu iepirkšana', href: '#' },
     { label: 'Zaru iepirkšana šķeldai', href: '#' },
-    { label: 'Iepērkam kokmateriālus pie ceļa', href: '#' },
+    { label: 'Kokmateriālu iepirkšana pie ceļa', href: '#' },
   ]
 
   const transportsSubmenu = [
     { label: 'Kokmateriālu pārvadājumi', href: '#' },
-    { label: 'Šķeldas pārvadājumi', href: '#' },
-    { label: 'Tehnikas pārvadājumi', href: '#' },
+    { label: 'Šķeldas un citu beramkravu pārvadājumi', href: '#' },
+    { label: 'Smagās tehnikas pārvadājumi', href: '#' },
+  ]
+
+  const tirdzniecibaSubmenu = [
+    { label: 'Apaļkoka tirdzniecība', href: '#' },
+    { label: 'Malka', href: '#' },
   ]
 
   const mainNavItems = [
     { label: 'Mežu apsaimniekošana', href: '#' },
     { label: 'Iepērkam', href: '#', submenu: ieperkamSubmenu },
     { label: 'Transports / Loģistika', href: '#', submenu: transportsSubmenu },
-    { label: 'Kokmateriālu tirdzniecība', href: '#' },
+    { label: 'Kokmateriālu tirdzniecība', href: '#', submenu: tirdzniecibaSubmenu },
     { label: 'Kontakti', href: '#' },
   ]
 
@@ -75,7 +80,7 @@ export default function Navbar() {
     { label: 'Mežu apsaimniekošana', href: '#' },
     { label: 'Iepērkam', href: '#', submenu: ieperkamSubmenu },
     { label: 'Transports / Loģistika', href: '#', submenu: transportsSubmenu },
-    { label: 'Kokmateriālu tirdzniecība', href: '#' },
+    { label: 'Kokmateriālu tirdzniecība', href: '#', submenu: tirdzniecibaSubmenu },
     { label: 'Kontakti', href: '#' },
     { label: 'Par mums', href: '#' },
   ]
@@ -112,19 +117,20 @@ export default function Navbar() {
               />
             </Link>
 
-            <div className="hidden md:flex flex-1 min-w-0 justify-end items-center px-2">
-              <div className="flex flex-col items-end gap-1 pt-4">
-                {/* Upper Row: Utility & Secondary */}
-                <div className="flex items-center gap-8 h-8">
+            <div className="hidden md:flex flex-1 min-w-0 justify-between items-center px-2 pl-12 lg:pl-24">
+              {/* Main Navigation Items (Left aligned with spacing) */}
+              <div className="flex flex-col gap-1 items-start w-full">
+                 {/* Upper Row: Utility & Secondary */}
+                <div className="flex justify-end w-full items-center gap-8 h-8">
                   <Link 
                     href="#" 
-                    className={`text-[15px] font-medium transition-all ${linkTone}`}
+                    className={`text-[14px] font-normal transition-all ${linkTone}`}
                   >
                     Par mums
                   </Link>
                   
                   <div className="relative group">
-                    <button className={`flex items-center gap-1 text-[15px] font-medium transition-all ${linkTone} uppercase`}>
+                    <button className={`flex items-center gap-1 text-[14px] font-normal transition-all ${linkTone} uppercase`}>
                       LV <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full right-0 mt-2 py-2 w-24 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
@@ -135,13 +141,12 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                {/* Second Row: Main Navigation Items */}
                 <div className="flex items-center gap-10 h-10">
                   {mainNavItems.map((item) => (
                     <div key={item.label} className="relative group">
                       {item.submenu ? (
                         <>
-                          <button className={`flex items-center gap-1 text-[15px] md:text-[16px] font-medium transition-all ${linkTone}`}>
+                          <button className={`flex items-center gap-1 text-[15px] font-normal transition-all ${linkTone}`}>
                             {item.label} <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
                           </button>
                           <div className="absolute top-full left-0 mt-2 py-3 w-64 bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50">
@@ -149,7 +154,7 @@ export default function Navbar() {
                               <Link
                                 key={subitem.label}
                                 href={subitem.href}
-                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-medium border-l-2 border-transparent hover:border-gold"
+                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-normal border-l-2 border-transparent hover:border-gold"
                               >
                                 {subitem.label}
                               </Link>
@@ -159,7 +164,7 @@ export default function Navbar() {
                       ) : (
                         <Link
                           href={item.href}
-                          className={`text-[15px] md:text-[16px] font-medium transition-all ${linkTone}`}
+                          className={`text-[15px] font-normal transition-all ${linkTone}`}
                         >
                           {item.label}
                         </Link>
@@ -169,7 +174,11 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className="flex items-center ml-8">
+              <div 
+                className="flex items-center ml-8 h-full"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <button
                   type="button"
                   onClick={toggleMenu}
@@ -177,7 +186,7 @@ export default function Navbar() {
                   aria-expanded={isOpen}
                   aria-controls={MENU_PANEL_ID}
                 >
-                  {isOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
+                  {isOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={24} strokeWidth={2.5} />}
                 </button>
               </div>
             </div>
@@ -191,7 +200,7 @@ export default function Navbar() {
                 aria-controls={MENU_PANEL_ID}
                 aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               >
-                {isOpen ? <X size={24} strokeWidth={2} aria-hidden /> : <Menu size={24} strokeWidth={2} aria-hidden />}
+                {isOpen ? <X size={24} strokeWidth={2.5} aria-hidden /> : <Menu size={24} strokeWidth={2.5} aria-hidden />}
               </button>
             </div>
           </div>
@@ -219,7 +228,7 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={() => toggleDropdown(item.label)}
-                        className="w-full text-left px-3 py-3 text-base font-medium text-foreground hover:bg-muted rounded transition-colors flex items-center justify-between"
+                        className="w-full text-left px-3 py-3 text-base font-normal text-foreground hover:bg-muted rounded transition-colors flex items-center justify-between"
                       >
                         {item.label}
                         <ChevronDown
@@ -252,7 +261,7 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="block px-3 py-3 text-base font-medium text-foreground hover:bg-muted rounded transition-colors"
+                      className="block px-3 py-3 text-base font-normal text-foreground hover:bg-muted rounded transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -264,7 +273,7 @@ export default function Navbar() {
                 <Link
                   href="#"
                   onClick={() => setIsOpen(false)}
-                  className="block px-3 py-2 text-base font-medium text-foreground hover:bg-muted rounded transition-colors"
+                  className="block px-3 py-2 text-base font-normal text-foreground hover:bg-muted rounded transition-colors"
                 >
                   Par mums
                 </Link>
