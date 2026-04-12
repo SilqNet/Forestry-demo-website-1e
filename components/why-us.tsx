@@ -1,72 +1,91 @@
-export default function WhyUs() {
-  const values = [
-    {
-      title: 'Ilgtspējība',
-      icon: '/icons/conservation.png',
-      description: 'Mēs ticam caurspīdīgai sadarbībai un vienmēr pildām savus solījumus pret klientiem un partneriem.'
-    },
-    {
-      title: 'Ilgtermiņa sadarbība',
-      icon: '/icons/hourglass.png',
-      description: 'No mežu taksācijas līdz loģistikai – mēs nodrošinām augstākos standartus visā procesā.'
-    },
-    {
-      title: 'Godīga attieksme',
-      icon: '/icons/trust.png',
-      description: 'Izmantojam modernāko tehniku un tehnoloģijas, lai maksimāli palielinātu efektivitāti.'
-    },
-    {
-      title: 'Attīstība',
-      icon: '/icons/career-opportunity.png',
-      description: 'Rūpējamies par Latvijas dabas vērtību saglabāšanu un gudru mežu apsaimniekošanu.'
-    }
-  ]
+'use client'
 
+import { useEffect, useRef, useState } from 'react'
+
+const easeOutQuart = (t: number) => 1 - (--t) * t * t * t
+
+function AnimatedCounter({ endValue, suffix = '' }: { endValue: number, suffix?: string }) {
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const nodeRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const node = nodeRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true)
+          let startTime: number
+          const duration = 4000 // 4 seconds
+          
+          const step = (timestamp: number) => {
+            if (!startTime) startTime = timestamp
+            const progress = Math.min((timestamp - startTime) / duration, 1)
+            const easeProgress = easeOutQuart(progress)
+            setCount(Math.floor(easeProgress * endValue))
+            
+            if (progress < 1) {
+              requestAnimationFrame(step)
+            } else {
+              setCount(endValue)
+            }
+          }
+          
+          requestAnimationFrame(step)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(node)
+    
+    return () => observer.disconnect()
+  }, [endValue, hasAnimated])
+
+  return <span ref={nodeRef}>{count}{suffix}</span>
+}
+
+export default function WhyUs() {
   const infrastructure = [
-    { value: '3', label: 'Ostas' },
-    { value: '1 000 000 m³', label: 'Koksnes apjoms gadā' },
-    { value: '270 t/h', label: 'Iekraušanas jauda' },
-    { value: '6000 m²', label: 'Slēgtās noliktavas' },
-    { value: '45 000 m²', label: 'Klaji laukumi' },
-    { value: '366 m', label: 'Piestātnes' },
-    { value: '50+', label: 'Tehnikas vienības' }
+    { value: 14, suffix: ' +', label: 'GADU PIEREDZE' },
+    { value: 900, suffix: '+', label: 'SADARBĪBAS PARTNERI' },
+    { value: 105, suffix: ' +', label: 'DARBINIEKI' },
+    { value: 15, suffix: ' +', label: 'VALSTIS' }
   ]
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <h2 className="text-[28px] md:text-[42px] leading-[1.1] font-bold mb-16 text-black">
-          Mūsu vērtības
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-12">
-          {values.map((v, i) => (
-            <div key={i} className="flex flex-col items-center text-center">
-              <img 
-                src={v.icon} 
-                alt={v.title} 
-                className="w-[48px] h-[48px] object-contain mx-auto block mb-4" 
-              />
-              <h3 className="text-[20px] font-bold mb-3 text-black">{v.title}</h3>
-              <p className="text-[15px] leading-relaxed text-black/70 font-normal">
-                {v.description}
-              </p>
-            </div>
-          ))}
+    <section className="py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+          <div>
+            <span className="text-gold uppercase font-semibold tracking-widest text-[13px] mb-6 block">
+              GR GRUPA
+            </span>
+            <h2 className="text-[32px] md:text-[42px] leading-[1.15] font-bold text-black max-w-[500px]">
+              Strādājam ar meža resursiem no meža līdz produktam
+            </h2>
+          </div>
+          <div className="lg:pt-2">
+            <p className="text-black/80 text-[16px] leading-[1.7] mb-10 max-w-[600px] font-normal">
+              Nodrošinām pilnu ciklu — no apsaimniekošanas un iepirkuma līdz loģistikai un piegādei klientiem vietējā un starptautiskajos tirgos. Darbības pamatā ir caurspīdīga un izsekojama piegādes sistēma, kas nodrošina sertificētus materiālus, stabilus apjomus, kontrolētu kvalitāti un prognozējamu sadarbību ar partneriem.
+            </p>
+            <a href="#" className="inline-block bg-gold hover:opacity-90 transition-opacity text-white font-semibold px-8 py-4 rounded-none uppercase text-[13px] tracking-wider">
+              PAR GR GRUPA
+            </a>
+          </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-[1px] w-full bg-neutral-200 mb-20"></div>
-        <h2 className="text-[28px] md:text-[42px] leading-[1.1] font-bold mb-16 text-black">
-          Mūsu infrastruktūra un tās iespējas
-        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
           {infrastructure.map((item, i) => (
             <div key={i} className="flex flex-col group cursor-default">
-              <span className="text-[42px] md:text-[52px] font-bold leading-none mb-4 text-black tracking-tighter group-hover:text-gold transition-colors duration-300">
-                {item.value}
+              <span className="text-[52px] md:text-[62px] font-bold leading-none mb-6 text-gold transition-colors duration-300">
+                <AnimatedCounter endValue={item.value} suffix={item.suffix} />
               </span>
-              <span className="text-[13px] uppercase tracking-[0.1em] text-neutral-500 font-bold leading-tight group-hover:text-black transition-colors duration-300">
+              <span className="text-[13px] uppercase tracking-wider text-black font-semibold leading-tight">
                 {item.label}
               </span>
             </div>
