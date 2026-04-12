@@ -5,50 +5,60 @@ import Image from 'next/image'
 
 const easeOutQuart = (t: number) => 1 - (--t) * t * t * t
 
-function AnimatedCounter({ endValue, suffix = '' }: { endValue: number, suffix?: string }) {
+function AnimatedCounter({ endValue, suffix = '', startAnimation = false }: { endValue: number, suffix?: string, startAnimation?: boolean }) {
   const [count, setCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
   const nodeRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    const node = nodeRef.current
-    if (!node) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true)
-          let startTime: number
-          const duration = 4000 // 4 seconds
-          
-          const step = (timestamp: number) => {
-            if (!startTime) startTime = timestamp
-            const progress = Math.min((timestamp - startTime) / duration, 1)
-            const easeProgress = easeOutQuart(progress)
-            setCount(Math.floor(easeProgress * endValue))
-            
-            if (progress < 1) {
-              requestAnimationFrame(step)
-            } else {
-              setCount(endValue)
-            }
-          }
-          
+    if (startAnimation && !hasAnimated) {
+      setHasAnimated(true)
+      let startTime: number
+      const duration = 4000 // 4 seconds
+      
+      const step = (timestamp: number) => {
+        if (!startTime) startTime = timestamp
+        const progress = Math.min((timestamp - startTime) / duration, 1)
+        const easeProgress = easeOutQuart(progress)
+        setCount(Math.floor(easeProgress * endValue))
+        
+        if (progress < 1) {
           requestAnimationFrame(step)
+        } else {
+          setCount(endValue)
         }
-      },
-      { threshold: 0.1 }
-    )
-
-    observer.observe(node)
-    
-    return () => observer.disconnect()
-  }, [endValue, hasAnimated])
+      }
+      
+      requestAnimationFrame(step)
+    }
+  }, [startAnimation, hasAnimated, endValue])
 
   return <span ref={nodeRef}>{count}{suffix}</span>
 }
 
 export default function WhyUs() {
+  const [startAnimation, setStartAnimation] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const node = sectionRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setStartAnimation(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    observer.observe(node)
+    
+    return () => observer.disconnect()
+  }, [])
+
   const infrastructure = [
     { value: 16, suffix: ' +', label: 'GADU PIEREDZE' },
     { value: 900, suffix: '+', label: 'SADARBĪBAS PARTNERI' },
@@ -87,17 +97,14 @@ export default function WhyUs() {
         </div>
       </div>
 
-      <div className="bg-[#0f1211] py-24">
+      <div className="bg-[#0f1211] py-24" ref={sectionRef}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
             {infrastructure.map((item, i) => (
               <div key={i} className="flex flex-col group cursor-default">
                 <div className="flex items-center mb-6">
-                  {i === 0 && (
-                    <Image src="/icons/hourglass.png" alt="Pieredze" width={56} height={56} className="mr-4 h-[56px] w-auto object-contain" />
-                  )}
                   <span className="text-[52px] md:text-[62px] font-bold leading-none text-gold transition-colors duration-300">
-                    <AnimatedCounter endValue={item.value} suffix={item.suffix} />
+                    <AnimatedCounter endValue={item.value} suffix={item.suffix} startAnimation={startAnimation} />
                   </span>
                 </div>
                 <span className="text-[13px] uppercase tracking-wider text-white font-semibold leading-tight">

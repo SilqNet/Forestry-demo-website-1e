@@ -133,8 +133,8 @@ export default function Navbar() {
                     <button className={`flex items-center gap-1 text-[14px] font-normal transition-all ${linkTone}`}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
-                    <div className="absolute top-full right-0 mt-2 py-2 w-32 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                      <Link href="#" className="block px-4 py-2 text-sm text-foreground hover:text-gold transition-colors text-right">
+                    <div className="absolute top-full right-0 mt-2 py-2 min-w-max bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                      <Link href="#" className="block px-4 py-2 text-sm text-foreground hover:text-gold transition-colors text-left whitespace-nowrap">
                         Jaunumi
                       </Link>
                     </div>
@@ -143,8 +143,8 @@ export default function Navbar() {
                     <button className={`flex items-center gap-1 text-[14px] font-normal transition-all ${linkTone} uppercase`}>
                       LV <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
-                    <div className="absolute top-full right-0 mt-2 py-2 w-24 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                      <button className="w-full px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors uppercase">
+                    <div className="absolute top-full right-0 mt-2 py-2 min-w-max bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                      <button className="w-full px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors uppercase whitespace-nowrap">
                         EN
                       </button>
                     </div>
@@ -159,12 +159,12 @@ export default function Navbar() {
                           <button className={`flex items-center gap-1 text-[15px] font-normal transition-all ${linkTone}`}>
                             {item.label} <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
                           </button>
-                          <div className="absolute top-full left-0 mt-2 py-3 w-64 bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50">
+                          <div className="absolute top-full left-0 mt-2 py-3 min-w-max bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50">
                             {item.submenu.map((subitem) => (
                               <Link
                                 key={subitem.label}
                                 href={subitem.href}
-                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-normal border-l-2 border-transparent hover:border-gold"
+                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-normal border-l-2 border-transparent hover:border-gold whitespace-nowrap"
                               >
                                 {subitem.label}
                               </Link>

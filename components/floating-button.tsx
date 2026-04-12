@@ -16,15 +16,6 @@ function prefersTapToggle() {
 export default function FloatingButton() {
   const [hoverOpen, setHoverOpen] = useState(false)
   const [tapOpen, setTapOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 150)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const expanded = hoverOpen || tapOpen
 
@@ -37,7 +28,7 @@ export default function FloatingButton() {
 
   return (
     <div
-      className={`fixed right-0 top-[60%] z-30 transition-transform duration-500 ease-in-out ${isScrolled ? 'translate-x-[calc(100%-8px)] opacity-60' : 'translate-x-0 opacity-100'}`}
+      className="fixed right-0 top-[50%] z-50 transition-transform duration-500 ease-in-out translate-x-0 opacity-100"
       onMouseEnter={() => setHoverOpen(true)}
       onMouseLeave={() => {
         setHoverOpen(false)
@@ -53,7 +44,6 @@ export default function FloatingButton() {
         aria-expanded={expanded}
       >
         <div className="flex w-14 h-14 shrink-0 items-center justify-center relative z-10 bg-[#00a651]">
-          <div className="absolute top-[16px] left-1/2 -translate-x-1/2 w-[4px] h-[4px] bg-white rounded-full" />
           <span className="text-2xl font-bold mt-[2px]">i</span>
         </div>
         <div
