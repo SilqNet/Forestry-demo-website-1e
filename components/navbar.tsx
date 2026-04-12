@@ -133,7 +133,7 @@ export default function Navbar() {
                     <button className={`flex items-center gap-1 text-[14px] font-normal transition-all ${linkTone}`}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
-                    <div className="absolute top-full right-0 mt-2 py-2 min-w-max bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                    <div className="absolute top-full left-0 mt-2 py-2 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50" style={{width: 'max-content'}}>
                       <Link href="#" className="block px-4 py-2 text-sm text-foreground hover:text-gold transition-colors text-left whitespace-nowrap">
                         Jaunumi
                       </Link>
@@ -143,8 +143,8 @@ export default function Navbar() {
                     <button className={`flex items-center gap-1 text-[14px] font-normal transition-all ${linkTone} uppercase`}>
                       LV <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
-                    <div className="absolute top-full right-0 mt-2 py-2 min-w-max bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                      <button className="w-full px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors uppercase whitespace-nowrap">
+                    <div className="absolute top-full right-0 mt-2 py-1 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50" style={{width: 'max-content', minWidth: 0}}>
+                      <button className="px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors uppercase whitespace-nowrap block">
                         EN
                       </button>
                     </div>
@@ -159,7 +159,7 @@ export default function Navbar() {
                           <button className={`flex items-center gap-1 text-[15px] font-normal transition-all ${linkTone}`}>
                             {item.label} <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
                           </button>
-                          <div className="absolute top-full left-0 mt-2 py-3 min-w-max bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50">
+                          <div className="absolute top-full left-0 mt-2 py-3 bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
                             {item.submenu.map((subitem) => (
                               <Link
                                 key={subitem.label}
