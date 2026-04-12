@@ -9,7 +9,6 @@ const MENU_PANEL_ID = 'site-navigation-panel'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -37,18 +36,6 @@ export default function Navbar() {
   const toggleMenu = useCallback(() => {
     setIsOpen((open) => !open)
   }, [])
-
-  const handleMouseEnter = () => {
-    if (hoverTimeout) clearTimeout(hoverTimeout)
-    setIsOpen(true)
-  }
-
-  const handleMouseLeave = () => {
-    const timeout = setTimeout(() => {
-      setIsOpen(false)
-    }, 300)
-    setHoverTimeout(timeout)
-  }
 
   const ieperkamSubmenu = [
     { label: 'Pārdot mežu?', href: '#' },
@@ -118,8 +105,8 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden md:flex flex-1 min-w-0 justify-between items-center px-2 pl-12 lg:pl-24">
-              {/* Main Navigation Items (Left aligned with spacing) */}
-              <div className="flex flex-col gap-1 items-start w-full">
+              {/* Main Navigation Items */}
+              <div className="flex flex-col gap-2 items-end w-full">
                  {/* Upper Row: Utility & Secondary */}
                 <div className="flex justify-end w-full items-center gap-8 h-8">
                   <Link 
@@ -141,7 +128,7 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-10 h-10">
+                <div className="flex items-center gap-8 h-10">
                   {mainNavItems.map((item) => (
                     <div key={item.label} className="relative group">
                       {item.submenu ? (
@@ -176,8 +163,6 @@ export default function Navbar() {
 
               <div 
                 className="flex items-center ml-8 h-full"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
               >
                 <button
                   type="button"
