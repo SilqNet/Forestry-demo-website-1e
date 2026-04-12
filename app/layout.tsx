@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import FloatingButton from '@/components/floating-button'
 import './globals.css'
 
 const _montserrat = Montserrat({ 
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="lv">
       <body className={`${_montserrat.variable} ${_inter.variable} font-sans antialiased`}>
+        <FloatingButton />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
