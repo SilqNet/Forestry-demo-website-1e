@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 
 const LABEL = 'Uzzini savu meža vērtību'
 
@@ -16,6 +16,15 @@ function prefersTapToggle() {
 export default function FloatingButton() {
   const [hoverOpen, setHoverOpen] = useState(false)
   const [tapOpen, setTapOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 150)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const expanded = hoverOpen || tapOpen
 
@@ -28,7 +37,7 @@ export default function FloatingButton() {
 
   return (
     <div
-      className="fixed right-0 top-1/3 z-30"
+      className={`fixed right-0 top-[60%] z-30 transition-transform duration-500 ease-in-out ${isScrolled ? 'translate-x-[calc(100%-8px)] opacity-60' : 'translate-x-0 opacity-100'}`}
       onMouseEnter={() => setHoverOpen(true)}
       onMouseLeave={() => {
         setHoverOpen(false)
@@ -39,12 +48,13 @@ export default function FloatingButton() {
         href="#"
         onClick={onClick}
         className="flex flex-row-reverse items-center bg-[#00a651] text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651]"
+        style={{ clipPath: 'polygon(12px 0, 100% 0, 100% 100%, 0 100%)' }}
         aria-label={LABEL}
         aria-expanded={expanded}
       >
-        <div className="flex w-12 h-12 shrink-0 items-center justify-center relative z-10 bg-[#00a651]">
-          <div className="absolute top-[14px] left-1/2 -translate-x-1/2 w-[4px] h-[4px] bg-white rounded-full" />
-          <span className="text-xl font-bold mt-[2px]">I</span>
+        <div className="flex w-14 h-14 shrink-0 items-center justify-center relative z-10 bg-[#00a651]">
+          <div className="absolute top-[16px] left-1/2 -translate-x-1/2 w-[4px] h-[4px] bg-white rounded-full" />
+          <span className="text-2xl font-bold mt-[2px]">i</span>
         </div>
         <div
           className={`grid transition-[grid-template-columns] duration-500 ease-in-out ${
@@ -53,7 +63,7 @@ export default function FloatingButton() {
         >
           <div className="overflow-hidden">
             <div
-              className="px-6 py-0 flex items-center justify-center whitespace-nowrap text-[15px] font-semibold tracking-wide"
+              className="pl-6 pr-4 py-0 flex items-center justify-center whitespace-nowrap text-[15px] font-semibold tracking-wide"
               aria-hidden={!expanded}
             >
               {LABEL}

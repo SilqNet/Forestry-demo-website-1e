@@ -75,7 +75,7 @@ export default function WhyUs() {
                 Strādājam ar meža resursiem no meža līdz produktam
               </h2>
           </div>
-          <div className="lg:pt-2">
+          <div className="lg:pt-[77px]">
             <p className="text-black/80 text-[16px] leading-[1.7] mb-10 max-w-[600px] font-normal">
               Nodrošinām pilnu ciklu — no apsaimniekošanas un iepirkuma līdz loģistikai un piegādei klientiem vietējā un starptautiskajos tirgos. Darbības pamatā ir caurspīdīga un izsekojama piegādes sistēma, kas nodrošina sertificētus materiālus, stabilus apjomus, kontrolētu kvalitāti un prognozējamu sadarbību ar partneriem.
             </p>
@@ -92,9 +92,14 @@ export default function WhyUs() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
             {infrastructure.map((item, i) => (
               <div key={i} className="flex flex-col group cursor-default">
-                <span className="text-[52px] md:text-[62px] font-bold leading-none mb-6 text-gold transition-colors duration-300">
-                  <AnimatedCounter endValue={item.value} suffix={item.suffix} />
-                </span>
+                <div className="flex items-center mb-6">
+                  {i === 0 && (
+                    <Image src="/icons/hourglass.png" alt="Pieredze" width={56} height={56} className="mr-4 h-[56px] w-auto object-contain" />
+                  )}
+                  <span className="text-[52px] md:text-[62px] font-bold leading-none text-gold transition-colors duration-300">
+                    <AnimatedCounter endValue={item.value} suffix={item.suffix} />
+                  </span>
+                </div>
                 <span className="text-[13px] uppercase tracking-wider text-white font-semibold leading-tight">
                   {item.label}
                 </span>
