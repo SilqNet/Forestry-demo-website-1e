@@ -1,9 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useCallback, useState } from 'react'
-
-const LABEL = 'Uzzini savu meža vērtību'
 
 function prefersTapToggle() {
   if (typeof window === 'undefined') return false
@@ -13,7 +12,14 @@ function prefersTapToggle() {
   )
 }
 
-export default function FloatingButton() {
+interface WidgetProps {
+  icon: string
+  labelLine1: string
+  labelLine2: string
+  href: string
+}
+
+function SideWidget({ icon, labelLine1, labelLine2, href }: WidgetProps) {
   const [hoverOpen, setHoverOpen] = useState(false)
   const [tapOpen, setTapOpen] = useState(false)
 
@@ -27,23 +33,8 @@ export default function FloatingButton() {
   }, [])
 
   return (
-    /*
-      Outer wrapper: fixed to right:0, top ~42%, z-50
-      Mouse events on outer so hover area includes the full widget
-
-      Inner link: flexbox row → [ICON | TEXT]
-        - ICON (56×56) is the leftmost element — always the "tab" that peeks out
-        - TEXT label extends to the right
-
-      Slide logic:
-        - Idle:   translateX(calc(100% - 56px))
-                  → pushes the widget RIGHTWARD so only the 56px icon tab is visible
-        - Hovered: translateX(0)
-                  → full widget slides into view from the right edge
-    */
     <div
-      className="fixed right-0 z-50"
-      style={{ top: '42%' }}
+      className="relative flex justify-end"
       onMouseEnter={() => setHoverOpen(true)}
       onMouseLeave={() => {
         setHoverOpen(false)
@@ -51,70 +42,60 @@ export default function FloatingButton() {
       }}
     >
       <Link
-        href="#"
+        href={href}
         onClick={onClick}
-        className="flex items-center bg-[#00a651] text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00a651]"
+        className="flex items-center bg-[#C5A059] text-white shadow-lg transition-transform duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#C5A059]"
         style={{
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 12px 100%)',
-          transform: expanded ? 'translateX(0)' : 'translateX(calc(100% - 56px))',
-          transition: 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-          willChange: 'transform',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
+          clipPath: 'polygon(15px 0, 100% 0, 100% 100%, 0 100%)',
+          transform: expanded ? 'translateX(0)' : 'translateX(calc(100% - 64px))',
+          width: 'max-content',
+          minWidth: 64,
+          height: 64,
         }}
-        aria-label={LABEL}
         aria-expanded={expanded}
       >
-        {/* Icon tab — the leftmost 56px that always stays visible */}
-        <div
-          style={{
-            width: 56,
-            height: 56,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-            backgroundColor: '#00a651',
-          }}
-        >
-          {/* Clean italic serif "i" — single glyph, no extra dots */}
-          <span
-            aria-hidden="true"
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontStyle: 'italic',
-              fontSize: 26,
-              fontWeight: 700,
-              color: '#ffffff',
-              lineHeight: 1,
-              userSelect: 'none',
-              display: 'block',
-              letterSpacing: 0,
-            }}
-          >
-            i
-          </span>
+        {/* Icon Container — the leftmost ~64px */}
+        <div className="w-[64px] h-[64px] flex items-center justify-center shrink-0 pl-[12px]">
+          <Image 
+            src={icon} 
+            alt="" 
+            width={32} 
+            height={32} 
+            className="object-contain"
+          />
         </div>
 
-        {/* Text label — extends to the right of the icon */}
+        {/* Text Container — reveals on hover */}
         <div
-          aria-hidden={!expanded}
-          style={{
-            paddingLeft: 20,
-            paddingRight: 24,
-            height: 56,
-            display: 'flex',
-            alignItems: 'center',
-            fontSize: 15,
-            fontWeight: 600,
-            whiteSpace: 'nowrap',
-            letterSpacing: '0.03em',
-          }}
+          className={`flex flex-col justify-center pr-8 pl-4 h-full transition-opacity duration-300 ${expanded ? 'opacity-100' : 'opacity-0'}`}
+          style={{ whiteSpace: 'nowrap' }}
         >
-          {LABEL}
+          <p className="text-[14px] font-bold leading-[1.1] uppercase tracking-tight">{labelLine1}</p>
+          <p className="text-[14px] font-bold leading-[1.1] uppercase tracking-tight">{labelLine2}</p>
         </div>
       </Link>
+    </div>
+  )
+}
+
+export default function FloatingButton() {
+  return (
+    <div
+      className="fixed right-0 z-50 flex flex-col gap-3"
+      style={{ top: '40%' }}
+    >
+      <SideWidget
+        icon="/icons/alert.png"
+        labelLine1="Uzzini savu"
+        labelLine2="meža vērtību"
+        href="#"
+      />
+      <SideWidget
+        icon="/icons/whatsapp.png"
+        labelLine1="Sazinies ar"
+        labelLine2="WhatsApp"
+        href="#"
+      />
     </div>
   )
 }
