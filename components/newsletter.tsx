@@ -14,7 +14,7 @@ export default function Newsletter() {
       </div>
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-white mb-8">
+        <h2 className="text-[22px] leading-[1.18] font-bold text-white mb-8">
           Saņem jaunumus e-pastā
         </h2>
         <form className="mx-auto flex w-full max-w-2xl flex-col gap-3 sm:flex-row">
