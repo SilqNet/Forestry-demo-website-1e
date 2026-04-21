@@ -10,17 +10,17 @@ const SlantedHamburger = () => (
     <path
       d="M2 1H32L30 3H0L2 1Z"
       fill="currentColor"
-      className="transition-transform duration-300 group-hover:-translate-x-1.5"
+      className="transition-transform duration-300 group-hover:translate-x-1"
     />
     <path
-      d="M4 9H30.5L28.5 11H2.5L4 9Z"
+      d="M4 9H31L29 11H2L4 9Z"
       fill="currentColor"
-      className="transition-transform duration-300 group-hover:translate-x-1.5"
+      className="transition-transform duration-300 group-hover:-translate-x-1"
     />
     <path
       d="M3 17H32L30 19H1L3 17Z"
       fill="currentColor"
-      className="transition-transform duration-300 group-hover:-translate-x-1.5"
+      className="transition-transform duration-300 group-hover:translate-x-1"
     />
   </svg>
 )
@@ -128,24 +128,24 @@ export default function Navbar() {
               {/* Main Navigation Items */}
               <div className="flex flex-col gap-2 items-end w-full">
                  {/* Upper Row: Utility & Secondary */}
-                <div className="flex justify-end w-full items-center gap-8 h-8">
-                  <div className="relative group">
-                    <button className={`flex items-center gap-1 text-[14px] font-normal transition-all ${linkTone}`}>
+                <div className="flex justify-end w-full items-center gap-0 h-10">
+                  <div className="relative group h-full flex items-center">
+                    <button className={`flex items-center gap-1 h-full px-4 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${linkTone}`}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
-                    <div className="absolute top-full left-0 mt-2 py-2 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50" style={{width: 'max-content'}}>
+                    <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border-t-0" style={{width: 'max-content'}}>
                       <Link href="#" className="block px-4 py-2 text-sm text-foreground hover:text-gold transition-colors text-left whitespace-nowrap">
                         Jaunumi
                       </Link>
                     </div>
                   </div>
-                  <div className="relative group">
-                    <button className={`flex items-center gap-1 text-[14px] font-normal transition-all ${linkTone} uppercase`}>
-                      LV <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                  <div className="relative group h-full flex items-center">
+                    <button className={`flex items-center gap-1 h-full px-4 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${linkTone}`}>
+                      Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
-                    <div className="absolute top-full right-0 mt-2 py-1 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50" style={{width: 'max-content', minWidth: 0}}>
-                      <button className="px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors uppercase whitespace-nowrap block">
-                        EN
+                    <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border-t-0" style={{width: 'max-content', minWidth: 0}}>
+                      <button className="px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors whitespace-nowrap block">
+                        En
                       </button>
                     </div>
                   </div>
@@ -153,13 +153,13 @@ export default function Navbar() {
 
                 <div className="flex items-center gap-8 h-10">
                   {mainNavItems.map((item) => (
-                    <div key={item.label} className="relative group">
+                    <div key={item.label} className="relative group h-full flex items-center">
                       {item.submenu ? (
                         <>
-                          <button className={`flex items-center gap-1 text-[15px] font-normal transition-all ${linkTone}`}>
+                          <button className={`flex items-center gap-1 h-full px-4 text-[15px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${linkTone}`}>
                             {item.label} <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
                           </button>
-                          <div className="absolute top-full left-0 mt-2 py-3 bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
+                          <div className="absolute top-full left-0 py-3 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50 border-t-0" style={{width: 'max-content', minWidth: 0}}>
                             {item.submenu.map((subitem) => (
                               <Link
                                 key={subitem.label}
@@ -174,7 +174,7 @@ export default function Navbar() {
                       ) : (
                         <Link
                           href={item.href}
-                          className={`text-[15px] font-normal transition-all ${linkTone}`}
+                          className={`text-[15px] px-4 font-normal transition-all ${linkTone}`}
                         >
                           {item.label}
                         </Link>
@@ -335,9 +335,9 @@ export default function Navbar() {
 
                 <div className="pt-8">
                   <div className="flex items-center gap-4 text-lg">
-                    <span className="font-medium text-black">LV</span>
+                    <span className="font-medium text-black">Lv</span>
                     <span className="text-black/30">|</span>
-                    <Link href="#" className="text-black/60 hover:text-gold transition-colors">EN</Link>
+                    <Link href="#" className="text-black/60 hover:text-gold transition-colors">En</Link>
                   </div>
                 </div>
               </div>
