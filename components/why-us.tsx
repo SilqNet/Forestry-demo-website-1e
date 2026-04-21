@@ -98,12 +98,12 @@ export default function WhyUs() {
       </div>
 
       <div className="bg-[#0f1211] py-24" ref={sectionRef}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 justify-items-center">
             {infrastructure.map((item, i) => (
               <div key={i} className="flex flex-col group cursor-default text-center">
                 <div className="flex items-center justify-center mb-6">
-                  <span className="text-[24px] md:text-[28px] font-bold leading-none text-gold transition-colors duration-300">
+                  <span className="text-[20px] md:text-[24px] font-bold leading-none text-gold transition-colors duration-300">
                     <AnimatedCounter endValue={item.value} suffix={item.suffix} startAnimation={startAnimation} />
                   </span>
                 </div>

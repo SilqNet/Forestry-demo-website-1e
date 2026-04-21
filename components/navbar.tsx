@@ -8,17 +8,17 @@ import { X, ChevronDown } from 'lucide-react'
 const SlantedHamburger = () => (
   <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="overflow-visible">
     <path
-      d="M2 1H32L30 3H0L2 1Z"
+      d="M4 1H34L30 3H0L4 1Z"
       fill="currentColor"
       className="transition-transform duration-300 group-hover:translate-x-1"
     />
     <path
-      d="M4 9H31L29 11H2L4 9Z"
+      d="M6 9H33L29 11H2L6 9Z"
       fill="currentColor"
       className="transition-transform duration-300 group-hover:-translate-x-1"
     />
     <path
-      d="M3 17H32L30 19H1L3 17Z"
+      d="M5 17H34L30 19H1L5 17Z"
       fill="currentColor"
       className="transition-transform duration-300 group-hover:translate-x-1"
     />
@@ -126,11 +126,11 @@ export default function Navbar() {
 
             <div className="hidden md:flex flex-1 min-w-0 justify-between items-center px-2 pl-12 lg:pl-24">
               {/* Main Navigation Items */}
-              <div className="flex flex-col gap-2 items-end w-full">
+              <div className="flex flex-col items-end w-full">
                  {/* Upper Row: Utility & Secondary */}
                 <div className="flex justify-end w-full items-center gap-0 h-10">
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full px-4 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${linkTone}`}>
+                    <button className={`flex items-center gap-1 h-full px-4 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'} ${linkTone}`}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border-t-0" style={{width: 'max-content'}}>
@@ -140,7 +140,7 @@ export default function Navbar() {
                     </div>
                   </div>
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full px-4 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${linkTone}`}>
+                    <button className={`flex items-center gap-1 h-full px-4 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'} ${linkTone}`}>
                       Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border-t-0" style={{width: 'max-content', minWidth: 0}}>
@@ -156,7 +156,7 @@ export default function Navbar() {
                     <div key={item.label} className="relative group h-full flex items-center">
                       {item.submenu ? (
                         <>
-                          <button className={`flex items-center gap-1 h-full px-4 text-[15px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${linkTone}`}>
+                          <button className={`flex items-center gap-1 h-full px-4 text-[15px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'} ${linkTone}`}>
                             {item.label} <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
                           </button>
                           <div className="absolute top-full left-0 py-3 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50 border-t-0" style={{width: 'max-content', minWidth: 0}}>
