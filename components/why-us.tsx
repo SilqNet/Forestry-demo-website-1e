@@ -68,46 +68,49 @@ export default function WhyUs() {
 
   return (
     <section className="bg-white">
-      <div className="pt-32 pb-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-            <div>
-              <div className="mb-8 h-[45px] flex items-center">
+      <div className="pt-24 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-32 items-start justify-between">
+            <div className="lg:w-1/2">
+              <div className="mb-10 h-[50px] flex items-center">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
                   alt="GR GRUPA"
-                  width={160}
-                  height={45}
-                  className="h-full w-auto object-contain"
+                  width={180}
+                  height={50}
+                  className="h-full w-auto object-contain opacity-90"
                 />
               </div>
-              <h2 className="text-[32px] md:text-[42px] leading-[1.15] font-bold text-black max-w-[500px]">
+              <h2 className="text-[36px] md:text-[52px] leading-[1.1] font-bold text-black tracking-tight">
                 Strādājam ar meža resursiem no meža līdz produktam
               </h2>
+            </div>
+            <div className="lg:w-1/2 lg:pt-[95px]">
+              <p className="text-black/70 text-[17px] md:text-[18px] leading-[1.8] mb-12 font-medium">
+                Nodrošinām pilnu ciklu — no apsaimniekošanas un iepirkuma līdz loģistikai un piegādei klientiem vietējā un starptautiskajos tirgos. Darbības pamatā ir caurspīdīga un izsekojama piegādes sistēma, kas nodrošina sertificētus materiālus, stabilus apjomus, kontrolētu kvalitāti un prognozējamu sadarbību ar partneriem.
+              </p>
+              <a href="#" className="group inline-flex items-center gap-4 bg-[#004225] hover:bg-[#004225]/90 transition-all text-white font-bold px-10 py-5 rounded-none uppercase text-[14px] tracking-[0.2em]">
+                <span>PAR GR GRUPA</span>
+                <div className="w-10 h-[1px] bg-gold/50 group-hover:w-14 transition-all"></div>
+              </a>
+            </div>
           </div>
-          <div className="lg:pt-[77px]">
-            <p className="text-black/80 text-[16px] leading-[1.7] mb-10 max-w-[600px] font-normal">
-              Nodrošinām pilnu ciklu — no apsaimniekošanas un iepirkuma līdz loģistikai un piegādei klientiem vietējā un starptautiskajos tirgos. Darbības pamatā ir caurspīdīga un izsekojama piegādes sistēma, kas nodrošina sertificētus materiālus, stabilus apjomus, kontrolētu kvalitāti un prognozējamu sadarbību ar partneriem.
-            </p>
-            <a href="#" className="inline-block bg-gold hover:opacity-90 transition-opacity text-white font-semibold px-8 py-4 rounded-none uppercase text-[13px] tracking-wider">
-              PAR GR GRUPA
-            </a>
-          </div>
-        </div>
         </div>
       </div>
 
-      <div className="bg-[#0f1211] py-24" ref={sectionRef}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 justify-items-center">
+
+      <div className="bg-[#0f1211] py-32" ref={sectionRef}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20">
             {infrastructure.map((item, i) => (
-              <div key={i} className="flex flex-col group cursor-default text-center">
-                <div className="flex items-center justify-center mb-6">
-                  <span className="text-[20px] md:text-[24px] font-bold leading-none text-gold transition-colors duration-300">
-                    <AnimatedCounter endValue={item.value} suffix={item.suffix} startAnimation={startAnimation} />
+              <div key={i} className="flex flex-col group cursor-default">
+                <div className="flex items-baseline gap-1 mb-4 border-b border-white/5 pb-6">
+                  <span className="text-[48px] md:text-[64px] font-bold leading-none text-gold transition-transform duration-500 group-hover:scale-105 inline-block">
+                    <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
                   </span>
+                  <span className="text-[32px] md:text-[40px] font-bold text-gold/80">{item.suffix}</span>
                 </div>
-                <span className="text-[13px] uppercase tracking-wider text-white font-semibold leading-tight">
+                <span className="text-[14px] md:text-[15px] uppercase tracking-[0.15em] text-white/90 font-bold leading-relaxed max-w-[180px]">
                   {item.label}
                 </span>
               </div>
@@ -115,6 +118,7 @@ export default function WhyUs() {
           </div>
         </div>
       </div>
+
     </section>
   )
 }
