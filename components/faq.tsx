@@ -57,7 +57,7 @@ export default function FAQ() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-2">
               FREQUENTLY ASKED QUESTIONS
             </p>
-            <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-black mb-8 text-balance uppercase">
+            <h2 className="text-[22px] leading-[1.18] font-bold text-black mb-8 text-balance uppercase">
               COMMON QUESTIONS ABOUT OUR SERVICES
             </h2>
 

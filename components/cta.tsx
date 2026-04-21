@@ -46,7 +46,7 @@ export default function CTA() {
         <p className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-4">
           GET STARTED NOW
         </p>
-        <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-white text-balance mb-6 uppercase">
+        <h2 className="text-[22px] leading-[1.18] font-bold text-white text-balance mb-6 uppercase">
           BEGIN YOUR FORESTRY PROJECT TODAY WITH OUR EXPERT, RELIABLE TEAM
         </h2>
         <p className="text-[19px] leading-[1.6] font-normal text-white/90 max-w-3xl mb-8">
