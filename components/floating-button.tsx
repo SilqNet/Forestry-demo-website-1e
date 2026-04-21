@@ -33,17 +33,15 @@ function SideWidget({ icon, labelLine1, labelLine2, href }: WidgetProps) {
   }, [])
 
   return (
-    <div
-      className="relative flex justify-end"
-      onMouseEnter={() => setHoverOpen(true)}
-      onMouseLeave={() => {
-        setHoverOpen(false)
-        setTapOpen(false)
-      }}
-    >
+    <div className="relative flex justify-end">
       <Link
         href={href}
         onClick={onClick}
+        onMouseEnter={() => setHoverOpen(true)}
+        onMouseLeave={() => {
+          setHoverOpen(false)
+          setTapOpen(false)
+        }}
         className="flex items-center bg-[#C5A059] text-white shadow-lg transition-transform duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#C5A059]"
         style={{
           clipPath: 'polygon(15px 0, 100% 0, 100% 100%, 0 100%)',
