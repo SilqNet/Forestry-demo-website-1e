@@ -41,6 +41,17 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  useEffect(() => {
     if (!isOpen) return
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setIsOpen(false)
@@ -114,14 +125,17 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 w-full items-center gap-3">
-            <Link href="/" className="shrink-0">
+            <Link href="/" className="shrink-0 flex items-center gap-4">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
                 alt="GR GRUPA"
                 width={180}
                 height={60}
-                className="h-[60px] w-auto"
+                className="h-[50px] md:h-[60px] w-auto"
               />
+              <span className={`text-[18px] md:text-[22px] font-bold tracking-tight ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                "GR GRUPA"
+              </span>
             </Link>
 
             <div className="hidden md:flex flex-1 items-stretch justify-end pl-8 lg:pl-16 h-full py-3">
@@ -129,7 +143,7 @@ export default function Navbar() {
                 {/* Top Row: Utility Items */}
                 <div className="flex items-center gap-6 h-1/2 w-full justify-end pr-4">
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[12px] font-normal tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                    <button className={`flex items-center gap-1 h-full text-[14px] font-normal tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content'}}>
@@ -140,7 +154,7 @@ export default function Navbar() {
                   </div>
 
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[12px] font-normal tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                    <button className={`flex items-center gap-1 h-full text-[14px] font-normal tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
                       Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
@@ -216,24 +230,27 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {isOpen && (
         <div
           id={MENU_PANEL_ID}
-          className="fixed inset-0 z-[100] bg-white overflow-y-auto"
+          className={`fixed inset-0 z-[100] bg-white transition-all duration-500 ease-in-out transform ${
+            isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+          }`}
           role="navigation"
           aria-label="Navigation menu"
-          style={{ animation: 'slideIn 0.3s ease-out' }}
         >
           {/* Header inside menu */}
           <div className="w-full h-20 md:h-24 flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-            <Link href="/" onClick={() => setIsOpen(false)} className="shrink-0">
+            <Link href="/" onClick={() => setIsOpen(false)} className="shrink-0 flex items-center gap-4">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
                 alt="GR GRUPA"
                 width={180}
                 height={60}
-                className="h-[60px] w-auto"
+                className="h-[50px] md:h-[60px] w-auto"
               />
+              <span className="text-[18px] md:text-[22px] font-bold tracking-tight text-black">
+                "GR GRUPA"
+              </span>
             </Link>
             
             <button
@@ -247,61 +264,55 @@ export default function Navbar() {
           </div>
 
           {/* Menu contents */}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-24 pb-20 pt-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-12 md:py-20 h-[calc(100vh-80px)] md:h-[calc(100vh-96px)] overflow-y-auto">
+            <div className="flex flex-col space-y-16 md:space-y-24">
               
-              {/* Column 1 */}
-              <div className="flex flex-col space-y-8">
+              {/* Row 1 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-2xl md:text-[28px] font-medium text-black hover:text-gold transition-colors mb-2">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[22px] font-bold text-black hover:text-gold transition-colors mb-4 uppercase tracking-tight">
                     Mežu apsaimniekošana
                   </Link>
                 </div>
                 
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-2xl md:text-[28px] font-medium text-black hover:text-gold transition-colors mb-4">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[22px] font-bold text-black hover:text-gold transition-colors mb-4 uppercase tracking-tight">
                     Iepērkam
                   </Link>
-                  <ul className="space-y-3 pl-2 border-l border-black/10">
+                  <ul className="space-y-3 pl-0">
                     {ieperkamSubmenu.map(item => (
                       <li key={item.label}>
-                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-base text-black/70 hover:text-gold transition-colors">
+                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
                           {item.label}
                         </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
 
-              {/* Column 2 */}
-              <div className="flex flex-col space-y-8">
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-2xl md:text-[28px] font-medium text-black hover:text-gold transition-colors mb-4">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[22px] font-bold text-black hover:text-gold transition-colors mb-4 uppercase tracking-tight">
                     Transports / Loģistika
                   </Link>
-                  <ul className="space-y-3 pl-2 border-l border-black/10">
+                  <ul className="space-y-3 pl-0">
                     {transportsSubmenu.map(item => (
                       <li key={item.label}>
-                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-base text-black/70 hover:text-gold transition-colors">
+                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
                           {item.label}
                         </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
 
-              {/* Column 3 */}
-              <div className="flex flex-col space-y-8">
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-2xl md:text-[28px] font-medium text-black hover:text-gold transition-colors mb-4">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[22px] font-bold text-black hover:text-gold transition-colors mb-4 uppercase tracking-tight">
                     Kokmateriālu tirdzniecība
                   </Link>
-                  <ul className="space-y-3 pl-2 border-l border-black/10">
+                  <ul className="space-y-3 pl-0">
                     {tirdzniecibaSubmenu.map(item => (
                       <li key={item.label}>
-                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-base text-black/70 hover:text-gold transition-colors">
+                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
                           {item.label}
                         </Link>
                       </li>
@@ -310,35 +321,32 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Column 4 */}
-              <div className="flex flex-col space-y-8">
+              {/* Row 2 */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-black/5">
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-2xl md:text-[28px] font-medium text-black hover:text-gold transition-colors mb-2">
-                    Kontakti
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[22px] font-bold text-black hover:text-gold transition-colors uppercase tracking-tight">
+                    Par mums
                   </Link>
-                </div>
-                
-                <div>
-                  <div className="group relative w-max">
-                    <Link href="#" onClick={() => setIsOpen(false)} className="flex items-center gap-2 text-2xl md:text-[28px] font-medium text-black hover:text-gold transition-colors mb-4 cursor-pointer">
-                      Par mums <ChevronDown size={20} className="group-hover:rotate-180 transition-transform hidden lg:block" />
-                    </Link>
-                    {/* The submenu under Par mums as a list item for mobile */}
-                  </div>
-                  <ul className="space-y-3 pl-2 border-l border-black/10">
+                  <ul className="mt-4 space-y-3">
                     <li>
-                      <Link href="#" onClick={() => setIsOpen(false)} className="text-base text-black/70 hover:text-gold transition-colors">
+                      <Link href="#" onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
                         Jaunumi
                       </Link>
                     </li>
                   </ul>
                 </div>
+                
+                <div>
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[22px] font-bold text-black hover:text-gold transition-colors uppercase tracking-tight">
+                    Kontakti
+                  </Link>
+                </div>
 
-                <div className="pt-8">
-                  <div className="flex items-center gap-4 text-lg">
-                    <span className="font-medium text-black">Lv</span>
-                    <span className="text-black/30">|</span>
-                    <Link href="#" className="text-black/60 hover:text-gold transition-colors">En</Link>
+                <div>
+                  <div className="flex items-center gap-6">
+                    <span className="text-[22px] font-bold text-black tracking-tight uppercase">Lv</span>
+                    <span className="h-6 w-[1px] bg-black/10"></span>
+                    <Link href="#" className="text-[22px] font-bold text-black/40 hover:text-gold transition-colors tracking-tight uppercase">En</Link>
                   </div>
                 </div>
               </div>
@@ -348,18 +356,6 @@ export default function Navbar() {
         </div>
       )}
 
-      <style>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </>
   )
 }

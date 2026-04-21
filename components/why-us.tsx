@@ -86,12 +86,24 @@ export default function WhyUs() {
               </h2>
             </div>
             <div className="lg:w-1/2 lg:pt-[95px]">
-              <p className="text-black/70 text-[17px] md:text-[18px] leading-[1.8] mb-12 font-medium">
+              <p className="text-black/70 text-[14px] leading-[1.6] mb-8 font-normal max-w-2xl">
                 Nodrošinām pilnu ciklu — no apsaimniekošanas un iepirkuma līdz loģistikai un piegādei klientiem vietējā un starptautiskajos tirgos. Darbības pamatā ir caurspīdīga un izsekojama piegādes sistēma, kas nodrošina sertificētus materiālus, stabilus apjomus, kontrolētu kvalitāti un prognozējamu sadarbību ar partneriem.
               </p>
-              <a href="#" className="group inline-flex items-center gap-4 bg-[#004225] hover:bg-[#004225]/90 transition-all text-white font-bold px-10 py-5 rounded-none uppercase text-[14px] tracking-[0.2em]">
+              <a href="#" className="group inline-flex items-center gap-2 rounded-sm border border-black/10 px-6 py-3 text-[14px] font-normal text-black transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-wider">
                 <span>PAR GR GRUPA</span>
-                <div className="w-10 h-[1px] bg-gold/50 group-hover:w-14 transition-all"></div>
+                <svg
+                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </a>
             </div>
           </div>
