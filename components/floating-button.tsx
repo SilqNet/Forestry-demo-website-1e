@@ -68,8 +68,8 @@ function SideWidget({ icon, labelLine1, labelLine2, href }: WidgetProps) {
           className={`flex flex-col justify-center pr-8 pl-4 h-full transition-opacity duration-300 ${expanded ? 'opacity-100' : 'opacity-0'}`}
           style={{ whiteSpace: 'nowrap' }}
         >
-          <p className="text-[14px] font-bold leading-[1.1] uppercase tracking-tight">{labelLine1}</p>
-          <p className="text-[14px] font-bold leading-[1.1] uppercase tracking-tight">{labelLine2}</p>
+          <p className="text-[14px] font-bold leading-[1.2] tracking-tight">{labelLine1}</p>
+          <p className="text-[14px] font-bold leading-[1.2] tracking-tight">{labelLine2}</p>
         </div>
       </Link>
     </div>
@@ -83,7 +83,7 @@ export default function FloatingButton() {
       style={{ top: '40%' }}
     >
       <SideWidget
-        icon="/icons/alert.png"
+        icon="/icons/problem.png"
         labelLine1="Uzzini savu"
         labelLine2="meža vērtību"
         href="#"
