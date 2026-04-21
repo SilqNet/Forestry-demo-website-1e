@@ -127,9 +127,9 @@ export default function Navbar() {
             <div className="hidden md:flex flex-1 items-stretch justify-end pl-8 lg:pl-16 h-full py-3">
               <div className="flex flex-col justify-center items-end h-full">
                 {/* Top Row: Utility Items */}
-                <div className="flex items-center gap-6 h-1/2 border-b border-white/10 w-full justify-end pr-4">
+                <div className="flex items-center gap-6 h-1/2 w-full justify-end pr-4">
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[13px] font-medium uppercase tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                    <button className={`flex items-center gap-1 h-full text-[12px] font-normal tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content'}}>
@@ -140,7 +140,7 @@ export default function Navbar() {
                   </div>
 
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[13px] font-medium uppercase tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                    <button className={`flex items-center gap-1 h-full text-[12px] font-normal tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
                       Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
@@ -157,7 +157,7 @@ export default function Navbar() {
                     <div key={item.label} className="relative group h-full flex items-center">
                       {item.submenu ? (
                         <>
-                          <button className={`flex items-center gap-1 h-full text-[15px] lg:text-[16px] font-semibold uppercase tracking-tight transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                          <button className={`flex items-center gap-1 h-full text-[14px] font-normal tracking-tight transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
                             {item.label} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                           </button>
                           <div className="absolute top-full left-0 py-3 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
@@ -175,7 +175,7 @@ export default function Navbar() {
                       ) : (
                         <Link
                           href={item.href}
-                          className={`text-[15px] lg:text-[16px] font-semibold uppercase tracking-tight transition-all active:scale-95 ${isScrolled ? 'text-[#004225] hover:text-gold' : 'text-white hover:text-gold'}`}
+                          className={`text-[14px] font-normal tracking-tight transition-all active:scale-95 ${isScrolled ? 'text-[#004225] hover:text-gold' : 'text-white hover:text-gold'}`}
                         >
                           {item.label}
                         </Link>

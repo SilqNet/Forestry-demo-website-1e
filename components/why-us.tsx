@@ -81,7 +81,7 @@ export default function WhyUs() {
                   className="h-full w-auto object-contain opacity-90"
                 />
               </div>
-              <h2 className="text-[36px] md:text-[52px] leading-[1.1] font-bold text-black tracking-tight">
+              <h2 className="text-[22px] leading-[1.1] font-bold text-black tracking-tight">
                 Strādājam ar meža resursiem no meža līdz produktam
               </h2>
             </div>

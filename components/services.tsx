@@ -32,7 +32,7 @@ export default function Services() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-14">
-          <h2 className="text-[28px] md:text-[42px] leading-[1.18] font-bold text-black mb-4 text-balance">
+          <h2 className="text-[22px] leading-[1.18] font-bold text-black mb-4 text-balance">
             Iepērkam mežus, cirsmas un kokmateriālus
           </h2>
           <p className="text-muted-foreground text-[19px] leading-[1.6] font-normal">
