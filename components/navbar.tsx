@@ -124,77 +124,81 @@ export default function Navbar() {
               />
             </Link>
 
-            <div className="hidden md:flex flex-1 min-w-0 items-center justify-end px-2 pl-8 lg:pl-16">
-              {/* Main Navigation Items */}
-              <div className="flex items-center gap-2 lg:gap-4 h-10">
-                {mainNavItems.map((item) => (
-                  <div key={item.label} className="relative group h-full flex items-center">
-                    {item.submenu ? (
-                      <>
-                        <button className={`flex items-center gap-1 h-full px-2 lg:px-3 text-[14px] lg:text-[15px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'} ${linkTone}`}>
-                          {item.label} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
-                        </button>
-                        <div className="absolute top-full left-0 py-3 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50 border-t-0" style={{width: 'max-content', minWidth: 0}}>
-                          {item.submenu.map((subitem) => (
-                            <Link
-                              key={subitem.label}
-                              href={subitem.href}
-                              className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-normal border-l-2 border-transparent hover:border-gold whitespace-nowrap"
-                            >
-                              {subitem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className={`text-[14px] lg:text-[15px] px-2 lg:px-3 font-normal transition-all ${linkTone}`}
-                      >
-                        {item.label}
+            <div className="hidden md:flex flex-1 items-stretch justify-end pl-8 lg:pl-16 h-full py-3">
+              <div className="flex flex-col justify-center items-end h-full">
+                {/* Top Row: Utility Items */}
+                <div className="flex items-center gap-6 h-1/2 border-b border-white/10 w-full justify-end pr-4">
+                  <div className="relative group h-full flex items-center">
+                    <button className={`flex items-center gap-1 h-full text-[13px] font-medium uppercase tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                      Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                    </button>
+                    <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content'}}>
+                      <Link href="#" className="block px-4 py-2 text-sm text-foreground hover:text-gold transition-colors text-left whitespace-nowrap">
+                        Jaunumi
                       </Link>
-                    )}
+                    </div>
                   </div>
-                ))}
 
-                {/* Utility Items integrated into the same row */}
-                <div className="relative group h-full flex items-center">
-                  <button className={`flex items-center gap-1 h-full px-2 lg:px-3 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'} ${linkTone}`}>
-                    Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
-                  </button>
-                  <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50 border-t-0" style={{width: 'max-content'}}>
-                    <Link href="#" className="block px-4 py-2 text-sm text-foreground hover:text-gold transition-colors text-left whitespace-nowrap">
-                      Jaunumi
-                    </Link>
+                  <div className="relative group h-full flex items-center">
+                    <button className={`flex items-center gap-1 h-full text-[13px] font-medium uppercase tracking-wider transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                      Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                    </button>
+                    <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
+                      <button className="px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors whitespace-nowrap block">
+                        En
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                <div className="relative group h-full flex items-center">
-                  <button className={`flex items-center gap-1 h-full px-2 lg:px-3 text-[14px] font-normal transition-all group-hover:bg-white group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'} ${linkTone}`}>
-                    Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
-                  </button>
-                  <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50 border-t-0" style={{width: 'max-content', minWidth: 0}}>
-                    <button className="px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors whitespace-nowrap block">
-                      En
-                    </button>
-                  </div>
+                {/* Bottom Row: Main Navigation Items */}
+                <div className="flex items-center gap-4 lg:gap-8 h-1/2 pt-2">
+                  {mainNavItems.map((item) => (
+                    <div key={item.label} className="relative group h-full flex items-center">
+                      {item.submenu ? (
+                        <>
+                          <button className={`flex items-center gap-1 h-full text-[15px] lg:text-[16px] font-semibold uppercase tracking-tight transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                            {item.label} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                          </button>
+                          <div className="absolute top-full left-0 py-3 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
+                            {item.submenu.map((subitem) => (
+                              <Link
+                                key={subitem.label}
+                                href={subitem.href}
+                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-medium border-l-2 border-transparent hover:border-gold whitespace-nowrap"
+                              >
+                                {subitem.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className={`text-[15px] lg:text-[16px] font-semibold uppercase tracking-tight transition-all active:scale-95 ${isScrolled ? 'text-[#004225] hover:text-gold' : 'text-white hover:text-gold'}`}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div 
-                className="flex items-center ml-8 h-full"
-              >
+              {/* Hamburger Menu - Centered between rows */}
+              <div className="flex items-center ml-8">
                 <button
                   type="button"
                   onClick={toggleMenu}
-                  className={`${menuButtonClass} p-1`}
+                  className={`${menuButtonClass} p-1 relative z-10 transition-transform active:scale-90`}
                   aria-expanded={isOpen}
                   aria-controls={MENU_PANEL_ID}
                 >
-                  {isOpen ? <X size={28} strokeWidth={1.5} /> : <SlantedHamburger />}
+                  {isOpen ? <X size={32} strokeWidth={1.5} /> : <SlantedHamburger />}
                 </button>
               </div>
             </div>
+
 
             <div className="ml-auto flex items-center gap-2 md:gap-3 shrink-0 md:hidden">
               <button
