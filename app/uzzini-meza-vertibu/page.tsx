@@ -67,7 +67,7 @@ export default function MezaVertibaPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2 text-white">
-              <h1 className="text-[36px] lg:text-[56px] font-bold mb-6 leading-tight">
+              <h1 className="text-[36px] lg:text-[42px] font-bold mb-6 leading-tight">
                 Pērkam mežus un cirsmas
               </h1>
               
