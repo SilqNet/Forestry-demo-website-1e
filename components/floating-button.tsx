@@ -86,7 +86,7 @@ export default function FloatingButton() {
         icon="/icons/problem.png"
         labelLine1="Uzzini savu"
         labelLine2="meža vērtību"
-        href="#"
+        href="/uzzini-meza-vertibu"
       />
       <SideWidget
         icon="/icons/whatsapp.png"
