@@ -146,4 +146,14 @@
   .cta-premium:hover {
     @apply bg-black text-white;
   }
+
+  .cta-bordered-gold {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent border border-[#C5A059] text-[#C5A059] text-[14px] font-bold tracking-wider uppercase transition-all duration-300;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .cta-bordered-gold:hover {
+    @apply bg-[#C5A059] text-white;
+  }
 }

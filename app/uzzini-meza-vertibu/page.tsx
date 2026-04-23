@@ -188,14 +188,14 @@ export default function MezaVertibaPage() {
               <span className="text-gold text-[14px] font-bold tracking-widest uppercase mb-4 block">
                 KĀPĒC IZVĒLĒTIES GR GRUPA
               </span>
-              <h2 className="text-[36px] lg:text-[42px] font-bold text-black leading-tight mb-8 whitespace-pre-line">
+              <h2 className="text-[22px] font-bold text-black leading-tight mb-8 whitespace-pre-line">
                 Ieguvumi meža{"\n"}īpašniekiem
               </h2>
             </div>
 
             {/* Right Column */}
             <div className="lg:w-2/3">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12 mb-12">
+              <div className="grid grid-cols-1 gap-y-6 mb-12">
                 {[
                   {
                     title: 'Saimnieciski izdevīgākie piedāvājumi',
@@ -222,9 +222,9 @@ export default function MezaVertibaPage() {
                     desc: 'Mūsu vērtības ietver atbildīgu attieksmi pret dabu un sabiedrības labklājību.'
                   }
                 ].map((benefit, idx) => (
-                  <div key={idx} className="flex gap-4">
+                  <div key={idx} className="flex gap-4 items-center">
                     <div 
-                      className="w-5 h-5 bg-gold shrink-0 mt-1" 
+                      className="w-5 h-5 bg-gold shrink-0" 
                       style={{ 
                         maskImage: 'url(/icons/right-down.png)', 
                         maskSize: 'contain', 
@@ -235,13 +235,12 @@ export default function MezaVertibaPage() {
                       }} 
                     />
                     <div>
-                      <h4 className="text-[17px] font-bold mb-2 text-black uppercase tracking-tight">{benefit.title}</h4>
-                      <p className="text-gray-600 text-[15px] leading-relaxed">{benefit.desc}</p>
+                      <h4 className="text-[14px] font-bold text-black uppercase tracking-tight">{benefit.title}</h4>
                     </div>
                   </div>
                 ))}
               </div>
-              <button className="cta-premium">SAŅEMT PIEDĀVĀJUMU</button>
+              <button className="cta-bordered-gold">SAŅEMT PIEDĀVĀJUMU</button>
             </div>
           </div>
         </div>
@@ -272,6 +271,45 @@ export default function MezaVertibaPage() {
           >
             AIZPILDI PIETEIKUMU
           </button>
+        </div>
+      </section>
+
+      {/* DAUDZU GADU PIEREDZE Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+            {/* Left Column */}
+            <div className="lg:w-1/3">
+              <span className="text-gold text-[14px] font-bold tracking-widest uppercase mb-4 block">
+                DAUDZU GADU PIEREDZE
+              </span>
+              <h2 className="text-[22px] font-bold text-black leading-tight mb-8 whitespace-pre-line">
+                Viegla un ērta{"\n"}sadarbība
+              </h2>
+              <button className="cta-bordered-gold">SAŅEMT PIEDĀVĀJUMU</button>
+            </div>
+
+            {/* Right Column */}
+            <div className="lg:w-2/3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
+                {[
+                  { icon: 'phone-call.png', title: 'SAZINIES' },
+                  { icon: 'offer.png', title: 'SAŅEM' },
+                  { icon: 'know-how.png', title: 'UZZINI' },
+                  { icon: 'check.png', title: 'NOFORMĒ DARĪJUMU' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 items-center">
+                    <img 
+                      src={`/icons/${item.icon}`}
+                      alt={item.title}
+                      className="w-10 h-10 object-contain shrink-0"
+                    />
+                    <h4 className="text-[14px] font-bold text-black uppercase tracking-tight">{item.title}</h4>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -309,7 +347,7 @@ export default function MezaVertibaPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             {/* Left */}
             <div className="md:w-1/3">
-              <h2 className="text-[36px] lg:text-[42px] font-bold text-black leading-tight">
+              <h2 className="text-[22px] font-bold text-black leading-tight">
                 Sazinies ar{"\n"}mums
               </h2>
             </div>
@@ -324,8 +362,7 @@ export default function MezaVertibaPage() {
                   maskRepeat: 'no-repeat',
                   WebkitMaskImage: 'url(/icons/right-down.png)',
                   WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  transform: 'rotate(-45deg)'
+                  WebkitMaskRepeat: 'no-repeat'
                 }} 
               />
             </div>
@@ -333,10 +370,10 @@ export default function MezaVertibaPage() {
             {/* Right */}
             <div className="md:w-1/3 text-right flex flex-col items-end gap-4">
               <div className="flex flex-col items-end">
-                <a href="mailto:info@grgrupa.lv" className="text-gold text-[22px] font-bold hover:text-black transition-colors">info@grgrupa.lv</a>
-                <a href="tel:+37120000000" className="text-black text-[22px] font-bold hover:text-gold transition-colors">+371 20000000</a>
+                <a href="mailto:info@grgrupa.lv" className="text-gold text-[14px] font-bold hover:text-black transition-colors">info@grgrupa.lv</a>
+                <a href="tel:+37129611110" className="text-black text-[22px] font-bold hover:text-gold transition-colors">+371 29611110</a>
               </div>
-              <button className="cta-premium">KONTAKTI</button>
+              <button className="cta-bordered-gold">KONTAKTI</button>
             </div>
           </div>
         </div>
