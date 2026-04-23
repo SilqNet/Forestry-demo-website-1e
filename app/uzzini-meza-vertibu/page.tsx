@@ -3,10 +3,11 @@
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import Image from 'next/image'
-import { Check, Phone, Mail, ArrowRight } from 'lucide-react'
-import { useState } from 'react'
+import { Check, Phone, Mail, ArrowRight, ChevronRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 export default function MezaVertibaPage() {
+  const [isMobile, setIsMobile] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -14,6 +15,15 @@ export default function MezaVertibaPage() {
     property: '',
     message: ''
   })
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024) // Using 1024 to match LG breakpoint
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,63 +37,78 @@ export default function MezaVertibaPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/forest-hero.png"
-            alt="Forest background"
-            fill
-            className="object-cover brightness-[0.4]"
-            priority
-          />
+          {!isMobile ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
+                type="video/mp4"
+              />
+            </video>
+          ) : (
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
+              alt="Forest background"
+              fill
+              className="object-cover"
+              priority
+            />
+          )}
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2 text-white">
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight uppercase">
-                Uzzini sava meža <span className="text-gold">reālo vērtību</span>
+              <h1 className="text-[36px] lg:text-[56px] font-bold mb-6 leading-tight">
+                Pērkam mežus un cirsmas
               </h1>
-              <p className="text-xl lg:text-2xl mb-8 text-white/90 font-light">
-                Mēs palīdzēsim Jums gūt maksimālu peļņu no Jūsu meža īpašuma, nodrošinot godīgu un caurspīdīgu procesu.
-              </p>
               
               <ul className="space-y-4 mb-10">
                 {[
                   'Augstākā tirgus cena',
-                  'Bezmaksas juridiskais atbalsts',
-                  'Avanss 1 darba dienas laikā',
-                  'Cilvēciska un vienkārša komunikācija'
+                  'Iespēja saņemt avansu',
+                  'Bezmaksas juridiskie pakalpojumi',
+                  'Vienkārša un cilvēciska komunikācija'
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-lg font-medium">
-                    <div className="bg-gold rounded-full p-1 shrink-0">
-                      <Check size={16} className="text-white" />
-                    </div>
+                  <li key={item} className="flex items-center gap-3 text-lg lg:text-xl font-medium">
+                    <ChevronRight size={24} className="text-gold shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
               
               <div className="flex flex-wrap gap-6 items-center">
-                <a href="tel:+37120000000" className="flex items-center gap-3 text-xl font-bold hover:text-gold transition-colors">
-                  <div className="bg-white/10 p-3 rounded-full">
-                    <Phone size={24} />
-                  </div>
-                  +371 2000 0000
+                <a 
+                  href="tel:+37120000000" 
+                  className="bg-[#004225] hover:bg-[#00301b] text-white font-bold py-4 px-12 rounded-lg transition-all transform active:scale-[0.98] text-[22px]"
+                >
+                  ZVANĪT
                 </a>
               </div>
             </div>
             
             <div className="lg:w-1/2 w-full max-w-lg">
               <div className="bg-white p-8 lg:p-10 rounded-2xl shadow-2xl">
-                <h3 className="text-2xl font-bold mb-6 text-black uppercase tracking-tight">Piesakies konsultācijai</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-2 text-black leading-tight">
+                  Saņemiet sava īpašuma vērtējumu <span className="text-gold">bez maksas</span>
+                </h3>
+                <p className="text-[22px] text-gray-600 mb-8 font-medium">Aizpildiet un mēs ar Jums sazināsimies</p>
+                
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Vārds, Uzvārds</label>
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all text-sm placeholder:text-sm"
                       placeholder="Jānis Bērziņš"
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                     />
@@ -94,7 +119,7 @@ export default function MezaVertibaPage() {
                       <input
                         type="tel"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all text-sm placeholder:text-sm"
                         placeholder="+371 ..."
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
                       />
@@ -104,7 +129,7 @@ export default function MezaVertibaPage() {
                       <input
                         type="email"
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all text-sm placeholder:text-sm"
                         placeholder="janis@piemers.lv"
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                       />
@@ -114,7 +139,7 @@ export default function MezaVertibaPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">Īpašuma nosaukums / Kadastra Nr.</label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all text-sm placeholder:text-sm"
                       placeholder="Meža mājas, 1234567890"
                       onChange={(e) => setFormData({...formData, property: e.target.value})}
                     />
@@ -123,18 +148,18 @@ export default function MezaVertibaPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">Ziņa (pēc izvēles)</label>
                     <textarea
                       rows={3}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all text-sm placeholder:text-sm"
                       placeholder="Vēlos uzzināt vairāk par..."
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                     ></textarea>
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-[#004225] hover:bg-[#00301b] text-white font-bold py-4 rounded-lg transition-all transform active:scale-[0.98] flex items-center justify-center gap-2"
+                    className="w-full bg-[#004225] hover:bg-[#00301b] text-white font-bold py-5 rounded-lg transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 text-[22px]"
                   >
-                    SAŅEMT PIEDĀVĀJUMU <ArrowRight size={20} />
+                    SAŅEMT PIEDĀVĀJUMU
                   </button>
-                  <p className="text-[10px] text-gray-500 text-center mt-4">
+                  <p className="text-[14px] text-gray-500 text-center mt-4">
                     Nospiežot pogu, Jūs piekrītat mūsu privātuma politikai un datu apstrādei.
                   </p>
                 </form>
