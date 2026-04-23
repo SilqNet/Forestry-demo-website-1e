@@ -247,22 +247,29 @@ export default function Navbar() {
               />
             </Link>
             
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="p-2 text-black hover:text-gold transition-colors"
-              aria-label="Close menu"
-            >
-              <X size={36} strokeWidth={1.5} />
-            </button>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4 mr-4 border-r border-black/10 pr-6">
+                <span className="text-[14px] font-medium text-black tracking-wider uppercase cursor-default">Lv</span>
+                <Link href="#" className="text-[14px] font-medium text-black/40 hover:text-gold transition-colors tracking-wider uppercase">En</Link>
+              </div>
+              
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="p-2 text-black hover:text-gold transition-colors"
+                aria-label="Close menu"
+              >
+                <X size={32} strokeWidth={1.5} />
+              </button>
+            </div>
           </div>
 
           {/* Menu contents */}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-8 md:py-10 h-[calc(100vh-80px)] md:h-[calc(100vh-96px)] overflow-y-auto">
-            <div className="flex flex-col space-y-10 md:space-y-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-6 md:py-8 h-[calc(100vh-80px)] md:h-[calc(100vh-96px)] overflow-hidden">
+            <div className="flex flex-col space-y-8 md:space-y-10">
               
               {/* Row 1 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
                 <div>
                   <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors mb-2 tracking-tight">
                     Mežu apsaimniekošana
@@ -316,12 +323,12 @@ export default function Navbar() {
               </div>
 
               {/* Row 2 */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8 pt-4 border-t border-black/5">
                 <div>
                   <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors tracking-tight">
                     Par mums
                   </Link>
-                  <ul className="mt-2 space-y-1.5">
+                  <ul className="mt-2 space-y-1">
                     <li>
                       <Link href="#" onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
                         Jaunumi
@@ -334,13 +341,6 @@ export default function Navbar() {
                   <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors tracking-tight">
                     Kontakti
                   </Link>
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-6">
-                    <span className="text-[18px] font-medium text-black tracking-tight">Lv</span>
-                    <Link href="#" className="text-[18px] font-medium text-black/40 hover:text-gold transition-colors tracking-tight">En</Link>
-                  </div>
                 </div>
               </div>
 
