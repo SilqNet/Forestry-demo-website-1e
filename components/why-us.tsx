@@ -116,21 +116,50 @@ export default function WhyUs() {
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4" style={{ columnGap: 0 }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+            alignItems: 'start',
+            width: '100%',
+          }}>
             {infrastructure.map((item, i) => (
-              <div key={i} className="flex flex-col group cursor-default px-6 first:pl-0 last:pr-0">
-                <div className="flex items-center gap-3 mb-4">
+              <div key={i} style={{
+                width: '100%',
+                minWidth: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+              }} className="group cursor-default">
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  marginBottom: '16px',
+                }}>
                   {item.icon && (
                     <Image src={item.icon} alt="" width={28} height={28} className="object-contain" />
                   )}
-                  <div className="flex items-baseline gap-1">
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
                     <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                       <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
                     </span>
                     <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>{item.suffix}</span>
                   </div>
                 </div>
-                <span className="text-white" style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
+                <span className="text-white" style={{
+                  fontFamily: "'Saira', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  lineHeight: '1.6',
+                  letterSpacing: 'normal',
+                  textTransform: 'none',
+                  maxWidth: '220px',
+                  textAlign: 'center',
+                  margin: '0 auto',
+                  display: 'block',
+                }}>
                   {item.label}
                 </span>
               </div>
