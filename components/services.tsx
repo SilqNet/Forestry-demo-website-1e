@@ -2,20 +2,20 @@ import Image from 'next/image'
 
 const services = [
   {
-    title: 'Iepērkam mežus',
+    title: 'Mežsaimniecība',
     image: '/services/ieperkam-mezus.jpg',
   },
   {
-    title: 'Iepērkam cirsmas',
-    image: '/services/ieperkam-cirsmas.jpg',
+    title: 'Transports un loģistika',
+    image: '/services/transports-un-logistika.jpg',
   },
   {
-    title: 'Iepērkam zarus šķeldai',
-    image: '/services/ieperkam-zarus-skeldai.jpg',
+    title: 'Kokmateriālu tirdzniecība',
+    image: '/services/kokmaterialu-tirdznieciba.jpg',
   },
   {
-    title: 'Iepērkam kokmateriālus pie ceļa',
-    image: '/services/ieperkam-kokmaterialus.jpg',
+    title: 'Malkas tirdzniecība',
+    image: '/services/malkas-tirdznieciba.jpg',
   },
 ]
 
@@ -50,6 +50,9 @@ export default function Services() {
                 />
               </div>
               <div className="pt-2 flex items-start gap-2">
+                <h3 className="text-black group-hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
+                  {service.title}
+                </h3>
                 <svg
                   className="w-4 h-4 mt-[3px] text-black group-hover:text-gold transition-colors flex-shrink-0"
                   fill="none"
@@ -63,9 +66,6 @@ export default function Services() {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-                <h3 className="text-black group-hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
-                  {service.title}
-                </h3>
               </div>
             </article>
           ))}
