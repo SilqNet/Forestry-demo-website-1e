@@ -81,14 +81,21 @@ export default function WhyUs() {
                   className="h-full w-auto object-contain opacity-90"
                 />
               </div>
-              <h2 className="text-[22px] leading-[1.1] font-bold text-black tracking-tight">
-                Strādājam ar meža resursiem no meža līdz produktam
+              <h2 className="text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] font-bold text-black tracking-tight mb-8 lg:mb-0">
+                Strādājam ar meža<br />
+                resursiem no meža līdz<br />
+                produktam
               </h2>
             </div>
             <div className="lg:w-1/2 lg:pt-[95px]">
-              <p className="text-black/70 text-[14px] leading-[1.6] mb-8 font-normal max-w-2xl">
-                Nodrošinām pilnu ciklu — no apsaimniekošanas un iepirkuma līdz loģistikai un piegādei klientiem vietējā un starptautiskajos tirgos. Darbības pamatā ir caurspīdīga un izsekojama piegādes sistēma, kas nodrošina sertificētus materiālus, stabilus apjomus, kontrolētu kvalitāti un prognozējamu sadarbību ar partneriem.
-              </p>
+              <div className="max-w-[750px] space-y-6 mb-8 text-black/80 text-[16px] md:text-[17px] leading-[1.6] font-normal text-left">
+                <p>
+                  Mums ir izpratne par mežu kā dabisku sistēmu, kas prasa saprātīgu un gudru pieeju. No mūsu turpmākās rīcības un zināšanām veidosies nākotnes mežs – mežs kādu šobrīd varam tikai iedomāties, bet kāds būtu izveidojams, ievērojot konkrētos dabas apstākļus, priekšrocības un ierobežojumus.
+                </p>
+                <p>
+                  Savā darbā ievērojam mežu ilgtspējas apsaimniekošanas principu un saudzīgi rīkojamies ar dabas resursiem, lai tiktu saglabāta bioloģiskā daudzveidība un līdzsvars starp trīs savstarpēji saistītām dimensijām – vides, ekonomisko un sociālo.
+                </p>
+              </div>
               <a href="#" className="group inline-flex items-center gap-2 rounded-sm border border-black/10 px-6 py-3 text-[14px] font-normal text-black transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-wider">
                 <span>PAR GR GRUPA</span>
                 <svg
