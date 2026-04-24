@@ -140,22 +140,22 @@ export default function Navbar() {
                 {/* Top Row: Utility Items */}
                 <div className="flex items-center gap-6 h-1/2 w-full justify-end pr-4">
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[14px] font-normal tracking-tight transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                    <button className={`flex items-center gap-1 h-full text-[14px] transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content'}}>
-                      <Link href="#" className="block px-4 py-2 text-sm text-foreground hover:text-gold transition-colors text-left whitespace-nowrap">
+                      <Link href="#" className="block px-4 py-2 text-[14px] text-foreground hover:text-gold transition-colors text-left whitespace-nowrap" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                         Jaunumi
                       </Link>
                     </div>
                   </div>
 
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[14px] font-normal tracking-tight transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                    <button className={`flex items-center gap-1 h-full text-[14px] transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                       Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
-                      <button className="px-4 py-2 text-left text-sm text-foreground hover:text-gold transition-colors whitespace-nowrap block">
+                      <button className="px-4 py-2 text-left text-[14px] text-foreground hover:text-gold transition-colors whitespace-nowrap block" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                         En
                       </button>
                     </div>
@@ -168,7 +168,7 @@ export default function Navbar() {
                     <div key={item.label} className="relative group h-full flex items-center">
                       {item.submenu ? (
                         <>
-                          <button className={`flex items-center gap-1 h-full text-[14px] font-normal tracking-tight transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`}>
+                          <button className={`flex items-center gap-1 h-full text-[14px] transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                             {item.label} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                           </button>
                           <div className="absolute top-full left-0 py-3 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
@@ -176,7 +176,8 @@ export default function Navbar() {
                               <Link
                                 key={subitem.label}
                                 href={subitem.href}
-                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all font-medium border-l-2 border-transparent hover:border-gold whitespace-nowrap"
+                                className="block px-6 py-2.5 text-[14px] text-foreground hover:text-gold hover:bg-muted/30 transition-all border-l-2 border-transparent hover:border-gold whitespace-nowrap"
+                                style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}
                               >
                                 {subitem.label}
                               </Link>
@@ -186,7 +187,8 @@ export default function Navbar() {
                       ) : (
                         <Link
                           href={item.href}
-                          className={`text-[14px] font-normal tracking-tight transition-all active:scale-95 ${isScrolled ? 'text-[#004225] hover:text-gold' : 'text-white hover:text-gold'}`}
+                          className={`text-[14px] transition-all active:scale-95 ${isScrolled ? 'text-[#004225] hover:text-gold' : 'text-white hover:text-gold'}`}
+                          style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}
                         >
                           {item.label}
                         </Link>
@@ -249,8 +251,8 @@ export default function Navbar() {
             
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4 mr-4 border-r border-black/10 pr-6">
-                <span className="text-[14px] font-medium text-black tracking-wider uppercase cursor-default">Lv</span>
-                <Link href="#" className="text-[14px] font-medium text-black/40 hover:text-gold transition-colors tracking-wider uppercase">En</Link>
+                <span className="text-[14px] text-black cursor-default" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>Lv</span>
+                <Link href="#" className="text-[14px] text-black/40 hover:text-gold transition-colors" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>En</Link>
               </div>
               
               <button
@@ -271,19 +273,19 @@ export default function Navbar() {
               {/* Row 1 */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors mb-2 tracking-tight">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] text-black hover:text-gold transition-colors mb-2" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                     Mežu apsaimniekošana
                   </Link>
                 </div>
                 
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors mb-2 tracking-tight">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] text-black hover:text-gold transition-colors mb-2" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                     Iepērkam
                   </Link>
                   <ul className="space-y-1.5 pl-0">
                     {ieperkamSubmenu.map(item => (
                       <li key={item.label}>
-                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
+                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                           {item.label}
                         </Link>
                       </li>
@@ -292,13 +294,13 @@ export default function Navbar() {
                 </div>
 
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors mb-2 tracking-tight">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] text-black hover:text-gold transition-colors mb-2" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                     Transports / Loģistika
                   </Link>
                   <ul className="space-y-1.5 pl-0">
                     {transportsSubmenu.map(item => (
                       <li key={item.label}>
-                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
+                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                           {item.label}
                         </Link>
                       </li>
@@ -307,13 +309,13 @@ export default function Navbar() {
                 </div>
 
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors mb-2 tracking-tight">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] text-black hover:text-gold transition-colors mb-2" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                     Kokmateriālu tirdzniecība
                   </Link>
                   <ul className="space-y-1.5 pl-0">
                     {tirdzniecibaSubmenu.map(item => (
                       <li key={item.label}>
-                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
+                        <Link href={item.href} onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                           {item.label}
                         </Link>
                       </li>
@@ -325,12 +327,12 @@ export default function Navbar() {
               {/* Row 2 */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8 pt-4 border-t border-black/5">
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors tracking-tight">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] text-black hover:text-gold transition-colors" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                     Par mums
                   </Link>
                   <ul className="mt-2 space-y-1">
                     <li>
-                      <Link href="#" onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors font-medium">
+                      <Link href="#" onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                         Jaunumi
                       </Link>
                     </li>
@@ -338,7 +340,7 @@ export default function Navbar() {
                 </div>
                 
                 <div>
-                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] font-medium text-black hover:text-gold transition-colors tracking-tight">
+                  <Link href="#" onClick={() => setIsOpen(false)} className="block text-[18px] text-black hover:text-gold transition-colors" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                     Kontakti
                   </Link>
                 </div>
