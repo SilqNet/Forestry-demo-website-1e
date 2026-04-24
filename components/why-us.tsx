@@ -44,18 +44,27 @@ export default function WhyUs() {
     const node = sectionRef.current
     if (!node) return
 
+    // Only fire the animation after the section has first left the viewport.
+    // This prevents triggering on page load/refresh when the element is already visible.
+    let hasBeenOutOfView = false
+
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        const entry = entries[0]
+        if (!entry.isIntersecting) {
+          // Section is not visible — mark that it has been out of view
+          hasBeenOutOfView = true
+        }
+        if (entry.isIntersecting && hasBeenOutOfView) {
+          // Section just became visible after being out of view — start counting
           setStartAnimation(true)
           observer.disconnect()
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     )
 
     observer.observe(node)
-    
     return () => observer.disconnect()
   }, [])
 
