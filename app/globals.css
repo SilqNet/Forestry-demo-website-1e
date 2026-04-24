@@ -37,6 +37,8 @@
   --sidebar-accent: #22c55e;
   --sidebar-ring: #22c55e;
   --gold: #C5A059;
+  --text-default: 17px;
+  --text-default-line: 1.6;
 }
 
 .dark {
@@ -149,5 +151,12 @@
 
   .cta-premium:active, .cta-bordered-gold:active {
     @apply bg-[#A07A37] border-[#A07A37] text-white;
+  }
+
+  .text {
+    font-family: var(--font-saira, inherit);
+    font-size: var(--text-default);
+    line-height: var(--text-default-line);
+    color: var(--foreground);
   }
 }

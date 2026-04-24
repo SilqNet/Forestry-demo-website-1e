@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Montserrat, Inter } from 'next/font/google'
+import { Montserrat, Inter, Saira } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import FloatingButton from '@/components/floating-button'
 import './globals.css'
@@ -14,6 +14,12 @@ const _inter = Inter({
   subsets: ["latin"], 
   weight: ["400"],
   variable: "--font-inter" 
+});
+
+const _saira = Saira({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-saira"
 });
 
 export const metadata: Metadata = {
@@ -40,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="lv">
-      <body className={`${_montserrat.variable} ${_inter.variable} font-sans antialiased`}>
+      <body className={`${_montserrat.variable} ${_inter.variable} ${_saira.variable} font-sans antialiased`}>
         <FloatingButton />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

@@ -88,7 +88,7 @@ export default function WhyUs() {
               </h2>
             </div>
             <div className="lg:w-1/2 lg:pt-[95px]">
-              <div className="max-w-[750px] space-y-6 mb-8 text-black/80 text-[16px] md:text-[17px] leading-[1.6] font-normal text-left">
+              <div className="max-w-[750px] space-y-6 mb-8 text text-left">
                 <p>
                   Mums ir izpratne par mežu kā dabisku sistēmu, kas prasa saprātīgu un gudru pieeju. No mūsu turpmākās rīcības un zināšanām veidosies nākotnes mežs – mežs kādu šobrīd varam tikai iedomāties, bet kāds būtu izveidojams, ievērojot konkrētos dabas apstākļus, priekšrocības un ierobežojumus.
                 </p>
