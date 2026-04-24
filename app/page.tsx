@@ -3,6 +3,7 @@ import Hero from '@/components/hero'
 import WhyUs from '@/components/why-us'
 import PartnerCarousel from '@/components/partner-carousel'
 import Services from '@/components/services'
+import ServicesPirkums from '@/components/services-pirkums'
 import CTA from '@/components/cta'
 import Testimonials from '@/components/testimonials'
 import FAQ from '@/components/faq'
@@ -17,6 +18,7 @@ export default function Home() {
       <WhyUs />
       <PartnerCarousel />
       <Services />
+      <ServicesPirkums />
       <CTA />
       <Testimonials />
       <FAQ />
