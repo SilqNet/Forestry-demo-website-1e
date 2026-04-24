@@ -124,12 +124,12 @@ export default function WhyUs() {
             {infrastructure.map((item, i) => (
               <div key={i} className="flex flex-col group cursor-default">
                 <div className="flex items-baseline gap-1 mb-4 border-b border-white/5 pb-6">
-                  <span className="text-[48px] md:text-[64px] font-bold leading-none text-gold transition-transform duration-500 group-hover:scale-105 inline-block">
+                  <span className="text-[48px] md:text-[64px] leading-none text-gold transition-transform duration-500 group-hover:scale-105 inline-block" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                     <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
                   </span>
-                  <span className="text-[32px] md:text-[40px] font-bold text-gold/80">{item.suffix}</span>
+                  <span className="text-[32px] md:text-[40px] text-gold/80" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>{item.suffix}</span>
                 </div>
-                <span className="text-[14px] md:text-[15px] uppercase tracking-[0.15em] text-white/90 font-bold leading-relaxed max-w-[180px]">
+                <span className="text-[14px] md:text-[15px] text-white/90 leading-relaxed max-w-[180px]" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                   {item.label}
                 </span>
               </div>
