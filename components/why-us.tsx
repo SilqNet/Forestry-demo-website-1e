@@ -87,7 +87,7 @@ export default function WhyUs() {
                 produktam
               </h2>
             </div>
-            <div className="lg:w-[40%] lg:pt-[90px]">
+            <div className="lg:w-[47%] lg:pt-[90px]">
               <div className="max-w-[600px] space-y-8 mb-10 text-black/80 text-left">
                 <p style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
                   Mums ir izpratne par mežu kā dabisku sistēmu, kas prasa saprātīgu un gudru pieeju. No mūsu turpmākās rīcības un zināšanām veidosies nākotnes mežs – mežs kādu šobrīd varam tikai iedomāties, bet kāds būtu izveidojams, ievērojot konkrētos dabas apstākļus, priekšrocības un ierobežojumus.
