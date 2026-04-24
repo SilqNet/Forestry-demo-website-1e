@@ -137,23 +137,17 @@
 }
 
 @layer utilities {
-  .cta-premium {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-[#C5A059] text-white text-[14px] font-bold tracking-wider uppercase transition-all duration-300;
+  .cta-premium, .cta-bordered-gold {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-[#C5A059] border border-[#C5A059] text-white text-[14px] font-bold tracking-wider uppercase transition-all duration-300;
     border-radius: 0;
     cursor: pointer;
   }
   
-  .cta-premium:hover {
-    @apply bg-black text-white;
+  .cta-premium:hover, .cta-bordered-gold:hover {
+    @apply bg-[#B38D48] border-[#B38D48] text-white;
   }
 
-  .cta-bordered-gold {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent border border-[#C5A059] text-[#C5A059] text-[14px] font-bold tracking-wider uppercase transition-all duration-300;
-    border-radius: 0;
-    cursor: pointer;
-  }
-
-  .cta-bordered-gold:hover {
-    @apply bg-[#C5A059] text-white;
+  .cta-premium:active, .cta-bordered-gold:active {
+    @apply bg-[#A07A37] border-[#A07A37] text-white;
   }
 }
