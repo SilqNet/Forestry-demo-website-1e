@@ -81,7 +81,7 @@ export default function WhyUs() {
                   className="h-full w-auto object-contain opacity-90"
                 />
               </div>
-              <h2 className="text-black mb-8 lg:mb-0" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '20.68px', fontWeight: 600, lineHeight: '25.85px', letterSpacing: 'normal', textTransform: 'none' }}>
+              <h2 className="text-black mb-8 lg:mb-0" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
                 Strādājam ar meža<br />
                 resursiem no meža līdz<br />
                 produktam
