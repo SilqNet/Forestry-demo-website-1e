@@ -117,15 +117,16 @@ export default function WhyUs() {
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
         <div style={{ width: '100%', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, auto)',
+            display: 'flex',
+            flexDirection: 'row',
             justifyContent: 'center',
-            columnGap: '120px',
-            alignItems: 'start',
+            alignItems: 'flex-start',
+            gap: '80px',
           }}>
             {infrastructure.map((item, i) => (
               <div key={i} style={{
                 width: '220px',
+                flexShrink: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
