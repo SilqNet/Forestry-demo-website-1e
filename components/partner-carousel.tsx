@@ -50,7 +50,7 @@ export default function PartnerCarousel() {
     <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center mb-12">
-          <h2 className="text-[22px] font-bold text-black">
+          <h2 className="text-black" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
             Mūsu sadarbības partneri
           </h2>
         </div>
