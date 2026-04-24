@@ -60,10 +60,10 @@ export default function WhyUs() {
   }, [])
 
   const infrastructure = [
-    { value: 16, suffix: ' +', label: 'GADU PIEREDZE' },
-    { value: 50, suffix: '+', label: 'VEIKSMĪGAS SADARBĪBAS AR MEŽU ĪPAŠNIEKIEM' },
-    { value: 500, suffix: ' +', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA' },
-    { value: 1000, suffix: ' +', label: 'VALSTIS' }
+    { value: 16, suffix: '+', label: 'GADU PIEREDZE', icon: '/icons/tick.png' },
+    { value: 100, suffix: '+', label: 'VEIKSMĪGAS SADARBĪBAS AR MEŽU ĪPAŠNIEKIEM', icon: '/icons/hands.png' },
+    { value: 50, suffix: '+', label: 'ILGTERMIŅA SADARBĪBAS PARTNERI', icon: '/icons/hourglass.png' },
+    { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' }
   ]
 
   return (
@@ -119,11 +119,16 @@ export default function WhyUs() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20">
             {infrastructure.map((item, i) => (
               <div key={i} className="flex flex-col group cursor-default">
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
-                    <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
-                  </span>
-                  <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>{item.suffix}</span>
+                <div className="flex items-center gap-3 mb-4">
+                  {item.icon && (
+                    <Image src={item.icon} alt="" width={28} height={28} className="object-contain" />
+                  )}
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
+                      <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
+                    </span>
+                    <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>{item.suffix}</span>
+                  </div>
                 </div>
                 <span className="text-white" style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
                   {item.label}
