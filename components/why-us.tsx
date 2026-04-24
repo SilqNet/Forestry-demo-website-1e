@@ -51,7 +51,7 @@ export default function WhyUs() {
           observer.disconnect()
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.5 }
     )
 
     observer.observe(node)
@@ -116,9 +116,9 @@ export default function WhyUs() {
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20">
+          <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
             {infrastructure.map((item, i) => (
-              <div key={i} className="flex flex-col group cursor-default">
+              <div key={i} className="flex-1 min-w-[200px] flex flex-col group cursor-default">
                 <div className="flex items-center gap-3 mb-4">
                   {item.icon && (
                     <Image src={item.icon} alt="" width={28} height={28} className="object-contain" />

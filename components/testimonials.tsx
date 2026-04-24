@@ -66,8 +66,8 @@ export default function Testimonials() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center mb-12">
-          <h2 className="text-[22px] font-bold text-black">
-            Klientu atsauksmes
+          <h2 className="text-black text-center" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
+            GR GRUPA partneru un klientu atsauksmes
           </h2>
         </div>
 
