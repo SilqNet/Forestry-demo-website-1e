@@ -182,49 +182,32 @@ export default function MezaVertibaPage() {
       {/* Benefits Section: Kāpēc izvēlēties mūs? */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
             {/* Left Column */}
-            <div className="lg:w-1/3">
+            <div className="lg:w-1/3 pt-1">
               <span className="text-gold text-[14px] font-bold tracking-widest uppercase mb-4 block">
                 KĀPĒC IZVĒLĒTIES GR GRUPA
               </span>
-              <h2 className="text-[22px] font-bold text-black leading-tight mb-8 whitespace-pre-line">
-                Ieguvumi meža{"\n"}īpašniekiem
+              <h2 className="text-[22px] font-bold text-black leading-tight mb-8">
+                Ieguvumi meža īpašniekiem
               </h2>
+              <button className="cta-bordered-gold hidden lg:inline-flex">SAŅEMT PIEDĀVĀJUMU</button>
             </div>
 
             {/* Right Column */}
             <div className="lg:w-2/3">
-              <div className="grid grid-cols-1 gap-y-6 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-8 mb-8 lg:mb-0">
                 {[
-                  {
-                    title: 'Saimnieciski izdevīgākie piedāvājumi',
-                    desc: 'Mēs strādājam bez starpniekiem, nodrošinot Jums vislabāko iespējamo cenu tirgū.'
-                  },
-                  {
-                    title: 'Samaksa pirms darbu uzsākšanas',
-                    desc: 'Mēs uzticamies saviem partneriem un veicam samaksu vēl pirms mežizstrādes darbu sākuma.'
-                  },
-                  {
-                    title: 'Avanss 1 darba dienas laikā',
-                    desc: 'Ja nepieciešami steidzami līdzekļi, mēs piedāvājam avansa maksājumu tūlīt pēc dokumentu saskaņošanas.'
-                  },
-                  {
-                    title: '100% Latvijas kapitāls',
-                    desc: 'Mēs esam vietējais uzņēmums, kas rūpējas par Latvijas mežu ilgtspējīgu apsaimniekošanu.'
-                  },
-                  {
-                    title: 'Augsta pievienotā vērtība',
-                    desc: 'Mēs paši realizējam koksni, radot tai augstu pievienoto vērtību un sildot Latvijas ekonomiku.'
-                  },
-                  {
-                    title: 'Rūpes par ilgtspēju',
-                    desc: 'Mūsu vērtības ietver atbildīgu attieksmi pret dabu un sabiedrības labklājību.'
-                  }
-                ].map((benefit, idx) => (
-                  <div key={idx} className="flex gap-4 items-center">
+                  'Saimnieciski izdevīgākie piedāvājumi bez starpniekiem.',
+                  'Augsta samaksa par meža īpašumiem.',
+                  'Samaksa pirms mežizstrādes darbu uzsākšanas.',
+                  'Avanss 1 darba dienas laikā.',
+                  '100% Latvijas kapitāla uzņēmums, kas realizē koksni, radot tai augstu pievienoto vērtību.',
+                  'GR GRUPAS vērtības ietver rūpes par darbinieku, partneru un sabiedrības labklājības veicināšanu.'
+                ].map((text, idx) => (
+                  <div key={idx} className="flex gap-4 items-start">
                     <div 
-                      className="w-5 h-5 bg-gold shrink-0" 
+                      className="w-5 h-5 bg-gold shrink-0 mt-0.5" 
                       style={{ 
                         maskImage: 'url(/icons/right-down.png)', 
                         maskSize: 'contain', 
@@ -235,12 +218,12 @@ export default function MezaVertibaPage() {
                       }} 
                     />
                     <div>
-                      <h4 className="text-[14px] font-bold text-black uppercase tracking-tight">{benefit.title}</h4>
+                      <p className="text-[14px] font-medium text-black leading-snug">{text}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <button className="cta-bordered-gold">SAŅEMT PIEDĀVĀJUMU</button>
+              <button className="cta-bordered-gold lg:hidden">SAŅEMT PIEDĀVĀJUMU</button>
             </div>
           </div>
         </div>
@@ -249,13 +232,16 @@ export default function MezaVertibaPage() {
       {/* Process Banner Section: Tikai 4 soļi līdz darījumam */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/forest-hero-bg.jpg"
-            alt="Forest background"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/videos/download.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/40" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center">
@@ -263,7 +249,7 @@ export default function MezaVertibaPage() {
             Gūsti maksimālu vērtību no meža
           </h2>
           <p className="text-[18px] lg:text-[22px] text-white/90 max-w-3xl mx-auto mb-10">
-            Mēs piedāvājam godīgu vērtējumu un tūlītēju samaksu, palīdzot Jums sakārtot savu īpašumu un gūt peļņu.
+            Vietējā kapitāla uzņēmums nodrošina ilgtspējīgu mežu apsaimniekošanu
           </p>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -277,37 +263,41 @@ export default function MezaVertibaPage() {
       {/* DAUDZU GADU PIEREDZE Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
             {/* Left Column */}
-            <div className="lg:w-1/3">
+            <div className="lg:w-1/3 pt-1">
               <span className="text-gold text-[14px] font-bold tracking-widest uppercase mb-4 block">
                 DAUDZU GADU PIEREDZE
               </span>
-              <h2 className="text-[22px] font-bold text-black leading-tight mb-8 whitespace-pre-line">
-                Viegla un ērta{"\n"}sadarbība
+              <h2 className="text-[28px] lg:text-[32px] font-bold text-black leading-tight mb-8">
+                Viegla un ērta sadarbība
               </h2>
-              <button className="cta-bordered-gold">SAŅEMT PIEDĀVĀJUMU</button>
+              <button className="cta-bordered-gold hidden lg:inline-flex">SAŅEMT PIEDĀVĀJUMU</button>
             </div>
 
             {/* Right Column */}
             <div className="lg:w-2/3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-12 mb-8 lg:mb-0">
                 {[
-                  { icon: 'phone-call.png', title: 'SAZINIES' },
-                  { icon: 'offer.png', title: 'SAŅEM' },
-                  { icon: 'know-how.png', title: 'UZZINI' },
-                  { icon: 'check.png', title: 'NOFORMĒ DARĪJUMU' }
+                  { icon: 'phone-call.png', title: 'SAZINIES', sub: 'zvanot vai aizpildot pieteikumu' },
+                  { icon: 'know-how.png', title: 'UZZINI', sub: 'kā gūt peļņu no sava īpašuma' },
+                  { icon: 'offer.png', title: 'SAŅEM', sub: 'piedāvājumu un avansu' },
+                  { icon: 'check.png', title: 'NOFORMĒ DARĪJUMU', sub: 'un saņem samaksu dienas laikā' }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex gap-4 items-center">
+                  <div key={idx} className="flex gap-6 items-start">
                     <img 
                       src={`/icons/${item.icon}`}
                       alt={item.title}
-                      className="w-10 h-10 object-contain shrink-0"
+                      className="w-10 h-10 object-contain shrink-0 mt-1"
                     />
-                    <h4 className="text-[14px] font-bold text-black uppercase tracking-tight">{item.title}</h4>
+                    <div className="flex flex-col">
+                      <h4 className="text-[16px] font-bold text-black uppercase tracking-tight mb-1">{item.title}</h4>
+                      <p className="text-[14px] text-gray-600 font-normal normal-case">{item.sub}</p>
+                    </div>
                   </div>
                 ))}
               </div>
+              <button className="cta-bordered-gold lg:hidden">SAŅEMT PIEDĀVĀJUMU</button>
             </div>
           </div>
         </div>
@@ -344,37 +334,29 @@ export default function MezaVertibaPage() {
       {/* Final Contact Section: Gatavs uzzināt sava meža vērtību? */}
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            {/* Left */}
-            <div className="md:w-1/3">
-              <h2 className="text-[22px] font-bold text-black leading-tight">
-                Sazinies ar{"\n"}mums
-              </h2>
-            </div>
+          <div className="flex flex-col items-center justify-center text-center gap-8 max-w-lg mx-auto">
+            <h2 className="text-[32px] lg:text-[42px] font-bold text-black leading-tight">
+              Sazinies ar mums
+            </h2>
 
-            {/* Center */}
-            <div className="md:w-1/3 flex justify-center">
-              <div 
-                className="w-16 h-16 bg-gold" 
-                style={{ 
-                  maskImage: 'url(/icons/right-down.png)', 
-                  maskSize: 'contain', 
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskImage: 'url(/icons/right-down.png)',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat'
-                }} 
-              />
-            </div>
+            <div 
+              className="w-16 h-16 bg-gold" 
+              style={{ 
+                maskImage: 'url(/icons/right-down.png)', 
+                maskSize: 'contain', 
+                maskRepeat: 'no-repeat',
+                WebkitMaskImage: 'url(/icons/right-down.png)',
+                WebkitMaskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat'
+              }} 
+            />
 
-            {/* Right */}
-            <div className="md:w-1/3 text-right flex flex-col items-end gap-4">
-              <div className="flex flex-col items-end">
-                <a href="mailto:info@grgrupa.lv" className="text-gold text-[14px] font-bold hover:text-black transition-colors">info@grgrupa.lv</a>
-                <a href="tel:+37129611110" className="text-black text-[22px] font-bold hover:text-gold transition-colors">+371 29611110</a>
-              </div>
-              <button className="cta-bordered-gold">KONTAKTI</button>
+            <div className="flex flex-col items-center gap-2">
+              <a href="mailto:info@grgrupa.lv" className="text-gold text-[16px] font-bold hover:text-[#B38D48] transition-colors">info@grgrupa.lv</a>
+              <a href="tel:+37129611110" className="text-black text-[28px] font-bold hover:text-gold transition-colors">+371 29611110</a>
             </div>
+            
+            <button className="cta-bordered-gold mt-4">KONTAKTI</button>
           </div>
         </div>
       </section>
