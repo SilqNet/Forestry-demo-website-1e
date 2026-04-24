@@ -115,17 +115,15 @@ export default function WhyUs() {
 
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div style={{ width: '100%', maxWidth: '1400px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+            gridTemplateColumns: 'repeat(4, 1fr)',
             alignItems: 'start',
             width: '100%',
           }}>
             {infrastructure.map((item, i) => (
               <div key={i} style={{
-                width: '100%',
-                minWidth: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -155,7 +153,7 @@ export default function WhyUs() {
                   lineHeight: '1.6',
                   letterSpacing: 'normal',
                   textTransform: 'none',
-                  maxWidth: '220px',
+                  maxWidth: '180px',
                   textAlign: 'center',
                   margin: '0 auto',
                   display: 'block',
