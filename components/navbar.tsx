@@ -140,7 +140,7 @@ export default function Navbar() {
                 {/* Top Row: Utility Items */}
                 <div className="flex items-center gap-6 h-1/2 w-full justify-end pr-4">
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[14px] transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
+                    <button className={`flex items-center gap-1 h-full text-[14px] transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                       Par mums <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full left-0 py-2 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content'}}>
@@ -151,11 +151,11 @@ export default function Navbar() {
                   </div>
 
                   <div className="relative group h-full flex items-center">
-                    <button className={`flex items-center gap-1 h-full text-[14px] transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
+                    <button className={`flex items-center gap-1 h-full text-[14px] transition-all group-hover:text-gold ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                       Lv <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                     </button>
                     <div className="absolute top-full right-0 py-1 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-border/50" style={{width: 'max-content', minWidth: 0}}>
-                      <button className="px-4 py-2 text-left text-[14px] text-foreground hover:text-gold transition-colors whitespace-nowrap block" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
+                      <button className="px-4 py-2 text-left text-[14px] text-foreground hover:text-gold transition-colors whitespace-nowrap block" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
                         En
                       </button>
                     </div>
