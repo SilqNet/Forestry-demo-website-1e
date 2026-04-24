@@ -115,31 +115,31 @@ export default function WhyUs() {
 
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
-        <div style={{ width: '100%', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem' }}>
+        <div style={{ width: '100%', paddingLeft: '2rem', paddingRight: '2rem' }}>
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 240px)',
+            display: 'flex',
             justifyContent: 'center',
-            columnGap: '80px',
-            alignItems: 'start',
+            alignItems: 'flex-start',
+            gap: '90px',
           }}>
             {infrastructure.map((item, i) => (
               <div key={i} style={{
-                width: '240px',
+                width: '260px',
+                flexShrink: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                textAlign: 'center',
               }} className="group cursor-default">
+                {/* Number row — alignment anchor */}
                 <div style={{
                   display: 'flex',
-                  alignItems: 'center',
                   justifyContent: 'center',
+                  alignItems: 'center',
                   gap: '8px',
                   marginBottom: '16px',
                 }}>
                   {item.icon && (
-                    <Image src={item.icon} alt="" width={28} height={28} className="object-contain" />
+                    <Image src={item.icon} alt="" width={28} height={28} style={{ display: 'block', flexShrink: 0 }} />
                   )}
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
                     <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
@@ -148,6 +148,7 @@ export default function WhyUs() {
                     <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>{item.suffix}</span>
                   </div>
                 </div>
+                {/* Label — fixed width, never affects item width */}
                 <span className="text-white" style={{
                   fontFamily: "'Saira', sans-serif",
                   fontSize: '14px',
@@ -155,7 +156,8 @@ export default function WhyUs() {
                   lineHeight: '1.6',
                   letterSpacing: 'normal',
                   textTransform: 'none',
-                  width: '100%',
+                  width: '220px',
+                  margin: '0 auto',
                   textAlign: 'center',
                   display: 'block',
                 }}>
