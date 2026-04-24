@@ -68,10 +68,10 @@ export default function WhyUs() {
 
   return (
     <section className="bg-white">
-      <div className="pt-24 pb-20">
+      <div className="pt-32 pb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-32 items-start justify-between">
-            <div className="lg:w-1/2">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start justify-between">
+            <div className="lg:w-[55%]">
               <div className="mb-10 h-[50px] flex items-center">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
@@ -81,14 +81,14 @@ export default function WhyUs() {
                   className="h-full w-auto object-contain opacity-90"
                 />
               </div>
-              <h2 className="text-[36px] md:text-[44px] lg:text-[52px] leading-[1.1] font-bold text-black tracking-tight mb-8 lg:mb-0">
+              <h2 className="text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] font-[800] text-black tracking-tighter mb-8 lg:mb-0">
                 Strādājam ar meža<br />
                 resursiem no meža līdz<br />
                 produktam
               </h2>
             </div>
-            <div className="lg:w-1/2 lg:pt-[95px]">
-              <div className="max-w-[750px] space-y-6 mb-8 text text-left">
+            <div className="lg:w-[40%] lg:pt-[90px]">
+              <div className="max-w-[600px] space-y-8 mb-10 text-[17px] md:text-[19px] leading-[1.8] font-normal text-black/80 text-left">
                 <p>
                   Mums ir izpratne par mežu kā dabisku sistēmu, kas prasa saprātīgu un gudru pieeju. No mūsu turpmākās rīcības un zināšanām veidosies nākotnes mežs – mežs kādu šobrīd varam tikai iedomāties, bet kāds būtu izveidojams, ievērojot konkrētos dabas apstākļus, priekšrocības un ierobežojumus.
                 </p>
@@ -96,7 +96,7 @@ export default function WhyUs() {
                   Savā darbā ievērojam mežu ilgtspējas apsaimniekošanas principu un saudzīgi rīkojamies ar dabas resursiem, lai tiktu saglabāta bioloģiskā daudzveidība un līdzsvars starp trīs savstarpēji saistītām dimensijām – vides, ekonomisko un sociālo.
                 </p>
               </div>
-              <a href="#" className="group inline-flex items-center gap-2 rounded-sm border border-black/10 px-6 py-3 text-[14px] font-normal text-black transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-wider">
+              <a href="#" className="group inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-widest">
                 <span>PAR GR GRUPA</span>
                 <svg
                   className="w-4 h-4 group-hover:translate-x-1 transition-transform"
