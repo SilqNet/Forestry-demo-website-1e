@@ -81,18 +81,18 @@ export default function WhyUs() {
                   className="h-full w-auto object-contain opacity-90"
                 />
               </div>
-              <h2 className="text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] font-[800] text-black tracking-tighter mb-8 lg:mb-0">
+              <h2 className="text-black mb-8 lg:mb-0" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '20.68px', fontWeight: 600, lineHeight: '25.85px', letterSpacing: 'normal', textTransform: 'none' }}>
                 Strādājam ar meža<br />
                 resursiem no meža līdz<br />
                 produktam
               </h2>
             </div>
             <div className="lg:w-[40%] lg:pt-[90px]">
-              <div className="max-w-[600px] space-y-8 mb-10 text-[17px] md:text-[19px] leading-[1.8] font-normal text-black/80 text-left">
-                <p>
+              <div className="max-w-[600px] space-y-8 mb-10 text-black/80 text-left">
+                <p style={{ fontFamily: "'Saira', sans-serif", fontSize: '9.19px', fontWeight: 400, lineHeight: '15.17px', letterSpacing: 'normal', textTransform: 'none' }}>
                   Mums ir izpratne par mežu kā dabisku sistēmu, kas prasa saprātīgu un gudru pieeju. No mūsu turpmākās rīcības un zināšanām veidosies nākotnes mežs – mežs kādu šobrīd varam tikai iedomāties, bet kāds būtu izveidojams, ievērojot konkrētos dabas apstākļus, priekšrocības un ierobežojumus.
                 </p>
-                <p>
+                <p style={{ fontFamily: "'Saira', sans-serif", fontSize: '9.19px', fontWeight: 400, lineHeight: '15.17px', letterSpacing: 'normal', textTransform: 'none' }}>
                   Savā darbā ievērojam mežu ilgtspējas apsaimniekošanas principu un saudzīgi rīkojamies ar dabas resursiem, lai tiktu saglabāta bioloģiskā daudzveidība un līdzsvars starp trīs savstarpēji saistītām dimensijām – vides, ekonomisko un sociālo.
                 </p>
               </div>
