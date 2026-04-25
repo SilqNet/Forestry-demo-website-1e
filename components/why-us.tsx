@@ -145,7 +145,7 @@ export default function WhyUs() {
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
         <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem', overflow: 'visible' }}>
-          {/* Row 1: first four counters */}
+          {/* Row 1: first three counters */}
           <div
             style={{
               display: 'flex',
@@ -156,7 +156,7 @@ export default function WhyUs() {
               rowGap: '44px',
             }}
           >
-            {counters.slice(0, 4).map((item, i) => (
+            {counters.slice(0, 3).map((item, i) => (
               <div
                 key={`${item.label}-${i}`}
                 style={{
@@ -203,7 +203,7 @@ export default function WhyUs() {
             ))}
           </div>
 
-          {/* Row 2: two additional counters */}
+          {/* Row 2: remaining three counters */}
           <div
             style={{
               display: 'flex',
@@ -215,7 +215,7 @@ export default function WhyUs() {
               rowGap: '44px',
             }}
           >
-            {counters.slice(4).map((item, i) => (
+            {counters.slice(3, 6).map((item, i) => (
               <div
                 key={`${item.label}-${i}`}
                 style={{

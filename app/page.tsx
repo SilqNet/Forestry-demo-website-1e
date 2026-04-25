@@ -6,7 +6,6 @@ import Services from '@/components/services'
 import ServicesPirkums from '@/components/services-pirkums'
 import SadarbibasProcess from '@/components/sadarbibas-process'
 import Testimonials from '@/components/testimonials'
-import FAQ from '@/components/faq'
 import Newsletter from '@/components/newsletter'
 import Footer from '@/components/footer'
 
@@ -21,7 +20,6 @@ export default function Home() {
       <ServicesPirkums />
       <SadarbibasProcess />
       <Testimonials />
-      <FAQ />
       <Newsletter />
       <Footer />
     </main>
