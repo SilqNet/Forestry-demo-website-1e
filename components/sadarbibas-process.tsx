@@ -90,16 +90,28 @@ export default function SadarbibasProcess() {
           <div className="lg:w-[55%]">
             <div className="max-w-[640px]">
               <div className="flex flex-col gap-8">
-                {steps.map((step) => (
+                {steps.map((step, idx) => (
                   <div key={step.title} className="flex gap-4 items-start">
                     <div className="pt-[2px] flex-shrink-0">
-                      <Image
-                        src={step.numberIcon}
-                        alt=""
-                        width={28}
-                        height={28}
-                        style={{ display: 'block' }}
-                      />
+                      <div
+                        aria-hidden
+                        style={{
+                          width: 28,
+                          height: 28,
+                          borderRadius: 9999,
+                          backgroundColor: '#c5a063',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontFamily: "'Saira Expanded', sans-serif",
+                          fontSize: '14px',
+                          fontWeight: 700,
+                          lineHeight: '1',
+                          color: '#111111',
+                        }}
+                      >
+                        {idx + 1}
+                      </div>
                     </div>
                     <div className="min-w-0">
                       <h3
