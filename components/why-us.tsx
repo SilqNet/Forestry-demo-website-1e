@@ -68,12 +68,32 @@ export default function WhyUs() {
     return () => observer.disconnect()
   }, [])
 
-  const infrastructure = [
+  const counters = [
     { value: 16, suffix: '+', label: 'GADU PIEREDZE', icon: '/icons/tick.png' },
     { value: 100, suffix: '+', label: 'VEIKSMĪGAS SADARBĪBAS AR MEŽU ĪPAŠNIEKIEM', icon: '/icons/hands.png' },
     { value: 50, suffix: '+', label: 'ILGTERMIŅA SADARBĪBAS PARTNERI', icon: '/icons/hourglass.png' },
-    { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' }
+    { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' },
+    { value: 650, suffix: 'ha+', label: 'ATJAUNOTU PLATĪBU', icon: '/icons/recycle.png' },
+    { value: 70000, suffix: 'm3+', label: 'IZSTRĀDĀTA KOKSNES APJOMA', icon: '/icons/wood.png' },
   ]
+
+  const numberTextStyle: React.CSSProperties = {
+    fontFamily: "'Saira Expanded', sans-serif",
+    fontSize: '27.577px',
+    lineHeight: '34.47px',
+    fontWeight: 600,
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
+
+  const labelTextStyle: React.CSSProperties = {
+    fontFamily: "'Saira', sans-serif",
+    fontSize: '14px',
+    fontWeight: 400,
+    lineHeight: '1.6',
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
 
   return (
     <section className="bg-white">
@@ -125,51 +145,117 @@ export default function WhyUs() {
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
         <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem', overflow: 'visible' }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            gap: '60px',
-          }}>
-            {infrastructure.map((item, i) => (
-              <div key={i} style={{
-                width: '240px',
-                flexShrink: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }} className="group cursor-default">
-                {/* Number row — alignment anchor */}
-                <div style={{
+          {/* Row 1: first four counters */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              gap: '60px',
+              flexWrap: 'wrap',
+              rowGap: '44px',
+            }}
+          >
+            {counters.slice(0, 4).map((item, i) => (
+              <div
+                key={`${item.label}-${i}`}
+                style={{
+                  width: '240px',
+                  flexShrink: 0,
                   display: 'flex',
-                  justifyContent: 'center',
+                  flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '16px',
-                }}>
-                  {item.icon && (
-                    <Image src={item.icon} alt="" width={28} height={28} style={{ display: 'block', flexShrink: 0 }} />
-                  )}
+                }}
+                className="group cursor-default"
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '16px',
+                  }}
+                >
+                  {item.icon && <Image src={item.icon} alt="" width={28} height={28} style={{ display: 'block', flexShrink: 0 }} />}
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
-                    <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
+                    <span className="text-white" style={numberTextStyle}>
                       <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
                     </span>
-                    <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>{item.suffix}</span>
+                    <span className="text-white" style={numberTextStyle}>
+                      {item.suffix}
+                    </span>
                   </div>
                 </div>
-                {/* Label — fixed width, never affects item width */}
-                <span className="text-white" style={{
-                  fontFamily: "'Saira', sans-serif",
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  lineHeight: '1.6',
-                  letterSpacing: 'normal',
-                  textTransform: 'none',
-                  width: '220px',
-                  margin: '0 auto',
-                  textAlign: 'center',
-                  display: 'block',
-                }}>
+                <span
+                  className="text-white"
+                  style={{
+                    ...labelTextStyle,
+                    width: '220px',
+                    margin: '0 auto',
+                    textAlign: 'center',
+                    display: 'block',
+                  }}
+                >
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: two additional counters */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              gap: '60px',
+              marginTop: '44px',
+              flexWrap: 'wrap',
+              rowGap: '44px',
+            }}
+          >
+            {counters.slice(4).map((item, i) => (
+              <div
+                key={`${item.label}-${i}`}
+                style={{
+                  width: '240px',
+                  flexShrink: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+                className="group cursor-default"
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '16px',
+                  }}
+                >
+                  {item.icon && <Image src={item.icon} alt="" width={28} height={28} style={{ display: 'block', flexShrink: 0 }} />}
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
+                    <span className="text-white" style={numberTextStyle}>
+                      <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
+                    </span>
+                    <span className="text-white" style={numberTextStyle}>
+                      {item.suffix}
+                    </span>
+                  </div>
+                </div>
+                <span
+                  className="text-white"
+                  style={{
+                    ...labelTextStyle,
+                    width: '220px',
+                    margin: '0 auto',
+                    textAlign: 'center',
+                    display: 'block',
+                  }}
+                >
                   {item.label}
                 </span>
               </div>
