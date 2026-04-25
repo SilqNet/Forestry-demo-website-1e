@@ -4,7 +4,7 @@ import WhyUs from '@/components/why-us'
 import PartnerCarousel from '@/components/partner-carousel'
 import Services from '@/components/services'
 import ServicesPirkums from '@/components/services-pirkums'
-import CTA from '@/components/cta'
+import SadarbibasProcess from '@/components/sadarbibas-process'
 import Testimonials from '@/components/testimonials'
 import FAQ from '@/components/faq'
 import Newsletter from '@/components/newsletter'
@@ -19,7 +19,7 @@ export default function Home() {
       <PartnerCarousel />
       <Services />
       <ServicesPirkums />
-      <CTA />
+      <SadarbibasProcess />
       <Testimonials />
       <FAQ />
       <Newsletter />
