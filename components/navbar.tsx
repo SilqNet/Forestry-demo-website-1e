@@ -341,7 +341,7 @@ export default function Navbar() {
                     </li>
                     <li>
                       <Link href="#" onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
-                        BUJ
+                        Biežāk uzdotiem jautājumi
                       </Link>
                     </li>
                   </ul>

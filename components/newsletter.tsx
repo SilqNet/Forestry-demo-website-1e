@@ -1,9 +1,59 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+
 export default function Newsletter() {
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+
+  useEffect(() => {
+    const sectionEl = sectionRef.current
+    const videoEl = videoRef.current
+    if (!sectionEl || !videoEl) return
+
+    let hasStarted = false
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (!entry) return
+
+        const fullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.95
+
+        if (fullyVisible) {
+          if (!hasStarted) {
+            hasStarted = true
+            try {
+              videoEl.pause()
+              videoEl.currentTime = 0
+              videoEl.load()
+              void videoEl.play()
+            } catch {
+              // Ignore autoplay errors (browser policies)
+            }
+          }
+        } else {
+          hasStarted = false
+          try {
+            videoEl.pause()
+            videoEl.currentTime = 0
+          } catch {
+            // no-op
+          }
+        }
+      },
+      { threshold: [0, 0.25, 0.5, 0.75, 0.95, 1] }
+    )
+
+    observer.observe(sectionEl)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="relative py-24">
+    <section ref={sectionRef} className="relative py-24">
       <div className="absolute inset-0">
         <video
-          autoPlay
+          ref={videoRef}
           muted
           loop
           playsInline
