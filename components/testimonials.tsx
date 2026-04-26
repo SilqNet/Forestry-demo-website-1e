@@ -36,19 +36,19 @@ const testimonials = [
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/idrwgez9Ah_logos-baoHiIfVmEYHwLsR4jR7s4pkEFBAgQ.png',
-    text: 'Exceptional service and professional team. They delivered exactly what we needed on time and within budget.',
+    text: 'Izcils serviss un profesionāla komanda. Viņi precīzi nodrošināja to, kas mums bija nepieciešams — laikā un plānotajā budžetā.',
     authorName: 'Jane Doe',
     authorTitle: 'Director, Timber Co',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BONO_Group_idEVZYswIK_0-qy86XHPfxe4ihFkK4Tbwum7FKQ7te8.png',
-    text: 'Outstanding forestry solutions. Highly recommend their services to any business in the timber industry.',
+    text: 'Izcili mežsaimniecības risinājumi. Noteikti iesakām viņu pakalpojumus ikvienam uzņēmumam kokrūpniecības nozarē.',
     authorName: 'Robert Johnson',
     authorTitle: 'Manager, Wood Products',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Me%C5%BEa_Ener%C4%A3ija_id8_-DePEl_0-tCTzCysLsU9f81Q4iIZz7ptVZzPafX.png',
-    text: 'Great partnership experience. Their expertise and reliability make them stand out in the market.',
+    text: 'Ļoti pozitīva sadarbības pieredze. Viņu kompetence un uzticamība skaidri izceļas tirgū.',
     authorName: 'Maria Garcia',
     authorTitle: 'Partner, Energy Solutions',
   },

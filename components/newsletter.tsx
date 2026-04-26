@@ -11,38 +11,21 @@ export default function Newsletter() {
     const videoEl = videoRef.current
     if (!sectionEl || !videoEl) return
 
-    let hasStarted = false
-
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
         if (!entry) return
 
-        const fullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.95
-
-        if (fullyVisible) {
-          if (!hasStarted) {
-            hasStarted = true
-            try {
-              videoEl.pause()
-              videoEl.currentTime = 0
-              videoEl.load()
-              void videoEl.play()
-            } catch {
-              // Ignore autoplay errors (browser policies)
-            }
-          }
-        } else {
-          hasStarted = false
+        // Start as soon as the section enters the viewport and keep playing.
+        if (entry.isIntersecting) {
           try {
-            videoEl.pause()
-            videoEl.currentTime = 0
+            if (videoEl.paused) void videoEl.play()
           } catch {
-            // no-op
+            // Ignore autoplay errors (browser policies)
           }
         }
       },
-      { threshold: [0, 0.25, 0.5, 0.75, 0.95, 1] }
+      { threshold: [0, 0.1] }
     )
 
     observer.observe(sectionEl)
@@ -54,10 +37,12 @@ export default function Newsletter() {
       <div className="absolute inset-0">
         <video
           ref={videoRef}
+          autoPlay
           muted
           loop
           playsInline
           controls={false}
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/videos/newsletter-bg.mp4" type="video/mp4" />

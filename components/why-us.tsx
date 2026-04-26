@@ -14,13 +14,14 @@ function AnimatedCounter({ endValue, suffix = '', startAnimation = false }: { en
     if (startAnimation && !hasAnimated) {
       setHasAnimated(true)
       let startTime: number
-      const duration = 4000 // 4 seconds
+      const duration = 2600 // same duration for all counters
       
       const step = (timestamp: number) => {
         if (!startTime) startTime = timestamp
         const progress = Math.min((timestamp - startTime) / duration, 1)
-        const easeProgress = easeOutQuart(progress)
-        setCount(Math.floor(easeProgress * endValue))
+        // Linear progress keeps counting speed consistent (no end-of-animation slowdown).
+        const next = Math.min(endValue, Math.round(progress * endValue))
+        setCount((prev) => (next > prev ? next : prev))
         
         if (progress < 1) {
           requestAnimationFrame(step)
