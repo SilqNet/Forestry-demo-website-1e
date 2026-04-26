@@ -1,5 +1,6 @@
 'use client'
 
+import type { CSSProperties } from 'react'
 import Image from 'next/image'
 
 const testimonials = [
@@ -62,7 +63,7 @@ const testimonials = [
 export default function Testimonials() {
   const tripledTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
-  const processParagraphStyle: React.CSSProperties = {
+  const processParagraphStyle: CSSProperties = {
     fontFamily: "'Saira', sans-serif",
     fontSize: '14px',
     fontWeight: 400,
@@ -71,7 +72,7 @@ export default function Testimonials() {
     textTransform: 'none',
   }
 
-  const processStepHeaderStyle: React.CSSProperties = {
+  const processStepHeaderStyle: CSSProperties = {
     fontFamily: "'Saira Expanded', sans-serif",
     fontSize: '18px',
     fontWeight: 600,
