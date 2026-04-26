@@ -57,6 +57,7 @@ export default function Newsletter() {
           muted
           loop
           playsInline
+          controls={false}
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/videos/newsletter-bg.mp4" type="video/mp4" />
