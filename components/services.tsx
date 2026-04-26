@@ -3,7 +3,7 @@ import Image from 'next/image'
 const services = [
   {
     title: 'Mežsaimniecība',
-    image: '/services/ieperkam-mezus.jpg',
+    image: '/services/mezsaimnieciba.webp',
   },
   {
     title: 'Transports un loģistika',
