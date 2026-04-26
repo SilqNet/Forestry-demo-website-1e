@@ -74,7 +74,7 @@ export default function WhyUs() {
     { value: 50, suffix: '+', label: 'ILGTERMIŅA SADARBĪBAS PARTNERI', icon: '/icons/hourglass.png' },
     { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' },
     { value: 650, suffix: 'ha+', label: 'ATJAUNOTU PLATĪBU', icon: '/icons/recycle.png' },
-    { value: 70000, suffix: 'm3+', label: 'IZSTRĀDĀTA KOKSNES APJOMA', icon: '/icons/wood.png' },
+    { value: 700000, suffix: 'm3+', label: 'IZSTRĀDĀTA KOKSNES APJOMA', icon: '/icons/wood.png' },
   ]
 
   const numberTextStyle: React.CSSProperties = {

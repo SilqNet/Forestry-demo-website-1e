@@ -62,6 +62,24 @@ const testimonials = [
 export default function Testimonials() {
   const tripledTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
+  const processParagraphStyle: React.CSSProperties = {
+    fontFamily: "'Saira', sans-serif",
+    fontSize: '14px',
+    fontWeight: 400,
+    lineHeight: '1.6',
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
+
+  const processStepHeaderStyle: React.CSSProperties = {
+    fontFamily: "'Saira Expanded', sans-serif",
+    fontSize: '18px',
+    fontWeight: 600,
+    lineHeight: '1.25',
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,14 +107,14 @@ export default function Testimonials() {
                       />
                     </div>
                   </div>
-                  <p className="text-foreground mb-6 italic text-lg leading-relaxed">
+                  <p className="text-black/80 mb-6" style={processParagraphStyle}>
                     "{testimonial.text}"
                   </p>
                   <div>
-                    <p className="font-semibold text-foreground">
+                    <p className="text-black" style={processStepHeaderStyle}>
                       {testimonial.authorName}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-black/80" style={processParagraphStyle}>
                       {testimonial.authorTitle}
                     </p>
                   </div>
