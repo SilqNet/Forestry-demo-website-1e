@@ -159,4 +159,17 @@
     line-height: var(--text-default-line);
     color: var(--foreground);
   }
+
+  .image-wrapper {
+    overflow: hidden;
+  }
+
+  .image-wrapper img {
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+
+  .image-wrapper:hover img {
+    transform: scale(1.05);
+  }
 }

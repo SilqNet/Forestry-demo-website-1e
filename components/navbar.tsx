@@ -147,6 +147,9 @@ export default function Navbar() {
                       <Link href="#" className="block px-4 py-2 text-[14px] text-foreground hover:text-gold transition-colors text-left whitespace-nowrap" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                         Jaunumi
                       </Link>
+                      <Link href="#" className="block px-4 py-2 text-[14px] text-foreground hover:text-gold transition-colors text-left whitespace-nowrap" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
+                        BUJ
+                      </Link>
                     </div>
                   </div>
 
@@ -334,6 +337,11 @@ export default function Navbar() {
                     <li>
                       <Link href="#" onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
                         Jaunumi
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" onClick={() => setIsOpen(false)} className="text-[14px] text-black/70 hover:text-gold transition-colors" style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none' }}>
+                        BUJ
                       </Link>
                     </li>
                   </ul>
