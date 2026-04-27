@@ -232,8 +232,8 @@
   stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 340;
-  stroke-dashoffset: 340;
+  stroke-dasharray: var(--path-length, 320);
+  stroke-dashoffset: var(--path-length, 320);
   animation: preloader-logo-draw 3s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards,
     preloader-logo-fill 3s ease-out 1 forwards;
   vector-effect: non-scaling-stroke;
