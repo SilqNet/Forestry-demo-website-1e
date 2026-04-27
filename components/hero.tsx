@@ -27,7 +27,7 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source
-            src="/videos/newsletter-bg.mp4"
+            src="/videos/hero-bg.mp4"
             type="video/mp4"
           />
         </video>
