@@ -177,29 +177,30 @@
   }
 }
 
-@keyframes preloader-logo-draw {
+@keyframes logoReveal {
   0% {
-    stroke-dashoffset: 360;
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(4px);
   }
-  60% {
-    stroke-dashoffset: 0;
+  35% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.03);
+    filter: blur(0);
   }
   100% {
-    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
   }
 }
 
-@keyframes preloader-logo-fill {
-  0%,
-  55% {
-    fill-opacity: 0;
-  }
-  100% {
-    fill-opacity: 1;
-  }
-}
-
-.site-preloader {
+.logo-loader {
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -213,46 +214,15 @@
   transition: opacity 500ms ease, visibility 500ms ease;
 }
 
-.site-preloader--hidden {
+.logo-loader--hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-.site-preloader__logo {
-  width: min(340px, 82vw);
+.logo-loader__image {
+  width: clamp(180px, 28vw, 420px);
   height: auto;
-  display: block;
-}
-
-.site-preloader__logo-wrap {
-  position: relative;
-  width: min(340px, 82vw);
-}
-
-.site-preloader__logo-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: brightness(0) invert(1);
-}
-
-.site-preloader__logo-stroke {
-  position: absolute;
-  inset: -10% -6%;
-  width: 112%;
-  height: 120%;
-  pointer-events: none;
-}
-
-.site-preloader__logo-stroke .logo-stroke-path {
-  fill: transparent;
-  stroke: #ffffff;
-  stroke-width: 1.35;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 360;
-  stroke-dashoffset: 360;
-  animation: preloader-logo-draw 3s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards,
-    preloader-logo-fill 3s ease-out 1 forwards;
+  animation: logoReveal 3s ease-in-out forwards;
+  will-change: transform, opacity, filter;
 }

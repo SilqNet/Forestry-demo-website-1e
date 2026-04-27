@@ -38,26 +38,16 @@ export default function SitePreloader({ children }: SitePreloaderProps) {
       {children}
       {isVisible && (
         <div
-          className={`site-preloader ${isFadingOut ? 'site-preloader--hidden' : ''}`}
+          className={`logo-loader ${isFadingOut ? 'logo-loader--hidden' : ''}`}
           aria-hidden="true"
         >
-          <div className="site-preloader__logo-wrap">
-            <img
-              src={NAVBAR_LOGO_URL}
-              alt="GR GRUPA logo"
-              className="site-preloader__logo-image"
-              loading="eager"
-              decoding="sync"
-            />
-            <svg
-              className="site-preloader__logo-stroke"
-              viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <rect className="logo-stroke-path" x="3" y="3" width="94" height="94" rx="6" ry="6" />
-            </svg>
-          </div>
+          <img
+            src={NAVBAR_LOGO_URL}
+            alt="GR GRUPA logo"
+            className="logo-loader__image"
+            loading="eager"
+            decoding="sync"
+          />
         </div>
       )}
     </>
