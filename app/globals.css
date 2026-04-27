@@ -179,7 +179,7 @@
 
 @keyframes preloader-logo-draw {
   0% {
-    stroke-dashoffset: var(--path-length, 320);
+    stroke-dashoffset: 360;
   }
   60% {
     stroke-dashoffset: 0;
@@ -220,21 +220,39 @@
 }
 
 .site-preloader__logo {
-  width: min(300px, 74vw);
+  width: min(340px, 82vw);
   height: auto;
   display: block;
 }
 
-.site-preloader__logo .logo-path {
-  fill: #ffffff;
-  fill-opacity: 0;
+.site-preloader__logo-wrap {
+  position: relative;
+  width: min(340px, 82vw);
+}
+
+.site-preloader__logo-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.site-preloader__logo-stroke {
+  position: absolute;
+  inset: -10% -6%;
+  width: 112%;
+  height: 120%;
+  pointer-events: none;
+}
+
+.site-preloader__logo-stroke .logo-stroke-path {
+  fill: transparent;
   stroke: #ffffff;
-  stroke-width: 1.9;
+  stroke-width: 1.35;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: var(--path-length, 320);
-  stroke-dashoffset: var(--path-length, 320);
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
   animation: preloader-logo-draw 3s cubic-bezier(0.22, 1, 0.36, 1) 1 forwards,
     preloader-logo-fill 3s ease-out 1 forwards;
-  vector-effect: non-scaling-stroke;
 }
