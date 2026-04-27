@@ -152,10 +152,6 @@ export default function Footer() {
                 <Phone size={18} className="text-gold" />
                 +371 29611110
               </a>
-              <div className="flex items-center gap-3 text-white/85 font-normal" style={footerLinkStyle}>
-                <span aria-hidden className="w-[18px] h-[18px] inline-block" />
-                Saules iela 92, Grobiņa
-              </div>
             </div>
           </div>
         </div>
