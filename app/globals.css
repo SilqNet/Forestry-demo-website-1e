@@ -179,7 +179,7 @@
 
 @keyframes preloader-logo-draw {
   0% {
-    stroke-dashoffset: 340;
+    stroke-dashoffset: var(--path-length, 320);
   }
   60% {
     stroke-dashoffset: 0;
