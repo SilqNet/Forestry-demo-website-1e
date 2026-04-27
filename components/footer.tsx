@@ -25,7 +25,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0f1211] text-white py-16 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           {/* Logo & About */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
@@ -154,7 +154,6 @@ export default function Footer() {
               </a>
 
               <div className="pt-2">
-                <h4 className="mb-3 text-gold" style={footerHeaderStyle}>Grobiņa</h4>
                 <div className="flex items-start gap-3 text-white font-normal" style={footerLinkStyle}>
                   <MapPin size={18} className="text-gold mt-[2px]" />
                   <div>

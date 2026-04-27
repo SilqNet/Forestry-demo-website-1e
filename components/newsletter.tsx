@@ -45,7 +45,7 @@ export default function Newsletter() {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/videos/newsletter-bg.mp4" type="video/mp4" />
+          <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
       </div>
