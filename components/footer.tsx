@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Mail, Phone } from 'lucide-react'
+import { Mail, MapPin, Phone } from 'lucide-react'
 import type { CSSProperties } from 'react'
 
 export default function Footer() {
@@ -152,6 +152,17 @@ export default function Footer() {
                 <Phone size={18} className="text-gold" />
                 +371 29611110
               </a>
+
+              <div className="pt-2">
+                <h4 className="mb-3 text-gold" style={footerHeaderStyle}>Grobiņa</h4>
+                <div className="flex items-start gap-3 text-white font-normal" style={footerLinkStyle}>
+                  <MapPin size={18} className="text-gold mt-[2px]" />
+                  <div>
+                    <p>Saules iela 92,</p>
+                    <p>Grobiņa, LV-3430</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

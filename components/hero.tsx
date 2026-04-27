@@ -27,7 +27,7 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
+            src="/videos/newsletter-bg.mp4"
             type="video/mp4"
           />
         </video>
@@ -49,7 +49,7 @@ export default function Hero() {
 
       <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-12 md:pb-16">
         <h1 className="max-w-5xl text-left text-[30px] md:text-[42px] text-white leading-[1.12] mb-4" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
-          „GR GRUPA” - uzticams partneris mežsaimniecībā ar vairāk nekā 15 gadu pieredzi visā Latvijā
+          Uzticams partneris mežsaimniecībā jau vairāk nekā 15 gadus visā Latvijā
         </h1>
       </div>
     </section>
