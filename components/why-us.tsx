@@ -12,6 +12,7 @@ function AnimatedCounter({ endValue, suffix = '', startAnimation = false }: { en
 
   useEffect(() => {
     if (startAnimation && !hasAnimated) {
+      setCount(0)
       setHasAnimated(true)
       let startTime: number
       const duration = 2600 // same duration for all counters
@@ -40,24 +41,37 @@ function AnimatedCounter({ endValue, suffix = '', startAnimation = false }: { en
 export default function WhyUs() {
   const [startAnimation, setStartAnimation] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const hasStartedRef = useRef(false)
 
   useEffect(() => {
     const node = sectionRef.current
     if (!node) return
 
-    // Only fire the animation after the section has first left the viewport.
-    // This prevents triggering on page load/refresh when the element is already visible.
-    let hasBeenOutOfView = false
+    const maybeStart = () => {
+      if (hasStartedRef.current) return
+
+      const rect = node.getBoundingClientRect()
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+
+      // Consider visible when at least ~30% of the section is in view (matches observer threshold).
+      const height = Math.max(1, rect.height)
+      const visiblePx = Math.min(viewportHeight, rect.bottom) - Math.max(0, rect.top)
+      const visibleRatio = visiblePx / height
+
+      if (visibleRatio >= 0.3) {
+        hasStartedRef.current = true
+        setStartAnimation(true)
+        return true
+      }
+      return false
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
-        if (!entry.isIntersecting) {
-          // Section is not visible — mark that it has been out of view
-          hasBeenOutOfView = true
-        }
-        if (entry.isIntersecting && hasBeenOutOfView) {
-          // Section just became visible after being out of view — start counting
+        if (hasStartedRef.current) return
+        if (entry?.isIntersecting) {
+          hasStartedRef.current = true
           setStartAnimation(true)
           observer.disconnect()
         }
@@ -66,6 +80,12 @@ export default function WhyUs() {
     )
 
     observer.observe(node)
+    // On initial page load/refresh, trigger immediately if already visible.
+    // Run once now and once after paint to account for late layout shifts.
+    maybeStart()
+    requestAnimationFrame(() => {
+      if (maybeStart()) observer.disconnect()
+    })
     return () => observer.disconnect()
   }, [])
 
