@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false)
+  const [canPlayVideo, setCanPlayVideo] = useState(false)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -15,15 +17,40 @@ export default function Hero() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  useEffect(() => {
+    const onPreloaderFinished = () => {
+      setCanPlayVideo(true)
+    }
+
+    if (!document.querySelector('.logo-loader')) {
+      setCanPlayVideo(true)
+    }
+
+    window.addEventListener('site-preloader-finished', onPreloaderFinished)
+    return () => window.removeEventListener('site-preloader-finished', onPreloaderFinished)
+  }, [])
+
+  useEffect(() => {
+    if (!canPlayVideo || isMobile) return
+    const videoEl = videoRef.current
+    if (!videoEl) return
+
+    videoEl.currentTime = 0
+    void videoEl.play().catch(() => {
+      // Ignore autoplay policy errors.
+    })
+  }, [canPlayVideo, isMobile])
+
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden">
       {/* Desktop Video Background */}
       {!isMobile && (
         <video
-          autoPlay
+          ref={videoRef}
           muted
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source

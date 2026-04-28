@@ -22,6 +22,7 @@ export default function SitePreloader({ children }: SitePreloaderProps) {
     const removeTimer = window.setTimeout(() => {
       setIsVisible(false)
       document.body.style.overflow = ''
+      window.dispatchEvent(new Event('site-preloader-finished'))
     }, PRELOADER_DURATION_MS + PRELOADER_FADE_OUT_MS)
 
     document.body.style.overflow = 'hidden'
