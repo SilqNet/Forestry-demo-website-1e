@@ -42,9 +42,11 @@ export default function Newsletter() {
           muted
           loop
           playsInline
+          webkit-playsinline="true"
           controls={false}
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
+          poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         >
           <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
         </video>

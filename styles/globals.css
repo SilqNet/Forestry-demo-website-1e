@@ -123,3 +123,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide native video controls and overlays */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playlist-button,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-panel {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+video {
+  pointer-events: none;
+}
