@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 
 const services = [
@@ -20,6 +23,12 @@ const services = [
 ]
 
 export default function ServicesPirkums() {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const activateCard = (index: number) => {
+    setActiveIndex(index)
+  }
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,13 +74,26 @@ export default function ServicesPirkums() {
 
         <div className="flex overflow-x-auto gap-5 pb-2 snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:gap-x-5 lg:gap-y-10 lg:overflow-visible lg:pb-0">
           {services.map((service, index) => (
-            <article key={index} className="group cursor-pointer flex flex-col min-w-[82%] sm:min-w-[46%] lg:min-w-0 snap-start">
+            <article
+              key={index}
+              className={`service-card group cursor-pointer flex flex-col min-w-[82%] sm:min-w-[46%] lg:min-w-0 snap-start ${activeIndex === index ? 'is-active' : ''}`}
+              onClick={() => activateCard(index)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  activateCard(index)
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-pressed={activeIndex === index}
+            >
               <div className="image-wrapper relative w-full aspect-video overflow-hidden bg-muted rounded-sm mb-4">
                 <Image src={service.image} alt={service.title} fill className="object-cover" />
               </div>
               <div className="pt-2 flex items-start gap-2">
                 <h3
-                  className="text-black group-hover:text-gold transition-colors"
+                  className="service-card-title text-black group-hover:text-gold transition-colors"
                   style={{
                     fontFamily: "'Saira', sans-serif",
                     fontSize: '14px',
@@ -84,7 +106,7 @@ export default function ServicesPirkums() {
                   {service.title}
                 </h3>
                 <svg
-                  className="w-4 h-4 mt-[3px] text-black group-hover:text-gold transition-colors flex-shrink-0"
+                  className="service-card-icon w-4 h-4 mt-[3px] text-black group-hover:text-gold transition-colors flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

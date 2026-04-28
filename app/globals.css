@@ -175,6 +175,15 @@
       transform: scale(1.06);
     }
   }
+
+  .service-card.is-active .image-wrapper img {
+    transform: scale(1.06);
+  }
+
+  .service-card.is-active .service-card-title,
+  .service-card.is-active .service-card-icon {
+    color: var(--gold);
+  }
 }
 
 @keyframes logoReveal {
