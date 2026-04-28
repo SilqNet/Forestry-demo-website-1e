@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat, Inter, Saira } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import FloatingButton from '@/components/floating-button'
 import SitePreloader from '@/components/site-preloader'
 import InteractionLock from '@/components/interaction-lock'
@@ -54,6 +55,7 @@ export default function RootLayout({
           <FloatingButton />
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
+          <SpeedInsights />
         </SitePreloader>
       </body>
     </html>
