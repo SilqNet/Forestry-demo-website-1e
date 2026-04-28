@@ -159,4 +159,79 @@
     line-height: var(--text-default-line);
     color: var(--foreground);
   }
+
+  .image-wrapper {
+    overflow: hidden;
+  }
+
+  .image-wrapper img {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+    transform-origin: center;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .image-wrapper:hover img {
+      transform: scale(1.06);
+    }
+  }
+
+  .service-card.is-active .image-wrapper img {
+    transform: scale(1.06);
+  }
+
+  .service-card.is-active .service-card-title,
+  .service-card.is-active .service-card-icon {
+    color: var(--gold);
+  }
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(4px);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.03);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+.logo-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition: opacity 500ms ease, visibility 500ms ease;
+}
+
+.logo-loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.logo-loader__image {
+  width: clamp(180px, 28vw, 420px);
+  height: auto;
+  animation: logoReveal 3s ease-in-out forwards;
+  will-change: transform, opacity, filter;
 }

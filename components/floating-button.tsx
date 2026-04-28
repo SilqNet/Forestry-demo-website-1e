@@ -17,26 +17,44 @@ interface WidgetProps {
   labelLine1: string
   labelLine2: string
   href: string
+  disableNavigation?: boolean
 }
 
-function SideWidget({ icon, labelLine1, labelLine2, href }: WidgetProps) {
+function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = false }: WidgetProps) {
   const [hoverOpen, setHoverOpen] = useState(false)
   const [tapOpen, setTapOpen] = useState(false)
 
   const expanded = hoverOpen || tapOpen
 
   const onClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (disableNavigation) {
+      e.preventDefault()
+      e.stopPropagation()
+      return
+    }
     if (prefersTapToggle()) {
       e.preventDefault()
       setTapOpen((o) => !o)
     }
-  }, [])
+  }, [disableNavigation])
+
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+      if (!disableNavigation) return
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    },
+    [disableNavigation]
+  )
 
   return (
     <div className="relative flex justify-end">
       <Link
         href={href}
         onClick={onClick}
+        onKeyDown={onKeyDown}
         onMouseEnter={() => setHoverOpen(true)}
         onMouseLeave={() => {
           setHoverOpen(false)
@@ -51,6 +69,8 @@ function SideWidget({ icon, labelLine1, labelLine2, href }: WidgetProps) {
           height: 64,
         }}
         aria-expanded={expanded}
+        aria-disabled={disableNavigation || undefined}
+        tabIndex={disableNavigation ? -1 : 0}
       >
         {/* Icon Container — the leftmost ~64px */}
         <div className="w-[64px] h-[64px] flex items-center justify-center shrink-0 pl-[12px]">
@@ -87,6 +107,7 @@ export default function FloatingButton() {
         labelLine1="Uzzini savu"
         labelLine2="meža vērtību"
         href="/uzzini-meza-vertibu"
+        disableNavigation
       />
       <SideWidget
         icon="/icons/whatsapp.png"

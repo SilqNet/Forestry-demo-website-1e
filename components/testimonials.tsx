@@ -1,66 +1,85 @@
 'use client'
 
+import type { CSSProperties } from 'react'
 import Image from 'next/image'
 
 const testimonials = [
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijas_Finieris_AS_id_fVQzm0I_0-uXuwLNZnUIr5ni6TPwwOSY67qGBxj0.png',
     text: 'Sadarbība ir ļoti profesionāla, lēmumi tiek pieņemti ātri un korekti.',
-    authorName: 'Andris Ozols',
+    authorName: 'Jānis Bērziņš',
     authorTitle: 'Ražošanas vadītājs',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijasmezs-lv_idQkwXJx0w_0-jPrm4GWIp9eth3EzyWnpsSt0MhMMt9.png',
     text: 'Augstu vērtējam GR GRUPA spēju nodrošināt stabilas piegādes un caurspīdīgu sadarbības modeli.',
-    authorName: 'Jānis Mežsaimnieks',
+    authorName: 'Pēteris Kokins',
     authorTitle: 'Iepirkumu direktors',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/idjbpsM6kj_logos-qGeiEqG3rxesqFF9E8RQCFDoHPmiSq.png',
     text: 'Uzticams partneris, kas vienmēr pilda solīto un nodrošina kvalitatīvu servisu.',
-    authorName: 'Pēteris Koks',
+    authorName: 'Kārlis Riekstiņš',
     authorTitle: 'Valdes priekšsēdētājs',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/R_GRUPA_idsfYm-39J_0-gWFApMxGizbCUonoz7EOKJPoAonBxg.png',
     text: 'Profesionāla pieeja visos darba posmos. Sadarbība, kas orientēta uz ilgtermiņa rezultātu.',
-    authorName: 'Kārlis Riekstiņš',
+    authorName: 'Mārtiņš Bērziņš',
     authorTitle: 'Operatīvais vadītājs',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PRIEDES_AG_idx2EYih-G_0-IDEmBj870UOzG6tTJr8eGVhv9vpFeo.png',
     text: 'Pakalpojumi ir stabili kvalitatīvi, arī sarežģītos objektos.',
-    authorName: 'Mārtiņš Bērziņš',
-    authorTitle: 'Iepirkumu speciālists',
+    authorName: 'Kristaps Zariņš',
+    authorTitle: 'Komercdirektors',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/idrwgez9Ah_logos-baoHiIfVmEYHwLsR4jR7s4pkEFBAgQ.png',
-    text: 'Exceptional service and professional team. They delivered exactly what we needed on time and within budget.',
-    authorName: 'Jane Doe',
-    authorTitle: 'Director, Timber Co',
+    text: 'Izcils serviss un profesionāla komanda. Viņi precīzi nodrošināja to, kas mums bija nepieciešams — laikā un plānotajā budžetā.',
+    authorName: 'Andris Ozols',
+    authorTitle: 'Valdes loceklis',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BONO_Group_idEVZYswIK_0-qy86XHPfxe4ihFkK4Tbwum7FKQ7te8.png',
-    text: 'Outstanding forestry solutions. Highly recommend their services to any business in the timber industry.',
-    authorName: 'Robert Johnson',
-    authorTitle: 'Manager, Wood Products',
+    text: 'Izcili mežsaimniecības risinājumi. Noteikti iesakām viņu pakalpojumus ikvienam uzņēmumam kokrūpniecības nozarē.',
+    authorName: 'Ainārs Zvirbulis',
+    authorTitle: 'Operatīvais vadītājs',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Me%C5%BEa_Ener%C4%A3ija_id8_-DePEl_0-tCTzCysLsU9f81Q4iIZz7ptVZzPafX.png',
-    text: 'Great partnership experience. Their expertise and reliability make them stand out in the market.',
-    authorName: 'Maria Garcia',
-    authorTitle: 'Partner, Energy Solutions',
+    text: 'Ļoti pozitīva sadarbības pieredze. Viņu kompetence un uzticamība skaidri izceļas tirgū.',
+    authorName: 'Kārlis Krautmanis',
+    authorTitle: 'Iepirkumu direktors',
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/id7judnuyL_logos-eVMQHZxZLuSqlYZp03vId3CLlas7lg.png',
     text: 'Piedāvātie nosacījumi ir konkurētspējīgi un caurspīdīgi.',
-    authorName: 'Santa Liepa',
-    authorTitle: 'Valdes locekle',
+    authorName: 'Edgars Liepiņš',
+    authorTitle: 'Valdes loceklis',
   },
 ]
 
 export default function Testimonials() {
   const tripledTestimonials = [...testimonials, ...testimonials, ...testimonials]
+
+  const processParagraphStyle: CSSProperties = {
+    fontFamily: "'Saira', sans-serif",
+    fontSize: '14px',
+    fontWeight: 400,
+    lineHeight: '1.6',
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
+
+  const processStepHeaderStyle: CSSProperties = {
+    fontFamily: "'Saira Expanded', sans-serif",
+    fontSize: '18px',
+    fontWeight: 600,
+    lineHeight: '1.25',
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
 
   return (
     <section className="py-20 bg-white">
@@ -89,14 +108,14 @@ export default function Testimonials() {
                       />
                     </div>
                   </div>
-                  <p className="text-foreground mb-6 italic text-lg leading-relaxed">
+                  <p className="text-black/80 mb-6" style={processParagraphStyle}>
                     "{testimonial.text}"
                   </p>
                   <div>
-                    <p className="font-semibold text-foreground">
+                    <p className="text-black" style={processStepHeaderStyle}>
                       {testimonial.authorName}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-black/80" style={processParagraphStyle}>
                       {testimonial.authorTitle}
                     </p>
                   </div>

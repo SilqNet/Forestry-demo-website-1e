@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 const easeOutQuart = (t: number) => 1 - (--t) * t * t * t
 
@@ -12,15 +13,17 @@ function AnimatedCounter({ endValue, suffix = '', startAnimation = false }: { en
 
   useEffect(() => {
     if (startAnimation && !hasAnimated) {
+      setCount(0)
       setHasAnimated(true)
       let startTime: number
-      const duration = 4000 // 4 seconds
+      const duration = 2600 // same duration for all counters
       
       const step = (timestamp: number) => {
         if (!startTime) startTime = timestamp
         const progress = Math.min((timestamp - startTime) / duration, 1)
-        const easeProgress = easeOutQuart(progress)
-        setCount(Math.floor(easeProgress * endValue))
+        // Linear progress keeps counting speed consistent (no end-of-animation slowdown).
+        const next = Math.min(endValue, Math.round(progress * endValue))
+        setCount((prev) => (next > prev ? next : prev))
         
         if (progress < 1) {
           requestAnimationFrame(step)
@@ -39,24 +42,37 @@ function AnimatedCounter({ endValue, suffix = '', startAnimation = false }: { en
 export default function WhyUs() {
   const [startAnimation, setStartAnimation] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const hasStartedRef = useRef(false)
 
   useEffect(() => {
     const node = sectionRef.current
     if (!node) return
 
-    // Only fire the animation after the section has first left the viewport.
-    // This prevents triggering on page load/refresh when the element is already visible.
-    let hasBeenOutOfView = false
+    const maybeStart = () => {
+      if (hasStartedRef.current) return
+
+      const rect = node.getBoundingClientRect()
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+
+      // Consider visible when at least ~30% of the section is in view (matches observer threshold).
+      const height = Math.max(1, rect.height)
+      const visiblePx = Math.min(viewportHeight, rect.bottom) - Math.max(0, rect.top)
+      const visibleRatio = visiblePx / height
+
+      if (visibleRatio >= 0.3) {
+        hasStartedRef.current = true
+        setStartAnimation(true)
+        return true
+      }
+      return false
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
-        if (!entry.isIntersecting) {
-          // Section is not visible — mark that it has been out of view
-          hasBeenOutOfView = true
-        }
-        if (entry.isIntersecting && hasBeenOutOfView) {
-          // Section just became visible after being out of view — start counting
+        if (hasStartedRef.current) return
+        if (entry?.isIntersecting) {
+          hasStartedRef.current = true
           setStartAnimation(true)
           observer.disconnect()
         }
@@ -65,15 +81,41 @@ export default function WhyUs() {
     )
 
     observer.observe(node)
+    // On initial page load/refresh, trigger immediately if already visible.
+    // Run once now and once after paint to account for late layout shifts.
+    maybeStart()
+    requestAnimationFrame(() => {
+      if (maybeStart()) observer.disconnect()
+    })
     return () => observer.disconnect()
   }, [])
 
-  const infrastructure = [
+  const counters = [
     { value: 16, suffix: '+', label: 'GADU PIEREDZE', icon: '/icons/tick.png' },
     { value: 100, suffix: '+', label: 'VEIKSMĪGAS SADARBĪBAS AR MEŽU ĪPAŠNIEKIEM', icon: '/icons/hands.png' },
     { value: 50, suffix: '+', label: 'ILGTERMIŅA SADARBĪBAS PARTNERI', icon: '/icons/hourglass.png' },
-    { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' }
+    { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' },
+    { value: 650, suffix: 'ha+', label: 'ATJAUNOTO MEŽA PLATĪBA', icon: '/icons/recycle.png' },
+    { value: 700000, suffix: 'm3+', label: 'IZSTRĀDĀTĀS KOKSNES APJOMS', icon: '/icons/wood.png' },
   ]
+
+  const numberTextStyle: React.CSSProperties = {
+    fontFamily: "'Saira Expanded', sans-serif",
+    fontSize: '27.577px',
+    lineHeight: '34.47px',
+    fontWeight: 600,
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
+
+  const labelTextStyle: React.CSSProperties = {
+    fontFamily: "'Saira', sans-serif",
+    fontSize: '14px',
+    fontWeight: 400,
+    lineHeight: '1.6',
+    letterSpacing: 'normal',
+    textTransform: 'none',
+  }
 
   return (
     <section className="bg-white">
@@ -88,8 +130,8 @@ export default function WhyUs() {
               </div>
               <h2 className="text-black mb-8 lg:mb-0" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
                 Strādājam ar meža<br />
-                resursiem no meža līdz<br />
-                produktam
+                resursiem no stāda līdz<br />
+                mežam
               </h2>
             </div>
             <div className="lg:w-[55%] lg:pt-[90px]">
@@ -101,10 +143,11 @@ export default function WhyUs() {
                   Savā darbā ievērojam mežu ilgtspējas apsaimniekošanas principu un saudzīgi rīkojamies ar dabas resursiem, lai tiktu saglabāta bioloģiskā daudzveidība un līdzsvars starp trīs savstarpēji saistītām dimensijām – vides, ekonomisko un sociālo.
                 </p>
               </div>
-              <a href="#" className="group inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-widest">
+              <FlowHoverButton asChild>
+                <a href="#" className="inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest">
                 <span>PAR GR GRUPA</span>
                 <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  className="w-4 h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -116,7 +159,8 @@ export default function WhyUs() {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </a>
+                </a>
+              </FlowHoverButton>
             </div>
           </div>
         </div>
@@ -124,52 +168,50 @@ export default function WhyUs() {
 
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
-        <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem', overflow: 'visible' }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            gap: '60px',
-          }}>
-            {infrastructure.map((item, i) => (
-              <div key={i} style={{
-                width: '240px',
-                flexShrink: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }} className="group cursor-default">
-                {/* Number row — alignment anchor */}
-                <div style={{
+        <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '1rem', paddingRight: '1rem', overflow: 'visible' }}>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-8 lg:gap-x-[60px] gap-y-10 lg:gap-y-11">
+            {counters.map((item, i) => (
+              <div
+                key={`${item.label}-${i}`}
+                style={{
+                  width: '100%',
+                  flexShrink: 0,
                   display: 'flex',
-                  justifyContent: 'center',
+                  flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '16px',
-                }}>
-                  {item.icon && (
-                    <Image src={item.icon} alt="" width={28} height={28} style={{ display: 'block', flexShrink: 0 }} />
-                  )}
+                }}
+                className="group cursor-default"
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '16px',
+                  }}
+                >
+                  {item.icon && <Image src={item.icon} alt="" width={28} height={28} style={{ display: 'block', flexShrink: 0 }} />}
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
-                    <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
+                    <span className="text-white" style={numberTextStyle}>
                       <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
                     </span>
-                    <span className="text-white" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '27.577px', lineHeight: '34.47px', fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>{item.suffix}</span>
+                    <span className="text-white" style={numberTextStyle}>
+                      {item.suffix}
+                    </span>
                   </div>
                 </div>
-                {/* Label — fixed width, never affects item width */}
-                <span className="text-white" style={{
-                  fontFamily: "'Saira', sans-serif",
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  lineHeight: '1.6',
-                  letterSpacing: 'normal',
-                  textTransform: 'none',
-                  width: '220px',
-                  margin: '0 auto',
-                  textAlign: 'center',
-                  display: 'block',
-                }}>
+                <span
+                  className="text-white"
+                  style={{
+                    ...labelTextStyle,
+                    width: '100%',
+                    maxWidth: '220px',
+                    margin: '0 auto',
+                    textAlign: 'center',
+                    display: 'block',
+                  }}
+                >
                   {item.label}
                 </span>
               </div>

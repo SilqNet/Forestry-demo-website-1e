@@ -1,10 +1,40 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
+
 export default function Hero() {
+  const [canPlayVideo, setCanPlayVideo] = useState(false)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+
+  useEffect(() => {
+    const onPreloaderFinished = () => {
+      setCanPlayVideo(true)
+    }
+
+    if (!document.querySelector('.logo-loader')) {
+      setCanPlayVideo(true)
+    }
+
+    window.addEventListener('site-preloader-finished', onPreloaderFinished)
+    return () => window.removeEventListener('site-preloader-finished', onPreloaderFinished)
+  }, [])
+
+  useEffect(() => {
+    if (!canPlayVideo) return
+    const videoEl = videoRef.current
+    if (!videoEl) return
+
+    videoEl.currentTime = 0
+    void videoEl.play().catch(() => {
+      // Ignore autoplay policy errors.
+    })
+  }, [canPlayVideo])
 
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden">
+      {/* Hero Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
@@ -12,10 +42,10 @@ export default function Hero() {
         webkit-playsinline="true"
         preload="auto"
         poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100"
       >
         <source
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
+          src="/videos/hero-bg.mp4"
           type="video/mp4"
         />
       </video>
@@ -25,7 +55,7 @@ export default function Hero() {
 
       <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-12 md:pb-16">
         <h1 className="max-w-5xl text-left text-[30px] md:text-[42px] text-white leading-[1.12] mb-4" style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none' }}>
-          „GR GRUPA” - uzticams partneris mežsaimniecībā ar vairāk nekā 15 gadu pieredzi visā Latvijā
+          Uzticams partneris mežsaimniecībā jau vairāk nekā 15 gadus visā Latvijā
         </h1>
       </div>
     </section>
