@@ -95,7 +95,7 @@ export default function WhyUs() {
     { value: 100, suffix: '+', label: 'VEIKSMĪGAS SADARBĪBAS AR MEŽU ĪPAŠNIEKIEM', icon: '/icons/hands.png' },
     { value: 50, suffix: '+', label: 'ILGTERMIŅA SADARBĪBAS PARTNERI', icon: '/icons/hourglass.png' },
     { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' },
-    { value: 650, suffix: 'ha+', label: 'ATJAUNOTO MEŽA PLATĪBU', icon: '/icons/recycle.png' },
+    { value: 650, suffix: 'ha+', label: 'ATJAUNOTO MEŽA PLATĪBA', icon: '/icons/recycle.png' },
     { value: 700000, suffix: 'm3+', label: 'IZSTRĀDĀTĀS KOKSNES APJOMS', icon: '/icons/wood.png' },
   ]
 

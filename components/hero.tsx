@@ -1,21 +1,10 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
 
 export default function Hero() {
-  const [isMobile, setIsMobile] = useState(false)
   const [canPlayVideo, setCanPlayVideo] = useState(false)
   const videoRef = useRef<HTMLVideoElement | null>(null)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   useEffect(() => {
     const onPreloaderFinished = () => {
@@ -31,7 +20,7 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
-    if (!canPlayVideo || isMobile) return
+    if (!canPlayVideo) return
     const videoEl = videoRef.current
     if (!videoEl) return
 
@@ -43,33 +32,21 @@ export default function Hero() {
 
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden">
-      {/* Desktop Video Background */}
-      {!isMobile && (
-        <video
-          ref={videoRef}
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="/videos/hero-bg.mp4"
-            type="video/mp4"
-          />
-        </video>
-      )}
-
-      {/* Mobile Image Background */}
-      {isMobile && (
-        <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-          alt="Forest background"
-          fill
-          className="object-cover"
-          priority
+      {/* Hero Video Background */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source
+          src="/videos/hero-bg.mp4"
+          type="video/mp4"
         />
-      )}
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />

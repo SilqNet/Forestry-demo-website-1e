@@ -107,11 +107,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#" className="text-white hover:text-gold transition-colors font-normal" style={footerLinkStyle}>
-                  Transports / Loģistika
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-white hover:text-gold transition-colors font-normal" style={footerLinkStyle}>
                   Kokmateriālu tirdzniecība
                 </Link>
               </li>

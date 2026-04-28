@@ -38,9 +38,9 @@ export default function Services() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
+        <div className="flex overflow-x-auto gap-5 pb-2 snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:gap-x-5 lg:gap-y-10 lg:overflow-visible lg:pb-0">
           {services.map((service, index) => (
-            <article key={index} className="group cursor-pointer flex flex-col">
+            <article key={index} className="group cursor-pointer flex flex-col min-w-[82%] sm:min-w-[46%] lg:min-w-0 snap-start">
               <div className="image-wrapper relative w-full aspect-video overflow-hidden bg-muted rounded-sm mb-4">
                 <Image
                   src={service.image}
