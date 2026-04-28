@@ -28,7 +28,7 @@ export default function Hero() {
     void videoEl.play().catch(() => {
       // Ignore autoplay policy errors.
     })
-  }, [canPlayVideo, isMobile])
+  }, [canPlayVideo])
 
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden">
