@@ -39,28 +39,21 @@ export default function MezaVertibaPage() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {!isMobile ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
-                type="video/mp4"
-              />
-            </video>
-          ) : (
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-              alt="Forest background"
-              fill
-              className="object-cover"
-              priority
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            webkit-playsinline="true"
+            preload="auto"
+            poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          >
+            <source
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
+              type="video/mp4"
             />
-          )}
+          </video>
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
@@ -237,7 +230,10 @@ export default function MezaVertibaPage() {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            webkit-playsinline="true"
+            preload="auto"
+            poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           >
             <source src="/videos/download.mp4" type="video/mp4" />
           </video>

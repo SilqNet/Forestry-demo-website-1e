@@ -17,32 +17,21 @@ export default function Hero() {
 
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden">
-      {/* Desktop Video Background */}
-      {!isMobile && (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
-            type="video/mp4"
-          />
-        </video>
-      )}
-
-      {/* Mobile Image Background */}
-      {isMobile && (
-        <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-          alt="Forest background"
-          fill
-          className="object-cover"
-          priority
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        webkit-playsinline="true"
+        preload="auto"
+        poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      >
+        <source
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
+          type="video/mp4"
         />
-      )}
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />

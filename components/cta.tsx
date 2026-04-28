@@ -18,25 +18,21 @@ export default function CTA() {
   return (
     <section className="relative w-full py-32 overflow-hidden">
       {/* Video Background */}
-      {!isMobile && (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
-            type="video/mp4"
-          />
-        </video>
-      )}
-
-      {/* Fallback background for mobile */}
-      {isMobile && (
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-900 to-primary-700" />
-      )}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        webkit-playsinline="true"
+        preload="auto"
+        poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      >
+        <source
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
+          type="video/mp4"
+        />
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/50" />
