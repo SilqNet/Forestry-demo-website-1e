@@ -20,14 +20,22 @@ export default function Hero() {
   }, [])
 
   useEffect(() => {
-    if (!canPlayVideo) return
     const videoEl = videoRef.current
     if (!videoEl) return
 
-    videoEl.currentTime = 0
-    void videoEl.play().catch(() => {
-      // Ignore autoplay policy errors.
-    })
+    // Critical for iOS: ensure muted is set before any play attempt
+    videoEl.muted = true
+    videoEl.defaultMuted = true
+
+    if (canPlayVideo) {
+      videoEl.currentTime = 0
+      const playPromise = videoEl.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay failed - the 'poster' attribute handles the fallback image
+        })
+      }
+    }
   }, [canPlayVideo])
 
   return (
@@ -41,8 +49,11 @@ export default function Hero() {
         playsInline
         webkit-playsinline="true"
         preload="auto"
+        controls={false}
+        disablePictureInPicture
         poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-        className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100"
+        className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
       >
         <source
           src="/videos/hero-bg.mp4"
