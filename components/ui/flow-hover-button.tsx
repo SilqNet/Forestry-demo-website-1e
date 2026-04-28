@@ -22,7 +22,7 @@ export function FlowHoverButton({ className, asChild = false, children, ...props
         aria-hidden
         className="absolute inset-0 -z-10 origin-left scale-x-0 bg-gold transition-transform duration-500 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"
       />
-      <span className="relative z-10 inline-flex items-center gap-inherit">{children}</span>
+      <span className="relative z-10">{children}</span>
     </Comp>
   )
 }
