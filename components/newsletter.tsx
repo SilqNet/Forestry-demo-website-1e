@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 export default function Newsletter() {
   const sectionRef = useRef<HTMLElement | null>(null)
@@ -81,20 +82,22 @@ export default function Newsletter() {
           mēs būsim īstajā vietā, īstajā brīdī.
         </p>
 
-        <a
-          href="#"
-          className="group inline-flex items-center gap-2 rounded-sm border border-white/20 px-8 py-4 text-[15px] font-medium text-white transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-widest"
-        >
-          <span>Sazinies ar mums</span>
-          <svg
-            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <FlowHoverButton asChild>
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 rounded-sm border border-white/20 px-8 py-4 text-[15px] font-medium text-white transition-all hover:text-white hover:border-gold uppercase tracking-widest"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+            <span>Sazinies ar mums</span>
+            <svg
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </FlowHoverButton>
       </div>
     </section>
   )

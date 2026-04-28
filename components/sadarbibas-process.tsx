@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 const steps = [
   {
@@ -63,27 +64,30 @@ export default function SadarbibasProcess() {
                   textTransform: 'none',
                 }}
               >
-                Ja tev pieder meža īpašums, ko vēlies pārdot, tad piedāvā to “GR GRUPA”. Pērkam pieaugušus mežus,
-                jaunaudzes, izcirtumus, kā arī neizmantotas vai daļēji aizaugušas lauksaimniecības zemes. Ja nepieciešams,
-                veicam īpašumu sadalīšanu. Piedāvājam arī īpašumu maiņu.
+                Ja tev pieder meža īpašums, ko vēlies pārdot, tad piedāvā to “GR GRUPA”. Pērkam visa veida meža
+                īpašumus, neizmantotas vai daļēji aizaugušas lauksaimniecības zemes, kā arī kokmateriālus un zarus
+                šķeldai. Ja nepieciešams, veicam īpašumu sadalīšanu. Piedāvājam arī īpašumu maiņu un bezmaksas
+                juridisko palīdzību.
               </p>
             </div>
 
             <div className="mt-8">
-              <a
-                href="#"
-                className="group inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-widest"
-              >
-                <span>Kļūt par partneri</span>
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <FlowHoverButton asChild>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold uppercase tracking-widest"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
+                  <span>Kļūt par partneri</span>
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </FlowHoverButton>
             </div>
           </div>
 

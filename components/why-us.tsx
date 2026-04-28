@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 const easeOutQuart = (t: number) => 1 - (--t) * t * t * t
 
@@ -94,8 +95,8 @@ export default function WhyUs() {
     { value: 100, suffix: '+', label: 'VEIKSMĪGAS SADARBĪBAS AR MEŽU ĪPAŠNIEKIEM', icon: '/icons/hands.png' },
     { value: 50, suffix: '+', label: 'ILGTERMIŅA SADARBĪBAS PARTNERI', icon: '/icons/hourglass.png' },
     { value: 500, suffix: 'ha+', label: 'APSAIMNIEKOTO ĪPAŠUMU PLATĪBA', icon: '/icons/trees.png' },
-    { value: 650, suffix: 'ha+', label: 'ATJAUNOTU PLATĪBU', icon: '/icons/recycle.png' },
-    { value: 700000, suffix: 'm3+', label: 'IZSTRĀDĀTA KOKSNES APJOMA', icon: '/icons/wood.png' },
+    { value: 650, suffix: 'ha+', label: 'ATJAUNOTO MEŽA PLATĪBU', icon: '/icons/recycle.png' },
+    { value: 700000, suffix: 'm3+', label: 'IZSTRĀDĀTAS KOKSNES APJOMS', icon: '/icons/wood.png' },
   ]
 
   const numberTextStyle: React.CSSProperties = {
@@ -129,8 +130,8 @@ export default function WhyUs() {
               </div>
               <h2 className="text-black mb-8 lg:mb-0" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
                 Strādājam ar meža<br />
-                resursiem no meža līdz<br />
-                produktam
+                resursiem no stāda līdz<br />
+                mežam
               </h2>
             </div>
             <div className="lg:w-[55%] lg:pt-[90px]">
@@ -142,7 +143,8 @@ export default function WhyUs() {
                   Savā darbā ievērojam mežu ilgtspējas apsaimniekošanas principu un saudzīgi rīkojamies ar dabas resursiem, lai tiktu saglabāta bioloģiskā daudzveidība un līdzsvars starp trīs savstarpēji saistītām dimensijām – vides, ekonomisko un sociālo.
                 </p>
               </div>
-              <a href="#" className="group inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:bg-gold hover:text-white hover:border-gold uppercase tracking-widest">
+              <FlowHoverButton asChild>
+                <a href="#" className="inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold uppercase tracking-widest">
                 <span>PAR GR GRUPA</span>
                 <svg
                   className="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -157,7 +159,8 @@ export default function WhyUs() {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </a>
+                </a>
+              </FlowHoverButton>
             </div>
           </div>
         </div>
