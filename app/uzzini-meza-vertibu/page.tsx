@@ -7,7 +7,6 @@ import { Check, Phone, Mail, ArrowRight, ChevronRight } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export default function MezaVertibaPage() {
-  const [isMobile, setIsMobile] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -15,15 +14,6 @@ export default function MezaVertibaPage() {
     property: '',
     message: ''
   })
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024) // Using 1024 to match LG breakpoint
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

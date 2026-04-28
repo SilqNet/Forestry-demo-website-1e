@@ -4,16 +4,6 @@ import { useState, useEffect } from 'react'
 import { Phone } from 'lucide-react'
 
 export default function CTA() {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   return (
     <section className="relative w-full py-32 overflow-hidden">
