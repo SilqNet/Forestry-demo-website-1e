@@ -144,10 +144,10 @@ export default function WhyUs() {
                 </p>
               </div>
               <FlowHoverButton asChild>
-                <a href="#" className="inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold uppercase tracking-widest">
+                <a href="#" className="inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest">
                 <span>PAR GR GRUPA</span>
                 <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  className="w-4 h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -168,23 +168,13 @@ export default function WhyUs() {
 
 
       <div className="bg-[#0f1211] py-32" ref={sectionRef}>
-        <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '2rem', paddingRight: '2rem', overflow: 'visible' }}>
-          {/* Row 1: first three counters */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'flex-start',
-              gap: '60px',
-              flexWrap: 'wrap',
-              rowGap: '44px',
-            }}
-          >
-            {counters.slice(0, 3).map((item, i) => (
+        <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '1rem', paddingRight: '1rem', overflow: 'visible' }}>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-8 lg:gap-x-[60px] gap-y-10 lg:gap-y-11">
+            {counters.map((item, i) => (
               <div
                 key={`${item.label}-${i}`}
                 style={{
-                  width: '240px',
+                  width: '100%',
                   flexShrink: 0,
                   display: 'flex',
                   flexDirection: 'column',
@@ -215,66 +205,8 @@ export default function WhyUs() {
                   className="text-white"
                   style={{
                     ...labelTextStyle,
-                    width: '220px',
-                    margin: '0 auto',
-                    textAlign: 'center',
-                    display: 'block',
-                  }}
-                >
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2: remaining three counters */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'flex-start',
-              gap: '60px',
-              marginTop: '44px',
-              flexWrap: 'wrap',
-              rowGap: '44px',
-            }}
-          >
-            {counters.slice(3, 6).map((item, i) => (
-              <div
-                key={`${item.label}-${i}`}
-                style={{
-                  width: '240px',
-                  flexShrink: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-                className="group cursor-default"
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '8px',
-                    marginBottom: '16px',
-                  }}
-                >
-                  {item.icon && <Image src={item.icon} alt="" width={28} height={28} style={{ display: 'block', flexShrink: 0 }} />}
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px' }}>
-                    <span className="text-white" style={numberTextStyle}>
-                      <AnimatedCounter endValue={item.value} suffix="" startAnimation={startAnimation} />
-                    </span>
-                    <span className="text-white" style={numberTextStyle}>
-                      {item.suffix}
-                    </span>
-                  </div>
-                </div>
-                <span
-                  className="text-white"
-                  style={{
-                    ...labelTextStyle,
-                    width: '220px',
+                    width: '100%',
+                    maxWidth: '220px',
                     margin: '0 auto',
                     textAlign: 'center',
                     display: 'block',

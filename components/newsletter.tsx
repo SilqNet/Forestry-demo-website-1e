@@ -85,11 +85,11 @@ export default function Newsletter() {
         <FlowHoverButton asChild>
           <a
             href="#"
-            className="inline-flex items-center gap-2 rounded-sm border border-white/20 px-8 py-4 text-[15px] font-medium text-white transition-all hover:text-white hover:border-gold uppercase tracking-widest"
+            className="inline-flex items-center gap-2 rounded-sm border border-white/20 px-8 py-4 text-[15px] font-medium text-white transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest"
           >
             <span>Sazinies ar mums</span>
             <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              className="w-4 h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
