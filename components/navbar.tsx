@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { X, ChevronDown } from 'lucide-react'
@@ -63,10 +63,6 @@ export default function Navbar() {
   const toggleDropdown = (name: string) => {
     setOpenDropdown(openDropdown === name ? null : name)
   }
-
-  const toggleMenu = useCallback(() => {
-    setIsOpen((open) => !open)
-  }, [])
 
   const ieperkamSubmenu = [
     { label: 'Pārdot mežu?', href: '#' },
@@ -205,7 +201,7 @@ export default function Navbar() {
               <div className="flex items-center ml-8">
                 <button
                   type="button"
-                  onClick={toggleMenu}
+                  onClick={(e) => e.preventDefault()}
                   className={`${menuButtonClass} p-1 relative z-10 transition-transform active:scale-90`}
                   aria-expanded={isOpen}
                   aria-controls={MENU_PANEL_ID}
@@ -219,7 +215,7 @@ export default function Navbar() {
             <div className="ml-auto flex items-center gap-2 md:gap-3 shrink-0 md:hidden">
               <button
                 type="button"
-                onClick={toggleMenu}
+                onClick={(e) => e.preventDefault()}
                 className={menuButtonClass}
                 aria-expanded={isOpen}
                 aria-controls={MENU_PANEL_ID}

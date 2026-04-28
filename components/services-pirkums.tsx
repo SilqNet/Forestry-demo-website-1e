@@ -70,14 +70,6 @@ export default function ServicesPirkums() {
                 <Image src={service.image} alt={service.title} fill className="object-cover" />
               </div>
               <div className="pt-2 flex items-start gap-2">
-                <svg
-                  className="w-4 h-4 mt-[3px] text-black group-hover:text-gold transition-colors flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
                 <h3
                   className="text-black group-hover:text-gold transition-colors"
                   style={{
@@ -91,6 +83,14 @@ export default function ServicesPirkums() {
                 >
                   {service.title}
                 </h3>
+                <svg
+                  className="w-4 h-4 mt-[3px] text-black group-hover:text-gold transition-colors flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </div>
             </article>
           ))}
