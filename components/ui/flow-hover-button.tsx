@@ -13,16 +13,12 @@ export function FlowHoverButton({ className, asChild = false, children, ...props
   return (
     <Comp
       className={cn(
-        'group relative isolate overflow-hidden transition-colors duration-300',
+        'group relative isolate overflow-hidden transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-gold before:transition-transform before:duration-500 before:ease-out hover:before:scale-x-100 focus-visible:before:scale-x-100 [&>*]:relative [&>*]:z-10',
         className
       )}
       {...props}
     >
-      <span
-        aria-hidden
-        className="absolute inset-0 -z-10 origin-left scale-x-0 bg-gold transition-transform duration-500 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"
-      />
-      <span className="relative z-10">{children}</span>
+      {children}
     </Comp>
   )
 }
