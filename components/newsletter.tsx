@@ -16,7 +16,7 @@ export default function Newsletter() {
     videoEl.muted = true
     videoEl.defaultMuted = true
 
-    let rafId: number
+    let rafId: number = 0
     const checkLoop = () => {
       if (videoEl.duration > 0) {
         if (videoEl.currentTime >= videoEl.duration - 0.2) {
@@ -39,7 +39,7 @@ export default function Newsletter() {
             // Autoplay failed
           })
         } else {
-          cancelAnimationFrame(rafId)
+          if (rafId) cancelAnimationFrame(rafId)
           videoEl.pause()
         }
       },
@@ -49,7 +49,7 @@ export default function Newsletter() {
     observer.observe(sectionEl)
     return () => {
       observer.disconnect()
-      cancelAnimationFrame(rafId)
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
 

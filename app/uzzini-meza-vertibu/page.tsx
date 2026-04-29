@@ -19,7 +19,7 @@ export default function MezaVertibaPage() {
   })
 
   useEffect(() => {
-    let rafId: number
+    let rafId: number = 0
     const videos = [heroVideoRef.current, bannerVideoRef.current].filter(Boolean) as HTMLVideoElement[]
 
     const checkLoop = () => {
@@ -41,7 +41,9 @@ export default function MezaVertibaPage() {
     })
 
     rafId = requestAnimationFrame(checkLoop)
-    return () => cancelAnimationFrame(rafId)
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
