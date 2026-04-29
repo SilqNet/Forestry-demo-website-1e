@@ -56,16 +56,18 @@ export const SeamlessVideo: React.FC<SeamlessVideoProps> = ({
 
     let rafId: number
     const checkLoop = () => {
+      const v1 = videoRef1.current
+      const v2 = videoRef2.current
       const currentVideo = activeVideo === 1 ? v1 : v2
       const otherVideo = activeVideo === 1 ? v2 : v1
 
       if (currentVideo && currentVideo.duration > 0) {
         const remainingTime = currentVideo.duration - currentVideo.currentTime
 
-        // Start pre-playing the other video slightly before the threshold
-        if (useDoubleBuffer && otherVideo && remainingTime < loopThreshold + 0.2) {
+        // Start pre-playing the other video slightly before the threshold to ensure it's ready
+        if (useDoubleBuffer && otherVideo && remainingTime < loopThreshold + 0.3) {
           if (otherVideo.paused) {
-            otherVideo.currentTime = 0
+            otherVideo.currentTime = 0.001 // Slightly past 0 to avoid black frames on some mobile browsers
             otherVideo.play().catch(() => {})
           }
         }
@@ -73,15 +75,17 @@ export const SeamlessVideo: React.FC<SeamlessVideoProps> = ({
         // Switch videos at the threshold
         if (remainingTime <= loopThreshold) {
           if (useDoubleBuffer && otherVideo) {
-            otherVideo.style.opacity = '1'
-            currentVideo.style.opacity = '0'
+            // Instant swap
             setActiveVideo(activeVideo === 1 ? 2 : 1)
-            // Reset the old video
-            currentVideo.pause()
-            currentVideo.currentTime = 0
+            
+            // Pause and reset the old video
+            setTimeout(() => {
+              currentVideo.pause()
+              currentVideo.currentTime = 0.001
+            }, 100) // Small delay to ensure the swap is visible
           } else {
             // Single video fallback: just reset
-            currentVideo.currentTime = 0
+            currentVideo.currentTime = 0.001
             currentVideo.play().catch(() => {})
           }
         }
@@ -89,7 +93,10 @@ export const SeamlessVideo: React.FC<SeamlessVideoProps> = ({
       rafId = requestAnimationFrame(checkLoop)
     }
 
-    v1.play().then(() => setIsReady(true)).catch(() => {})
+    if (v1) {
+      v1.currentTime = 0.001
+      v1.play().then(() => setIsReady(true)).catch(() => {})
+    }
     rafId = requestAnimationFrame(checkLoop)
 
     return () => {
@@ -103,8 +110,12 @@ export const SeamlessVideo: React.FC<SeamlessVideoProps> = ({
         ref={videoRef1}
         src={src}
         poster={poster}
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-        style={{ zIndex: activeVideo === 1 ? 2 : 1, opacity: activeVideo === 1 ? 1 : 0 }}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ 
+          zIndex: activeVideo === 1 ? 2 : 1, 
+          opacity: activeVideo === 1 ? 1 : 0,
+          visibility: activeVideo === 1 ? 'visible' : 'hidden' // Using visibility too
+        }}
         muted
         playsInline
         webkit-playsinline="true"
@@ -114,8 +125,12 @@ export const SeamlessVideo: React.FC<SeamlessVideoProps> = ({
         <video
           ref={videoRef2}
           src={src}
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-          style={{ zIndex: activeVideo === 2 ? 2 : 1, opacity: activeVideo === 2 ? 1 : 0 }}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ 
+            zIndex: activeVideo === 2 ? 2 : 1, 
+            opacity: activeVideo === 2 ? 1 : 0,
+            visibility: activeVideo === 2 ? 'visible' : 'hidden'
+          }}
           muted
           playsInline
           webkit-playsinline="true"
