@@ -31,7 +31,7 @@ export default function Hero() {
         loop
         muted
         playsInline
-        webkitPlaysInline
+        {...{ "webkit-playsinline": "true" }}
         preload="auto"
         controls={false}
         disablePictureInPicture
