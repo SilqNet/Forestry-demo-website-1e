@@ -1,18 +1,65 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { SeamlessVideo } from '@/components/ui/seamless-video'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Hero() {
+  const [canPlayVideo, setCanPlayVideo] = useState(false)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+
+  useEffect(() => {
+    const onPreloaderFinished = () => {
+      setCanPlayVideo(true)
+    }
+
+    if (!document.querySelector('.logo-loader')) {
+      setCanPlayVideo(true)
+    }
+
+    window.addEventListener('site-preloader-finished', onPreloaderFinished)
+    return () => window.removeEventListener('site-preloader-finished', onPreloaderFinished)
+  }, [])
+
+  useEffect(() => {
+    const videoEl = videoRef.current
+    if (!videoEl) return
+
+    // Critical for iOS: ensure muted is set before any play attempt
+    videoEl.muted = true
+    videoEl.defaultMuted = true
+
+    if (canPlayVideo) {
+      videoEl.currentTime = 0
+      const playPromise = videoEl.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay failed - the 'poster' attribute handles the fallback image
+        })
+      }
+    }
+  }, [canPlayVideo])
+
   return (
-    <section className="relative w-full h-screen pt-20 overflow-hidden bg-[#050d0c]">
+    <section className="relative w-full h-screen pt-20 overflow-hidden">
       {/* Hero Video Background */}
-      <SeamlessVideo
-        src="/videos/hero-bg.mp4"
-        loopThreshold={0.5}
-        className="absolute inset-0 w-full h-full scale-[1.12] md:scale-100 pointer-events-none"
-        style={{ width: '100%', height: '100%' }}
-      />
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        webkit-playsinline="true"
+        preload="auto"
+        controls={false}
+        disablePictureInPicture
+        poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
+        className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+      >
+        <source
+          src="/videos/hero-bg.mp4"
+          type="video/mp4"
+        />
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
