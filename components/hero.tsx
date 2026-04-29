@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 
 export default function Hero() {
   const [canPlayVideo, setCanPlayVideo] = useState(false)
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
@@ -21,40 +22,22 @@ export default function Hero() {
 
   useEffect(() => {
     const videoEl = videoRef.current
-    if (!videoEl) return
+    if (!videoEl || !canPlayVideo) return
 
-    // Critical for iOS: ensure muted is set before any play attempt
     videoEl.muted = true
     videoEl.defaultMuted = true
 
-    let rafId: number = 0
-    const checkLoop = () => {
-      if (videoEl.duration > 0) {
-        // Manually reset slightly before the end to avoid the native loop delay on mobile
-        if (videoEl.currentTime >= videoEl.duration - 0.2) {
-          videoEl.currentTime = 0.001
-          videoEl.play().catch(() => {})
-        }
-      }
-      rafId = requestAnimationFrame(checkLoop)
-    }
-
-    if (canPlayVideo) {
-      videoEl.currentTime = 0
-      videoEl.play().then(() => {
-        rafId = requestAnimationFrame(checkLoop)
-      }).catch(() => {
-        // Autoplay failed
-      })
-    }
-
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId)
-    }
+    videoEl.play().catch(() => {
+      // Autoplay failed
+    })
   }, [canPlayVideo])
 
+  const handleCanPlay = () => {
+    setIsVideoLoaded(true)
+  }
+
   return (
-    <section className="relative w-full h-screen pt-20 overflow-hidden">
+    <section className="relative w-full h-screen pt-20 overflow-hidden bg-black">
       {/* Hero Video Background */}
       <video
         ref={videoRef}
@@ -62,12 +45,13 @@ export default function Hero() {
         muted
         loop
         playsInline
-        webkit-playsinline="true"
         preload="auto"
         controls={false}
         disablePictureInPicture
-        poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-        className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none"
+        onCanPlay={handleCanPlay}
+        className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none transition-opacity duration-1000 ${
+          isVideoLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
       >
         <source

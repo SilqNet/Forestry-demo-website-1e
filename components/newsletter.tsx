@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 export default function Newsletter() {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const sectionRef = useRef<HTMLElement | null>(null)
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
@@ -12,20 +13,9 @@ export default function Newsletter() {
     const videoEl = videoRef.current
     if (!sectionEl || !videoEl) return
 
-    // Critical for iOS: ensure muted is set before any play attempt
     videoEl.muted = true
     videoEl.defaultMuted = true
-
-    let rafId: number = 0
-    const checkLoop = () => {
-      if (videoEl.duration > 0) {
-        if (videoEl.currentTime >= videoEl.duration - 0.2) {
-          videoEl.currentTime = 0.001
-          videoEl.play().catch(() => {})
-        }
-      }
-      rafId = requestAnimationFrame(checkLoop)
-    }
+    videoEl.playsInline = true
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -33,28 +23,25 @@ export default function Newsletter() {
         if (!entry) return
 
         if (entry.isIntersecting) {
-          videoEl.play().then(() => {
-            rafId = requestAnimationFrame(checkLoop)
-          }).catch(() => {
-            // Autoplay failed
-          })
-        } else {
-          if (rafId) cancelAnimationFrame(rafId)
-          videoEl.pause()
+          videoEl.play().catch(() => {})
         }
       },
-      { threshold: [0, 0.1] }
+      { threshold: 0.1 }
     )
 
     observer.observe(sectionEl)
+
     return () => {
       observer.disconnect()
-      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
 
+  const handleCanPlay = () => {
+    setIsVideoLoaded(true)
+  }
+
   return (
-    <section ref={sectionRef} className="relative py-24">
+    <section ref={sectionRef} className="relative py-24 bg-black">
       <div className="absolute inset-0">
         <video
           ref={videoRef}
@@ -62,16 +49,18 @@ export default function Newsletter() {
           muted
           loop
           playsInline
-          webkit-playsinline="true"
           controls={false}
           disablePictureInPicture
           preload="auto"
-          poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          onCanPlay={handleCanPlay}
+          className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
+            isVideoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         >
           <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
         </video>
+
         <div className="absolute inset-0 bg-black/55" />
       </div>
 
