@@ -27,15 +27,28 @@ export default function Hero() {
     videoEl.muted = true
     videoEl.defaultMuted = true
 
+    let rafId: number
+    const checkLoop = () => {
+      if (videoEl.duration > 0) {
+        // Manually reset slightly before the end to avoid the native loop delay on mobile
+        if (videoEl.currentTime >= videoEl.duration - 0.2) {
+          videoEl.currentTime = 0.001
+          videoEl.play().catch(() => {})
+        }
+      }
+      rafId = requestAnimationFrame(checkLoop)
+    }
+
     if (canPlayVideo) {
       videoEl.currentTime = 0
-      const playPromise = videoEl.play()
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay failed - the 'poster' attribute handles the fallback image
-        })
-      }
+      videoEl.play().then(() => {
+        rafId = requestAnimationFrame(checkLoop)
+      }).catch(() => {
+        // Autoplay failed
+      })
     }
+
+    return () => cancelAnimationFrame(rafId)
   }, [canPlayVideo])
 
   return (
