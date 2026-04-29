@@ -25,36 +25,12 @@ export default function Hero() {
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden bg-[#050d0c]">
       {/* Hero Video Background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        {...{ "webkit-playsinline": "true" }}
-        preload="auto"
-        controls={false}
-        disablePictureInPicture
-        className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none"
-        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-        onTimeUpdate={(e) => {
-          const video = e.currentTarget;
-          // Loop slightly before the absolute end to avoid mobile freeze/stutter
-          if (video.duration > 0 && video.currentTime >= video.duration - 0.1) {
-            video.currentTime = 0;
-            video.play().catch(() => {});
-          }
-        }}
-        onEnded={(e) => {
-          e.currentTarget.currentTime = 0;
-          e.currentTarget.play().catch(() => {});
-        }}
-      >
-        <source
-          src="/videos/hero-bg.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <SeamlessVideo
+        src="/videos/hero-bg.mp4"
+        loopThreshold={0.5}
+        className="absolute inset-0 w-full h-full scale-[1.12] md:scale-100 pointer-events-none"
+        style={{ width: '100%', height: '100%' }}
+      />
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
