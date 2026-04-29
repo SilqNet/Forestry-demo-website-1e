@@ -23,7 +23,7 @@ const services = [
 ]
 
 export default function ServicesPirkums() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(-1)
 
   const activateCard = (index: number) => {
     setActiveIndex(index)
