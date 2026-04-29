@@ -16,26 +16,41 @@ export default function Newsletter() {
     videoEl.muted = true
     videoEl.defaultMuted = true
 
+    let rafId: number
+    const checkLoop = () => {
+      if (videoEl.duration > 0) {
+        if (videoEl.currentTime >= videoEl.duration - 0.2) {
+          videoEl.currentTime = 0.001
+          videoEl.play().catch(() => {})
+        }
+      }
+      rafId = requestAnimationFrame(checkLoop)
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
         if (!entry) return
 
-        // Start as soon as the section enters the viewport and keep playing.
         if (entry.isIntersecting) {
-          const playPromise = videoEl.play()
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              // Autoplay failed - fallback is poster
-            })
-          }
+          videoEl.play().then(() => {
+            rafId = requestAnimationFrame(checkLoop)
+          }).catch(() => {
+            // Autoplay failed
+          })
+        } else {
+          cancelAnimationFrame(rafId)
+          videoEl.pause()
         }
       },
       { threshold: [0, 0.1] }
     )
 
     observer.observe(sectionEl)
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
