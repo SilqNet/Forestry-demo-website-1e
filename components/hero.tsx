@@ -27,7 +27,7 @@ export default function Hero() {
     videoEl.muted = true
     videoEl.defaultMuted = true
 
-    let rafId: number
+    let rafId: number = 0
     const checkLoop = () => {
       if (videoEl.duration > 0) {
         // Manually reset slightly before the end to avoid the native loop delay on mobile
@@ -48,7 +48,9 @@ export default function Hero() {
       })
     }
 
-    return () => cancelAnimationFrame(rafId)
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [canPlayVideo])
 
   return (

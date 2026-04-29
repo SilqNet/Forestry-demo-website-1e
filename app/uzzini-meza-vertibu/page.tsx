@@ -19,20 +19,29 @@ export default function MezaVertibaPage() {
   })
 
   useEffect(() => {
-    // Robust video initialization for mobile
-    [heroVideoRef, bannerVideoRef].forEach(ref => {
-      const video = ref.current
-      if (video) {
-        video.muted = true
-        video.defaultMuted = true
-        const playPromise = video.play()
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Fallback handled by poster
-          })
+    let rafId: number
+    const videos = [heroVideoRef.current, bannerVideoRef.current].filter(Boolean) as HTMLVideoElement[]
+
+    const checkLoop = () => {
+      videos.forEach(video => {
+        if (video.duration > 0) {
+          if (video.currentTime >= video.duration - 0.2) {
+            video.currentTime = 0.001
+            video.play().catch(() => {})
+          }
         }
-      }
+      })
+      rafId = requestAnimationFrame(checkLoop)
+    }
+
+    videos.forEach(video => {
+      video.muted = true
+      video.defaultMuted = true
+      video.play().catch(() => {})
     })
+
+    rafId = requestAnimationFrame(checkLoop)
+    return () => cancelAnimationFrame(rafId)
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
