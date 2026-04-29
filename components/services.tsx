@@ -41,7 +41,7 @@ export default function Services() {
           <div className="lg:w-[55%]">
             <div className="max-w-[600px] text-black/80 text-left">
               <p style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
-                Galvenie darbības virzieni aptver visu koksnes ceļu — no iestādīta meža stāda līdz pārstrādātiem kokmateriāliem. Katrs no tiem papildina otru un palīdz nodrošināt stabilu, ilgtermiņā un uzticamu sadarbību ar klientiem.
+                Galvenie darbības virzieni aptver visu koksnes ceļu — no iestādīta meža stāda līdz pārstrādātiem kokmateriāliem. Katrs no tiem papildina cits citu un palīdz nodrošināt stabilu, ilgtermiņā uzticamu sadarbību ar klientiem.
               </p>
             </div>
           </div>

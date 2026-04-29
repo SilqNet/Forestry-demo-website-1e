@@ -61,11 +61,11 @@ export default function ServicesPirkums() {
                 }}
               >
                 Mēs paši apsaimniekojam un atjaunojam katru mežu, ko iegādājamies, nodrošinot pārdomātu un ilgtspējīgu
-                attīstību. Mūsu pieeja balstās ilgtermiņa skatījumā – vērtību redzam ne tikai naudā, bet arī nākotnē, ko
+                attīstību. Mūsu pieeja balstās ilgtermiņa skatījumā – vērtību saskatām ne tikai naudā, bet arī nākotnē, ko
                 kopīgi veidojam.
                 <br />
                 <br />
-                Katrs mežs ir īpašs un katrs īpašnieks ir pelnījis partneri, kas saprot vērtību, ko nevar izmērīt tikai
+                Katrs mežs ir īpašs, un katrs īpašnieks ir pelnījis partneri, kas saprot vērtību, ko nevar izmērīt tikai
                 kubikmetros.
               </p>
             </div>

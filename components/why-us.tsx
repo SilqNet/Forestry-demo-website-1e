@@ -130,17 +130,14 @@ export default function WhyUs() {
               </div>
               <h2 className="text-black mb-8 lg:mb-0" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
                 Strādājam ar meža<br />
-                resursiem no stāda līdz<br />
+                resursiem - no stāda līdz<br />
                 mežam
               </h2>
             </div>
             <div className="lg:w-[55%] lg:pt-[90px]">
               <div className="max-w-[600px] space-y-8 mb-10 text-black/80 text-left">
                 <p style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
-                  Mums ir izpratne par mežu kā dabisku sistēmu, kas prasa saprātīgu un gudru pieeju. No mūsu turpmākās rīcības un zināšanām veidosies nākotnes mežs – mežs kādu šobrīd varam tikai iedomāties, bet kāds būtu izveidojams, ievērojot konkrētos dabas apstākļus, priekšrocības un ierobežojumus.
-                </p>
-                <p style={{ fontFamily: "'Saira', sans-serif", fontSize: '14px', fontWeight: 400, lineHeight: '1.6', letterSpacing: 'normal', textTransform: 'none' }}>
-                  Savā darbā ievērojam mežu ilgtspējas apsaimniekošanas principu un saudzīgi rīkojamies ar dabas resursiem, lai tiktu saglabāta bioloģiskā daudzveidība un līdzsvars starp trīs savstarpēji saistītām dimensijām – vides, ekonomisko un sociālo.
+                  Mums ir izpratne par mežu kā dabisku sistēmu, kas prasa saprātīgu un gudru pieeju. No mūsu turpmākās rīcības un zināšanām veidosies nākotnes mežs – mežs, kādu šobrīd varam tikai iedomāties, bet kāds būtu izveidojams, ievērojot konkrētos dabas apstākļus, priekšrocības un ierobežojumus. Savā darbā ievērojam mežu ilgtspējīgas apsaimniekošanas principus un saudzīgi rīkojamies ar dabas resursiem, lai tiktu saglabāta bioloģiskā daudzveidība un līdzsvars starp trim savstarpēji saistītām dimensijām – vides, ekonomisko un sociālo.
                 </p>
               </div>
               <FlowHoverButton asChild>

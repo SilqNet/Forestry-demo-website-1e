@@ -6,30 +6,30 @@ const steps = [
     numberIcon: '/icons/number-1.png',
     title: 'Sākotnējā informācija par īpašumu',
     description:
-      'Lai noteiktu īpašuma aptuveno vērtību, mums būs nepieciešams īpašuma kadastra numurs un aktuālie meža inventarizācijas dati no Valsts meža dienesta.',
+      'Lai noteiktu īpašuma aptuveno vērtību, nepieciešams īpašuma kadastra numurs un aktuālie meža inventarizācijas dati no Valsts meža dienesta.',
   },
   {
     numberIcon: '/icons/number-2.png',
     title: 'Īpašuma novērtēšana dabā',
     description:
-      'Kad noteikta aptuvenā īpašuma vērtība un abas puses tai piekritušas, braucam īpašumu apskatīt. Ja situācija dabā atbilst dokumentos norādītajai, esam gatavi darījumam. Ja situācija atšķiras, veicam korekcijas īpašuma vērtības aprēķinā un sagatavojam jaunu piedāvājumu.',
+      'Kad noteikta aptuvenā īpašuma vērtība un abas puses tai piekritušas, dodamies īpašumu apskatīt. Ja situācija dabā atbilst dokumentos norādītajai, esam gatavi darījumam. Ja situācija atšķiras, veicam korekcijas īpašuma vērtības aprēķinā un sagatavojam jaunu piedāvājumu.',
   },
   {
     numberIcon: '/icons/number-3.png',
     title: 'Līguma sagatavošana',
     description:
-      'Lai sagatavotu darījuma līgumu, nepieciešams pārdevēja vārds, uzvārds, personas kods, tālruņa numurs, īpašuma kadastra apzīmējums un bankas konta numurs, uz kuru pārskaitīt darījuma summu. Sagatavoto līguma projektu nosūtām pārdevējam saskaņošanai.',
+      'Lai sagatavotu darījuma līgumu, nepieciešami šādi dati: pārdevēja vārds, uzvārds, personas kods, tālruņa numurs, īpašuma kadastra apzīmējums un bankas konta numurs, uz kuru pārskaitīt darījuma summu. Sagatavoto līguma projektu nosūtām pārdevējam saskaņošanai.',
   },
   {
     numberIcon: '/icons/number-4.png',
     title: 'Līguma parakstīšana',
     description:
-      'Kad līgums saskaņots, norunājam tikšanās laiku pie notāra, kur parakstām līgumu un nostiprinājuma lūgumu Zemesgrāmatai. Ja īpašums iegūts kopdzīves laikā, laulātajam jāparaksta piekrišana darījumam. Iepriekš vienojoties, visus dokumentus iespējams parakstīt attālināti.',
+      'Kad līgums ir saskaņots, norunājam tikšanās laiku pie notāra, kur parakstām līgumu un nostiprinājuma lūgumu Zemesgrāmatai. Ja īpašums iegūts kopdzīves laikā, laulātajam jāparaksta piekrišana darījumam. Iepriekš vienojoties, visus dokumentus iespējams parakstīt attālināti.',
   },
   {
     numberIcon: '/icons/number-5.png',
     title: 'Samaksa',
-    description: 'Samaksu par darījumu veicam līgumā norunātajā termiņā.',
+    description: 'Samaksu par darījumu veicam līgumā noteiktajā termiņā.',
   },
 ]
 
@@ -64,7 +64,7 @@ export default function SadarbibasProcess() {
                   textTransform: 'none',
                 }}
               >
-                Ja tev pieder meža īpašums, ko vēlies pārdot, tad piedāvā to “GR GRUPA”. Pērkam visa veida meža
+                Ja tev pieder meža īpašums, ko vēlies pārdot, piedāvā to “GR GRUPA”. Pērkam visa veida meža
                 īpašumus, neizmantotas vai daļēji aizaugušas lauksaimniecības zemes, kā arī kokmateriālus un zarus
                 šķeldai. Ja nepieciešams, veicam īpašumu sadalīšanu. Piedāvājam arī īpašumu maiņu un bezmaksas
                 juridisko palīdzību.

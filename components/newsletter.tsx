@@ -102,8 +102,8 @@ export default function Newsletter() {
             textTransform: 'none',
           }}
         >
-          Iegūsti partneri, kurš pret mežu izturas ar izpratni, ilgtermiņa redzējumu, kā pret unikālu dabas resursu —
-          mēs būsim īstajā vietā, īstajā brīdī.
+          Iegūsti partneri, kurš pret mežu izturas ar izpratni un ilgtermiņa redzējumu — kā pret unikālu dabas resursu.
+          Mēs būsim īstajā vietā, īstajā brīdī.
         </p>
 
         <FlowHoverButton asChild>

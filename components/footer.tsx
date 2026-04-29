@@ -38,7 +38,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-white/85 font-normal max-w-xs" style={footerLinkStyle}>
-              Mūsu uzņēmums nodrošina pilnu mežizstrādes ciklu, sākot no meža taksācijas līdz gatavās produkcijas realizācijai.
+              Mūsu uzņēmums nodrošina pilnu mežizstrādes ciklu — no meža taksācijas līdz gatavās produkcijas realizācijai.
             </p>
           </div>
 
