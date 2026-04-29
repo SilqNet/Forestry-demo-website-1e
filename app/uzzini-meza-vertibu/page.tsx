@@ -53,7 +53,7 @@ export default function MezaVertibaPage() {
             controls={false}
             disablePictureInPicture
             preload="auto"
-            onCanPlay={() => setIsHeroVideoLoaded(true)}
+            onCanPlayThrough={() => setIsHeroVideoLoaded(true)}
             className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
               isHeroVideoLoaded ? 'opacity-100' : 'opacity-0'
             }`}
@@ -244,7 +244,7 @@ export default function MezaVertibaPage() {
             controls={false}
             disablePictureInPicture
             preload="auto"
-            onCanPlay={() => setIsBannerVideoLoaded(true)}
+            onCanPlayThrough={() => setIsBannerVideoLoaded(true)}
             className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
               isBannerVideoLoaded ? 'opacity-100' : 'opacity-0'
             }`}

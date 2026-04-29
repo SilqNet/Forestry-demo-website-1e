@@ -36,7 +36,7 @@ export default function Newsletter() {
     }
   }, [])
 
-  const handleCanPlay = () => {
+  const handleCanPlayThrough = () => {
     setIsVideoLoaded(true)
   }
 
@@ -52,7 +52,7 @@ export default function Newsletter() {
           controls={false}
           disablePictureInPicture
           preload="auto"
-          onCanPlay={handleCanPlay}
+          onCanPlayThrough={handleCanPlayThrough}
           className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
           }`}

@@ -26,13 +26,14 @@ export default function Hero() {
 
     videoEl.muted = true
     videoEl.defaultMuted = true
+    videoEl.playsInline = true
 
     videoEl.play().catch(() => {
       // Autoplay failed
     })
   }, [canPlayVideo])
 
-  const handleCanPlay = () => {
+  const handleCanPlayThrough = () => {
     setIsVideoLoaded(true)
   }
 
@@ -48,8 +49,8 @@ export default function Hero() {
         preload="auto"
         controls={false}
         disablePictureInPicture
-        onCanPlay={handleCanPlay}
-        className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none transition-opacity duration-1000 ${
+        onCanPlayThrough={handleCanPlayThrough}
+        className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
           isVideoLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
