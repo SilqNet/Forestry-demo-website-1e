@@ -4,12 +4,10 @@ import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import Image from 'next/image'
 import { Check, Phone, Mail, ArrowRight, ChevronRight } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
+import { SeamlessVideo } from '@/components/ui/seamless-video'
 
 export default function MezaVertibaPage() {
-  const heroVideoRef = useRef<HTMLVideoElement | null>(null)
-  const bannerVideoRef = useRef<HTMLVideoElement | null>(null)
-
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -17,23 +15,6 @@ export default function MezaVertibaPage() {
     property: '',
     message: ''
   })
-
-  useEffect(() => {
-    // Robust video initialization for mobile
-    [heroVideoRef, bannerVideoRef].forEach(ref => {
-      const video = ref.current
-      if (video) {
-        video.muted = true
-        video.defaultMuted = true
-        const playPromise = video.play()
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Fallback handled by poster
-          })
-        }
-      }
-    })
-  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -49,36 +30,13 @@ export default function MezaVertibaPage() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video
-            ref={heroVideoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            webkit-playsinline="true"
-            controls={false}
-            disablePictureInPicture
-            preload="auto"
+          <SeamlessVideo
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
             poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-            onTimeUpdate={(e) => {
-              const video = e.currentTarget;
-              if (video.duration > 0 && video.currentTime >= video.duration - 0.1) {
-                video.currentTime = 0;
-                video.play().catch(() => {});
-              }
-            }}
-            onEnded={(e) => {
-              e.currentTarget.currentTime = 0;
-              e.currentTarget.play().catch(() => {});
-            }}
-          >
-            <source
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
-              type="video/mp4"
-            />
-          </video>
+            loopThreshold={0.5}
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ width: '100%', height: '100%' }}
+          />
           <div className="absolute inset-0 bg-black/50" />
         </div>
         
@@ -250,33 +208,13 @@ export default function MezaVertibaPage() {
       {/* Process Banner Section: Tikai 4 soļi līdz darījumam */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video
-            ref={bannerVideoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            webkit-playsinline="true"
-            controls={false}
-            disablePictureInPicture
-            preload="auto"
+          <SeamlessVideo
+            src="/videos/download.mp4"
             poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-            onTimeUpdate={(e) => {
-              const video = e.currentTarget;
-              if (video.duration > 0 && video.currentTime >= video.duration - 0.1) {
-                video.currentTime = 0;
-                video.play().catch(() => {});
-              }
-            }}
-            onEnded={(e) => {
-              e.currentTarget.currentTime = 0;
-              e.currentTarget.play().catch(() => {});
-            }}
-          >
-            <source src="/videos/download.mp4" type="video/mp4" />
-          </video>
+            loopThreshold={0.5}
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ width: '100%', height: '100%' }}
+          />
           <div className="absolute inset-0 bg-black/40" />
         </div>
         
