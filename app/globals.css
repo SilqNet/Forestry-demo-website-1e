@@ -176,13 +176,17 @@
     }
   }
 
+  /* Remove zoom on active as per requirement */
   .service-card.is-active .image-wrapper img {
-    transform: scale(1.06);
+    transform: none;
   }
 
-  .service-card.is-active .service-card-title,
-  .service-card.is-active .service-card-icon {
-    color: var(--gold);
+  /* Gold color on active (tap) - mobile only */
+  @media (hover: none) {
+    .service-card.is-active .service-card-title,
+    .service-card.is-active .service-card-icon {
+      color: var(--gold);
+    }
   }
 }
 
