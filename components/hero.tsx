@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { SeamlessVideo } from '@/components/ui/seamless-video'
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement | null>(null)
