@@ -28,7 +28,6 @@ export default function Hero() {
     videoEl.defaultMuted = true
 
     if (canPlayVideo) {
-      videoEl.currentTime = 0
       const playPromise = videoEl.play()
       if (playPromise !== undefined) {
         playPromise.catch(() => {
@@ -43,7 +42,6 @@ export default function Hero() {
       {/* Hero Video Background */}
       <video
         ref={videoRef}
-        autoPlay
         muted
         loop
         playsInline
@@ -54,6 +52,11 @@ export default function Hero() {
         poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
         className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none"
         style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+        onEnded={(e) => {
+          const video = e.currentTarget;
+          video.currentTime = 0;
+          video.play();
+        }}
       >
         <source
           src="/videos/hero-bg.mp4"
