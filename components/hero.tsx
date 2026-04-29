@@ -1,23 +1,9 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function Hero() {
-  const [canPlayVideo, setCanPlayVideo] = useState(false)
   const videoRef = useRef<HTMLVideoElement | null>(null)
-
-  useEffect(() => {
-    const onPreloaderFinished = () => {
-      setCanPlayVideo(true)
-    }
-
-    if (!document.querySelector('.logo-loader')) {
-      setCanPlayVideo(true)
-    }
-
-    window.addEventListener('site-preloader-finished', onPreloaderFinished)
-    return () => window.removeEventListener('site-preloader-finished', onPreloaderFinished)
-  }, [])
 
   useEffect(() => {
     const videoEl = videoRef.current
@@ -26,36 +12,31 @@ export default function Hero() {
     // Critical for iOS: ensure muted is set before any play attempt
     videoEl.muted = true
     videoEl.defaultMuted = true
-
-    if (canPlayVideo) {
-      const playPromise = videoEl.play()
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay failed - the 'poster' attribute handles the fallback image
-        })
-      }
+    
+    // Explicitly try to play in case autoPlay is blocked
+    const playPromise = videoEl.play()
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay might be blocked by browser policy until user interaction
+      })
     }
-  }, [canPlayVideo])
+  }, [])
 
   return (
-    <section className="relative w-full h-screen pt-20 overflow-hidden">
+    <section className="relative w-full h-screen pt-20 overflow-hidden bg-[#050d0c]">
       {/* Hero Video Background */}
       <video
         ref={videoRef}
+        autoPlay
+        loop
         muted
         playsInline
-        webkit-playsinline="true"
+        webkitPlaysInline
         preload="auto"
         controls={false}
         disablePictureInPicture
-        poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
         className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none"
         style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-        onEnded={(e) => {
-          const video = e.currentTarget;
-          video.currentTime = 0;
-          video.play();
-        }}
       >
         <source
           src="/videos/hero-bg.mp4"
@@ -71,6 +52,9 @@ export default function Hero() {
           Uzticams partneris mežsaimniecībā jau vairāk nekā 15 gadus visā Latvijā
         </h1>
       </div>
+    </section>
+  )
+}
     </section>
   )
 }
