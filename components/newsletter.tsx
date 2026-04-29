@@ -58,6 +58,7 @@ export default function Newsletter() {
           }`}
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         >
+          <source src="/videos/tavs-mezs-ir-vertiba-bg-mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
           <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
         </video>
 
