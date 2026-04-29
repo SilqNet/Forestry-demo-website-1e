@@ -54,6 +54,17 @@ export default function Newsletter() {
           poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
           className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+          onTimeUpdate={(e) => {
+            const video = e.currentTarget;
+            if (video.duration > 0 && video.currentTime >= video.duration - 0.1) {
+              video.currentTime = 0;
+              video.play().catch(() => {});
+            }
+          }}
+          onEnded={(e) => {
+            e.currentTarget.currentTime = 0;
+            e.currentTarget.play().catch(() => {});
+          }}
         >
           <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
         </video>

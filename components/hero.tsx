@@ -37,6 +37,18 @@ export default function Hero() {
         disablePictureInPicture
         className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] md:scale-100 pointer-events-none"
         style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+        onTimeUpdate={(e) => {
+          const video = e.currentTarget;
+          // Loop slightly before the absolute end to avoid mobile freeze/stutter
+          if (video.duration > 0 && video.currentTime >= video.duration - 0.1) {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          }
+        }}
+        onEnded={(e) => {
+          e.currentTarget.currentTime = 0;
+          e.currentTarget.play().catch(() => {});
+        }}
       >
         <source
           src="/videos/hero-bg.mp4"
