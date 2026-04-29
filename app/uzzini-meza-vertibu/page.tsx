@@ -256,6 +256,7 @@ export default function MezaVertibaPage() {
             }`}
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           >
+            <source src="/videos/tavs-mezs-ir-vertiba-bg-mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
             <source src="/videos/download.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/40" />
