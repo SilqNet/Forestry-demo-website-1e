@@ -61,6 +61,12 @@ export default function MezaVertibaPage() {
           >
             <source
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Forestry_demo_hero_page-xS1LfNF0pdzacu715Hb5bCeueDcRfn.mp4"
+              media="(min-width: 769px)"
+              type="video/mp4"
+            />
+            <source
+              src="/videos/hero-bg-mobile.mp4"
+              media="(max-width: 768px)"
               type="video/mp4"
             />
           </video>
