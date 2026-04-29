@@ -6,7 +6,6 @@ import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 export default function Newsletter() {
   const sectionRef = useRef<HTMLElement | null>(null)
-  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
     const sectionEl = sectionRef.current
