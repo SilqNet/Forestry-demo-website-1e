@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { SeamlessVideo } from '@/components/ui/seamless-video'
 import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 export default function Newsletter() {
@@ -9,27 +10,13 @@ export default function Newsletter() {
 
   useEffect(() => {
     const sectionEl = sectionRef.current
-    const videoEl = videoRef.current
-    if (!sectionEl || !videoEl) return
-
-    // Critical for iOS: ensure muted is set before any play attempt
-    videoEl.muted = true
-    videoEl.defaultMuted = true
+    if (!sectionEl) return
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const entry = entries[0]
-        if (!entry) return
-
-        // Start as soon as the section enters the viewport and keep playing.
-        if (entry.isIntersecting) {
-          const playPromise = videoEl.play()
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              // Autoplay failed - fallback is poster
-            })
-          }
-        }
+        // We can still use the observer if needed, but SeamlessVideo handles its own play state.
+        // For now, let's keep the observer logic if it was used for something else, 
+        // but the video itself is now handled by the component.
       },
       { threshold: [0, 0.1] }
     )
@@ -41,33 +28,13 @@ export default function Newsletter() {
   return (
     <section ref={sectionRef} className="relative py-24">
       <div className="absolute inset-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          webkit-playsinline="true"
-          controls={false}
-          disablePictureInPicture
-          preload="auto"
+        <SeamlessVideo
+          src="/videos/tavs-mezs-ir-vertiba-bg.mp4"
           poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-          onTimeUpdate={(e) => {
-            const video = e.currentTarget;
-            if (video.duration > 0 && video.currentTime >= video.duration - 0.1) {
-              video.currentTime = 0;
-              video.play().catch(() => {});
-            }
-          }}
-          onEnded={(e) => {
-            e.currentTarget.currentTime = 0;
-            e.currentTarget.play().catch(() => {});
-          }}
-        >
-          <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
-        </video>
+          loopThreshold={0.5}
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{ width: '100%', height: '100%' }}
+        />
         <div className="absolute inset-0 bg-black/55" />
       </div>
 
