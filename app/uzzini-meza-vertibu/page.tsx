@@ -9,6 +9,8 @@ import { useState, useEffect, useRef } from 'react'
 export default function MezaVertibaPage() {
   const heroVideoRef = useRef<HTMLVideoElement | null>(null)
   const bannerVideoRef = useRef<HTMLVideoElement | null>(null)
+  const [isHeroVideoLoaded, setIsHeroVideoLoaded] = useState(false)
+  const [isBannerVideoLoaded, setIsBannerVideoLoaded] = useState(false)
 
   const [formData, setFormData] = useState({
     name: '',
@@ -19,31 +21,13 @@ export default function MezaVertibaPage() {
   })
 
   useEffect(() => {
-    let rafId: number = 0
     const videos = [heroVideoRef.current, bannerVideoRef.current].filter(Boolean) as HTMLVideoElement[]
-
-    const checkLoop = () => {
-      videos.forEach(video => {
-        if (video.duration > 0) {
-          if (video.currentTime >= video.duration - 0.2) {
-            video.currentTime = 0.001
-            video.play().catch(() => {})
-          }
-        }
-      })
-      rafId = requestAnimationFrame(checkLoop)
-    }
 
     videos.forEach(video => {
       video.muted = true
       video.defaultMuted = true
       video.play().catch(() => {})
     })
-
-    rafId = requestAnimationFrame(checkLoop)
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId)
-    }
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -58,7 +42,7 @@ export default function MezaVertibaPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-black">
         <div className="absolute inset-0 z-0">
           <video
             ref={heroVideoRef}
@@ -66,12 +50,13 @@ export default function MezaVertibaPage() {
             muted
             loop
             playsInline
-            webkit-playsinline="true"
             controls={false}
             disablePictureInPicture
             preload="auto"
-            poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+            onCanPlay={() => setIsHeroVideoLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
+              isHeroVideoLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           >
             <source
@@ -248,7 +233,7 @@ export default function MezaVertibaPage() {
       </section>
 
       {/* Process Banner Section: Tikai 4 soļi līdz darījumam */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative py-32 overflow-hidden bg-black">
         <div className="absolute inset-0 z-0">
           <video
             ref={bannerVideoRef}
@@ -256,12 +241,13 @@ export default function MezaVertibaPage() {
             muted
             loop
             playsInline
-            webkit-playsinline="true"
             controls={false}
             disablePictureInPicture
             preload="auto"
-            poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+            onCanPlay={() => setIsBannerVideoLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
+              isBannerVideoLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           >
             <source src="/videos/download.mp4" type="video/mp4" />
