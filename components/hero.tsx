@@ -4,25 +4,6 @@ import { useEffect, useRef } from 'react'
 import { SeamlessVideo } from '@/components/ui/seamless-video'
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-
-  useEffect(() => {
-    const videoEl = videoRef.current
-    if (!videoEl) return
-
-    // Critical for iOS: ensure muted is set before any play attempt
-    videoEl.muted = true
-    videoEl.defaultMuted = true
-    
-    // Explicitly try to play in case autoPlay is blocked
-    const playPromise = videoEl.play()
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay might be blocked by browser policy until user interaction
-      })
-    }
-  }, [])
-
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden bg-[#050d0c]">
       {/* Hero Video Background */}
