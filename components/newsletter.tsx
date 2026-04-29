@@ -1,21 +1,35 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { SeamlessVideo } from '@/components/ui/seamless-video'
 import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 export default function Newsletter() {
   const sectionRef = useRef<HTMLElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
     const sectionEl = sectionRef.current
-    if (!sectionEl) return
+    const videoEl = videoRef.current
+    if (!sectionEl || !videoEl) return
+
+    // Critical for iOS: ensure muted is set before any play attempt
+    videoEl.muted = true
+    videoEl.defaultMuted = true
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // We can still use the observer if needed, but SeamlessVideo handles its own play state.
-        // For now, let's keep the observer logic if it was used for something else, 
-        // but the video itself is now handled by the component.
+        const entry = entries[0]
+        if (!entry) return
+
+        // Start as soon as the section enters the viewport and keep playing.
+        if (entry.isIntersecting) {
+          const playPromise = videoEl.play()
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              // Autoplay failed - fallback is poster
+            })
+          }
+        }
       },
       { threshold: [0, 0.1] }
     )
@@ -27,13 +41,22 @@ export default function Newsletter() {
   return (
     <section ref={sectionRef} className="relative py-24">
       <div className="absolute inset-0">
-        <SeamlessVideo
-          src="/videos/tavs-mezs-ir-vertiba-bg.mp4"
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          webkit-playsinline="true"
+          controls={false}
+          disablePictureInPicture
+          preload="auto"
           poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile_background-Vc0f2YhPcxs9jF6RNYgxrxg3IG6RRs.jpg"
-          loopThreshold={0.5}
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ width: '100%', height: '100%' }}
-        />
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+        >
+          <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-black/55" />
       </div>
 
