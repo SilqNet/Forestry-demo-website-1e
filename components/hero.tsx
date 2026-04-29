@@ -43,7 +43,6 @@ export default function Hero() {
       <video
         ref={videoRef}
         muted
-        loop
         playsInline
         webkit-playsinline="true"
         preload="auto"
