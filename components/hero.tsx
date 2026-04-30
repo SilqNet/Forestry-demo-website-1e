@@ -1,7 +1,4 @@
 'use client'
-
-
-
 export default function Hero() {
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden bg-black">
