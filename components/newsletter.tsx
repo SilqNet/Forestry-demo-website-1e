@@ -1,66 +1,23 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import Script from 'next/script'
 import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 export default function Newsletter() {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
-  const sectionRef = useRef<HTMLElement | null>(null)
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-
-  useEffect(() => {
-    const sectionEl = sectionRef.current
-    const videoEl = videoRef.current
-    if (!sectionEl || !videoEl) return
-
-    videoEl.muted = true
-    videoEl.defaultMuted = true
-    videoEl.playsInline = true
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0]
-        if (!entry) return
-
-        if (entry.isIntersecting) {
-          videoEl.play().catch(() => {})
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    observer.observe(sectionEl)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
-  const handleCanPlayThrough = () => {
-    setIsVideoLoaded(true)
-  }
-
   return (
-    <section ref={sectionRef} className="relative py-24 bg-black">
+    <section className="relative py-24 bg-black">
       <div className="absolute inset-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls={false}
-          disablePictureInPicture
-          preload="auto"
-          onCanPlayThrough={handleCanPlayThrough}
-          className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
-            isVideoLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-        >
-          <source src="/videos/tavs-mezs-ir-vertiba-bg-mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
-          <source src="/videos/tavs-mezs-ir-vertiba-bg.mp4" type="video/mp4" />
-        </video>
+        {/* Vimeo Background */}
+        <div className="vimeo-background-wrapper">
+          <iframe
+            src="https://player.vimeo.com/video/1188006685?background=1&autoplay=1&muted=1&loop=1&controls=0&autopause=0"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+            title="tavs-mezs-ir-vertiba-bg"
+          />
+        </div>
+        <Script src="https://player.vimeo.com/api/player.js" strategy="afterInteractive" />
 
         <div className="absolute inset-0 bg-black/55" />
       </div>
