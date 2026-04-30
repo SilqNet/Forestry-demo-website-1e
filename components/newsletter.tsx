@@ -1,23 +1,72 @@
 'use client'
 
-
+import { useEffect, useRef, useState } from 'react'
 import { FlowHoverButton } from '@/components/ui/flow-hover-button'
+import Script from 'next/script'
 
 export default function Newsletter() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const [player, setPlayer] = useState<any>(null)
+
+  useEffect(() => {
+    // Initialize Vimeo player when script is loaded and iframe is ready
+    if (typeof window !== 'undefined' && (window as any).Vimeo && iframeRef.current && !player) {
+      const vimeoPlayer = new (window as any).Vimeo.Player(iframeRef.current)
+      setPlayer(vimeoPlayer)
+    }
+  }, [player])
+
+  useEffect(() => {
+    if (!player || !sectionRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            player.play().catch(() => {
+              // Handle potential autoplay block (though muted should be fine)
+            })
+          } else {
+            player.pause().catch(() => {})
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(sectionRef.current)
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [player])
+
   return (
-    <section className="relative py-24 bg-black">
+    <section ref={sectionRef} className="relative py-24 bg-black">
+      <Script 
+        src="https://player.vimeo.com/api/player.js" 
+        onLoad={() => {
+          if (iframeRef.current && !player) {
+            const vimeoPlayer = new (window as any).Vimeo.Player(iframeRef.current)
+            setPlayer(vimeoPlayer)
+          }
+        }}
+      />
       <div className="absolute inset-0">
         {/* Vimeo Background */}
-      <div className="hero-video-wrapper">
-        <iframe
-          src="https://player.vimeo.com/video/1188006685?background=1&autoplay=1&muted=1&loop=1&controls=0&autopause=0"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          referrerPolicy="strict-origin-when-cross-origin"
-          title="tavs-mezs-ir-vertiba-bg"
-        ></iframe>
-      </div>
-
+        <div className="hero-video-wrapper">
+          <iframe
+            ref={iframeRef}
+            src="https://player.vimeo.com/video/1188006685?background=1&autoplay=0&muted=1&loop=1&controls=0&autopause=0"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            referrerPolicy="strict-origin-when-cross-origin"
+            title="tavs-mezs-ir-vertiba-bg"
+          ></iframe>
+        </div>
 
         <div className="absolute inset-0 bg-black/55" />
       </div>
