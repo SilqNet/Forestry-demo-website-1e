@@ -254,10 +254,26 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 177.78vh;
-  height: 100vh;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
   pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+/* Mobile — keep current working behavior */
+@media (max-width: 767px) {
+  .hero-video-wrapper iframe {
+    width: 100vw;
+    height: 177.78vw;
+    min-width: 177.78vh;
+    min-height: 100vh;
+  }
+}
+
+/* Desktop — fix side black bars */
+@media (min-width: 768px) {
+  .hero-video-wrapper iframe {
+    width: 100vw;
+    height: 56.25vw;
+    min-width: 177.78vh;
+    min-height: 100vh;
+  }
 }
