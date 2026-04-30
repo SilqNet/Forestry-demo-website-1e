@@ -1,63 +1,22 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import Script from 'next/script'
 
 export default function Hero() {
-  const [canPlayVideo, setCanPlayVideo] = useState(false)
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-
-  useEffect(() => {
-    const onPreloaderFinished = () => {
-      setCanPlayVideo(true)
-    }
-
-    if (!document.querySelector('.logo-loader')) {
-      setCanPlayVideo(true)
-    }
-
-    window.addEventListener('site-preloader-finished', onPreloaderFinished)
-    return () => window.removeEventListener('site-preloader-finished', onPreloaderFinished)
-  }, [])
-
-  useEffect(() => {
-    const videoEl = videoRef.current
-    if (!videoEl || !canPlayVideo) return
-
-    videoEl.muted = true
-    videoEl.defaultMuted = true
-    videoEl.playsInline = true
-
-    videoEl.play().catch(() => {
-      // Autoplay failed
-    })
-  }, [canPlayVideo])
-
-  const handleCanPlayThrough = () => {
-    setIsVideoLoaded(true)
-  }
-
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden bg-black">
-      {/* Hero Video Background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        controls={false}
-        disablePictureInPicture
-        onCanPlayThrough={handleCanPlayThrough}
-        className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
-          isVideoLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-      >
-        <source src="/videos/hero-bg-mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
-        <source src="/videos/hero-bg.mp4" type="video/mp4" />
-      </video>
+      {/* Hero Vimeo Background */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <iframe
+          src="https://player.vimeo.com/video/1188002745?background=1&autoplay=1&muted=1&loop=1&controls=0&autopause=0"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full border-none"
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          title="hero-bg"
+        />
+      </div>
+      <Script src="https://player.vimeo.com/api/player.js" strategy="afterInteractive" />
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
@@ -70,3 +29,4 @@ export default function Hero() {
     </section>
   )
 }
+
