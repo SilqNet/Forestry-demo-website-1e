@@ -1,6 +1,6 @@
 'use client'
 
-import Script from 'next/script'
+
 import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 export default function Newsletter() {
@@ -8,24 +8,16 @@ export default function Newsletter() {
     <section className="relative py-24 bg-black">
       <div className="absolute inset-0">
         {/* Vimeo Background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <iframe
-            src="https://player.vimeo.com/video/1188006685?background=1&autoplay=1&muted=1&loop=1&controls=0&autopause=0"
-            className="absolute top-1/2 left-1/2"
-            style={{
-              width: '100vw',
-              height: '56.25vw', // Maintain 16:9 aspect ratio
-              minWidth: '177.78vh', // Cover height in portrait
-              minHeight: '100vh',
-              transform: 'translate(-50%, -50%)',
-            }}
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            referrerPolicy="strict-origin-when-cross-origin"
-            title="tavs-mezs-ir-vertiba-bg"
-          />
-        </div>
-        <Script src="https://player.vimeo.com/api/player.js" strategy="afterInteractive" />
+      <div className="hero-video-wrapper">
+        <iframe
+          src="https://player.vimeo.com/video/1188006685?background=1&autoplay=1&muted=1&loop=1&controls=0&autopause=0"
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          title="tavs-mezs-ir-vertiba-bg"
+        ></iframe>
+      </div>
+
 
         <div className="absolute inset-0 bg-black/55" />
       </div>
