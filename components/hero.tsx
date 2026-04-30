@@ -6,10 +6,9 @@ export default function Hero() {
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden bg-black">
       {/* Hero Vimeo Background */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+      <div className="vimeo-background-wrapper">
         <iframe
           src="https://player.vimeo.com/video/1188002745?background=1&autoplay=1&muted=1&loop=1&controls=0&autopause=0"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full border-none"
           frameBorder="0"
           allow="autoplay; fullscreen; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
