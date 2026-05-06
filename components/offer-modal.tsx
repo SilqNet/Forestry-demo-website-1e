@@ -145,7 +145,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent 
-        className="max-w-[1200px] w-[95vw] p-0 overflow-hidden bg-white rounded-[30px] border-none shadow-2xl"
+        className="sm:max-w-[90vw] lg:max-w-[1440px] w-[95vw] p-0 overflow-hidden bg-white rounded-[30px] border-none shadow-2xl lg:h-auto"
         onInteractOutside={(e) => e.preventDefault()}
         showCloseButton={false}
       >
@@ -156,9 +156,9 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
           <X size={32} strokeWidth={1.5} />
         </button>
 
-        <div className="flex flex-col lg:flex-row h-full max-h-[90vh] overflow-y-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(350px,1fr)] w-full h-full max-h-[90vh]">
           {/* Left Side: Form */}
-          <div className="flex-1 p-8 lg:p-16 lg:pr-12">
+          <div className="p-8 lg:p-16 lg:pr-12 overflow-y-auto">
             <DialogHeader className="mb-10">
               <DialogTitle 
                 className="text-[28px] font-semibold text-black text-left leading-tight"
@@ -348,7 +348,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
           </div>
 
           {/* Right Side: Document Upload */}
-          <div className="w-full lg:w-[450px] bg-[#F8F9FA] p-8 lg:p-16 flex flex-col border-l border-black/5">
+          <div className="w-full bg-[#F8F9FA] p-8 lg:p-16 flex flex-col border-l border-black/5 overflow-y-auto">
             <h3 
               className="text-[18px] font-semibold text-black mb-8"
               style={sairaExpanded}
