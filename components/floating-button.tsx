@@ -76,8 +76,8 @@ function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = fa
           height: 64,
         }}
         aria-expanded={expanded}
-        aria-disabled={disableNavigation || undefined}
-        tabIndex={disableNavigation ? -1 : 0}
+        role={disableNavigation ? "button" : undefined}
+        tabIndex={0}
       >
         {/* Icon Container — the leftmost ~64px */}
         <div className="w-[64px] h-[64px] flex items-center justify-center shrink-0 pl-[12px]">
