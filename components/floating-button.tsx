@@ -18,18 +18,19 @@ interface WidgetProps {
   labelLine2: string
   href: string
   disableNavigation?: boolean
+  onClick?: () => void
 }
 
-function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = false }: WidgetProps) {
+function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = false, onClick: propOnClick }: WidgetProps) {
   const [hoverOpen, setHoverOpen] = useState(false)
   const [tapOpen, setTapOpen] = useState(false)
 
   const expanded = hoverOpen || tapOpen
 
   const onClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (disableNavigation) {
-      e.preventDefault()
-      e.stopPropagation()
+      if (propOnClick) {
+        propOnClick()
+      }
       return
     }
     if (prefersTapToggle()) {
@@ -96,7 +97,11 @@ function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = fa
   )
 }
 
+import { OfferModal } from './offer-modal'
+
 export default function FloatingButton() {
+  const [offerModalOpen, setOfferModalOpen] = useState(false)
+
   return (
     <div
       className="fixed right-0 z-50 flex flex-col gap-3"
@@ -106,8 +111,9 @@ export default function FloatingButton() {
         icon="/icons/problem.png"
         labelLine1="Uzzini savu"
         labelLine2="meža vērtību"
-        href="/uzzini-meza-vertibu"
+        href="#"
         disableNavigation
+        onClick={() => setOfferModalOpen(true)}
       />
       <SideWidget
         icon="/icons/whatsapp.png"
