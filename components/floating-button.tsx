@@ -28,6 +28,9 @@ function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = fa
   const expanded = hoverOpen || tapOpen
 
   const onClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (disableNavigation) {
+      e.preventDefault()
+      e.stopPropagation()
       if (propOnClick) {
         propOnClick()
       }
@@ -37,7 +40,7 @@ function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = fa
       e.preventDefault()
       setTapOpen((o) => !o)
     }
-  }, [disableNavigation])
+  }, [disableNavigation, propOnClick])
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLAnchorElement>) => {
@@ -45,9 +48,12 @@ function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = fa
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault()
         e.stopPropagation()
+        if (propOnClick) {
+          propOnClick()
+        }
       }
     },
-    [disableNavigation]
+    [disableNavigation, propOnClick]
   )
 
   return (
@@ -121,6 +127,7 @@ export default function FloatingButton() {
         labelLine2="WhatsApp"
         href="#"
       />
+      <OfferModal open={offerModalOpen} onOpenChange={setOfferModalOpen} />
     </div>
   )
 }
