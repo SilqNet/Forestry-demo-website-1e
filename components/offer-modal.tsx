@@ -273,11 +273,6 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
     }
   }
 
-  const handleNumericOnly = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.currentTarget
-    target.value = target.value.replace(/\D/g, '')
-  }
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogPortal>
@@ -338,9 +333,12 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                           </Label>
                           <div className="relative">
                             <input
-                              {...register('kadastraNumurs')}
+                              {...register('kadastraNumurs', {
+                                onChange: (e) => {
+                                  e.target.value = e.target.value.replace(/\D/g, '')
+                                }
+                              })}
                               onKeyDown={handleNumericInput}
-                              onInput={handleNumericOnly}
                               className={cn(
                                 "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
                                 errors.kadastraNumurs && "border-red-500"
@@ -379,9 +377,12 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         <div className="space-y-1">
                           <Label className="text-[14px] text-black font-medium" style={saira}>Aptuvenā īpašuma platība (ha)</Label>
                           <input
-                            {...register('platiba')}
+                            {...register('platiba', {
+                              onChange: (e) => {
+                                e.target.value = e.target.value.replace(/\D/g, '')
+                              }
+                            })}
                             onKeyDown={handleNumericInput}
-                            onInput={handleNumericOnly}
                             className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]"
                           />
                         </div>
