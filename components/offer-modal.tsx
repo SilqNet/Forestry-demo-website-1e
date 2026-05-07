@@ -256,253 +256,253 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogPortal>
-        <DialogOverlay className="bg-black/60 backdrop-blur-[2px] overflow-y-auto flex justify-center py-12 px-4" />
-        <DialogContent 
-          className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:max-w-[1100px] w-full p-0 bg-white rounded-[30px] border-none shadow-2xl overflow-hidden pointer-events-auto"
+        <DialogOverlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]" />
+        <DialogPrimitive.Content 
+          className="fixed inset-0 z-[60] overflow-y-auto py-12 lg:py-24 px-4 flex flex-col items-center outline-none"
           onInteractOutside={(e) => e.preventDefault()}
-          showCloseButton={false}
         >
-          {/* Close button outside the modal */}
-          <button 
-            onClick={() => onOpenChange(false)}
-            className="fixed -top-12 right-0 lg:-right-12 z-[70] p-2 text-white hover:text-gold transition-colors outline-none"
-          >
-            <X size={36} strokeWidth={1.5} />
-          </button>
+          <div className="relative w-full max-w-[1100px] pointer-events-auto">
+            {/* Close button outside the modal */}
+            <DialogPrimitive.Close className="absolute -top-12 right-0 lg:-right-12 p-2 text-white hover:text-gold transition-colors outline-none cursor-pointer">
+              <X size={36} strokeWidth={1.5} />
+            </DialogPrimitive.Close>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] w-full h-full max-h-[85vh]">
-            {/* Left Side: Form */}
-            <div className="p-8 lg:p-12 overflow-y-auto custom-scrollbar">
-              <DialogHeader className="mb-8">
-                <DialogTitle 
-                  className="text-[24px] lg:text-[28px] font-semibold text-black text-left leading-tight"
-                  style={{ ...sairaExpanded, textTransform: 'none' }}
-                >
-                  Vēlos piedāvāt
-                </DialogTitle>
-              </DialogHeader>
+            <div className="w-full bg-white rounded-[30px] border-none shadow-2xl overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] w-full">
+                {/* Left Side: Form */}
+                <div className="p-8 lg:p-14">
+                  <DialogHeader className="mb-8">
+                    <DialogPrimitive.Title 
+                      className="text-[24px] lg:text-[28px] font-semibold text-black text-left leading-tight"
+                      style={{ ...sairaExpanded, textTransform: 'none' }}
+                    >
+                      Vēlos piedāvāt
+                    </DialogPrimitive.Title>
+                  </DialogHeader>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-                {/* Type Selection */}
-                <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-                  {types.map((type) => (
-                    <CustomCheckbox
-                      key={type.id}
-                      checked={selectedType === type.label}
-                      onChange={() => handleTypeSelect(type.label)}
-                      label={type.label}
-                      isBold={true}
-                    />
-                  ))}
-                </div>
-
-                <div className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
-                    {/* Kadastra numurs */}
-                    <div className="space-y-1">
-                      <Label className="text-[14px] text-black font-medium" style={saira}>Kadastra numurs</Label>
-                      <div className="relative">
-                        <input
-                          {...register('kadastraNumurs')}
-                          onKeyDown={handleNumericInput}
-                          placeholder="00000000000"
-                          className={cn(
-                            "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
-                            errors.kadastraNumurs && "border-red-500"
-                          )}
-                          maxLength={11}
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                    {/* Type Selection */}
+                    <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
+                      {types.map((type) => (
+                        <CustomCheckbox
+                          key={type.id}
+                          checked={selectedType === type.label}
+                          onChange={() => handleTypeSelect(type.label)}
+                          label={type.label}
+                          isBold={true}
                         />
-                        <p className="text-[11px] text-black/40 mt-1" style={saira}>
-                          Kadastra numurs sastāv no 11 cipariem
-                        </p>
-                        {errors.kadastraNumurs && (
-                          <p className="text-[11px] text-red-500 mt-0.5" style={saira}>{errors.kadastraNumurs.message}</p>
-                        )}
+                      ))}
+                    </div>
+
+                    <div className="space-y-10 pt-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                        {/* Kadastra numurs */}
+                        <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>Kadastra numurs</Label>
+                          <div className="relative">
+                            <input
+                              {...register('kadastraNumurs')}
+                              onKeyDown={handleNumericInput}
+                              placeholder="00000000000"
+                              className={cn(
+                                "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
+                                errors.kadastraNumurs && "border-red-500"
+                              )}
+                              maxLength={11}
+                            />
+                            <p className="text-[11px] text-black/40 mt-1" style={saira}>
+                              Kadastra numurs sastāv no 11 cipariem
+                            </p>
+                            {errors.kadastraNumurs && (
+                              <p className="text-[11px] text-red-500 mt-0.5" style={saira}>{errors.kadastraNumurs.message}</p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Velama cena */}
+                        <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>Vēlamā cena</Label>
+                          <input
+                            {...register('velamaCena')}
+                            placeholder="0.00 €"
+                            className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]"
+                          />
+                        </div>
+
+                        {/* Vards uzvards */}
+                        <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>Vārds uzvārds</Label>
+                          <input
+                            {...register('vardsUzvards')}
+                            className={cn(
+                              "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
+                              errors.vardsUzvards && "border-red-500"
+                            )}
+                          />
+                        </div>
+
+                        {/* Telefona numurs */}
+                        <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>Telefona numurs</Label>
+                          <input
+                            {...register('talrunis')}
+                            className={cn(
+                              "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
+                              errors.talrunis && "border-red-500"
+                            )}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Dropdowns */}
+                      <div className="grid grid-cols-1 gap-y-10">
+                        <CustomDropdown
+                          label="Vai īpašumam ir derīga meža inventarizācija (taksācija)?"
+                          value={inventarizacijaValue || ''}
+                          options={['Jā', 'Nē', 'Neesmu pārliecināts(-a)']}
+                          onChange={(val) => setValue('inventarizacija', val)}
+                        />
+
+                        <CustomDropdown
+                          label="Cik drīz plānojat pieņemt lēmumu par darījumu?"
+                          value={lemumsValue || ''}
+                          options={[
+                            'Iespējami ātri (1-2 nedēļu laikā)',
+                            'Tuvāko mēnešu laikā',
+                            'Šobrīd tikai pētu tirgu un vēlos uzzināt vērtību'
+                          ]}
+                          onChange={(val) => setValue('lemums', val)}
+                        />
                       </div>
                     </div>
 
-                    {/* Velama cena */}
+                    {/* Message */}
                     <div className="space-y-1">
-                      <Label className="text-[14px] text-black font-medium" style={saira}>Vēlamā cena</Label>
-                      <input
-                        {...register('velamaCena')}
-                        placeholder="0.00 €"
-                        className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]"
+                      <Label className="text-[14px] text-black font-medium" style={saira}>Ziņa</Label>
+                      <textarea
+                        {...register('zina')}
+                        className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px] min-h-[40px] resize-none overflow-hidden"
+                        onInput={(e) => {
+                          const target = e.target as HTMLTextAreaElement
+                          target.style.height = 'auto'
+                          target.style.height = `${target.scrollHeight}px`
+                        }}
                       />
                     </div>
 
-                    {/* Vards uzvards */}
-                    <div className="space-y-1">
-                      <Label className="text-[14px] text-black font-medium" style={saira}>Vārds uzvārds</Label>
-                      <input
-                        {...register('vardsUzvards')}
-                        className={cn(
-                          "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
-                          errors.vardsUzvards && "border-red-500"
-                        )}
+                    {/* Privacy Consent */}
+                    <div className="pt-4">
+                      <CustomCheckbox
+                        checked={privacyConsentValue || false}
+                        onChange={() => setValue('privacyConsent', !privacyConsentValue)}
+                        label={
+                          <span>
+                            Piekrītu manu datu apstrādei saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors">Privātuma Politiku</span>
+                          </span>
+                        }
                       />
+                      {errors.privacyConsent && (
+                        <p className="text-[11px] text-red-500 mt-1" style={saira}>{errors.privacyConsent.message}</p>
+                      )}
                     </div>
 
-                    {/* Telefona numurs */}
-                    <div className="space-y-1">
-                      <Label className="text-[14px] text-black font-medium" style={saira}>Telefona numurs</Label>
-                      <input
-                        {...register('talrunis')}
-                        className={cn(
-                          "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
-                          errors.talrunis && "border-red-500"
-                        )}
-                      />
+                    {/* Submit Button */}
+                    <div className="flex justify-center pt-8">
+                      <Button 
+                        type="submit"
+                        className="bg-gold hover:bg-gold/90 text-white px-14 py-8 rounded-full text-[15px] font-semibold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gold/20"
+                        style={{ ...sairaExpanded, textTransform: 'none' }}
+                      >
+                        Nosūtīt Piedāvājumu
+                      </Button>
                     </div>
-                  </div>
-
-                  {/* Dropdowns */}
-                  <div className="grid grid-cols-1 gap-y-8">
-                    <CustomDropdown
-                      label="Vai īpašumam ir derīga meža inventarizācija (taksācija)?"
-                      value={inventarizacijaValue || ''}
-                      options={['Jā', 'Nē', 'Neesmu pārliecināts(-a)']}
-                      onChange={(val) => setValue('inventarizacija', val)}
-                    />
-
-                    <CustomDropdown
-                      label="Cik drīz plānojat pieņemt lēmumu par darījumu?"
-                      value={lemumsValue || ''}
-                      options={[
-                        'Iespējami ātri (1-2 nedēļu laikā)',
-                        'Tuvāko mēnešu laikā',
-                        'Šobrīd tikai pētu tirgu un vēlos uzzināt vērtību'
-                      ]}
-                      onChange={(val) => setValue('lemums', val)}
-                    />
-                  </div>
+                  </form>
                 </div>
 
-                {/* Message */}
-                <div className="space-y-1">
-                  <Label className="text-[14px] text-black font-medium" style={saira}>Ziņa</Label>
-                  <textarea
-                    {...register('zina')}
-                    className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px] min-h-[40px] resize-none overflow-hidden"
-                    onInput={(e) => {
-                      const target = e.target as HTMLTextAreaElement
-                      target.style.height = 'auto'
-                      target.style.height = `${target.scrollHeight}px`
-                    }}
-                  />
-                </div>
-
-                {/* Privacy Consent */}
-                <div className="pt-2">
-                  <CustomCheckbox
-                    checked={privacyConsentValue || false}
-                    onChange={() => setValue('privacyConsent', !privacyConsentValue)}
-                    label={
-                      <span>
-                        Piekrītu manu datu apstrādei saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors">Privātuma Politiku</span>
-                      </span>
-                    }
-                  />
-                  {errors.privacyConsent && (
-                    <p className="text-[11px] text-red-500 mt-1" style={saira}>{errors.privacyConsent.message}</p>
-                  )}
-                </div>
-
-                {/* Submit Button */}
-                <div className="flex justify-center pt-4">
-                  <Button 
-                    type="submit"
-                    className="bg-gold hover:bg-gold/90 text-white px-12 py-7 rounded-full text-[15px] font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-gold/20"
-                    style={{ ...sairaExpanded, textTransform: 'none' }}
+                {/* Right Side: Document Upload */}
+                <div className="w-full bg-[#F8F9FA] p-8 lg:p-14 flex flex-col border-l border-black/5">
+                  <h3 
+                    className="text-[18px] font-semibold text-black mb-8"
+                    style={sairaExpanded}
                   >
-                    Nosūtīt Piedāvājumu
-                  </Button>
-                </div>
-              </form>
-            </div>
+                    Pievienot dokumentu
+                  </h3>
 
-            {/* Right Side: Document Upload */}
-            <div className="w-full bg-[#F8F9FA] p-8 lg:p-12 flex flex-col border-l border-black/5 overflow-y-auto custom-scrollbar">
-              <h3 
-                className="text-[18px] font-semibold text-black mb-8"
-                style={sairaExpanded}
-              >
-                Pievienot dokumentu
-              </h3>
-
-              <div 
-                onDragOver={onDragOver}
-                onDrop={onDrop}
-                className="flex-1 flex flex-col"
-              >
-                <div 
-                  className="border border-dashed border-black/10 rounded-[20px] p-8 text-center flex flex-col items-center justify-center gap-5 bg-white hover:border-gold transition-all cursor-pointer group shadow-sm hover:shadow-md"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <input 
-                    type="file" 
-                    multiple 
-                    className="hidden" 
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                  />
-                  <div className="text-[14px] text-black/60 group-hover:text-black transition-colors" style={saira}>
-                    Ievelciet failus šeit vai
-                  </div>
-                  <Button 
-                    type="button" 
-                    className="rounded-full bg-[#E0E0E0] hover:bg-[#D0D0D0] text-black px-8 h-10 border-none shadow-none text-[13px] font-medium"
-                    style={saira}
+                  <div 
+                    onDragOver={onDragOver}
+                    onDrop={onDrop}
+                    className="flex-1 flex flex-col"
                   >
-                    Izvēlēties failus
-                  </Button>
-                </div>
-                <p className="text-[11px] text-black/40 mt-5 text-center" style={saira}>
-                  Max. faila lielums: 50 MB, Max. faili: 20
-                </p>
-
-                <div className="mt-8 flex-1 flex flex-col min-h-[300px]">
-                  <div className="bg-[#E9ECEF]/50 rounded-[20px] p-6 flex-1 flex flex-col border border-black/5">
-                    <h4 className="text-[14px] font-semibold text-black mb-6" style={sairaExpanded}>
-                      Pievienotie dokumenti:
-                    </h4>
-                    
-                    {files.length === 0 ? (
-                      <div className="flex flex-col items-center justify-center flex-1 opacity-30">
-                        <p className="text-[13px] text-black text-center" style={saira}>
-                          Neviens dokuments nav pievienots
-                        </p>
+                    <div 
+                      className="border border-dashed border-black/10 rounded-[20px] p-8 text-center flex flex-col items-center justify-center gap-6 bg-white hover:border-gold transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      <input 
+                        type="file" 
+                        multiple 
+                        className="hidden" 
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                      />
+                      <div className="text-[14px] text-black/60 group-hover:text-black transition-colors" style={saira}>
+                        Ievelciet failus šeit vai
                       </div>
-                    ) : (
-                      <ul className="space-y-3 pr-1">
-                        {files.map((file, index) => (
-                          <li key={index} className="flex items-center justify-between gap-3 group bg-white p-3 rounded-xl shadow-sm border border-black/5">
-                            <div className="flex items-center gap-3 overflow-hidden">
-                              <Upload size={14} className="text-gold shrink-0" />
-                              <span className="text-[12px] text-black/80 truncate font-medium" title={file.name}>
-                                {file.name}
-                              </span>
-                            </div>
-                            <button 
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                removeFile(index)
-                              }}
-                              className="p-1.5 text-black/20 hover:text-red-500 transition-colors"
-                            >
-                              <Trash2 size={14} />
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                      <Button 
+                        type="button" 
+                        className="rounded-full bg-[#E0E0E0] hover:bg-[#D0D0D0] text-black px-10 h-12 border-none shadow-none text-[13px] font-medium"
+                        style={saira}
+                      >
+                        Izvēlēties failus
+                      </Button>
+                    </div>
+                    <p className="text-[11px] text-black/40 mt-6 text-center" style={saira}>
+                      Max. faila lielums: 50 MB, Max. faili: 20
+                    </p>
+
+                    <div className="mt-10 flex-1 flex flex-col">
+                      <div className="bg-[#E9ECEF]/50 rounded-[20px] p-8 flex-1 flex flex-col border border-black/5 min-h-[350px]">
+                        <h4 className="text-[14px] font-semibold text-black mb-6" style={sairaExpanded}>
+                          Pievienotie dokumenti:
+                        </h4>
+                        
+                        {files.length === 0 ? (
+                          <div className="flex flex-col items-center justify-center flex-1 opacity-30">
+                            <p className="text-[13px] text-black text-center" style={saira}>
+                              Neviens dokuments nav pievienots
+                            </p>
+                          </div>
+                        ) : (
+                          <ul className="space-y-3 pr-1">
+                            {files.map((file, index) => (
+                              <li key={index} className="flex items-center justify-between gap-3 group bg-white p-4 rounded-xl shadow-sm border border-black/5">
+                                <div className="flex items-center gap-3 overflow-hidden">
+                                  <Upload size={16} className="text-gold shrink-0" />
+                                  <span className="text-[13px] text-black/80 truncate font-medium" title={file.name}>
+                                    {file.name}
+                                  </span>
+                                </div>
+                                <button 
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    removeFile(index)
+                                  }}
+                                  className="p-1.5 text-black/20 hover:text-red-500 transition-colors"
+                                >
+                                  <Trash2 size={16} />
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </DialogContent>
+        </DialogPrimitive.Content>
       </DialogPortal>
     </Dialog>
   )
