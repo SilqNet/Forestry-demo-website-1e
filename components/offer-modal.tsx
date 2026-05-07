@@ -182,11 +182,14 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
 
   React.useEffect(() => {
     if (open) {
+      document.documentElement.style.overflow = 'hidden'
       document.body.style.overflow = 'hidden'
     } else {
+      document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
     }
     return () => {
+      document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
     }
   }, [open])
@@ -500,7 +503,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
 
                     <div className="mt-10">
                       <div 
-                        className="bg-white rounded-[20px] flex flex-col border border-black/5 min-h-[90px] h-auto"
+                        className="bg-white rounded-[20px] flex flex-col border border-black/5 min-h-[90px] h-auto max-w-full min-w-0 overflow-hidden"
                         style={{ padding: '24px 30px' }}
                       >
                         <h4 className="text-[14px] font-semibold text-black mb-2" style={sairaExpanded}>
@@ -514,32 +517,30 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                             </p>
                           </div>
                         ) : (
-                          <div className="flex-1 overflow-hidden flex flex-col min-h-0">
-                            <div className="flex-1 overflow-auto max-h-[160px] pr-2 -mr-2 scrollbar-thin scrollbar-thumb-black/10 scrollbar-track-transparent">
-                              <ul className="space-y-2 pb-1">
-                                {files.map((file, index) => (
-                                  <li key={index} className="flex items-center justify-between gap-3 group bg-white p-3 rounded-xl shadow-sm border border-black/5 min-w-fit">
-                                    <div className="flex items-center gap-3 whitespace-nowrap">
-                                      <Upload size={14} className="text-gold shrink-0" />
-                                      <span className="text-[13px] text-black/80 font-medium" title={file.name}>
-                                        {file.name}
-                                      </span>
-                                    </div>
-                                    <button 
-                                      type="button"
-                                      onClick={(e) => {
-                                        e.stopPropagation()
-                                        removeFile(index)
-                                      }}
-                                      className="flex items-center gap-1.5 px-2 py-1 text-[11px] font-medium text-red-500 hover:bg-red-50 rounded-md transition-colors shrink-0"
-                                    >
-                                      <span>Dzēst</span>
-                                      <Trash2 size={12} />
-                                    </button>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
+                          <div className="max-w-full min-w-0 overflow-x-auto overflow-y-auto max-h-[140px] whitespace-nowrap">
+                            <ul className="space-y-2 pb-1">
+                              {files.map((file, index) => (
+                                <li key={index} className="flex items-center gap-[12px] group bg-white p-3 rounded-xl shadow-sm border border-black/5 w-max min-w-full">
+                                  <div className="flex items-center gap-3">
+                                    <Upload size={14} className="text-gold shrink-0" />
+                                    <span className="text-[13px] text-black/80 font-medium" title={file.name}>
+                                      {file.name}
+                                    </span>
+                                  </div>
+                                  <button 
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      removeFile(index)
+                                    }}
+                                    className="flex items-center gap-1.5 px-2 py-1 text-[11px] font-medium text-red-500 hover:bg-red-50 rounded-md transition-colors shrink-0 ml-auto"
+                                  >
+                                    <span>Dzēst</span>
+                                    <Trash2 size={12} />
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         )}
                       </div>
