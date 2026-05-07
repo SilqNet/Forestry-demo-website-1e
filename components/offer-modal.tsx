@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { X, Upload, Trash2, Check, ChevronDown } from 'lucide-react'
+import { X, Upload, Trash2, Check, ChevronDown, Phone, Mail } from 'lucide-react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { cn } from '@/lib/utils'
 import {
@@ -463,88 +463,130 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                   </form>
                 </div>
 
-                {/* Right Side: Document Upload */}
-                <div className="w-full bg-white p-8 lg:p-14">
-                  <h3 
-                    className="text-[24px] lg:text-[28px] font-semibold text-black mb-8 leading-tight"
-                    style={{ ...sairaExpanded, textTransform: 'none' }}
-                  >
-                    Pievienot dokumentu
-                  </h3>
-
-                  <div 
-                    onDragOver={onDragOver}
-                    onDrop={onDrop}
-                    className="flex flex-col"
-                  >
-                    <div 
-                      className="border border-dashed border-black/10 rounded-[20px] p-8 text-center flex flex-col items-center justify-center gap-6 bg-white transition-all cursor-pointer shadow-sm"
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      <input 
-                        type="file" 
-                        multiple 
-                        className="hidden" 
-                        ref={fileInputRef}
-                        onChange={handleFileChange}
-                      />
-                      <div className="text-[14px] text-black transition-colors" style={saira}>
-                        Ievelciet failus šeit vai
+                {/* Right Side: Info & Document Upload */}
+                <div className="w-full bg-[#FAF9F6] p-8 lg:p-14 border-l border-black/5 flex flex-col gap-12">
+                  {/* Informational Block */}
+                  <div className="flex flex-col gap-8">
+                    <div className="flex items-center gap-6">
+                      <div className="w-20 h-20 rounded-full border border-gold/30 flex items-center justify-center shrink-0 bg-white shadow-sm">
+                        <img src="/icons/execution.png" alt="Icon" className="w-10 h-10 object-contain" />
                       </div>
-                      <Button 
-                        type="button" 
-                        className="rounded-full bg-[#E0E0E0] hover:bg-[#D0D0D0] text-black px-10 h-12 border-none shadow-none text-[13px] font-medium"
-                        style={saira}
-                      >
-                        Izvēlēties failus
-                      </Button>
+                      <h3 className="text-[24px] lg:text-[28px] font-semibold text-black leading-tight" style={sairaExpanded}>
+                        Kas paātrina darījumu?
+                      </h3>
                     </div>
-                    <p className="text-[11px] text-black mt-6 text-center" style={saira}>
-                      Max. faila lielums: 50 MB, Max. faili: 20
+                    
+                    <p className="text-[15px] text-black/80 leading-relaxed" style={saira}>
+                      Precīzi kadastra dati, piekļuves apraksts un, ja iespējams, meža inventarizācijas izraksts. Piesaki savu meža īpašuma novērtēšanu un saņem godīgu, augstāko iespējamo tirgus cenu. Veicam precīzu īpašuma analīzi, izvērtējam koksnes krājas apjomu un sagatavojam konkurētspējīgu piedāvājumu. Ātri, caurspīdīgi un droši.
                     </p>
+                    
+                    <div className="pt-4 flex flex-col gap-6 border-t border-black/5">
+                      <h4 className="text-[12px] font-bold text-black uppercase tracking-[0.2em]" style={sairaExpanded}>
+                        JA RODAS PAPILDU JAUTĀJUMI
+                      </h4>
+                      <div className="flex flex-col gap-4">
+                        <a href="tel:+37129228893" className="flex items-center gap-4 text-[16px] text-black hover:text-gold transition-colors font-medium group" style={saira}>
+                          <div className="w-10 h-10 rounded-full bg-white border border-black/5 flex items-center justify-center group-hover:border-gold transition-colors">
+                            <Phone size={18} className="text-gold" />
+                          </div>
+                          +371 29228893
+                        </a>
+                        <a href="mailto:birojs@latvijasmezsaimnieks.lv" className="flex items-center gap-4 text-[16px] text-black hover:text-gold transition-colors font-medium group" style={saira}>
+                          <div className="w-10 h-10 rounded-full bg-white border border-black/5 flex items-center justify-center group-hover:border-gold transition-colors">
+                            <Mail size={18} className="text-gold" />
+                          </div>
+                          birojs@latvijasmezsaimnieks.lv
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
-                    <div className="mt-10">
+                  {/* Divider */}
+                  <div className="h-px bg-black/5 w-full" />
+
+                  {/* Document Upload Section */}
+                  <div className="flex flex-col">
+                    <h3 
+                      className="text-[20px] font-semibold text-black mb-6 leading-tight"
+                      style={{ ...sairaExpanded, textTransform: 'none' }}
+                    >
+                      Pievienot dokumentu
+                    </h3>
+
+                    <div 
+                      onDragOver={onDragOver}
+                      onDrop={onDrop}
+                      className="flex flex-col"
+                    >
                       <div 
-                        className="bg-white rounded-[20px] flex flex-col border border-black/5 min-h-[90px] h-auto max-w-full min-w-0 overflow-hidden"
-                        style={{ padding: '24px 30px' }}
+                        className="border border-dashed border-black/10 rounded-[20px] p-8 text-center flex flex-col items-center justify-center gap-6 bg-white transition-all cursor-pointer shadow-sm hover:border-gold/50"
+                        onClick={() => fileInputRef.current?.click()}
                       >
-                        <h4 className="text-[14px] font-semibold text-black mb-2" style={sairaExpanded}>
-                          Pievienotie dokumenti:
-                        </h4>
-                        
-                        {files.length === 0 ? (
-                          <div className="flex flex-col items-center justify-center py-2">
-                            <p className="text-[13px] text-black text-center" style={saira}>
-                              Neviens dokuments nav pievienots
-                            </p>
-                          </div>
-                        ) : (
-                          <div className="max-w-full min-w-0 max-h-[140px] overflow-x-auto overflow-y-auto whitespace-nowrap">
-                            <ul className="space-y-2 pb-1">
-                              {files.map((file, index) => (
-                                <li key={index} className="flex items-center gap-[12px] group bg-white p-3 rounded-xl shadow-sm border border-black/5 w-max min-w-full whitespace-nowrap">
-                                  <div className="flex items-center gap-3 flex-shrink-0">
-                                    <Upload size={14} className="text-gold shrink-0" />
-                                    <span className="text-[13px] text-black/80 font-medium whitespace-nowrap flex-shrink-0" title={file.name}>
-                                      {file.name}
-                                    </span>
-                                  </div>
-                                  <button 
-                                    type="button"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      removeFile(index)
-                                    }}
-                                    className="flex items-center gap-1.5 px-2 py-1 text-[11px] font-medium text-red-500 hover:bg-red-50 rounded-md transition-colors shrink-0 ml-auto"
-                                  >
-                                    <span>Dzēst</span>
-                                    <Trash2 size={12} />
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
+                        <input 
+                          type="file" 
+                          multiple 
+                          className="hidden" 
+                          ref={fileInputRef}
+                          onChange={handleFileChange}
+                        />
+                        <div className="text-[14px] text-black transition-colors" style={saira}>
+                          Ievelciet failus šeit vai
+                        </div>
+                        <Button 
+                          type="button" 
+                          className="rounded-full bg-[#E0E0E0] hover:bg-gold hover:text-white text-black px-10 h-12 border-none shadow-none text-[13px] font-medium transition-all"
+                          style={saira}
+                        >
+                          Izvēlēties failus
+                        </Button>
+                      </div>
+                      <p className="text-[11px] text-black mt-4 text-center" style={saira}>
+                        Max. faila lielums: 50 MB, Max. faili: 20
+                      </p>
+
+                      <div className="mt-8">
+                        <div 
+                          className="bg-white rounded-[20px] flex flex-col border border-black/5 min-h-[80px] h-auto max-w-full min-w-0 overflow-hidden"
+                          style={{ padding: '20px 24px' }}
+                        >
+                          <h4 className="text-[13px] font-semibold text-black mb-3" style={sairaExpanded}>
+                            Pievienotie dokumenti:
+                          </h4>
+                          
+                          {files.length === 0 ? (
+                            <div className="flex flex-col items-center justify-center py-2">
+                              <p className="text-[12px] text-black/40 text-center italic" style={saira}>
+                                Neviens dokuments nav pievienots
+                              </p>
+                            </div>
+                          ) : (
+                            <div className="max-w-full min-w-0 max-h-[120px] overflow-x-auto overflow-y-auto whitespace-nowrap scrollbar-thin">
+                              <ul className="space-y-2 pb-1">
+                                {files.map((file, index) => (
+                                  <li key={index} className="flex items-center gap-[12px] group bg-[#FAF9F6] p-3 rounded-xl border border-black/5 w-max min-w-full whitespace-nowrap">
+                                    <div className="flex items-center gap-3 flex-shrink-0">
+                                      <Upload size={14} className="text-gold shrink-0" />
+                                      <span className="text-[12px] text-black/80 font-medium whitespace-nowrap flex-shrink-0" title={file.name}>
+                                        {file.name}
+                                      </span>
+                                    </div>
+                                    <button 
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation()
+                                        removeFile(index)
+                                      }}
+                                      className="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium text-red-500 hover:bg-red-50 rounded-md transition-colors shrink-0 ml-auto"
+                                    >
+                                      <span>Dzēst</span>
+                                      <Trash2 size={12} />
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
