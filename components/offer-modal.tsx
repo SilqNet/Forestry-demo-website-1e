@@ -477,7 +477,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     <div className="pt-4">
                       <CustomCheckbox
                         checked={privacyConsentValue || false}
-                        onChange={() => setValue('privacyConsent', !privacyConsentValue)}
+                        onChange={() => setValue('privacyConsent', !privacyConsentValue, { shouldValidate: true })}
                         label={
                           <span>
                             Piekrītu, ka mana ievadītā informācija tiek apstrādāta saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors inline-block">GR GRUPA privātuma politiku.</span>
