@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -552,28 +554,90 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     <div className="mt-12 space-y-10">
                       <div>
                         <div className="flex items-center gap-3 mb-4">
-                          <Zap className="text-gold shrink-0" size={24} strokeWidth={1.5} />
-                          <h4 className="text-[20px] font-semibold text-black" style={sairaExpanded}>Kas paātrina darījumu?</h4>
+                          <div className="shrink-0">
+                            <Image 
+                              src="/images/execution.png" 
+                              alt="Execution icon" 
+                              width={24} 
+                              height={24}
+                              className="object-contain"
+                            />
+                          </div>
+                          <h4 
+                            className="text-black" 
+                            style={{
+                              fontFamily: "'Saira Expanded', sans-serif",
+                              fontSize: '18px',
+                              fontWeight: 600,
+                              lineHeight: '1.25',
+                              letterSpacing: 'normal',
+                              textTransform: 'none',
+                            }}
+                          >
+                            Kas paātrina darījumu?
+                          </h4>
                         </div>
-                        <p className="text-[15px] text-black/70 leading-relaxed" style={saira}>
+                        <p 
+                          className="text-black/80" 
+                          style={{
+                            fontFamily: "'Saira', sans-serif",
+                            fontSize: '14px',
+                            fontWeight: 400,
+                            lineHeight: '1.6',
+                            letterSpacing: 'normal',
+                            textTransform: 'none',
+                          }}
+                        >
                           Precīzi kadastra dati, piekļuves apraksts un, ja iespējams, meža inventarizācijas izraksts. Piesaki savu meža īpašumu novērtēšanai un saņem godīgu, augstāko iespējamo tirgus cenu. Veicam precīzu īpašuma analīzi, izvērtējam koksnes krājas apjomu un sagatavojam konkurētspējīgu piedāvājumu. Ātri, caurspīdīgi un droši.
                         </p>
                       </div>
 
                       <div>
-                        <h4 className="text-[18px] font-semibold text-black mb-5" style={sairaExpanded}>Ja rodas papildu jautājumi</h4>
+                        <h4 
+                          className="text-black mb-5" 
+                          style={{
+                            fontFamily: "'Saira Expanded', sans-serif",
+                            fontSize: '18px',
+                            fontWeight: 600,
+                            lineHeight: '1.25',
+                            letterSpacing: 'normal',
+                            textTransform: 'none',
+                          }}
+                        >
+                          Ja rodas papildu jautājumi
+                        </h4>
                         <div className="space-y-4">
                           <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-                              <Phone className="text-gold" size={18} strokeWidth={1.5} />
-                            </div>
-                            <span className="text-[15px] text-black/80 font-medium" style={saira}>+371 29228893</span>
+                            <Phone className="text-black shrink-0" size={18} strokeWidth={1.5} />
+                            <span 
+                              className="text-black/80 font-medium" 
+                              style={{
+                                fontFamily: "'Saira', sans-serif",
+                                fontSize: '14px',
+                                fontWeight: 400,
+                                lineHeight: '1.6',
+                                letterSpacing: 'normal',
+                                textTransform: 'none',
+                              }}
+                            >
+                              +371 29611110
+                            </span>
                           </div>
                           <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-                              <Mail className="text-gold" size={18} strokeWidth={1.5} />
-                            </div>
-                            <span className="text-[15px] text-black/80 font-medium" style={saira}>birojs@latvijasmezsaimnieks.lv</span>
+                            <Mail className="text-black shrink-0" size={18} strokeWidth={1.5} />
+                            <span 
+                              className="text-black/80 font-medium" 
+                              style={{
+                                fontFamily: "'Saira', sans-serif",
+                                fontSize: '14px',
+                                fontWeight: 400,
+                                lineHeight: '1.6',
+                                letterSpacing: 'normal',
+                                textTransform: 'none',
+                              }}
+                            >
+                              birojs@latvijasmezsaimnieks.lv
+                            </span>
                           </div>
                         </div>
                       </div>
