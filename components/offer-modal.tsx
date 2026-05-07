@@ -429,7 +429,12 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                             Telefona numurs
                           </Label>
                           <input
-                            {...register('talrunis')}
+                            {...register('talrunis', {
+                              onChange: (e) => {
+                                e.target.value = e.target.value.replace(/\D/g, '')
+                              }
+                            })}
+                            onKeyDown={handleNumericInput}
                             className={cn(
                               "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
                               errors.talrunis && "border-red-500"
