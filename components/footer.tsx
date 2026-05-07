@@ -66,6 +66,11 @@ export default function Footer() {
                   Kontaktinformācija
                 </Link>
               </li>
+              <li>
+                <Link href="#" className="text-white hover:text-gold transition-colors font-normal" style={footerLinkStyle}>
+                  Privātuma Politika
+                </Link>
+              </li>
             </ul>
           </div>
 
