@@ -356,23 +356,23 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         </div>
 
                         <div className="space-y-1">
-                          <Label className="text-[14px] text-black font-medium" style={saira}>E-pasts</Label>
-                          <input
-                            {...register('epasts')}
-                            className={cn(
-                              "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
-                              errors.epasts && "border-red-500"
-                            )}
-                          />
-                        </div>
-
-                        <div className="space-y-1">
                           <Label className="text-[14px] text-black font-medium" style={saira}>Telefona numurs</Label>
                           <input
                             {...register('talrunis')}
                             className={cn(
                               "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
                               errors.talrunis && "border-red-500"
+                            )}
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>E-pasts</Label>
+                          <input
+                            {...register('epasts')}
+                            className={cn(
+                              "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
+                              errors.epasts && "border-red-500"
                             )}
                           />
                         </div>
@@ -405,7 +405,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <Label className="text-[14px] text-black font-medium" style={saira}>Ziņa</Label>
                       <textarea
                         {...register('zina')}
-                        className="w-full bg-transparent border-b border-black/10 pb-0 pt-1 focus:border-black outline-none transition-colors text-[14px] min-h-[28px] resize-none overflow-hidden"
+                        className="w-full bg-transparent border-b border-black/10 pb-1 pt-3 focus:border-black outline-none transition-colors text-[14px] min-h-[36px] resize-none overflow-hidden leading-[1.2]"
                         onInput={(e) => {
                           const target = e.target as HTMLTextAreaElement
                           target.style.height = 'auto'
@@ -435,7 +435,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <FlowHoverButton asChild>
                         <Button 
                           type="submit"
-                          className="bg-white border border-black/10 text-black px-14 py-8 rounded-full text-[15px] font-semibold transition-all hover:text-white active:scale-95 shadow-lg"
+                          className="bg-white border-none text-black px-14 py-8 rounded-full text-[15px] font-semibold transition-all hover:text-white active:scale-95 shadow-lg"
                           style={{ ...sairaExpanded, textTransform: 'uppercase' }}
                         >
                           NOSŪTĪT PIEDĀVĀJUMU
@@ -446,7 +446,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                 </div>
 
                 {/* Right Side: Document Upload */}
-                <div className="w-full bg-[#F8F9FA] p-8 lg:p-14 flex flex-col border-l border-black/5">
+                <div className="w-full bg-white p-8 lg:p-14 flex flex-col border-l border-black/5">
                   <h3 
                     className="text-[24px] lg:text-[28px] font-semibold text-black mb-8 leading-tight"
                     style={{ ...sairaExpanded, textTransform: 'none' }}
@@ -470,7 +470,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         ref={fileInputRef}
                         onChange={handleFileChange}
                       />
-                      <div className="text-[14px] text-black/60 transition-colors" style={saira}>
+                      <div className="text-[14px] text-black transition-colors" style={saira}>
                         Ievelciet failus šeit vai
                       </div>
                       <Button 
@@ -486,7 +486,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     </p>
 
                     <div className="mt-10 flex-1 flex flex-col">
-                      <div className="bg-[#E9ECEF]/50 rounded-[20px] p-6 flex-1 flex flex-col border border-black/5 min-h-[140px]">
+                      <div className="bg-white rounded-[20px] p-6 flex-1 flex flex-col border border-black/5">
                         <h4 className="text-[14px] font-semibold text-black mb-4" style={sairaExpanded}>
                           Pievienotie dokumenti:
                         </h4>
