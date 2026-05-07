@@ -260,7 +260,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
       <DialogPortal>
         <DialogOverlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]" />
         <DialogPrimitive.Content 
-          className="fixed inset-0 z-[60] overflow-y-scroll py-12 lg:py-24 px-4 flex flex-col items-center outline-none"
+          className="fixed inset-0 z-[60] overflow-y-auto py-12 lg:py-24 px-4 flex flex-col items-center outline-none"
           onInteractOutside={(e) => e.preventDefault()}
         >
           <div className="relative w-full max-w-[1000px] pointer-events-auto my-auto min-h-min">
@@ -435,8 +435,8 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <FlowHoverButton asChild>
                         <Button 
                           type="submit"
-                          className="bg-white border-none text-black px-14 py-8 rounded-full text-[15px] font-semibold transition-all hover:text-white active:scale-95 shadow-none"
-                          style={{ ...sairaExpanded, textTransform: 'uppercase' }}
+                          className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/30 px-14 py-8 text-[15px] font-semibold text-black transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest shadow-none bg-white"
+                          style={sairaExpanded}
                         >
                           NOSŪTĪT PIEDĀVĀJUMU
                         </Button>
@@ -486,7 +486,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     </p>
 
                     <div className="mt-10 flex-1 flex flex-col">
-                      <div className="bg-white rounded-[20px] p-4 flex-1 flex flex-col border border-black/5">
+                      <div className="bg-white rounded-[20px] p-4 flex-1 flex flex-col border border-black/5 min-h-[100px]">
                         <h4 className="text-[14px] font-semibold text-black mb-2" style={sairaExpanded}>
                           Pievienotie dokumenti:
                         </h4>
