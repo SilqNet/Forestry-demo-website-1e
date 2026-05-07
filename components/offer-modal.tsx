@@ -517,7 +517,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                             </p>
                           </div>
                         ) : (
-                          <div className="max-w-full min-w-0 max-height-[140px] overflow-x-auto overflow-y-auto whitespace-nowrap">
+                          <div className="max-w-full min-w-0 max-h-[140px] overflow-x-auto overflow-y-auto whitespace-nowrap">
                             <ul className="space-y-2 pb-1">
                               {files.map((file, index) => (
                                 <li key={index} className="flex items-center gap-[12px] group bg-white p-3 rounded-xl shadow-sm border border-black/5 w-max min-w-full whitespace-nowrap">
