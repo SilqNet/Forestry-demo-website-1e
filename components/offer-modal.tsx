@@ -420,7 +420,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <Label className="text-[14px] text-black font-medium" style={saira}>Ziņa</Label>
                       <textarea
                         {...register('zina')}
-                        className="w-full bg-transparent border-b border-black/10 pb-1 pt-2 focus:border-black outline-none transition-colors text-[14px] min-h-[32px] resize-none overflow-hidden leading-[1.6]"
+                        className="w-full bg-transparent border-b border-black/10 pt-0 pb-[6px] focus:border-black outline-none transition-colors text-[14px] min-h-[44px] h-auto resize-none overflow-hidden leading-[1.35] block"
                         onInput={(e) => {
                           const target = e.target as HTMLTextAreaElement
                           target.style.height = 'auto'
