@@ -447,7 +447,8 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <FlowHoverButton asChild>
                         <Button 
                           type="submit"
-                          className="inline-flex items-center gap-2 rounded-full border border-black/10 px-14 py-8 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest shadow-none bg-white"
+                          variant="ghost"
+                          className="inline-flex items-center gap-2 rounded-full border border-black/10 px-14 py-8 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold hover:bg-transparent active:text-white active:border-gold active:bg-transparent uppercase tracking-widest shadow-none bg-white"
                           style={sairaExpanded}
                         >
                           NOSŪTĪT PIEDĀVĀJUMU
@@ -513,28 +514,33 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                             </p>
                           </div>
                         ) : (
-                          <ul className="space-y-2 pr-1">
-                            {files.map((file, index) => (
-                              <li key={index} className="flex items-center justify-between gap-3 group bg-white p-3 rounded-xl shadow-sm border border-black/5">
-                                <div className="flex items-center gap-3 overflow-hidden">
-                                  <Upload size={14} className="text-gold shrink-0" />
-                                  <span className="text-[13px] text-black/80 truncate font-medium" title={file.name}>
-                                    {file.name}
-                                  </span>
-                                </div>
-                                <button 
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    removeFile(index)
-                                  }}
-                                  className="p-1 text-black/20 hover:text-red-500 transition-colors"
-                                >
-                                  <Trash2 size={14} />
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
+                          <div className="flex-1 overflow-hidden flex flex-col min-h-0">
+                            <div className="flex-1 overflow-auto max-h-[160px] pr-2 -mr-2 scrollbar-thin scrollbar-thumb-black/10 scrollbar-track-transparent">
+                              <ul className="space-y-2 pb-1">
+                                {files.map((file, index) => (
+                                  <li key={index} className="flex items-center justify-between gap-3 group bg-white p-3 rounded-xl shadow-sm border border-black/5 min-w-fit">
+                                    <div className="flex items-center gap-3 whitespace-nowrap">
+                                      <Upload size={14} className="text-gold shrink-0" />
+                                      <span className="text-[13px] text-black/80 font-medium" title={file.name}>
+                                        {file.name}
+                                      </span>
+                                    </div>
+                                    <button 
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation()
+                                        removeFile(index)
+                                      }}
+                                      className="flex items-center gap-1.5 px-2 py-1 text-[11px] font-medium text-red-500 hover:bg-red-50 rounded-md transition-colors shrink-0"
+                                    >
+                                      <span>Dzēst</span>
+                                      <Trash2 size={12} />
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>
