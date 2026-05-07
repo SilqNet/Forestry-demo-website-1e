@@ -22,7 +22,7 @@ import { Label } from '@/components/ui/label'
 import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 const formSchema = z.object({
-  type: z.string().optional(),
+  type: z.string().min(1, 'Izvēlieties īpašuma veidu'),
   kadastraNumurs: z.string().length(11, 'Kadastra numurs sastāv no 11 cipariem').regex(/^\d+$/, 'Atļauti tikai cipari'),
   ipasumaNosaukums: z.string().optional(),
   pagasts: z.string().optional(),
@@ -266,9 +266,14 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
   const saira = { fontFamily: "'Saira', sans-serif" }
 
   const handleNumericInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!/[0-9]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Tab') {
+    if (!/[0-9]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Tab' && !e.ctrlKey && !e.metaKey) {
       e.preventDefault()
     }
+  }
+
+  const handleNumericOnly = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.currentTarget
+    target.value = target.value.replace(/\D/g, '')
   }
 
   return (
@@ -292,7 +297,10 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                 <div className="p-8 lg:p-14">
                   <DialogHeader className="mb-8">
                     <DialogPrimitive.Title 
-                      className="text-[24px] lg:text-[28px] font-semibold text-black text-left leading-tight"
+                      className={cn(
+                        "text-[24px] lg:text-[28px] font-semibold text-left leading-tight transition-colors",
+                        errors.type ? "text-red-500" : "text-black"
+                      )}
                       style={{ ...sairaExpanded, textTransform: 'none' }}
                     >
                       Vēlos piedāvāt
@@ -317,11 +325,20 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                         {/* Row 1: Kadastra numurs | Ipasuma nosaukums */}
                         <div className="space-y-1">
-                          <Label className="text-[14px] text-black font-medium" style={saira}>Kadastra numurs</Label>
+                          <Label 
+                            className={cn(
+                              "text-[14px] font-medium transition-colors",
+                              errors.kadastraNumurs ? "text-red-500" : "text-black"
+                            )} 
+                            style={saira}
+                          >
+                            Kadastra numurs
+                          </Label>
                           <div className="relative">
                             <input
                               {...register('kadastraNumurs')}
                               onKeyDown={handleNumericInput}
+                              onInput={handleNumericOnly}
                               className={cn(
                                 "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
                                 errors.kadastraNumurs && "border-red-500"
@@ -356,13 +373,23 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                           <Label className="text-[14px] text-black font-medium" style={saira}>Aptuvenā īpašuma platība (ha)</Label>
                           <input
                             {...register('platiba')}
+                            onKeyDown={handleNumericInput}
+                            onInput={handleNumericOnly}
                             className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]"
                           />
                         </div>
 
                         {/* Row 3: Vards uzvards | Telefona numurs */}
                         <div className="space-y-1">
-                          <Label className="text-[14px] text-black font-medium" style={saira}>Vārds uzvārds</Label>
+                          <Label 
+                            className={cn(
+                              "text-[14px] font-medium transition-colors",
+                              errors.vardsUzvards ? "text-red-500" : "text-black"
+                            )} 
+                            style={saira}
+                          >
+                            Vārds uzvārds
+                          </Label>
                           <input
                             {...register('vardsUzvards')}
                             className={cn(
@@ -384,7 +411,15 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         </div>
 
                         <div className="space-y-1">
-                          <Label className="text-[14px] text-black font-medium" style={saira}>Telefona numurs</Label>
+                          <Label 
+                            className={cn(
+                              "text-[14px] font-medium transition-colors",
+                              errors.talrunis ? "text-red-500" : "text-black"
+                            )} 
+                            style={saira}
+                          >
+                            Telefona numurs
+                          </Label>
                           <input
                             {...register('talrunis')}
                             className={cn(
@@ -440,7 +475,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         onChange={() => setValue('privacyConsent', !privacyConsentValue)}
                         label={
                           <span>
-                            Piekrītu manu datu apstrādei saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors inline-block">Privātuma Politiku</span>
+                            Piekrītu, ka mana ievadītā informācija tiek apstrādāta saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors inline-block">GR GRUPA privātuma politiku.</span>
                           </span>
                         }
                       />
@@ -556,7 +591,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         <div className="flex items-center gap-3 mb-4">
                           <div className="shrink-0">
                             <Image 
-                              src="/images/execution.png" 
+                              src="/images/fast.png" 
                               alt="Execution icon" 
                               width={24} 
                               height={24}
@@ -636,7 +671,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                                 textTransform: 'none',
                               }}
                             >
-                              birojs@latvijasmezsaimnieks.lv
+                              info@grgrupa.lv
                             </span>
                           </div>
                         </div>
