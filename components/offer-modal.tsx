@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { X, Upload, Trash2, Check, ChevronDown } from 'lucide-react'
+import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { cn } from '@/lib/utils'
 import {
   Dialog,
