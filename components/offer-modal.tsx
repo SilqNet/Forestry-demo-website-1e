@@ -542,7 +542,6 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                 </div>
               </div>
             </div>
-            </div>
           </div>
         </DialogPrimitive.Content>
       </DialogPortal>
