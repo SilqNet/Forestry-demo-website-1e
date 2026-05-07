@@ -180,6 +180,8 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
       zina: '',
       privacyConsent: false,
     },
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
   })
 
   React.useEffect(() => {
@@ -211,10 +213,10 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
   const handleTypeSelect = (type: string) => {
     if (selectedType === type) {
       setSelectedType(null)
-      setValue('type', '')
+      setValue('type', '', { shouldValidate: true })
     } else {
       setSelectedType(type)
-      setValue('type', type)
+      setValue('type', type, { shouldValidate: true })
     }
   }
 
