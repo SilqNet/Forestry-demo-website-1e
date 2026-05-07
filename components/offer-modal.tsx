@@ -180,6 +180,17 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
     },
   })
 
+  React.useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
   const inventarizacijaValue = watch('inventarizacija')
   const lemumsValue = watch('lemums')
   const privacyConsentValue = watch('privacyConsent')
@@ -447,7 +458,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                 </div>
 
                 {/* Right Side: Document Upload */}
-                <div className="w-full bg-white p-8 lg:p-14 flex flex-col">
+                <div className="w-full bg-white p-8 lg:p-14">
                   <h3 
                     className="text-[24px] lg:text-[28px] font-semibold text-black mb-8 leading-tight"
                     style={{ ...sairaExpanded, textTransform: 'none' }}
@@ -458,7 +469,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                   <div 
                     onDragOver={onDragOver}
                     onDrop={onDrop}
-                    className="flex-1 flex flex-col"
+                    className="flex flex-col"
                   >
                     <div 
                       className="border border-dashed border-black/10 rounded-[20px] p-8 text-center flex flex-col items-center justify-center gap-6 bg-white transition-all cursor-pointer shadow-sm"
