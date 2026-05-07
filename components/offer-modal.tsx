@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+import { FlowHoverButton } from '@/components/ui/flow-hover-button'
 
 const formSchema = z.object({
   type: z.string().optional(),
@@ -27,7 +28,7 @@ const formSchema = z.object({
   inventarizacija: z.string().optional(),
   lemums: z.string().optional(),
   vardsUzvards: z.string().min(1, 'Vārds, Uzvārds ir obligāts'),
-  epasts: z.string().email('Nepareizs e-pasts'),
+  epasts: z.string().email('Nepareizs e-pasts').min(1, 'E-pasts ir obligāts'),
   talrunis: z.string().min(1, 'Tālrunis ir obligāts'),
   velamaCena: z.string().optional(),
   zina: z.string().optional(),
@@ -242,7 +243,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
   const types = [
     { id: 'meza-ipasumu', label: 'Meža īpašumu' },
     { id: 'augosus-kokus', label: 'Augošus kokus' },
-    { id: 'cirsmu', label: 'Cirsmas' },
+    { id: 'cirsmu', label: 'Cirsmu' },
   ]
 
   const sairaExpanded = { fontFamily: "'Saira Expanded', sans-serif" }
@@ -259,7 +260,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
       <DialogPortal>
         <DialogOverlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]" />
         <DialogPrimitive.Content 
-          className="fixed inset-0 z-[60] overflow-y-auto py-12 lg:py-24 px-4 flex flex-col items-center outline-none scrollbar-gutter-stable"
+          className="fixed inset-0 z-[60] overflow-y-auto py-12 lg:py-24 px-4 flex flex-col items-center outline-none"
           onInteractOutside={(e) => e.preventDefault()}
         >
           <div className="relative w-full max-w-[1100px] pointer-events-auto my-auto min-h-min">
@@ -310,6 +311,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                               )}
                               maxLength={11}
                             />
+                            <p className="text-[11px] text-black/60 mt-1" style={saira}>Kadastra numurs sastāv no 11 cipariem</p>
                             {errors.kadastraNumurs && (
                               <p className="text-[11px] text-red-500 mt-0.5" style={saira}>{errors.kadastraNumurs.message}</p>
                             )}
@@ -354,6 +356,17 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         </div>
 
                         <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>E-pasts</Label>
+                          <input
+                            {...register('epasts')}
+                            className={cn(
+                              "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
+                              errors.epasts && "border-red-500"
+                            )}
+                          />
+                        </div>
+
+                        <div className="space-y-1">
                           <Label className="text-[14px] text-black font-medium" style={saira}>Telefona numurs</Label>
                           <input
                             {...register('talrunis')}
@@ -392,7 +405,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <Label className="text-[14px] text-black font-medium" style={saira}>Ziņa</Label>
                       <textarea
                         {...register('zina')}
-                        className="w-full bg-transparent border-b border-black/10 pb-1 pt-2 focus:border-black outline-none transition-colors text-[14px] min-h-[32px] resize-none overflow-hidden"
+                        className="w-full bg-transparent border-b border-black/10 pb-0 pt-1 focus:border-black outline-none transition-colors text-[14px] min-h-[28px] resize-none overflow-hidden"
                         onInput={(e) => {
                           const target = e.target as HTMLTextAreaElement
                           target.style.height = 'auto'
@@ -419,13 +432,15 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
 
                     {/* Submit Button */}
                     <div className="flex justify-center pt-8">
-                      <Button 
-                        type="submit"
-                        className="bg-gold hover:bg-gold/90 text-white px-14 py-8 rounded-full text-[15px] font-semibold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gold/20"
-                        style={{ ...sairaExpanded, textTransform: 'none' }}
-                      >
-                        Nosūtīt Piedāvājumu
-                      </Button>
+                      <FlowHoverButton asChild>
+                        <Button 
+                          type="submit"
+                          className="bg-white border border-black/10 text-black px-14 py-8 rounded-full text-[15px] font-semibold transition-all hover:text-white active:scale-95 shadow-lg"
+                          style={{ ...sairaExpanded, textTransform: 'uppercase' }}
+                        >
+                          NOSŪTĪT PIEDĀVĀJUMU
+                        </Button>
+                      </FlowHoverButton>
                     </div>
                   </form>
                 </div>
@@ -433,8 +448,8 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                 {/* Right Side: Document Upload */}
                 <div className="w-full bg-[#F8F9FA] p-8 lg:p-14 flex flex-col border-l border-black/5">
                   <h3 
-                    className="text-[18px] font-semibold text-black mb-8"
-                    style={sairaExpanded}
+                    className="text-[24px] lg:text-[28px] font-semibold text-black mb-8 leading-tight"
+                    style={{ ...sairaExpanded, textTransform: 'none' }}
                   >
                     Pievienot dokumentu
                   </h3>
@@ -445,7 +460,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     className="flex-1 flex flex-col"
                   >
                     <div 
-                      className="border border-dashed border-black/10 rounded-[20px] p-8 text-center flex flex-col items-center justify-center gap-6 bg-white hover:border-gold transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                      className="border border-dashed border-black/10 rounded-[20px] p-8 text-center flex flex-col items-center justify-center gap-6 bg-white transition-all cursor-pointer shadow-sm"
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <input 
@@ -455,7 +470,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         ref={fileInputRef}
                         onChange={handleFileChange}
                       />
-                      <div className="text-[14px] text-black/60 group-hover:text-black transition-colors" style={saira}>
+                      <div className="text-[14px] text-black/60 transition-colors" style={saira}>
                         Ievelciet failus šeit vai
                       </div>
                       <Button 
@@ -466,18 +481,18 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         Izvēlēties failus
                       </Button>
                     </div>
-                    <p className="text-[11px] text-black/40 mt-6 text-center" style={saira}>
+                    <p className="text-[11px] text-black mt-6 text-center" style={saira}>
                       Max. faila lielums: 50 MB, Max. faili: 20
                     </p>
 
                     <div className="mt-10 flex-1 flex flex-col">
-                      <div className="bg-[#E9ECEF]/50 rounded-[20px] p-6 flex-1 flex flex-col border border-black/5 min-h-[220px]">
+                      <div className="bg-[#E9ECEF]/50 rounded-[20px] p-6 flex-1 flex flex-col border border-black/5 min-h-[140px]">
                         <h4 className="text-[14px] font-semibold text-black mb-4" style={sairaExpanded}>
                           Pievienotie dokumenti:
                         </h4>
                         
                         {files.length === 0 ? (
-                          <div className="flex flex-col items-center justify-center flex-1 opacity-30">
+                          <div className="flex flex-col items-center justify-center flex-1">
                             <p className="text-[13px] text-black text-center" style={saira}>
                               Neviens dokuments nav pievienots
                             </p>
