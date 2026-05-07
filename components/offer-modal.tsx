@@ -304,9 +304,9 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     </DialogPrimitive.Title>
                   </DialogHeader>
 
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                  <form id="offer-form" onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                     {/* Type Selection */}
-                    <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
+                    <div className="flex flex-col lg:flex-row lg:flex-wrap items-start lg:items-center gap-x-10 gap-y-4">
                       {types.map((type) => (
                         <CustomCheckbox
                           key={type.id}
@@ -497,10 +497,11 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       )}
                     </div>
 
-                    {/* Submit Button */}
-                    <div className="flex justify-center pt-8">
+                    {/* Submit Button (Desktop) */}
+                    <div className="hidden lg:flex justify-center pt-8">
                       <FlowHoverButton asChild>
                         <Button 
+                          form="offer-form"
                           type="submit"
                           variant="ghost"
                           className="inline-flex items-center gap-2 rounded-full border border-black/10 px-14 py-8 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold hover:bg-transparent active:text-white active:border-gold active:bg-transparent uppercase tracking-widest shadow-none bg-white"
@@ -596,6 +597,21 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                           </div>
                         )}
                       </div>
+                    </div>
+
+                    {/* Submit Button (Mobile/Tablet) */}
+                    <div className="flex lg:hidden justify-center pt-10 pb-2">
+                      <FlowHoverButton asChild>
+                        <Button 
+                          form="offer-form"
+                          type="submit"
+                          variant="ghost"
+                          className="inline-flex items-center gap-2 rounded-full border border-black/10 px-14 py-8 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold hover:bg-transparent active:text-white active:border-gold active:bg-transparent uppercase tracking-widest shadow-none bg-white"
+                          style={sairaExpanded}
+                        >
+                          NOSŪTĪT PIEDĀVĀJUMU
+                        </Button>
+                      </FlowHoverButton>
                     </div>
 
                     {/* Informational Block */}
