@@ -72,7 +72,7 @@ const CustomCheckbox = ({
       <span 
         className={cn(
           "text-[14px] transition-colors leading-tight",
-          checked && isBold ? "text-black font-bold" : "text-black/60 group-hover:text-black",
+          checked && isBold ? "text-black font-bold" : "text-black/60",
           !checked && "font-normal"
         )}
         style={saira}
@@ -259,10 +259,10 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
       <DialogPortal>
         <DialogOverlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]" />
         <DialogPrimitive.Content 
-          className="fixed inset-0 z-[60] overflow-y-auto py-12 lg:py-24 px-4 flex flex-col items-center outline-none"
+          className="fixed inset-0 z-[60] overflow-y-auto py-12 lg:py-24 px-4 flex flex-col items-center outline-none scrollbar-gutter-stable"
           onInteractOutside={(e) => e.preventDefault()}
         >
-          <div className="relative w-full max-w-[1100px] pointer-events-auto">
+          <div className="relative w-full max-w-[1100px] pointer-events-auto my-auto min-h-min">
             {/* Close button outside the modal */}
             <DialogPrimitive.Close className="absolute -top-12 right-0 lg:-right-12 p-2 text-white hover:text-gold transition-colors outline-none cursor-pointer">
               <X size={36} strokeWidth={1.5} />
@@ -297,40 +297,51 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
 
                     <div className="space-y-10 pt-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-                        {/* Kadastra numurs */}
+                        {/* Row 1: Kadastra numurs | Ipasuma nosaukums */}
                         <div className="space-y-1">
                           <Label className="text-[14px] text-black font-medium" style={saira}>Kadastra numurs</Label>
                           <div className="relative">
                             <input
                               {...register('kadastraNumurs')}
                               onKeyDown={handleNumericInput}
-                              placeholder="00000000000"
                               className={cn(
                                 "w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]",
                                 errors.kadastraNumurs && "border-red-500"
                               )}
                               maxLength={11}
                             />
-                            <p className="text-[11px] text-black/40 mt-1" style={saira}>
-                              Kadastra numurs sastāv no 11 cipariem
-                            </p>
                             {errors.kadastraNumurs && (
                               <p className="text-[11px] text-red-500 mt-0.5" style={saira}>{errors.kadastraNumurs.message}</p>
                             )}
                           </div>
                         </div>
 
-                        {/* Velama cena */}
                         <div className="space-y-1">
-                          <Label className="text-[14px] text-black font-medium" style={saira}>Vēlamā cena</Label>
+                          <Label className="text-[14px] text-black font-medium" style={saira}>Īpašuma nosaukums</Label>
                           <input
-                            {...register('velamaCena')}
-                            placeholder="0.00 €"
+                            {...register('ipasumaNosaukums')}
                             className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]"
                           />
                         </div>
 
-                        {/* Vards uzvards */}
+                        {/* Row 2: Pagasts | Aptuvena platiba */}
+                        <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>Pagasts</Label>
+                          <input
+                            {...register('pagasts')}
+                            className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]"
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <Label className="text-[14px] text-black font-medium" style={saira}>Aptuvenā īpašuma platība (ha)</Label>
+                          <input
+                            {...register('platiba')}
+                            className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px]"
+                          />
+                        </div>
+
+                        {/* Row 3: Vards uzvards | Telefona numurs */}
                         <div className="space-y-1">
                           <Label className="text-[14px] text-black font-medium" style={saira}>Vārds uzvārds</Label>
                           <input
@@ -342,7 +353,6 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                           />
                         </div>
 
-                        {/* Telefona numurs */}
                         <div className="space-y-1">
                           <Label className="text-[14px] text-black font-medium" style={saira}>Telefona numurs</Label>
                           <input
@@ -382,7 +392,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <Label className="text-[14px] text-black font-medium" style={saira}>Ziņa</Label>
                       <textarea
                         {...register('zina')}
-                        className="w-full bg-transparent border-b border-black/10 py-2 focus:border-black outline-none transition-colors text-[14px] min-h-[40px] resize-none overflow-hidden"
+                        className="w-full bg-transparent border-b border-black/10 pb-1 pt-2 focus:border-black outline-none transition-colors text-[14px] min-h-[32px] resize-none overflow-hidden"
                         onInput={(e) => {
                           const target = e.target as HTMLTextAreaElement
                           target.style.height = 'auto'
@@ -398,7 +408,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         onChange={() => setValue('privacyConsent', !privacyConsentValue)}
                         label={
                           <span>
-                            Piekrītu manu datu apstrādei saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors">Privātuma Politiku</span>
+                            Piekrītu manu datu apstrādei saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors inline-block">Privātuma Politiku</span>
                           </span>
                         }
                       />
@@ -461,8 +471,8 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     </p>
 
                     <div className="mt-10 flex-1 flex flex-col">
-                      <div className="bg-[#E9ECEF]/50 rounded-[20px] p-8 flex-1 flex flex-col border border-black/5 min-h-[350px]">
-                        <h4 className="text-[14px] font-semibold text-black mb-6" style={sairaExpanded}>
+                      <div className="bg-[#E9ECEF]/50 rounded-[20px] p-6 flex-1 flex flex-col border border-black/5 min-h-[220px]">
+                        <h4 className="text-[14px] font-semibold text-black mb-4" style={sairaExpanded}>
                           Pievienotie dokumenti:
                         </h4>
                         
@@ -473,11 +483,11 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                             </p>
                           </div>
                         ) : (
-                          <ul className="space-y-3 pr-1">
+                          <ul className="space-y-2 pr-1">
                             {files.map((file, index) => (
-                              <li key={index} className="flex items-center justify-between gap-3 group bg-white p-4 rounded-xl shadow-sm border border-black/5">
+                              <li key={index} className="flex items-center justify-between gap-3 group bg-white p-3 rounded-xl shadow-sm border border-black/5">
                                 <div className="flex items-center gap-3 overflow-hidden">
-                                  <Upload size={16} className="text-gold shrink-0" />
+                                  <Upload size={14} className="text-gold shrink-0" />
                                   <span className="text-[13px] text-black/80 truncate font-medium" title={file.name}>
                                     {file.name}
                                   </span>
@@ -488,9 +498,9 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                                     e.stopPropagation()
                                     removeFile(index)
                                   }}
-                                  className="p-1.5 text-black/20 hover:text-red-500 transition-colors"
+                                  className="p-1 text-black/20 hover:text-red-500 transition-colors"
                                 >
-                                  <Trash2 size={16} />
+                                  <Trash2 size={14} />
                                 </button>
                               </li>
                             ))}
