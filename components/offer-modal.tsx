@@ -345,10 +345,15 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                               )}
                               maxLength={11}
                             />
-                            <p className="text-[11px] text-black/60 mt-1" style={saira}>Kadastra numurs sastāv no 11 cipariem</p>
-                            {errors.kadastraNumurs && (
-                              <p className="text-[11px] text-red-500 mt-0.5" style={saira}>{errors.kadastraNumurs.message}</p>
-                            )}
+                            <p 
+                              className={cn(
+                                "text-[11px] mt-1 transition-colors",
+                                errors.kadastraNumurs ? "text-red-500" : "text-black/60"
+                              )} 
+                              style={saira}
+                            >
+                              Kadastra numurs sastāv no 11 cipariem
+                            </p>
                           </div>
                         </div>
 
