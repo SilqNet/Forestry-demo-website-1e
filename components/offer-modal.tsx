@@ -416,18 +416,19 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                     </div>
 
                     {/* Message */}
-                    <div className="group space-y-0 flex flex-col">
+                    <div className="flex flex-col w-full mb-6">
                       <Label className="text-[14px] text-black font-medium mb-1" style={saira}>Ziņa</Label>
                       <textarea
                         {...register('zina')}
                         className="w-full bg-transparent p-0 m-0 border-none outline-none resize-none overflow-hidden text-[14px] leading-[1.35] min-h-[28px] h-auto block"
+                        rows={1}
                         onInput={(e) => {
                           const target = e.target as HTMLTextAreaElement
                           target.style.height = 'auto'
                           target.style.height = `${target.scrollHeight}px`
                         }}
                       />
-                      <div className="w-full h-[1px] bg-black/10 group-focus-within:bg-black transition-colors mt-[6px]" />
+                      <div className="w-full h-[1px] bg-black mt-[6px]" />
                     </div>
 
                     {/* Privacy Consent */}
