@@ -260,10 +260,11 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
       <DialogPortal>
         <DialogOverlay className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]" />
         <DialogPrimitive.Content 
-          className="fixed inset-0 z-[60] overflow-y-auto py-12 lg:py-24 px-4 flex flex-col items-center outline-none"
+          className="fixed inset-0 z-[60] overflow-y-auto outline-none"
           onInteractOutside={(e) => e.preventDefault()}
         >
-          <div className="relative w-full max-w-[1000px] pointer-events-auto my-auto min-h-min">
+          <div className="min-h-full flex flex-col items-center py-12 lg:py-24 px-4">
+            <div className="relative w-full max-w-[1000px] my-auto">
             {/* Close button outside the modal */}
             <DialogPrimitive.Close className="absolute -top-12 right-0 lg:-right-12 p-2 text-white hover:text-gold transition-colors outline-none cursor-pointer">
               <X size={36} strokeWidth={1.5} />
@@ -435,7 +436,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       <FlowHoverButton asChild>
                         <Button 
                           type="submit"
-                          className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/30 px-14 py-8 text-[15px] font-semibold text-black transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest shadow-none bg-white"
+                          className="inline-flex items-center gap-2 rounded-full border border-black/10 px-14 py-8 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest shadow-none bg-white"
                           style={sairaExpanded}
                         >
                           NOSŪTĪT PIEDĀVĀJUMU
@@ -485,14 +486,17 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                       Max. faila lielums: 50 MB, Max. faili: 20
                     </p>
 
-                    <div className="mt-10 flex-1 flex flex-col">
-                      <div className="bg-white rounded-[20px] p-4 flex-1 flex flex-col border border-black/5 min-h-[100px]">
+                    <div className="mt-10">
+                      <div 
+                        className="bg-white rounded-[20px] flex flex-col border border-black/5 min-h-[90px] h-auto"
+                        style={{ padding: '24px 30px' }}
+                      >
                         <h4 className="text-[14px] font-semibold text-black mb-2" style={sairaExpanded}>
                           Pievienotie dokumenti:
                         </h4>
                         
                         {files.length === 0 ? (
-                          <div className="flex flex-col items-center justify-center flex-1">
+                          <div className="flex flex-col items-center justify-center py-2">
                             <p className="text-[13px] text-black text-center" style={saira}>
                               Neviens dokuments nav pievienots
                             </p>
