@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 function prefersTapToggle() {
   if (typeof window === 'undefined') return false
@@ -17,17 +17,39 @@ interface WidgetProps {
   labelLine1: string
   labelLine2: string
   href: string
+  isOpen: boolean
+  onOpen: () => void
   disableNavigation?: boolean
   onClick?: () => void
 }
 
-function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = false, onClick: propOnClick }: WidgetProps) {
+function SideWidget({ icon, labelLine1, labelLine2, href, isOpen, onOpen, disableNavigation = false, onClick: propOnClick }: WidgetProps) {
   const [hoverOpen, setHoverOpen] = useState(false)
-  const [tapOpen, setTapOpen] = useState(false)
+  const wasOpenRef = useRef(false)
 
-  const expanded = hoverOpen || tapOpen
+  const expanded = hoverOpen || isOpen
+
+  const handlePointerDown = useCallback(() => {
+    if (!prefersTapToggle()) return
+    wasOpenRef.current = isOpen
+    if (!isOpen) {
+      onOpen()
+    }
+  }, [isOpen, onOpen])
 
   const onClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const isTouch = prefersTapToggle()
+
+    if (isTouch) {
+      // If it wasn't open when the interaction started, only expand it
+      if (!wasOpenRef.current) {
+        e.preventDefault()
+        e.stopPropagation()
+        return
+      }
+      // If it was already open, allow the action to proceed
+    }
+
     if (disableNavigation) {
       e.preventDefault()
       e.stopPropagation()
@@ -36,11 +58,7 @@ function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = fa
       }
       return
     }
-    if (prefersTapToggle()) {
-      e.preventDefault()
-      setTapOpen((o) => !o)
-    }
-  }, [disableNavigation, propOnClick])
+  }, [disableNavigation, propOnClick, isOpen])
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLAnchorElement>) => {
@@ -62,10 +80,12 @@ function SideWidget({ icon, labelLine1, labelLine2, href, disableNavigation = fa
         href={href}
         onClick={onClick}
         onKeyDown={onKeyDown}
-        onMouseEnter={() => setHoverOpen(true)}
+        onPointerDown={handlePointerDown}
+        onMouseEnter={() => {
+          if (!prefersTapToggle()) setHoverOpen(true)
+        }}
         onMouseLeave={() => {
-          setHoverOpen(false)
-          setTapOpen(false)
+          if (!prefersTapToggle()) setHoverOpen(false)
         }}
         className="flex items-center bg-[#C5A059] text-white shadow-lg transition-transform duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#C5A059]"
         style={{
@@ -107,6 +127,16 @@ import { OfferModal } from './offer-modal'
 
 export default function FloatingButton() {
   const [offerModalOpen, setOfferModalOpen] = useState(false)
+  const [activeWidgetId, setActiveWidgetId] = useState<string | null>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setActiveWidgetId(null)
+    }
+    // Listen for scroll on window to close open widgets
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <div
@@ -118,6 +148,8 @@ export default function FloatingButton() {
         labelLine1="Uzzini savu"
         labelLine2="meža vērtību"
         href="#"
+        isOpen={activeWidgetId === 'valuation'}
+        onOpen={() => setActiveWidgetId('valuation')}
         disableNavigation
         onClick={() => setOfferModalOpen(true)}
       />
@@ -126,6 +158,8 @@ export default function FloatingButton() {
         labelLine1="Sazinies ar"
         labelLine2="WhatsApp"
         href="#"
+        isOpen={activeWidgetId === 'whatsapp'}
+        onOpen={() => setActiveWidgetId('whatsapp')}
       />
       <OfferModal open={offerModalOpen} onOpenChange={setOfferModalOpen} />
     </div>
