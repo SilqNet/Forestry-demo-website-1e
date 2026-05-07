@@ -285,7 +285,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
             </DialogPrimitive.Close>
 
             <div className="w-full bg-white rounded-[30px] border-none shadow-2xl overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] w-full">
+              <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] w-full">
                 {/* Left Side: Form */}
                 <div className="p-8 lg:p-14">
                   <DialogHeader className="mb-8">
@@ -517,13 +517,13 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                             </p>
                           </div>
                         ) : (
-                          <div className="max-w-full min-w-0 overflow-x-auto overflow-y-auto max-h-[140px] whitespace-nowrap">
+                          <div className="max-w-full min-w-0 max-height-[140px] overflow-x-auto overflow-y-auto whitespace-nowrap">
                             <ul className="space-y-2 pb-1">
                               {files.map((file, index) => (
-                                <li key={index} className="flex items-center gap-[12px] group bg-white p-3 rounded-xl shadow-sm border border-black/5 w-max min-w-full">
-                                  <div className="flex items-center gap-3">
+                                <li key={index} className="flex items-center gap-[12px] group bg-white p-3 rounded-xl shadow-sm border border-black/5 w-max min-w-full whitespace-nowrap">
+                                  <div className="flex items-center gap-3 flex-shrink-0">
                                     <Upload size={14} className="text-gold shrink-0" />
-                                    <span className="text-[13px] text-black/80 font-medium" title={file.name}>
+                                    <span className="text-[13px] text-black/80 font-medium whitespace-nowrap flex-shrink-0" title={file.name}>
                                       {file.name}
                                     </span>
                                   </div>
