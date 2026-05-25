@@ -488,7 +488,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                         onChange={() => setValue('privacyConsent', !privacyConsentValue, { shouldValidate: true })}
                         label={
                           <span>
-                            Piekrītu, ka mana ievadītā informācija tiek apstrādāta saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors inline-block">GR GRUPA privātuma politiku.</span>
+                            Piekrītu, ka mana ievadītā informācija tiek apstrādāta saskaņā ar <span className="underline decoration-1 underline-offset-4 cursor-pointer hover:text-gold transition-colors inline-block">MežsLV privātuma politiku.</span>
                           </span>
                         }
                       />
@@ -684,7 +684,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                                 textTransform: 'none',
                               }}
                             >
-                              +371 29611110
+                              +371 26429202
                             </span>
                           </div>
                           <div className="flex items-center gap-4">
@@ -700,7 +700,7 @@ export function OfferModal({ open, onOpenChange }: OfferModalProps) {
                                 textTransform: 'none',
                               }}
                             >
-                              info@grgrupa.lv
+                              info@mezslv.lv
                             </span>
                           </div>
                         </div>

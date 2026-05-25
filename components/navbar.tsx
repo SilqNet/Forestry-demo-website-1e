@@ -122,13 +122,9 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 w-full items-center gap-3">
             <Link href="/" className="shrink-0 flex items-center gap-4">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
-                alt="GR GRUPA"
-                width={180}
-                height={60}
-                className="h-[50px] md:h-[60px] w-auto"
-              />
+              <span className={`text-[24px] md:text-[28px] font-extrabold tracking-wider transition-colors duration-300 ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira Expanded', sans-serif" }}>
+                Mežs<span className="text-gold">LV</span>
+              </span>
             </Link>
 
             <div className="hidden md:flex flex-1 items-stretch justify-end pl-8 lg:pl-16 h-full py-3">
@@ -239,13 +235,9 @@ export default function Navbar() {
           {/* Header inside menu */}
           <div className="w-full h-20 md:h-24 flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
             <Link href="/" onClick={() => setIsOpen(false)} className="shrink-0 flex items-center gap-4">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
-                alt="GR GRUPA"
-                width={180}
-                height={60}
-                className="h-[50px] md:h-[60px] w-auto"
-              />
+              <span className="text-[24px] md:text-[28px] font-extrabold tracking-wider text-[#004225]" style={{ fontFamily: "'Saira Expanded', sans-serif" }}>
+                Mežs<span className="text-gold">LV</span>
+              </span>
             </Link>
             
             <div className="flex items-center gap-6">

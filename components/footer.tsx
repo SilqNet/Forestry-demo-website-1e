@@ -29,13 +29,9 @@ export default function Footer() {
           {/* Logo & About */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png"
-                alt="GR GRUPA"
-                width={160}
-                height={50}
-                className="h-auto"
-              />
+              <span className="text-[24px] font-extrabold tracking-wider text-white" style={{ fontFamily: "'Saira Expanded', sans-serif" }}>
+                Mežs<span className="text-gold">LV</span>
+              </span>
             </Link>
             <p className="text-white/85 font-normal max-w-xs" style={footerLinkStyle}>
               Mūsu uzņēmums nodrošina pilnu mežizstrādes ciklu — no meža taksācijas līdz gatavās produkcijas realizācijai.
@@ -144,21 +140,21 @@ export default function Footer() {
           <div>
             <h3 className="mb-6 text-gold" style={footerHeaderStyle}>Kontakti</h3>
             <div className="space-y-4">
-              <a href="mailto:info@grgrupa.lv" className="flex items-center gap-3 text-white hover:text-gold transition-colors font-normal" style={footerLinkStyle}>
+              <a href="mailto:info@mezslv.lv" className="flex items-center gap-3 text-white hover:text-gold transition-colors font-normal" style={footerLinkStyle}>
                 <Mail size={18} className="text-gold" />
-                info@grgrupa.lv
+                info@mezslv.lv
               </a>
-              <a href="tel:+37129611110" className="flex items-center gap-3 text-white hover:text-gold transition-colors font-normal" style={footerLinkStyle}>
+              <a href="tel:+37126429202" className="flex items-center gap-3 text-white hover:text-gold transition-colors font-normal" style={footerLinkStyle}>
                 <Phone size={18} className="text-gold" />
-                +371 29611110
+                +371 26429202
               </a>
 
               <div className="pt-2">
                 <div className="flex items-start gap-3 text-white font-normal" style={footerLinkStyle}>
                   <MapPin size={18} className="text-gold mt-[2px]" />
                   <div>
-                    <p>Saules iela 92,</p>
-                    <p>Grobiņa, LV-3430</p>
+                    <p>Lielā iela 7,</p>
+                    <p>Liepāja</p>
                   </div>
                 </div>
               </div>
@@ -170,7 +166,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-white/60">
-              Copyright © 2026 GR GRUPA. Visas tiesības aizsargātas.
+              Copyright © 2026 MežsLV. Visas tiesības aizsargātas.
             </p>
             <div className="flex gap-6">
             </div>

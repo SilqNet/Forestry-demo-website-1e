@@ -106,7 +106,7 @@ export default function MezaVertibaPage() {
               
               <div className="flex flex-wrap gap-6 items-center">
                 <a 
-                  href="tel:+37120000000" 
+                  href="tel:+37126429202" 
                   className="cta-premium"
                 >
                   ZVANĪT
@@ -195,7 +195,7 @@ export default function MezaVertibaPage() {
             {/* Left Column */}
             <div className="lg:w-1/3 pt-1">
               <span className="text-gold text-[14px] font-bold tracking-widest uppercase mb-4 block">
-                KĀPĒC IZVĒLĒTIES GR GRUPA
+                KĀPĒC IZVĒLĒTIES MEŽSLV
               </span>
               <h2 className="text-[22px] font-bold text-black leading-tight mb-8">
                 Ieguvumi meža īpašniekiem
@@ -212,7 +212,7 @@ export default function MezaVertibaPage() {
                   'Samaksa pirms mežizstrādes darbu uzsākšanas.',
                   'Avanss 1 darba dienas laikā.',
                   '100% Latvijas kapitāla uzņēmums, kas realizē koksni, radot tai augstu pievienoto vērtību.',
-                  'GR GRUPAS vērtības ietver rūpes par darbinieku, partneru un sabiedrības labklājības veicināšanu.'
+                  'MežsLV vērtības ietver rūpes par darbinieku, partneru un sabiedrības labklājības veicināšanu.'
                 ].map((text, idx) => (
                   <div key={idx} className="flex gap-4 items-start">
                     <div 
@@ -370,8 +370,8 @@ export default function MezaVertibaPage() {
             />
 
             <div className="flex flex-col items-center gap-2">
-              <a href="mailto:info@grgrupa.lv" className="text-gold text-[16px] font-bold hover:text-[#B38D48] transition-colors">info@grgrupa.lv</a>
-              <a href="tel:+37129611110" className="text-black text-[28px] font-bold hover:text-gold transition-colors">+371 29611110</a>
+              <a href="mailto:info@mezslv.lv" className="text-gold text-[16px] font-bold hover:text-[#B38D48] transition-colors">info@mezslv.lv</a>
+              <a href="tel:+37126429202" className="text-black text-[28px] font-bold hover:text-gold transition-colors">+371 26429202</a>
             </div>
             
             <button className="cta-bordered-gold mt-4">KONTAKTI</button>

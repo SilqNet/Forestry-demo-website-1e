@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react'
 
 const PRELOADER_DURATION_MS = 3000
 const PRELOADER_FADE_OUT_MS = 500
-const NAVBAR_LOGO_URL =
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GR_GRUPA_idKuYPu1P0_0-bVHcO5QoufDlT9oMbc8MWmHEZEcl88.png'
+// Preloader configuration
 type SitePreloaderProps = {
   children: React.ReactNode
 }
@@ -42,13 +41,11 @@ export default function SitePreloader({ children }: SitePreloaderProps) {
           className={`logo-loader ${isFadingOut ? 'logo-loader--hidden' : ''}`}
           aria-hidden="true"
         >
-          <img
-            src={NAVBAR_LOGO_URL}
-            alt="GR GRUPA logo"
-            className="logo-loader__image"
-            loading="eager"
-            decoding="sync"
-          />
+          <div className="logo-loader__image flex items-center justify-center text-center">
+            <span className="text-[36px] sm:text-[48px] md:text-[60px] font-extrabold tracking-widest text-white" style={{ fontFamily: "'Saira Expanded', sans-serif" }}>
+              Mežs<span className="text-gold">LV</span>
+            </span>
+          </div>
         </div>
       )}
     </>

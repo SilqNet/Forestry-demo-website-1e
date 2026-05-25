@@ -27,27 +27,27 @@ const _saira = Saira({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://v0-forestry-demo-website.vercel.app/'),
-  title: 'Mežsaimniecības pakalpojumi visā Latvijā | GR GRUPA',
-  description: 'Ilgtspējīgi mežu apsaimniekošanas pakalpojumi un meža īpašumu iegāde visā Latvijā. GR GRUPA – uzticams partneris mežā.',
+  title: 'Mežsaimniecības pakalpojumi visā Latvijā | MežsLV',
+  description: 'Ilgtspējīgi mežu apsaimniekošanas pakalpojumi un meža īpašumu iegāde visā Latvijā. MežsLV – uzticams partneris mežā.',
   generator: 'v0.app',
   openGraph: {
     type: 'website',
     url: 'https://v0-forestry-demo-website.vercel.app/',
-    title: 'Mežsaimniecības pakalpojumi visā Latvijā | GR GRUPA',
-    description: 'Ilgtspējīgi mežu apsaimniekošanas pakalpojumi un meža īpašumu iegāde visā Latvijā. GR GRUPA – uzticams partneris mežā.',
+    title: 'Mežsaimniecības pakalpojumi visā Latvijā | MežsLV',
+    description: 'Ilgtspējīgi mežu apsaimniekošanas pakalpojumi un meža īpašumu iegāde visā Latvijā. MežsLV – uzticams partneris mežā.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'GR GRUPA - Profesionāli mežizstrādes pakalpojumi',
+        alt: 'MežsLV - Profesionāli mežizstrādes pakalpojumi',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mežsaimniecības pakalpojumi visā Latvijā | GR GRUPA',
-    description: 'Ilgtspējīgi mežu apsaimniekošanas pakalpojumi un meža īpašumu iegāde visā Latvijā. GR GRUPA – uzticams partneris mežā.',
+    title: 'Mežsaimniecības pakalpojumi visā Latvijā | MežsLV',
+    description: 'Ilgtspējīgi mežu apsaimniekošanas pakalpojumi un meža īpašumu iegāde visā Latvijā. MežsLV – uzticams partneris mežā.',
     images: ['/og-image.png'],
   },
   robots: {

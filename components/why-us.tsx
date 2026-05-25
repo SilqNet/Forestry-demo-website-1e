@@ -125,7 +125,7 @@ export default function WhyUs() {
             <div className="lg:w-[40%]">
               <div className="mb-10 flex items-center">
                 <span className="text-gold uppercase" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 400, lineHeight: '1.2', letterSpacing: 'normal' }}>
-                  GR GRUPA
+                  MežsLV
                 </span>
               </div>
               <h2 className="text-black mb-8 lg:mb-0" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
@@ -142,7 +142,7 @@ export default function WhyUs() {
               </div>
               <FlowHoverButton asChild>
                 <a href="#" className="inline-flex items-center gap-2 rounded-sm border border-black/10 px-8 py-4 text-[15px] font-medium text-black transition-all hover:text-white hover:border-gold active:text-white active:border-gold uppercase tracking-widest">
-                <span>PAR GR GRUPA</span>
+                <span>PAR MežsLV</span>
                 <svg
                   className="w-4 h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform"
                   fill="none"

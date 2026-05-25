@@ -12,7 +12,7 @@ const testimonials = [
   },
   {
     companyLogo: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Latvijasmezs-lv_idQkwXJx0w_0-jPrm4GWIp9eth3EzyWnpsSt0MhMMt9.png',
-    text: 'Augstu vērtējam GR GRUPA spēju nodrošināt stabilas piegādes un caurspīdīgu sadarbības modeli.',
+    text: 'Augstu vērtējam MežsLV spēju nodrošināt stabilas piegādes un caurspīdīgu sadarbības modeli.',
     authorName: 'Pēteris Kokins',
     authorTitle: 'Iepirkumu direktors',
   },
@@ -86,7 +86,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center mb-12">
           <h2 className="text-black text-center" style={{ fontFamily: "'Saira Expanded', sans-serif", fontSize: '28px', fontWeight: 600, lineHeight: '1.2', letterSpacing: 'normal', textTransform: 'none' }}>
-            GR GRUPA partneru un klientu atsauksmes
+            MežsLV partneru un klientu atsauksmes
           </h2>
         </div>
 

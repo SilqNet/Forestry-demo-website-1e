@@ -64,7 +64,7 @@ export default function SadarbibasProcess() {
                   textTransform: 'none',
                 }}
               >
-                Ja tev pieder meža īpašums, ko vēlies pārdot, piedāvā to “GR GRUPA”. Pērkam visa veida meža
+                Ja tev pieder meža īpašums, ko vēlies pārdot, piedāvā to “MežsLV”. Pērkam visa veida meža
                 īpašumus, neizmantotas vai daļēji aizaugušas lauksaimniecības zemes, kā arī kokmateriālus un zarus
                 šķeldai. Ja nepieciešams, veicam īpašumu sadalīšanu. Piedāvājam arī īpašumu maiņu un bezmaksas
                 juridisko palīdzību.
