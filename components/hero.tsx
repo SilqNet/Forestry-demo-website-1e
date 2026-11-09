@@ -4,8 +4,18 @@ import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { OfferModal } from '@/components/offer-modal'
 
+const stats = [
+  { value: '15+', label: 'Gadu pieredze' },
+  { value: '100+', label: 'Sadarbības ar meža īpašniekiem' },
+  { value: '50+', label: 'Ilgtermiņa sadarbības' },
+]
+
 export default function Hero() {
   const [offerModalOpen, setOfferModalOpen] = useState(false)
+
+  const scrollToWhyUs = () => {
+    document.getElementById('why-us')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   return (
     <section className="relative w-full h-screen pt-20 overflow-hidden bg-black">
@@ -23,35 +33,114 @@ export default function Hero() {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end text-left px-4 md:px-12 lg:px-20 pb-12 md:pb-16">
-        <h1
-          className="max-w-5xl text-left text-[30px] md:text-[42px] leading-[1.18]"
-          style={{ fontFamily: "'Saira Expanded', sans-serif", fontWeight: 600, letterSpacing: 'normal', textTransform: 'none', fontStyle: 'normal' }}
-        >
-          <span className="block text-white">Jūsu mežs ir vērtība.</span>
-          <span className="block text-gold">Mēs palīdzam to saglabāt un vairot.</span>
-        </h1>
+      <div className="relative z-10 flex h-full w-full items-end px-4 md:px-12 lg:px-20 pb-12 md:pb-16">
+        <div className="flex w-full flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+          {/* Left: copy + CTAs */}
+          <div className="flex max-w-2xl xl:max-w-3xl flex-col items-start text-left">
+            <h1
+              className="w-full text-left text-[clamp(1.75rem,4.2vw,3.25rem)] leading-[1.12] tracking-[-0.045em]"
+              style={{ fontWeight: 400 }}
+            >
+              <span
+                className="block text-white"
+                style={{
+                  fontFamily: "var(--font-playfair), ui-serif, Georgia, serif",
+                  fontStyle: 'italic',
+                  fontWeight: 400,
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                Jūsu mežs ir vērtība.
+              </span>
+              <span
+                className="mt-[0.08em] block text-gold"
+                style={{
+                  fontFamily: "var(--font-manrope), ui-sans-serif, system-ui, sans-serif",
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  letterSpacing: '-0.045em',
+                }}
+              >
+                Mēs palīdzam to saglabāt un vairot.
+              </span>
+            </h1>
 
-        <p
-          className="mt-4 md:mt-5 max-w-2xl text-left text-[15px] md:text-[17px] leading-[1.55] text-white/85"
-          style={{ fontFamily: "'Saira', sans-serif", fontWeight: 400, letterSpacing: 'normal', textTransform: 'none', fontStyle: 'normal' }}
-        >
-          No meža apsaimniekošanas un cirsmu izstrādes līdz kokmateriālu transportam — nodrošinām pārdomātus mežsaimniecības risinājumus visā Latvijā. Ar individuālu pieeju, skaidru komunikāciju un atbildību par paveikto.
-        </p>
+            <p
+              className="mt-4 md:mt-5 max-w-[46rem] text-left text-[15px] sm:text-[16px] leading-[1.5] tracking-[-0.01em] text-white/80"
+              style={{
+                fontFamily: "var(--font-manrope), ui-sans-serif, system-ui, sans-serif",
+                fontWeight: 400,
+                fontStyle: 'normal',
+              }}
+            >
+              No meža apsaimniekošanas un cirsmu izstrādes līdz kokmateriālu transportam — nodrošinām pārdomātus mežsaimniecības risinājumus visā Latvijā. Ar individuālu pieeju, skaidru komunikāciju un atbildību par paveikto.
+            </p>
 
-        <button
-          type="button"
-          onClick={() => setOfferModalOpen(true)}
-          className="group mt-5 md:mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2.5 md:px-5 md:py-2.5 text-[13px] md:text-[14px] font-semibold text-black transition-colors duration-300 hover:bg-[#B38D48] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          style={{ fontFamily: "'Saira Expanded', sans-serif", letterSpacing: 'normal', textTransform: 'none' }}
-        >
-          Pieteikt apsaimniekošanu
-          <ArrowRight
-            size={14}
-            className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-            aria-hidden
-          />
-        </button>
+            <div className="mt-5 md:mt-6 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+              <button
+                type="button"
+                onClick={() => setOfferModalOpen(true)}
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold px-4 py-2.5 md:px-5 md:py-2.5 text-[13px] md:text-[14px] font-semibold text-black transition-colors duration-300 hover:bg-[#B38D48] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                style={{ fontFamily: "'Saira Expanded', sans-serif", letterSpacing: 'normal', textTransform: 'none' }}
+              >
+                Pieteikt apsaimniekošanu
+                <ArrowRight
+                  size={14}
+                  className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden
+                />
+              </button>
+
+              <button
+                type="button"
+                onClick={scrollToWhyUs}
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-gold/70 bg-black/35 px-4 py-2.5 md:px-5 md:py-2.5 text-[13px] md:text-[14px] font-semibold text-white backdrop-blur-[2px] transition-colors duration-300 hover:border-gold hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                style={{ fontFamily: "'Saira Expanded', sans-serif", letterSpacing: 'normal', textTransform: 'none' }}
+              >
+                Uzzināt Vairāk
+                <ArrowRight
+                  size={14}
+                  className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden
+                />
+              </button>
+            </div>
+          </div>
+
+          {/* Right: stats — clear of floating side widgets */}
+          <div
+            className="flex w-full max-w-xl flex-row items-start justify-between gap-3 pr-16 sm:gap-6 sm:pr-20 lg:w-auto lg:max-w-none lg:shrink-0 lg:justify-end lg:gap-8 xl:gap-10 lg:pr-24"
+            aria-label="Uzņēmuma sasniegumi"
+          >
+            {stats.map((stat) => (
+              <div
+                key={stat.value + stat.label}
+                className="min-w-0 max-w-[7.5rem] sm:max-w-[9rem] lg:max-w-[10rem] text-left"
+                style={{ textShadow: '0 1px 14px rgba(0,0,0,0.55)' }}
+              >
+                <div
+                  className="text-[28px] sm:text-[34px] lg:text-[40px] leading-none text-white tabular-nums"
+                  style={{
+                    fontFamily: "var(--font-manrope), ui-sans-serif, system-ui, sans-serif",
+                    fontWeight: 600,
+                    letterSpacing: '-0.03em',
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <p
+                  className="mt-2 text-[12px] sm:text-[13px] leading-[1.35] text-white/80"
+                  style={{
+                    fontFamily: "var(--font-manrope), ui-sans-serif, system-ui, sans-serif",
+                    fontWeight: 400,
+                  }}
+                >
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <OfferModal open={offerModalOpen} onOpenChange={setOfferModalOpen} />

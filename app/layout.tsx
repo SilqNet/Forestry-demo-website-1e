@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Montserrat, Inter, Saira } from 'next/font/google'
+import { Montserrat, Inter, Saira, Manrope, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import FloatingButton from '@/components/floating-button'
@@ -21,6 +21,17 @@ const _saira = Saira({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-saira"
+});
+
+const _manrope = Manrope({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-manrope",
+});
+
+const _playfair = Playfair_Display({
+  subsets: ["latin", "latin-ext"],
+  style: "italic",
+  variable: "--font-playfair",
 });
 
 export const metadata: Metadata = {
@@ -75,7 +86,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="lv">
-      <body className={`${_montserrat.variable} ${_inter.variable} ${_saira.variable} font-sans antialiased`}>
+      <body className={`${_montserrat.variable} ${_inter.variable} ${_saira.variable} ${_manrope.variable} ${_playfair.variable} font-sans antialiased`}>
         <FloatingButton />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
