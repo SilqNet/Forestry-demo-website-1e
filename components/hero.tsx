@@ -107,15 +107,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: stats — clear of floating side widgets */}
+          {/* Right: stats — compact equal columns, clear of floating side widgets */}
           <div
-            className="grid w-full max-w-xl grid-cols-3 items-start gap-4 sm:gap-6 sm:pr-20 pr-16 lg:w-[min(100%,28rem)] xl:w-[30rem] lg:max-w-none lg:shrink-0 lg:gap-8 lg:pr-24"
+            className="ml-auto grid w-full max-w-[22rem] shrink-0 grid-cols-3 items-start gap-x-5 sm:max-w-[24rem] sm:gap-x-6 sm:pr-20 pr-16 lg:w-[26rem] lg:max-w-[26rem] lg:gap-x-8 lg:pr-24"
             aria-label="Uzņēmuma sasniegumi"
           >
             {stats.map((stat) => (
               <div
                 key={stat.value + stat.label}
-                className="min-w-0 text-left"
+                className="min-w-0 w-full text-left"
                 style={{ textShadow: '0 1px 14px rgba(0,0,0,0.55)' }}
               >
                 <div
