@@ -125,10 +125,10 @@ export default function Navbar() {
               <Image
                 src="/SIA_MONO MR.png"
                 alt="SIA MONO MR"
-                width={160}
-                height={64}
+                width={320}
+                height={128}
                 priority
-                className={`h-10 w-auto md:h-12 object-contain transition-[filter] duration-300 ${
+                className={`h-16 w-auto md:h-24 object-contain transition-[filter] duration-300 ${
                   isScrolled ? '' : 'brightness-0 invert'
                 }`}
               />
@@ -245,9 +245,9 @@ export default function Navbar() {
               <Image
                 src="/SIA_MONO MR.png"
                 alt="SIA MONO MR"
-                width={160}
-                height={64}
-                className="h-10 w-auto md:h-12 object-contain"
+                width={320}
+                height={128}
+                className="h-16 w-auto md:h-24 object-contain"
               />
             </Link>
             
