@@ -3,8 +3,6 @@ import { Montserrat, Inter, Saira } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import FloatingButton from '@/components/floating-button'
-import SitePreloader from '@/components/site-preloader'
-import InteractionLock from '@/components/interaction-lock'
 import './globals.css'
 
 const _montserrat = Montserrat({ 
@@ -78,13 +76,10 @@ export default function RootLayout({
   return (
     <html lang="lv">
       <body className={`${_montserrat.variable} ${_inter.variable} ${_saira.variable} font-sans antialiased`}>
-        <SitePreloader>
-          <InteractionLock />
-          <FloatingButton />
-          {children}
-          {process.env.NODE_ENV === 'production' && <Analytics />}
-          <SpeedInsights />
-        </SitePreloader>
+        <FloatingButton />
+        {children}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <SpeedInsights />
       </body>
     </html>
   )

@@ -121,10 +121,17 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 w-full items-center gap-3">
-            <Link href="/" className="shrink-0 flex items-center gap-4">
-              <span className={`text-[24px] md:text-[28px] font-extrabold tracking-wider transition-colors duration-300 ${isScrolled ? 'text-[#004225]' : 'text-white'}`} style={{ fontFamily: "'Saira Expanded', sans-serif" }}>
-                Mežs<span className="text-gold">LV</span>
-              </span>
+            <Link href="/" className="shrink-0 flex items-center">
+              <Image
+                src="/SIA_MONO MR.png"
+                alt="SIA MONO MR"
+                width={160}
+                height={64}
+                priority
+                className={`h-10 w-auto md:h-12 object-contain transition-[filter] duration-300 ${
+                  isScrolled ? '' : 'brightness-0 invert'
+                }`}
+              />
             </Link>
 
             <div className="hidden md:flex flex-1 items-stretch justify-end pl-8 lg:pl-16 h-full py-3">
@@ -234,10 +241,14 @@ export default function Navbar() {
         >
           {/* Header inside menu */}
           <div className="w-full h-20 md:h-24 flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-            <Link href="/" onClick={() => setIsOpen(false)} className="shrink-0 flex items-center gap-4">
-              <span className="text-[24px] md:text-[28px] font-extrabold tracking-wider text-[#004225]" style={{ fontFamily: "'Saira Expanded', sans-serif" }}>
-                Mežs<span className="text-gold">LV</span>
-              </span>
+            <Link href="/" onClick={() => setIsOpen(false)} className="shrink-0 flex items-center">
+              <Image
+                src="/SIA_MONO MR.png"
+                alt="SIA MONO MR"
+                width={160}
+                height={64}
+                className="h-10 w-auto md:h-12 object-contain"
+              />
             </Link>
             
             <div className="flex items-center gap-6">
