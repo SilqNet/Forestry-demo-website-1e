@@ -190,6 +190,69 @@
   }
 }
 
+/* Hero statistics — equal 3-column grid (CTA row, right side) */
+.hero-statistics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 20px;
+  align-items: start;
+  width: 100%;
+  max-width: 420px;
+}
+
+.hero-statistics-item {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+}
+
+.hero-statistics-number {
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  font-size: 23px;
+}
+
+.hero-statistics-label {
+  width: 100%;
+  margin-top: 0.45rem;
+  text-align: center;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 640px) {
+  .hero-statistics {
+    max-width: 460px;
+  }
+
+  .hero-statistics-number {
+    font-size: 28px;
+  }
+
+  .hero-statistics-label {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-statistics-number {
+    font-size: 32px;
+  }
+}
+
 /* Hero Video Background */
 .hero-video-wrapper {
   position: absolute;
