@@ -109,13 +109,13 @@ export default function Hero() {
 
           {/* Right: stats — clear of floating side widgets */}
           <div
-            className="flex w-full max-w-xl flex-row items-start justify-between gap-3 pr-16 sm:gap-6 sm:pr-20 lg:w-auto lg:max-w-none lg:shrink-0 lg:justify-end lg:gap-8 xl:gap-10 lg:pr-24"
+            className="grid w-full max-w-xl grid-cols-3 items-start gap-4 sm:gap-6 sm:pr-20 pr-16 lg:w-[min(100%,28rem)] xl:w-[30rem] lg:max-w-none lg:shrink-0 lg:gap-8 lg:pr-24"
             aria-label="Uzņēmuma sasniegumi"
           >
             {stats.map((stat) => (
               <div
                 key={stat.value + stat.label}
-                className="min-w-0 max-w-[7.5rem] sm:max-w-[9rem] lg:max-w-[10rem] text-left"
+                className="min-w-0 text-left"
                 style={{ textShadow: '0 1px 14px rgba(0,0,0,0.55)' }}
               >
                 <div
